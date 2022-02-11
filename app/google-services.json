@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "560563627766",
+    "project_id": "hikeculator",
+    "storage_bucket": "hikeculator.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560563627766:android:92b0f709ba5befeebfeed7",
+        "android_client_info": {
+          "package_name": "com.example.hikeculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560563627766-du0r5s24vv7eujhmks7gusfnmj6o4f5o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIA74WBUTFMEi2x7sN3TfRyjpUFNEPZMc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560563627766-du0r5s24vv7eujhmks7gusfnmj6o4f5o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
