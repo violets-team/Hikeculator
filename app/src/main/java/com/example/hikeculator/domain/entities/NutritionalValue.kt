@@ -1,6 +1,6 @@
 package com.example.hikeculator.domain.entities
 
-class NutritionalValue(
+data class NutritionalValue(
     val calories: Long,
     val proteins: Long,
     val fats: Long,
