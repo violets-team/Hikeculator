@@ -1,6 +1,6 @@
 package com.example.hikeculator.domain.entities
 
-data class HikeDay(
+data class TripDay(
     val breakfast: DayMeal,
     val lunch: DayMeal,
     val dinner: DayMeal,
