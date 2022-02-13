@@ -1,4 +1,4 @@
 package com.example.hikeculator.domain.use_cases
 
-class FetchUserProfileDetails {
+class CreateCustomProductUseCase {
 }
