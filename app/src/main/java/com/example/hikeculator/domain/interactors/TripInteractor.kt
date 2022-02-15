@@ -4,11 +4,15 @@ import com.example.hikeculator.domain.entities.Trip
 
 class TripInteractor {
 
-    fun createTrip(trip: Trip) {
+    fun insertTrip(trip: Trip) {
         TODO("Will be implemented")
     }
 
-    fun fetchTrip(): Trip {
+    fun removeTrip() {
+        TODO("Will be implemented")
+    }
+
+    fun fetchTrips(): Set<Trip> {
         TODO("Will be implemented")
     }
 

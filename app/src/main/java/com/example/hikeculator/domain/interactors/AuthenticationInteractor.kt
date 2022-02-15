@@ -9,4 +9,8 @@ class AuthenticationInteractor {
     fun logIn() {
         TODO("Will be implemented")
     }
+
+    fun singOut() {
+        TODO("Will be implemented")
+    }
 }
