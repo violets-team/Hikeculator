@@ -1,4 +1,4 @@
-package com.example.hikeculator.domain.use_cases.interactors
+package com.example.hikeculator.domain.interactors
 
 class UserProfileInteractor {
 
