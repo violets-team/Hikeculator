@@ -12,7 +12,11 @@ class GroupMemberInteractor {
         TODO("Will be implemented")
     }
 
-    fun fetchTripMembers() {
+    fun fetchTripMembers(): Set<User> {
+        TODO("Will be implemented")
+    }
+
+    fun fetchTripMember(): User {
         TODO("Will be implemented")
     }
 }

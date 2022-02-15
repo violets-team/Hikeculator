@@ -1,16 +1,19 @@
 package com.example.hikeculator.domain.interactors
 
+import com.example.hikeculator.domain.entities.DayMeal
+import com.example.hikeculator.domain.entities.TripDay
+
 class TripDayInteractor {
 
-    fun composeTripDayMenu() {
+    fun fetchTripDay(): TripDay {
         TODO("Will be implemented")
     }
 
-    fun fetchDayDetails() {
+    fun fetchTripDays(): List<TripDay> {
         TODO("Will be implemented")
     }
 
-    fun fetchTripDays() {
+    fun insertTripDay(tripDay: TripDay) {
         TODO("Will be implemented")
     }
 }

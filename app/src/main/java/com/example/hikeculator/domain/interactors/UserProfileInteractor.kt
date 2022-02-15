@@ -2,7 +2,7 @@ package com.example.hikeculator.domain.interactors
 
 class UserProfileInteractor {
 
-    fun fetchUserProfileDetails() {
-
+    fun fetchUserProfile() {
+        TODO("Will be implemented")
     }
 }
