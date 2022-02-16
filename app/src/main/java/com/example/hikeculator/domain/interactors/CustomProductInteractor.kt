@@ -1,8 +1,10 @@
 package com.example.hikeculator.domain.interactors
 
-class CustomProductInteractor {
+import com.example.hikeculator.domain.repositories.CustomProductRepository
+
+class CustomProductInteractor(private val customProductRepository: CustomProductRepository) {
 
     fun insertCustomProductToDatabase() {
-        TODO("Will be implemented")
+        customProductRepository.insertCustomProductToDatabase()
     }
 }

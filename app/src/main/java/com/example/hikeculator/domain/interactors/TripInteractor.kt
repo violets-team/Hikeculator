@@ -1,22 +1,23 @@
 package com.example.hikeculator.domain.interactors
 
 import com.example.hikeculator.domain.entities.Trip
+import com.example.hikeculator.domain.repositories.TripRepository
 
-class TripInteractor {
+class TripInteractor(private val tripRepository: TripRepository) {
 
     fun insertTrip(trip: Trip) {
-        TODO("Will be implemented")
+        tripRepository.insertTrip(trip)
     }
 
     fun removeTrip() {
-        TODO("Will be implemented")
+        tripRepository.removeTrip()
     }
 
     fun fetchTrips(): Set<Trip> {
-        TODO("Will be implemented")
+        return tripRepository.fetchTrips()
     }
 
     fun fetchTripDetails() {
-        TODO("Will be implemented")
+        tripRepository.fetchTripDetails()
     }
 }

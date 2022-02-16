@@ -2,18 +2,19 @@ package com.example.hikeculator.domain.interactors
 
 import com.example.hikeculator.domain.entities.Product
 import com.example.hikeculator.domain.entities.ProvisionBag
+import com.example.hikeculator.domain.repositories.ProvisionBagRepository
 
-class ProvisionBagInteractor {
+class ProvisionBagInteractor(private val provisionBagRepository: ProvisionBagRepository) {
 
     fun insertProductToProvisionBag(product: Product) {
-        TODO("Will be implemented")
+        provisionBagRepository.insertProductToProvisionBag(product)
     }
 
     fun fetchProvisionBag(): ProvisionBag {
-        TODO("Will be implemented(add Bag)")
+        return provisionBagRepository.fetchProvisionBag()
     }
 
     fun fetchProvisionBagDetails() {
-        TODO("Will be implemented")
+        return provisionBagRepository.fetchProvisionBagDetails()
     }
 }
