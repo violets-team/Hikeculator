@@ -1,19 +1,19 @@
 package com.example.hikeculator.domain.interactors
 
-import com.example.hikeculator.domain.entities.DayMeal
 import com.example.hikeculator.domain.entities.TripDay
+import com.example.hikeculator.domain.repositories.TripDayRepository
 
-class TripDayInteractor {
+class TripDayInteractor(private val tripDayRepository: TripDayRepository) {
 
     fun fetchTripDay(): TripDay {
-        TODO("Will be implemented")
+        return tripDayRepository.fetchTripDay()
     }
 
     fun fetchTripDays(): List<TripDay> {
-        TODO("Will be implemented")
+        return tripDayRepository.fetchTripDays()
     }
 
     fun insertTripDay(tripDay: TripDay) {
-        TODO("Will be implemented")
+        tripDayRepository.insertTripDay(tripDay)
     }
 }

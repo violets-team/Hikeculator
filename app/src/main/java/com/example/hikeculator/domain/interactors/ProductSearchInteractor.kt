@@ -1,10 +1,11 @@
 package com.example.hikeculator.domain.interactors
 
 import com.example.hikeculator.domain.entities.Product
+import com.example.hikeculator.domain.repositories.ProductSearchRepository
 
-class ProductSearchInteractor {
+class ProductSearchInteractor(private val productSearchRepository: ProductSearchRepository) {
 
     fun search(query: String): Set<Product> {
-        TODO("Will be implemented")
+        return productSearchRepository.search(query)
     }
 }
