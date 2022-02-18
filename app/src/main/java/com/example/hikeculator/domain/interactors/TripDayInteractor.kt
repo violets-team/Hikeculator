@@ -5,15 +5,12 @@ import com.example.hikeculator.domain.repositories.TripDayRepository
 
 class TripDayInteractor(private val tripDayRepository: TripDayRepository) {
 
-    fun fetchTripDay(): TripDay {
-        return tripDayRepository.fetchTripDay()
-    }
+    fun fetchTripDay(): TripDay = tripDayRepository.fetchTripDay()
 
-    fun fetchTripDays(): List<TripDay> {
-        return tripDayRepository.fetchTripDays()
-    }
 
-    fun insertTripDay(tripDay: TripDay) {
-        tripDayRepository.insertTripDay(tripDay)
-    }
+    fun fetchTripDays(): List<TripDay> = tripDayRepository.fetchTripDays()
+
+
+    fun insertTripDay(tripDay: TripDay) = tripDayRepository.insertTripDay(tripDay)
+
 }

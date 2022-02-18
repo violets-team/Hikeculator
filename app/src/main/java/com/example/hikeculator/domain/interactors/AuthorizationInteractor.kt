@@ -4,15 +4,6 @@ import com.example.hikeculator.domain.repositories.AuthorizationRepository
 
 class AuthorizationInteractor(private val authorizationRepository: AuthorizationRepository) {
 
-    fun signIn() {
-        authorizationRepository.signIn()
-    }
+    fun signOut() = authorizationRepository.signOut()
 
-    fun logIn() {
-        authorizationRepository.logIn()
-    }
-
-    fun signOut() {
-        authorizationRepository.signOut()
-    }
 }

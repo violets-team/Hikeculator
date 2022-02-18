@@ -9,6 +9,4 @@ interface TripRepository {
     fun removeTrip()
 
     fun fetchTrips(): Set<Trip>
-
-    fun fetchTripDetails()
 }

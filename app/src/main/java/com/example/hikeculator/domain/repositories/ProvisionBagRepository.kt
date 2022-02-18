@@ -8,6 +8,4 @@ interface ProvisionBagRepository {
     fun insertProductToProvisionBag(product: Product)
 
     fun fetchProvisionBag(): ProvisionBag
-
-    fun fetchProvisionBagDetails()
 }

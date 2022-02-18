@@ -5,19 +5,12 @@ import com.example.hikeculator.domain.repositories.TripRepository
 
 class TripInteractor(private val tripRepository: TripRepository) {
 
-    fun insertTrip(trip: Trip) {
-        tripRepository.insertTrip(trip)
-    }
+    fun insertTrip(trip: Trip) = tripRepository.insertTrip(trip)
 
-    fun removeTrip() {
-        tripRepository.removeTrip()
-    }
 
-    fun fetchTrips(): Set<Trip> {
-        return tripRepository.fetchTrips()
-    }
+    fun removeTrip() = tripRepository.removeTrip()
 
-    fun fetchTripDetails() {
-        tripRepository.fetchTripDetails()
-    }
+
+    fun fetchTrips(): Set<Trip> = tripRepository.fetchTrips()
+
 }
