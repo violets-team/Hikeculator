@@ -6,5 +6,4 @@ import com.google.firebase.firestore.auth.User
 class UserProfileInteractor(private val userProfileRepository: UserProfileRepository) {
 
     fun fetchUserProfile(): User = userProfileRepository.fetchUserProfile()
-
 }

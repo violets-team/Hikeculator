@@ -7,9 +7,7 @@ class TripInteractor(private val tripRepository: TripRepository) {
 
     fun insertTrip(trip: Trip) = tripRepository.insertTrip(trip)
 
-
     fun removeTrip() = tripRepository.removeTrip()
-
 
     fun fetchTrips(): Set<Trip> = tripRepository.fetchTrips()
 
