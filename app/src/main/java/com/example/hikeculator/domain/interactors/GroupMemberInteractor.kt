@@ -1,22 +1,15 @@
 package com.example.hikeculator.domain.interactors
 
 import com.example.hikeculator.domain.entities.User
+import com.example.hikeculator.domain.repositories.GroupMemberRepository
 
-class GroupMemberInteractor {
+class GroupMemberInteractor(private val groupMemberRepository: GroupMemberRepository) {
 
-    fun addTripMember(user: User) {
-        TODO("Will be implemented")
-    }
+    fun addTripMember(user: User) = groupMemberRepository.addTripMember(user)
 
-    fun removeTripMember(user: User) {
-        TODO("Will be implemented")
-    }
+    fun removeTripMember(user: User) = groupMemberRepository.removeTripMember(user)
 
-    fun fetchTripMembers(): Set<User> {
-        TODO("Will be implemented")
-    }
+    fun fetchTripMember(): User = groupMemberRepository.fetchTripMember()
 
-    fun fetchTripMember(): User {
-        TODO("Will be implemented")
-    }
+    fun fetchTripMembers(): Set<User> = groupMemberRepository.fetchTripMembers()
 }

@@ -1,8 +1,9 @@
 package com.example.hikeculator.domain.interactors
 
-class UserProfileInteractor {
+import com.example.hikeculator.domain.repositories.UserProfileRepository
+import com.google.firebase.firestore.auth.User
 
-    fun fetchUserProfile() {
-        TODO("Will be implemented")
-    }
+class UserProfileInteractor(private val userProfileRepository: UserProfileRepository) {
+
+    fun fetchUserProfile(): User = userProfileRepository.fetchUserProfile()
 }
