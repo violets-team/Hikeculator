@@ -6,5 +6,4 @@ import com.example.hikeculator.domain.repositories.ProductSearchRepository
 class ProductSearchInteractor(private val productSearchRepository: ProductSearchRepository) {
 
     fun search(query: String): Set<Product> = productSearchRepository.search(query)
-
 }

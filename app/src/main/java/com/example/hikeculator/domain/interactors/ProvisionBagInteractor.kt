@@ -8,7 +8,5 @@ class ProvisionBagInteractor(private val provisionBagRepository: ProvisionBagRep
 
     fun insertProductToProvisionBag(product: Product) = provisionBagRepository.insertProductToProvisionBag(product)
 
-
     fun fetchProvisionBag(): ProvisionBag = provisionBagRepository.fetchProvisionBag()
-
 }

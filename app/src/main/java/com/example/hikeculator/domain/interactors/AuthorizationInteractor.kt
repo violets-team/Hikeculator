@@ -5,5 +5,4 @@ import com.example.hikeculator.domain.repositories.AuthorizationRepository
 class AuthorizationInteractor(private val authorizationRepository: AuthorizationRepository) {
 
     fun signOut() = authorizationRepository.signOut()
-
 }

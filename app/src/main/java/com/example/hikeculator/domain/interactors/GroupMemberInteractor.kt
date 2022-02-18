@@ -9,9 +9,7 @@ class GroupMemberInteractor(private val groupMemberRepository: GroupMemberReposi
 
     fun removeTripMember(user: User) = groupMemberRepository.removeTripMember(user)
 
-
     fun fetchTripMember(): User = groupMemberRepository.fetchTripMember()
 
     fun fetchTripMembers(): Set<User> = groupMemberRepository.fetchTripMembers()
-
 }
