@@ -5,19 +5,13 @@ import com.example.hikeculator.domain.repositories.GroupMemberRepository
 
 class GroupMemberInteractor(private val groupMemberRepository: GroupMemberRepository) {
 
-    fun addTripMember(user: User) {
-        groupMemberRepository.addTripMember(user)
-    }
+    fun addTripMember(user: User) = groupMemberRepository.addTripMember(user)
 
-    fun removeTripMember(user: User) {
-        groupMemberRepository.removeTripMember(user)
-    }
+    fun removeTripMember(user: User) = groupMemberRepository.removeTripMember(user)
 
-    fun fetchTripMember(): User {
-        return groupMemberRepository.fetchTripMember()
-    }
 
-    fun fetchTripMembers(): Set<User> {
-        return groupMemberRepository.fetchTripMembers()
-    }
+    fun fetchTripMember(): User = groupMemberRepository.fetchTripMember()
+
+    fun fetchTripMembers(): Set<User> = groupMemberRepository.fetchTripMembers()
+
 }
