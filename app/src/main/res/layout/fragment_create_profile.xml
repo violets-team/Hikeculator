@@ -7,60 +7,60 @@
     android:background="@drawable/gradient_green">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_done"
+        android:id="@+id/button_create_profile_done"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
         android:backgroundTint="@color/black"
         android:padding="8dp"
-        android:text="Готово"
+        android:text="@string/text_button_create_profile_done"
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="@+id/cl_create_profile"
+        app:layout_constraintStart_toStartOf="@+id/cl_create_profile"
         app:rippleColor="@color/white" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/cl_create_profile"
         android:layout_width="350dp"
         android:layout_height="400dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/circular_background"
-        app:layout_constraintBottom_toTopOf="@+id/button_done"
+        app:layout_constraintBottom_toTopOf="@+id/button_create_profile_done"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/tv_create_profile_title"
         app:layout_constraintVertical_bias="0.0">
 
         <RadioButton
-            android:id="@+id/radio_man"
+            android:id="@+id/radio_man_create_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_marginEnd="79dp"
-            android:text="Мужской"
+            android:text="@string/text_radio_man_create_profile"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/radio_woman"
+            app:layout_constraintEnd_toStartOf="@+id/radio_woman_create_profile"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline"
             app:layout_constraintVertical_bias="0.0" />
 
         <RadioButton
-            android:id="@+id/radio_woman"
+            android:id="@+id/radio_woman_create_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="Женский"
+            android:text="@string/text_radio_woman_create_profile"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/radio_man"
+            app:layout_constraintStart_toEndOf="@+id/radio_man_create_profile"
             app:layout_constraintTop_toTopOf="@+id/guideline"
             app:layout_constraintVertical_bias="0.0" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/filledTextFieldName"
+            android:id="@+id/til_create_profile_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,19 +68,19 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:hint="Имя"
-            app:layout_constraintBottom_toTopOf="@id/filledTextFieldWeight"
+            android:hint="@string/hint_profile_name"
+            app:layout_constraintBottom_toTopOf="@id/til_profile_weight"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="8dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_name"
+                android:id="@+id/et_create_profile_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/filledTextFieldWeight"
+            android:id="@+id/til_profile_weight"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -88,18 +88,18 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:hint="Масса тела"
-            app:layout_constraintBottom_toTopOf="@id/filledTextFieldHeight"
-            app:layout_constraintTop_toBottomOf="@+id/filledTextFieldName">
+            android:hint="@string/hint_profile_weight"
+            app:layout_constraintBottom_toTopOf="@id/til_create_profile_height"
+            app:layout_constraintTop_toBottomOf="@+id/til_create_profile_name">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_weight"
+                android:id="@+id/et_create_profile_weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/filledTextFieldHeight"
+            android:id="@+id/til_create_profile_height"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -107,18 +107,18 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:hint="Рост"
-            app:layout_constraintBottom_toTopOf="@id/filledTextFieldAge"
-            app:layout_constraintTop_toBottomOf="@+id/filledTextFieldWeight">
+            android:hint="@string/hint_profile_height"
+            app:layout_constraintBottom_toTopOf="@id/til_create_profile_age"
+            app:layout_constraintTop_toBottomOf="@+id/til_profile_weight">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_height"
+                android:id="@+id/et_create_profile_height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/filledTextFieldAge"
+            android:id="@+id/til_create_profile_age"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -126,12 +126,12 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:hint="Возраст"
+            android:hint="@string/text_profile_age"
             app:layout_constraintBottom_toTopOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/filledTextFieldHeight">
+            app:layout_constraintTop_toBottomOf="@+id/til_create_profile_height">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_age"
+                android:id="@+id/et_create_profile_age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -146,11 +146,11 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_create_profile_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Создать профиль"
+        android:text="@string/text_create_profile_title"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"

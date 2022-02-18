@@ -7,7 +7,7 @@
     android:background="@color/light_grey">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clBar"
+        android:id="@+id/cl_theme"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:background="@drawable/gradient_green"
@@ -16,12 +16,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/titleProfile"
+            android:id="@+id/tv_title_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/proximanovaregular"
-            android:text="Профиль"
+            android:text="@string/text_title_profile"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -32,27 +32,27 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clMain"
+        android:id="@+id/cl_main"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
         android:background="@drawable/circularbordersolid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/clBar">
+        app:layout_constraintTop_toTopOf="@+id/cl_theme">
 
         <TextView
-            android:id="@+id/tvEmailProfile"
+            android:id="@+id/tv_email_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="romrom@gmail.com"
-            app:layout_constraintEnd_toEndOf="@+id/ivProfile"
-            app:layout_constraintStart_toStartOf="@+id/ivProfile"
-            app:layout_constraintTop_toBottomOf="@+id/ivProfile" />
+            android:text="@string/text_email_profile"
+            app:layout_constraintEnd_toEndOf="@+id/iv_profile"
+            app:layout_constraintStart_toStartOf="@+id/iv_profile"
+            app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
 
         <ImageView
-            android:id="@+id/ivProfile"
+            android:id="@+id/iv_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -62,158 +62,158 @@
             app:srcCompat="@mipmap/ic_launcher" />
 
         <TextView
-            android:id="@+id/textViewDesc"
+            android:id="@+id/tv_calories_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Рекомендуемое количество калорий"
+            android:text="@string/text_calories_label"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNameProfile" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_profile" />
 
         <TextView
-            android:id="@+id/tvProfileCal"
+            android:id="@+id/tv_profile_calories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="3100 Ккал"
+            android:text="@string/text_profile_calories"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/textViewDesc"
+            app:layout_constraintEnd_toEndOf="@+id/tv_calories_label"
             app:layout_constraintHorizontal_bias="0.46"
-            app:layout_constraintStart_toStartOf="@+id/textViewDesc"
-            app:layout_constraintTop_toBottomOf="@+id/textViewDesc" />
+            app:layout_constraintStart_toStartOf="@+id/tv_calories_label"
+            app:layout_constraintTop_toBottomOf="@+id/tv_calories_label" />
 
         <TextView
-            android:id="@+id/tvNameProfile"
+            android:id="@+id/tv_name_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Roman"
+            android:text="@string/text_name_profile"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/ivProfile"
-            app:layout_constraintStart_toStartOf="@+id/ivProfile"
-            app:layout_constraintTop_toBottomOf="@+id/tvEmailProfile" />
+            app:layout_constraintEnd_toEndOf="@+id/iv_profile"
+            app:layout_constraintStart_toStartOf="@+id/iv_profile"
+            app:layout_constraintTop_toBottomOf="@+id/tv_email_profile" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clDesc"
+        android:id="@+id/cl_desc"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@drawable/circularbordersolid"
-        app:layout_constraintEnd_toEndOf="@+id/clMain"
-        app:layout_constraintStart_toStartOf="@+id/clMain"
-        app:layout_constraintTop_toBottomOf="@+id/clMain">
+        app:layout_constraintEnd_toEndOf="@+id/cl_main"
+        app:layout_constraintStart_toStartOf="@+id/cl_main"
+        app:layout_constraintTop_toBottomOf="@+id/cl_main">
 
         <RadioButton
-            android:id="@+id/radio_man2"
+            android:id="@+id/radio_man_create_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="Мужской"
-            app:layout_constraintEnd_toStartOf="@+id/radio_woman2"
+            android:text="@string/text_radio_man"
+            app:layout_constraintEnd_toStartOf="@+id/radio_woman_create_profile"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/filledTextFieldWeight"
-            app:layout_constraintTop_toBottomOf="@+id/filledTextFieldWeight" />
+            app:layout_constraintStart_toStartOf="@+id/til_profile_weight"
+            app:layout_constraintTop_toBottomOf="@+id/til_profile_weight" />
 
         <RadioButton
-            android:id="@+id/radio_woman2"
+            android:id="@+id/radio_woman_create_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_marginStart="137dp"
             android:layout_marginEnd="20dp"
-            android:text="Женский"
-            app:layout_constraintEnd_toEndOf="@+id/filledTextFieldWeight"
-            app:layout_constraintStart_toEndOf="@+id/radio_man2"
-            app:layout_constraintTop_toBottomOf="@+id/filledTextFieldWeight" />
+            android:text="@string/text_radio_woman"
+            app:layout_constraintEnd_toEndOf="@+id/til_profile_weight"
+            app:layout_constraintStart_toEndOf="@+id/radio_man_create_profile"
+            app:layout_constraintTop_toBottomOf="@+id/til_profile_weight" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/filledTextFieldName"
+            android:id="@+id/til_create_profile_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
-            android:hint="Имя"
+            android:hint="@string/hint_profile_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_name"
+                android:id="@+id/et_create_profile_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Roman" />
+                android:text="@string/text_profile_name" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/filledTextFieldAge"
+            android:id="@+id/til_create_profile_age"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:hint="Возраст"
+            android:hint="@string/hint_profile_age"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/filledTextFieldName">
+            app:layout_constraintTop_toBottomOf="@+id/til_create_profile_name">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_age"
+                android:id="@+id/et_create_profile_age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="29" />
+                android:text="@string/text_profile_age" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/filledTextFieldHeight"
+            android:id="@+id/til_create_profile_height"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:hint="Рост"
+            android:hint="@string/hint_profile_height"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/filledTextFieldAge">
+            app:layout_constraintTop_toBottomOf="@+id/til_create_profile_age">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_height"
+                android:id="@+id/et_create_profile_height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="178" />
+                android:text="@string/text_profile_height" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/filledTextFieldWeight"
+            android:id="@+id/til_profile_weight"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:hint="Масса тела"
+            android:hint="@string/hint_profile_weight"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/filledTextFieldHeight">
+            app:layout_constraintTop_toBottomOf="@+id/til_create_profile_height">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_weight"
+                android:id="@+id/et_create_profile_weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="79" />
+                android:text="@string/text_profile_weight" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -227,7 +227,7 @@
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/black"
         android:padding="8dp"
-        android:text="Сохранить"
+        android:text="@string/text_button_save"
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="16sp"
