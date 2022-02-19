@@ -2,6 +2,8 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,7 +12,6 @@
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -18,7 +19,7 @@
                 android:id="@+id/rv_hikes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/gradient_green"
+                android:background="@color/rv_background"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -30,21 +31,22 @@
     </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottom_app_bar_hike"
+        android:id="@+id/bottom_app_bar_hikes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:fabAlignmentMode="end"
-        app:navigationIcon="@drawable/ic_add"
-        app:navigationContentDescription="Navigation icon"
+        android:backgroundTint="@color/rv_background"
+        app:fabAlignmentMode="center"
         app:hideOnScroll="true"
-        app:menu="@menu/app_bar_menu"/>
+        app:menu="@menu/app_bar_menu"
+        app:navigationContentDescription="Navigation icon" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_create_hike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_anchor="@id/bottom_app_bar_hike"
+        android:backgroundTint="@color/light_grey"
+        app:layout_anchor="@id/bottom_app_bar_hikes"
         app:srcCompat="@drawable/ic_add" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

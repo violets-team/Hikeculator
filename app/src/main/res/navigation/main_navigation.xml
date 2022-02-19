@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_navigation">
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/hikesFragment">
 
+    <fragment
+        android:id="@+id/hikesFragment"
+        android:name="com.example.hikeculator.HikesFragment"
+        android:label="HikesFragment" >
+        <action
+            android:id="@+id/action_hikesFragment_to_createHikeFragment"
+            app:destination="@id/createHikeFragment" />
+        <action
+            android:id="@+id/action_hikesFragment_to_hikeFragment"
+            app:destination="@id/hikeFragment" />
+        <action
+            android:id="@+id/action_hikesFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createHikeFragment"
+        android:name="com.example.hikeculator.CreateHikeFragment"
+        android:label="CreateHikeFragment" />
+    <fragment
+        android:id="@+id/dayFragment"
+        android:name="com.example.hikeculator.DayFragment"
+        android:label="DayFragment" />
+    <fragment
+        android:id="@+id/bagFragment"
+        android:name="com.example.hikeculator.BagFragment"
+        android:label="BagFragment" />
+    <fragment
+        android:id="@+id/membersFragment"
+        android:name="com.example.hikeculator.MembersFragment"
+        android:label="MembersFragment" />
+    <fragment
+        android:id="@+id/hikeFragment"
+        android:name="com.example.hikeculator.HikeFragment"
+        android:label="HikeFragment" >
+        <action
+            android:id="@+id/action_hikeFragment_to_bagFragment"
+            app:destination="@id/bagFragment" />
+        <action
+            android:id="@+id/action_hikeFragment_to_membersFragment"
+            app:destination="@id/membersFragment" />
+        <action
+            android:id="@+id/action_hikeFragment_to_dayFragment"
+            app:destination="@id/dayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.hikeculator.ProfileFragment"
+        android:label="ProfileFragment" />
 </navigation>
