@@ -34,4 +34,5 @@
     <string name="text_title_create_hike">Создать поход</string>
     <string name="hint_create_hike_name">Название похода</string>
     <string name="text_create_hike_name">Домбай</string>
+    <string name="text_title_hike">Название похода</string>
 </resources>
