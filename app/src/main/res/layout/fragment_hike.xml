@@ -16,7 +16,6 @@
         app:indicatorInset="0dp"
         app:indicatorSize="150dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title_hike"
         app:trackColor="@color/teal_200"
@@ -24,13 +23,17 @@
         app:trackThickness="12dp" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_trip_day"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/btNav"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ci_hike" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        tools:listitem="@layout/item_day" />
 
     <TextView
         android:id="@+id/tv_title_hike"
@@ -38,6 +41,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/text_title_hike"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -50,6 +55,75 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_menu" />
+
+    <TextView
+        android:id="@+id/tv_trip_calories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5800 Ккал"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/ci_hike"
+        app:layout_constraintEnd_toEndOf="@+id/ci_hike"
+        app:layout_constraintStart_toStartOf="@+id/ci_hike"
+        app:layout_constraintTop_toTopOf="@+id/ci_hike" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="@color/purple_700"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ci_hike">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_weight_trip_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/text_weight_trip_label"
+                android:textColor="@color/light_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_weight_trip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/text_weight_trip"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_weight_trip_label"
+                app:layout_constraintTop_toBottomOf="@+id/tv_weight_trip_label" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_save_trip"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:padding="8dp"
+        android:text="@string/text_button_save"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/btNav"
+        app:layout_constraintEnd_toEndOf="@+id/rv_trip_day"
+        app:layout_constraintStart_toStartOf="@+id/rv_trip_day"
+        app:rippleColor="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
