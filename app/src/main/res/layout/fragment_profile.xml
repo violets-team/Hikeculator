@@ -19,7 +19,7 @@
             android:id="@+id/tv_title_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/proximanovaregular"
             android:text="@string/text_title_profile"
             android:textColor="@color/white"
@@ -28,14 +28,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_main"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="54dp"
         android:background="@drawable/circularbordersolid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +64,7 @@
             android:id="@+id/tv_calories_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="@string/text_calories_label"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
@@ -107,7 +106,7 @@
         android:id="@+id/cl_desc"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/circularbordersolid"
         app:layout_constraintEnd_toEndOf="@+id/cl_main"
         app:layout_constraintStart_toStartOf="@+id/cl_main"
@@ -142,7 +141,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:hint="@string/hint_profile_name"
             app:layout_constraintEnd_toEndOf="parent"

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
     app:startDestination="@id/hikesFragment">
 
     <fragment
         android:id="@+id/hikesFragment"
-        android:name="com.example.hikeculator.HikesFragment"
+        android:name="com.example.hikeculator.presentation.trip_general.TripGeneralFragment"
         android:label="HikesFragment" >
         <action
             android:id="@+id/action_hikesFragment_to_createHikeFragment"
@@ -20,23 +21,23 @@
     </fragment>
     <fragment
         android:id="@+id/createHikeFragment"
-        android:name="com.example.hikeculator.CreateHikeFragment"
+        android:name="com.example.hikeculator.presentation.create_hike.CreateHikeFragment"
         android:label="CreateHikeFragment" />
     <fragment
         android:id="@+id/dayFragment"
-        android:name="com.example.hikeculator.DayFragment"
+        android:name="com.example.hikeculator.presentation.trip_day_detail.TripDayDetailFragment"
         android:label="DayFragment" />
     <fragment
         android:id="@+id/bagFragment"
-        android:name="com.example.hikeculator.BagFragment"
+        android:name="com.example.hikeculator.presentation.provision_bag.ProvisionBagFragment"
         android:label="BagFragment" />
     <fragment
         android:id="@+id/membersFragment"
-        android:name="com.example.hikeculator.MembersFragment"
+        android:name="com.example.hikeculator.presentation.member_managment.MemberManagementFragment"
         android:label="MembersFragment" />
     <fragment
         android:id="@+id/hikeFragment"
-        android:name="com.example.hikeculator.HikeFragment"
+        android:name="com.example.hikeculator.presentation.trip_detail.TripDetailFragment"
         android:label="HikeFragment" >
         <action
             android:id="@+id/action_hikeFragment_to_bagFragment"
@@ -50,6 +51,6 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.hikeculator.ProfileFragment"
+        android:name="com.example.hikeculator.presentation.profile.ProfileFragment"
         android:label="ProfileFragment" />
 </navigation>
