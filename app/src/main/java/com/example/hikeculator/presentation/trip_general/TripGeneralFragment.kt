@@ -1,26 +1,17 @@
-package com.example.hikeculator
+package com.example.hikeculator.presentation.trip_general
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Toast
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupWithNavController
-import com.example.hikeculator.databinding.FragmentHikesBinding
-import com.example.hikeculator.databinding.FragmentMembersBinding
+import by.kirich1409.viewbindingdelegate.viewBinding
+import com.example.hikeculator.R
+import com.example.hikeculator.databinding.FragmentTripGeneralBinding
 
-class HikesFragment: Fragment(R.layout.fragment_hikes) {
+class TripGeneralFragment: Fragment(R.layout.fragment_trip_general) {
 
-    private var _binding: FragmentHikesBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = FragmentHikesBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    private val binding by viewBinding(FragmentTripGeneralBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,11 +30,5 @@ class HikesFragment: Fragment(R.layout.fragment_hikes) {
             }
         }
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 }
 

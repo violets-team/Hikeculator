@@ -58,4 +58,10 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:2.4.1"
     implementation "androidx.navigation:navigation-ui-ktx:2.4.1"
 
+    /** Scroll Down To Search Recycler View **/
+    implementation 'com.nicolettilu:hiddensearchwithrecyclerview:0.0.5'
+
+    /** view binding **/
+    implementation 'com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.3'
+
 }
