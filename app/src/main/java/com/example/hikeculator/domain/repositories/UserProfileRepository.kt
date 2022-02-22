@@ -1,8 +1,11 @@
 package com.example.hikeculator.domain.repositories
 
-import com.google.firebase.firestore.auth.User
+import com.example.hikeculator.domain.entities.User
+
 
 interface UserProfileRepository {
 
-    fun fetchUserProfile(): User
+    suspend fun fetchUserProfile(): User
+
+    suspend fun createUserProfile(user: User)
 }

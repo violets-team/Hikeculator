@@ -1,9 +1,13 @@
 package com.example.hikeculator.domain.interactors
 
+import com.example.hikeculator.domain.entities.User
 import com.example.hikeculator.domain.repositories.UserProfileRepository
-import com.google.firebase.firestore.auth.User
 
 class UserProfileInteractor(private val userProfileRepository: UserProfileRepository) {
 
-    fun fetchUserProfile(): User = userProfileRepository.fetchUserProfile()
+    suspend fun fetchUserProfile(): User = userProfileRepository.fetchUserProfile()
+
+    suspend fun createUserProfile(user: com.example.hikeculator.domain.entities.User) {
+        userProfileRepository.createUserProfile(user = user)
+    }
 }
