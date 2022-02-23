@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/hikesFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/hikesFragment"
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/createHikeFragment"
-        android:name="com.example.hikeculator.presentation.create_hike.CreateHikeFragment"
+        android:name="com.example.hikeculator.presentation.create_trip.CreateTripFragment"
         android:label="CreateHikeFragment" />
     <fragment
         android:id="@+id/dayFragment"
@@ -53,4 +53,13 @@
         android:id="@+id/profileFragment"
         android:name="com.example.hikeculator.presentation.profile.ProfileFragment"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.hikeculator.presentation.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_hikesFragment"
+            app:destination="@id/hikesFragment" />
+    </fragment>
 </navigation>

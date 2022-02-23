@@ -11,5 +11,6 @@
     <color name="rv_background">#41505C</color>
     <color name="color_item_rv">#787171</color>
     <color name="color_fab">#0039CB</color>
+    <color name="dark_blue">#207398</color>
 
 </resources>
