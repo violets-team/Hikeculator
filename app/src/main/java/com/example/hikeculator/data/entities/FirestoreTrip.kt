@@ -1,9 +1,11 @@
-package com.example.hikeculator.domain.entities
+package com.example.hikeculator.data.entities
 
+import com.example.hikeculator.domain.entities.TripDifficultyCategory
 import com.example.hikeculator.domain.enums.Seasons
 import com.example.hikeculator.domain.enums.TripType
 
-data class Trip(
+data class FirestoreTrip(
+    val id: String,
     val name: String,
     val startDate: Long,
     val endDate: Long,
