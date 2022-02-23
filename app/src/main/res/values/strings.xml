@@ -39,4 +39,6 @@
     <string name="text_weight_trip_label">Масса за поход</string>
     <string name="text_weight_trip">12.5 кг</string>
     <string name="text_item_rv_day">День 1</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
