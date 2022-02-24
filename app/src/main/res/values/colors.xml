@@ -13,4 +13,22 @@
     <color name="color_fab">#0039CB</color>
     <color name="dark_blue">#207398</color>
 
+    <color name="blueMacro">#00349E</color>
+    <color name="greenMacro">#218000</color>
+    <color name="orangeMacro">#FF7700</color>
+    <color name="greyMacro">#CECECE</color>
+    <color name="grey">#9D9D9D</color>
+    <color name="statusBar">#FFFCF7</color>
+    <color name="detailed_card">#F9F8F8</color>
+    <color name="colorSecondary50">#e1f1ff</color>
+    <color name="colorSecondary300">#60aef8</color>
+
+    <color name="color_header_breakfast">#64C0E9</color>
+    <color name="color_header_dinner">#EDB14D</color>
+    <color name="color_header_evening_meal">#A482E1</color>
+    <color name="color_header_snack">#5F8F8B</color>
+
+
+
+
 </resources>
