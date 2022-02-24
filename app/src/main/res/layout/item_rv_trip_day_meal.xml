@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:background="@drawable/auth_input_style">
+
+    <TextView
+        android:id="@+id/tv_item_overview_name"
+        style="@style/tv_overview_foodname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Banana"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_item_overview_grams"
+        style="@style/tv_overview_foodlabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="100 g"
+        app:layout_constraintStart_toEndOf="@+id/tv_item_overview_name"
+        app:layout_constraintTop_toTopOf="@+id/tv_item_overview_name" />
+
+    <TextView
+        android:id="@+id/tv_item_overview_kcal"
+        style="@style/tv_overview_foodlabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="120 kcal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_item_overview_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_item_overview_name" />
+
+    <TextView
+        android:id="@+id/tv_item_overview_carbs"
+        style="@style/tv_overview_foodlabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="50 g"
+        android:textColor="@color/blueMacro"
+        app:layout_constraintStart_toStartOf="@+id/tv_item_overview_grams"
+        app:layout_constraintTop_toBottomOf="@+id/tv_item_overview_grams" />
+
+    <TextView
+        android:id="@+id/tv_item_overview_proteins"
+        style="@style/tv_overview_foodlabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="50 g"
+        android:textColor="@color/greenMacro"
+        app:layout_constraintStart_toEndOf="@+id/tv_item_overview_carbs"
+        app:layout_constraintTop_toTopOf="@+id/tv_item_overview_carbs" />
+
+    <TextView
+        android:id="@+id/tv_item_overview_fats"
+        style="@style/tv_overview_foodlabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="50 g"
+        android:textColor="@color/orangeMacro"
+        app:layout_constraintStart_toEndOf="@+id/tv_item_overview_proteins"
+        app:layout_constraintTop_toTopOf="@+id/tv_item_overview_proteins" />
+
+    <ImageButton
+        android:id="@+id/btn_delete_item_overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:background="@null"
+        android:src="@drawable/ic_cancel"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_item_overview_fats"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_item_overview_grams" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
