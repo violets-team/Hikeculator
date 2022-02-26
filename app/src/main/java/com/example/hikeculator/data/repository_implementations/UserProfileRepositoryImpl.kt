@@ -1,7 +1,7 @@
 package com.example.hikeculator.data.repository_implementations
 
+import com.example.hikeculator.data.common.USER_COLLECTION_NAME
 import com.example.hikeculator.data.entities.FirestoreUser
-import com.example.hikeculator.data.firestore_constants.USER_COLLECTION_NAME
 import com.example.hikeculator.domain.repositories.UserProfileRepository
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
