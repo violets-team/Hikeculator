@@ -1,4 +1,4 @@
-package com.example.hikeculator.data.repository_implementation
+package com.example.hikeculator.data.repository_implementations
 
 import com.example.hikeculator.data.common.GENERAL_TRIP_COLLECTION_NAME
 import com.example.hikeculator.data.common.GENERAL_TRIP_SUB_COLLECTION_NAME
