@@ -2,13 +2,19 @@ package com.example.hikeculator.domain.interactors
 
 import com.example.hikeculator.domain.entities.Trip
 import com.example.hikeculator.domain.repositories.TripRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
 
 class TripInteractor(private val tripRepository: TripRepository) {
 
-    fun insertTrip(trip: Trip) = tripRepository.insertTrip(trip)
+    suspend fun insertTrip(trip: Trip) {
+        withContext(Dispatchers.IO) { tripRepository.insertTrip(trip = trip) }
+    }
 
-    fun removeTrip() = tripRepository.removeTrip()
+    suspend fun removeTrip(tripId: String) {
+        withContext(Dispatchers.IO) { tripRepository.removeTrip(tripId = tripId) }
+    }
 
-    fun fetchTrips(): Set<Trip> = tripRepository.fetchTrips()
-
+    fun fetchTrips(): Flow<Set<Trip>> = tripRepository.fetchTrips()
 }

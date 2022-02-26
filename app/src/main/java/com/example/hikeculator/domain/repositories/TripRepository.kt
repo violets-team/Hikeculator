@@ -1,12 +1,13 @@
 package com.example.hikeculator.domain.repositories
 
 import com.example.hikeculator.domain.entities.Trip
+import kotlinx.coroutines.flow.Flow
 
 interface TripRepository {
 
-    fun insertTrip(trip: Trip)
+    suspend fun insertTrip(trip: Trip)
 
-    fun removeTrip()
+    suspend fun removeTrip(tripId: String)
 
-    fun fetchTrips(): Set<Trip>
+    fun fetchTrips(): Flow<Set<Trip>>
 }
