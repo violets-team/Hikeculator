@@ -2,7 +2,7 @@ package com.example.hikeculator.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.hikeculator.data.repository_implementation.TripRepositoryImpl
+import com.example.hikeculator.data.repository_implementations.TripRepositoryImpl
 import com.example.hikeculator.domain.entities.Trip
 import com.example.hikeculator.domain.enums.Seasons
 import com.example.hikeculator.domain.enums.TripDifficultyCategory

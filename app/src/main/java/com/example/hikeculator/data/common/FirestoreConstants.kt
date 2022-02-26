@@ -7,3 +7,4 @@ const val DEFAULT_LONG_VALUE = 1L
 
 const val GENERAL_TRIP_COLLECTION_NAME = "general_trip_collection"
 const val GENERAL_TRIP_SUB_COLLECTION_NAME = "general_trip_sub_collection"
+const val USER_COLLECTION_NAME = "users"
