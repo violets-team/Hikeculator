@@ -1,12 +1,13 @@
 package com.example.hikeculator.domain.repositories
 
 import com.example.hikeculator.domain.entities.TripDay
+import kotlinx.coroutines.flow.Flow
 
 interface TripDayRepository {
 
-    fun fetchTripDay(): TripDay
+    suspend fun fetchTripDay(tripDayId: String): TripDay?
 
-    fun fetchTripDays(): List<TripDay>
+    fun fetchTripDays(): Flow<List<TripDay>>
 
-    fun insertTripDay(tripDay: TripDay)
+    suspend fun insertTripDay(tripDay: TripDay)
 }
