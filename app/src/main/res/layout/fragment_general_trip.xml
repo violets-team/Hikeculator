@@ -16,7 +16,7 @@
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_hikes"
+                android:id="@+id/recycler_view_trips"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@color/rv_background"
