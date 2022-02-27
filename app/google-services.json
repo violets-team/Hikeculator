@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "560563627766-dnaoi4a2uuthaqd4sq9uuidfohid1gd7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hikeculator",
+            "certificate_hash": "320c1d536987616d2bc9437556f9b2ac5a1792d2"
+          }
+        },
+        {
           "client_id": "560563627766-du0r5s24vv7eujhmks7gusfnmj6o4f5o.apps.googleusercontent.com",
           "client_type": 3
         }
