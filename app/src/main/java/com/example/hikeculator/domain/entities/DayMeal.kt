@@ -1,7 +1,7 @@
 package com.example.hikeculator.domain.entities
 
 data class DayMeal(
-    val products: Set<Product>,
+    val products: List<Product>,
 ) {
 
     val totalCalories: Long
