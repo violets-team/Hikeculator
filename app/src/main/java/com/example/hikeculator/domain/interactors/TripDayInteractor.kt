@@ -2,12 +2,19 @@ package com.example.hikeculator.domain.interactors
 
 import com.example.hikeculator.domain.entities.TripDay
 import com.example.hikeculator.domain.repositories.TripDayRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
 
 class TripDayInteractor(private val tripDayRepository: TripDayRepository) {
 
-    fun fetchTripDay(): TripDay = tripDayRepository.fetchTripDay()
+    suspend fun fetchTripDay(tripDayId: String): TripDay? = withContext(Dispatchers.IO) {
+        tripDayRepository.fetchTripDay(tripDayId = tripDayId)
+    }
 
-    fun fetchTripDays(): List<TripDay> = tripDayRepository.fetchTripDays()
+    fun fetchTripDays(): Flow<List<TripDay>> = tripDayRepository.fetchTripDays()
 
-    fun insertTripDay(tripDay: TripDay) = tripDayRepository.insertTripDay(tripDay)
+    suspend fun insertTripDay(tripDay: TripDay) {
+        withContext(Dispatchers.IO) { tripDayRepository.insertTripDay(tripDay) }
+    }
 }
