@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/hikesFragment"
-        android:name="com.example.hikeculator.presentation.trip_general.TripGeneralFragment"
+        android:name="com.example.hikeculator.presentation.general_trip_list.TripGeneralFragment"
         android:label="HikesFragment" >
         <action
             android:id="@+id/action_hikesFragment_to_createHikeFragment"
@@ -21,11 +21,11 @@
     </fragment>
     <fragment
         android:id="@+id/createHikeFragment"
-        android:name="com.example.hikeculator.presentation.create_trip.CreateTripFragment"
+        android:name="com.example.hikeculator.presentation.trip_creating.TripCreatingFragment"
         android:label="CreateHikeFragment" />
     <fragment
         android:id="@+id/dayFragment"
-        android:name="com.example.hikeculator.presentation.trip_day_detail.TripDayDetailFragment"
+        android:name="com.example.hikeculator.presentation.trip_day_details.TripDayDetailFragment"
         android:label="DayFragment" />
     <fragment
         android:id="@+id/bagFragment"
@@ -37,7 +37,7 @@
         android:label="MembersFragment" />
     <fragment
         android:id="@+id/hikeFragment"
-        android:name="com.example.hikeculator.presentation.trip_detail.TripDetailFragment"
+        android:name="com.example.hikeculator.presentation.trip_details.TripDetailFragment"
         android:label="HikeFragment" >
         <action
             android:id="@+id/action_hikeFragment_to_bagFragment"

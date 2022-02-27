@@ -1,17 +1,16 @@
-package com.example.hikeculator.presentation.trip_general
+package com.example.hikeculator.presentation.general_trip_list
 
 import android.os.Bundle
-import android.view.*
-import android.widget.Toast
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.hikeculator.R
-import com.example.hikeculator.databinding.FragmentTripGeneralBinding
+import com.example.hikeculator.databinding.FragmentGeneralTripBinding
 
-class TripGeneralFragment: Fragment(R.layout.fragment_trip_general) {
+class TripGeneralFragment: Fragment(R.layout.fragment_general_trip) {
 
-    private val binding by viewBinding(FragmentTripGeneralBinding::bind)
+    private val binding by viewBinding(FragmentGeneralTripBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
