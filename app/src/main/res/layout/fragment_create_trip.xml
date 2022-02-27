@@ -32,7 +32,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_create_hike_name"
+            android:id="@+id/til_create_trip_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +45,43 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_create_hike_name"
+                android:id="@+id/et_create_trip_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_create_trip_season"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Сезон"
+            app:layout_constraintTop_toBottomOf="@+id/til_create_trip_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_create_trip_season"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_create_trip_level"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Параметры"
+            app:layout_constraintTop_toBottomOf="@+id/til_create_trip_season">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_create_trip_level"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold" />

@@ -113,18 +113,18 @@
         app:layout_constraintTop_toBottomOf="@+id/cl_main">
 
         <RadioButton
-            android:id="@+id/radio_man_create_profile"
+            android:id="@+id/radio_season_summer_create_trip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:text="@string/text_radio_man"
-            app:layout_constraintEnd_toStartOf="@+id/radio_woman_create_profile"
+            app:layout_constraintEnd_toStartOf="@+id/radio_season_winter_create_trip"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/til_profile_weight"
             app:layout_constraintTop_toBottomOf="@+id/til_profile_weight" />
 
         <RadioButton
-            android:id="@+id/radio_woman_create_profile"
+            android:id="@+id/radio_season_winter_create_trip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -132,7 +132,7 @@
             android:layout_marginEnd="20dp"
             android:text="@string/text_radio_woman"
             app:layout_constraintEnd_toEndOf="@+id/til_profile_weight"
-            app:layout_constraintStart_toEndOf="@+id/radio_man_create_profile"
+            app:layout_constraintStart_toEndOf="@+id/radio_season_summer_create_trip"
             app:layout_constraintTop_toBottomOf="@+id/til_profile_weight" />
 
         <com.google.android.material.textfield.TextInputLayout
