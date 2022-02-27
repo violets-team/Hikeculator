@@ -8,8 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_grey">#E4E4E4</color>
-    <color name="rv_background">#41505C</color>
-    <color name="color_item_rv">#787171</color>
+    <color name="rv_background">#747F88</color>
+    <color name="color_item_rv">#9C9898</color>
     <color name="color_fab">#0039CB</color>
     <color name="dark_blue">#207398</color>
 
