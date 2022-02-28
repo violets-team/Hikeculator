@@ -14,37 +14,37 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="addfood_tv_nutrient">
+    <style name="food_adding_text_view_nutrient">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/dark_blue</item>
 
     </style>
 
-    <style name="addfood_label_carbs">
+    <style name="food_adding_label_carbs">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/blueMacro</item>
     </style>
 
-    <style name="addfood_tv_nutrient_precent">
+    <style name="food_adding_text_view_nutrient_precent">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/grey</item>
     </style>
 
-    <style name="addfood_label_proteins">
+    <style name="food_adding_label_proteins">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/greenMacro</item>
     </style>
 
-    <style name="addfood_label_fats">
+    <style name="food_adding_label_fats">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/orangeMacro</item>
     </style>
 
-    <style name="tv_overview_foodname">
+    <style name="text_view_overview_foodname">
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">16sp</item>
     </style>
-    <style name="tv_overview_foodlabel">
+    <style name="text_view_overview_foodlabel">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/grey</item>
     </style>

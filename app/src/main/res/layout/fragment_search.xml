@@ -9,8 +9,8 @@
     tools:context=".presentation.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cly_search_bar"
-        android:layout_width="match_parent"
+        android:id="@+id/constraint_layout_search_bar"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
@@ -31,15 +31,15 @@
             android:hint="Поиск"
             android:inputType="text"
             android:padding="12dp"
-            app:layout_constraintEnd_toStartOf="@+id/btn_search"
+            app:layout_constraintEnd_toStartOf="@+id/button_search"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_search"
+            android:id="@+id/button_search"
             style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:backgroundTint="@color/black"
             android:text="Найти"
             app:cornerRadius="16dp"
@@ -49,7 +49,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/search_recyclerview"
+        android:id="@+id/recyclerview_search_products"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -57,12 +57,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cly_search_bar">
+        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_search_bar">
 
     </androidx.recyclerview.widget.RecyclerView>
 
     <ProgressBar
-        android:id="@+id/search_progressbar"
+        android:id="@+id/progressbar_search"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -72,10 +72,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cly_search_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_search_bar" />
 
     <TextView
-        android:id="@+id/tv_not_found"
+        android:id="@+id/text_view_search_not_found"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -85,6 +85,6 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cly_search_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_search_bar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

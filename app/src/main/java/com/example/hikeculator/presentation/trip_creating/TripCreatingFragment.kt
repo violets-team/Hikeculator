@@ -14,7 +14,7 @@ class TripCreatingFragment: Fragment(R.layout.fragment_trip_creating) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.etCreateTripSeason.setOnClickListener {
+        binding.editTextTripCreatingSeason.setOnClickListener {
             var dialogSeason = SeasonDialogFragment()
             dialogSeason.show(activity!!.supportFragmentManager, "customDialod")
         }

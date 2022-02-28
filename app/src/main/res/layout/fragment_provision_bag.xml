@@ -7,15 +7,16 @@
     android:layout_height="match_parent">
 
     <com.nicolettilu.hiddensearchwithrecyclerview.HiddenSearchWithRecyclerView
-        android:id="@+id/hidden_search_with_recycler_bag"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/hidden_search_recycler_bag"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_bag"
+            android:id="@+id/recycler_view_provision_bag_products"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"

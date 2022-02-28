@@ -7,7 +7,7 @@
     android:background="@color/light_grey">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_theme"
+        android:id="@+id/constraint_layout_profile_theme"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:background="@drawable/gradient_green"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tv_title_profile"
+            android:id="@+id/text_view_profile_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -31,27 +31,27 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_main"
+        android:id="@+id/constraint_layout_profile_main"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="54dp"
         android:background="@drawable/circularbordersolid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cl_theme">
+        app:layout_constraintTop_toTopOf="@+id/constraint_layout_profile_theme">
 
         <TextView
-            android:id="@+id/tv_email_profile"
+            android:id="@+id/text_view_profile_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/text_email_profile"
-            app:layout_constraintEnd_toEndOf="@+id/iv_profile"
-            app:layout_constraintStart_toStartOf="@+id/iv_profile"
-            app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
+            app:layout_constraintEnd_toEndOf="@+id/image_view_profile"
+            app:layout_constraintStart_toStartOf="@+id/image_view_profile"
+            app:layout_constraintTop_toBottomOf="@+id/image_view_profile" />
 
         <ImageView
-            android:id="@+id/iv_profile"
+            android:id="@+id/image_view_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -61,7 +61,7 @@
             app:srcCompat="@mipmap/ic_launcher" />
 
         <TextView
-            android:id="@+id/tv_calories_label"
+            android:id="@+id/text_view_profile_calories_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -70,10 +70,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name_profile" />
+            app:layout_constraintTop_toBottomOf="@+id/text_view_profile_name" />
 
         <TextView
-            android:id="@+id/tv_profile_calories"
+            android:id="@+id/text_view_profile_calories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -83,13 +83,13 @@
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/tv_calories_label"
+            app:layout_constraintEnd_toEndOf="@+id/text_view_profile_calories_label"
             app:layout_constraintHorizontal_bias="0.46"
-            app:layout_constraintStart_toStartOf="@+id/tv_calories_label"
-            app:layout_constraintTop_toBottomOf="@+id/tv_calories_label" />
+            app:layout_constraintStart_toStartOf="@+id/text_view_profile_calories_label"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_profile_calories_label" />
 
         <TextView
-            android:id="@+id/tv_name_profile"
+            android:id="@+id/text_view_profile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -97,46 +97,46 @@
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/iv_profile"
-            app:layout_constraintStart_toStartOf="@+id/iv_profile"
-            app:layout_constraintTop_toBottomOf="@+id/tv_email_profile" />
+            app:layout_constraintEnd_toEndOf="@+id/image_view_profile"
+            app:layout_constraintStart_toStartOf="@+id/image_view_profile"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_profile_email" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_desc"
+        android:id="@+id/constraint_layout_profile_description"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@drawable/circularbordersolid"
-        app:layout_constraintEnd_toEndOf="@+id/cl_main"
-        app:layout_constraintStart_toStartOf="@+id/cl_main"
-        app:layout_constraintTop_toBottomOf="@+id/cl_main">
+        app:layout_constraintEnd_toEndOf="@+id/constraint_layout_profile_main"
+        app:layout_constraintStart_toStartOf="@+id/constraint_layout_profile_main"
+        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_profile_main">
 
         <RadioButton
-            android:id="@+id/radio_season_summer_create_trip"
+            android:id="@+id/radio_button_season_summer_trip_creating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:text="@string/text_radio_man"
-            app:layout_constraintEnd_toStartOf="@+id/radio_season_winter_create_trip"
+            app:layout_constraintEnd_toStartOf="@+id/radio_button_season_winter_trip_creating"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/til_profile_weight"
-            app:layout_constraintTop_toBottomOf="@+id/til_profile_weight" />
+            app:layout_constraintStart_toStartOf="@+id/input_layout_profile_weight"
+            app:layout_constraintTop_toBottomOf="@+id/input_layout_profile_weight" />
 
         <RadioButton
-            android:id="@+id/radio_season_winter_create_trip"
+            android:id="@+id/radio_button_season_winter_trip_creating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_marginStart="137dp"
             android:layout_marginEnd="20dp"
             android:text="@string/text_radio_woman"
-            app:layout_constraintEnd_toEndOf="@+id/til_profile_weight"
-            app:layout_constraintStart_toEndOf="@+id/radio_season_summer_create_trip"
-            app:layout_constraintTop_toBottomOf="@+id/til_profile_weight" />
+            app:layout_constraintEnd_toEndOf="@+id/input_layout_profile_weight"
+            app:layout_constraintStart_toEndOf="@+id/radio_button_season_summer_trip_creating"
+            app:layout_constraintTop_toBottomOf="@+id/input_layout_profile_weight" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_create_profile_name"
+            android:id="@+id/input_layout_profile_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -149,14 +149,14 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_create_profile_name"
+                android:id="@+id/edit_text_profile_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/text_profile_name" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_create_profile_age"
+            android:id="@+id/input_layout_profile_age"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -166,17 +166,17 @@
             android:hint="@string/hint_profile_age"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/til_create_profile_name">
+            app:layout_constraintTop_toBottomOf="@+id/input_layout_profile_name">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_create_profile_age"
+                android:id="@+id/edit_text_create_profile_age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/text_profile_age" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_create_profile_height"
+            android:id="@+id/input_layout_profile_height"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -186,17 +186,17 @@
             android:hint="@string/hint_profile_height"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/til_create_profile_age">
+            app:layout_constraintTop_toBottomOf="@+id/input_layout_profile_age">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_create_profile_height"
+                android:id="@+id/edit_text_profile_height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/text_profile_height" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_profile_weight"
+            android:id="@+id/input_layout_profile_weight"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -206,7 +206,7 @@
             android:hint="@string/hint_profile_weight"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/til_create_profile_height">
+            app:layout_constraintTop_toBottomOf="@+id/input_layout_profile_height">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_create_profile_weight"
@@ -218,7 +218,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_save_trip"
+        android:id="@+id/button_save_profile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"

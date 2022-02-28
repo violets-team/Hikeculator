@@ -28,7 +28,7 @@
     <string name="text_bottom_menu_item_hike">Поход</string>
     <string name="text_bottom_menu_item_bag">Корзина</string>
     <string name="text_bottom_menu_item_members">Участники</string>
-    <string name="text_button_create_profile_done">Готово</string>
+    <string name="text_button_done">Готово</string>
     <string name="text_radio_man_create_profile">Мужской</string>
     <string name="text_radio_woman_create_profile">Женский</string>
     <string name="text_create_profile_title">Создать профиль</string>
