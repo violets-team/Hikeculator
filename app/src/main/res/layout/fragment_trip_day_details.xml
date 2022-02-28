@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tv_title_trip_day"
+            android:id="@+id/text_view_trip_day_details_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -23,31 +23,31 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_date_trip_day"
+            android:id="@+id/text_view_trip_day_details_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="28.02.2022"
             android:textColor="@color/grey"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/tv_title_trip_day"
-            app:layout_constraintStart_toStartOf="@+id/tv_title_trip_day"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title_trip_day" />
+            app:layout_constraintEnd_toEndOf="@+id/text_view_trip_day_details_title"
+            app:layout_constraintStart_toStartOf="@+id/text_view_trip_day_details_title"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_trip_day_details_title" />
 
         <TextView
-            android:id="@+id/tv_trip_day_calories"
+            android:id="@+id/text_view_trip_day_details_calories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="5800 Ккал"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/ci_trip_day_nutrision"
-            app:layout_constraintEnd_toEndOf="@+id/ci_trip_day_nutrision"
-            app:layout_constraintStart_toStartOf="@+id/ci_trip_day_nutrision"
-            app:layout_constraintTop_toTopOf="@+id/ci_trip_day_nutrision" />
+            app:layout_constraintBottom_toBottomOf="@+id/circular_indicator_trip_day_details_nutrition"
+            app:layout_constraintEnd_toEndOf="@+id/circular_indicator_trip_day_details_nutrition"
+            app:layout_constraintStart_toStartOf="@+id/circular_indicator_trip_day_details_nutrition"
+            app:layout_constraintTop_toTopOf="@+id/circular_indicator_trip_day_details_nutrition" />
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/ci_trip_day_nutrision"
+            android:id="@+id/circular_indicator_trip_day_details_nutrition"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="8dp"
@@ -58,13 +58,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_date_trip_day"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_trip_day_details_date"
             app:trackColor="@color/teal_200"
             app:trackCornerRadius="10dp"
             app:trackThickness="12dp" />
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cv_nutrision_day_detail"
+            android:id="@+id/card_view_trip_day_details_nutrition"
             style="@style/Widget.MaterialComponents.CardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
             app:cardCornerRadius="4dp"
             app:cardElevation="5dp"
             app:cardUseCompatPadding="true"
-            app:layout_constraintTop_toBottomOf="@+id/ci_trip_day_nutrision"
+            app:layout_constraintTop_toBottomOf="@+id/circular_indicator_trip_day_details_nutrition"
             app:strokeWidth="1dp">
 
             <LinearLayout
@@ -91,8 +91,8 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/label_carbs_day"
-                        style="@style/addfood_label_carbs"
+                        android:id="@+id/text_view_trip_day_details_carbs_label"
+                        style="@style/food_adding_label_carbs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Углеводы"
@@ -101,13 +101,13 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tv_current_carbs_day"
-                        style="@style/addfood_tv_nutrient"
+                        android:id="@+id/text_view_trip_day_details_current_carbs"
+                        style="@style/food_adding_text_view_nutrient"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/label_carbs_day"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_trip_day_details_carbs_label"
                         tools:text="10 g" />
 
                 </LinearLayout>
@@ -122,8 +122,8 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/label_proteins_day"
-                        style="@style/addfood_label_proteins"
+                        android:id="@+id/text_view_trip_day_details_proteins_label"
+                        style="@style/food_adding_label_proteins"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Белки"
@@ -132,13 +132,13 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tv_current_proteins_day"
-                        style="@style/addfood_tv_nutrient"
+                        android:id="@+id/text_view_trip_day_details_current_proteins"
+                        style="@style/food_adding_text_view_nutrient"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/label_proteins_day"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_trip_day_details_proteins_label"
                         tools:text="12 g" />
 
                 </LinearLayout>
@@ -154,8 +154,8 @@
                     android:textAlignment="center">
 
                     <TextView
-                        android:id="@+id/label_fats_day"
-                        style="@style/addfood_label_fats"
+                        android:id="@+id/text_view__trip_day_details_fat_label"
+                        style="@style/food_adding_label_fats"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Жиры"
@@ -164,13 +164,13 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tv_current_fats_day"
-                        style="@style/addfood_tv_nutrient"
+                        android:id="@+id/text_view_current_fats_day"
+                        style="@style/food_adding_text_view_nutrient"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/label_fats_day"
+                        app:layout_constraintTop_toBottomOf="@id/text_view__trip_day_details_fat_label"
                         tools:text="32 g" />
 
                 </LinearLayout>
@@ -179,7 +179,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
-            android:id="@+id/lly_breakfast"
+            android:id="@+id/linear_layout_trip_day_details_breakfast"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -190,7 +190,7 @@
             android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cv_nutrision_day_detail">
+            app:layout_constraintTop_toBottomOf="@id/card_view_trip_day_details_nutrition">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -235,13 +235,13 @@
             android:layout_marginTop="8dp"
             android:padding="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="@+id/lly_breakfast"
-            app:layout_constraintStart_toStartOf="@+id/lly_breakfast"
-            app:layout_constraintTop_toBottomOf="@id/lly_breakfast"
-            tools:listitem="@layout/item_rv_trip_day_meal" />
+            app:layout_constraintEnd_toEndOf="@+id/linear_layout_breakfast"
+            app:layout_constraintStart_toStartOf="@+id/linear_layout_breakfast"
+            app:layout_constraintTop_toBottomOf="@id/linear_layout_trip_day_details_breakfast"
+            tools:listitem="@layout/item_day_meal" />
 
         <LinearLayout
-            android:id="@+id/lly_dinner"
+            android:id="@+id/linear_layout_dinner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -297,12 +297,12 @@
             android:layout_marginTop="8dp"
             android:padding="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="@+id/lly_breakfast"
-            app:layout_constraintStart_toStartOf="@+id/lly_breakfast"
-            app:layout_constraintTop_toBottomOf="@id/lly_dinner" />
+            app:layout_constraintEnd_toEndOf="@+id/linear_layout_breakfast"
+            app:layout_constraintStart_toStartOf="@+id/linear_layout_breakfast"
+            app:layout_constraintTop_toBottomOf="@id/linear_layout_dinner" />
 
         <LinearLayout
-            android:id="@+id/lly_evening_meal"
+            android:id="@+id/linear_layout_evening_meal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -355,12 +355,12 @@
             android:layout_marginTop="8dp"
             android:padding="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="@+id/lly_breakfast"
-            app:layout_constraintStart_toStartOf="@+id/lly_breakfast"
-            app:layout_constraintTop_toBottomOf="@id/lly_evening_meal" />
+            app:layout_constraintEnd_toEndOf="@+id/linear_layout_breakfast"
+            app:layout_constraintStart_toStartOf="@+id/linear_layout_breakfast"
+            app:layout_constraintTop_toBottomOf="@id/linear_layout_evening_meal" />
 
         <LinearLayout
-            android:id="@+id/lly_snack"
+            android:id="@+id/linear_layout_snack"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -407,15 +407,15 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_overview_snack"
+            android:id="@+id/recycler_view_overview_snack"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:padding="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="@+id/lly_breakfast"
-            app:layout_constraintStart_toStartOf="@+id/lly_breakfast"
-            app:layout_constraintTop_toBottomOf="@id/lly_snack" />
+            app:layout_constraintEnd_toEndOf="@+id/linear_layout_breakfast"
+            app:layout_constraintStart_toStartOf="@+id/linear_layout_breakfast"
+            app:layout_constraintTop_toBottomOf="@id/linear_layout_snack" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

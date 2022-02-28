@@ -273,7 +273,7 @@
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_save_trip"
+        android:id="@+id/button_save_profile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/black"

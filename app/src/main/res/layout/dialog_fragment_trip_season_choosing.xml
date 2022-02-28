@@ -9,33 +9,33 @@
     android:background="@drawable/gradient_green">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_create_profile_done"
+        android:id="@+id/button_trip_season_choosing_done"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/black"
         android:padding="8dp"
-        android:text="@string/text_button_create_profile_done"
+        android:text="@string/text_button_done"
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/cl_create_profile"
-        app:layout_constraintStart_toStartOf="@+id/cl_create_profile"
-        app:layout_constraintTop_toBottomOf="@+id/cl_create_profile"
+        app:layout_constraintEnd_toEndOf="@+id/constraint_layout_trip_season_choosing"
+        app:layout_constraintStart_toStartOf="@+id/constraint_layout_trip_season_choosing"
+        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_trip_season_choosing"
         app:rippleColor="@color/white" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_create_profile"
+        android:id="@+id/constraint_layout_trip_season_choosing"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/circular_background"
-        app:layout_constraintEnd_toEndOf="@+id/tv_create_profile_title"
-        app:layout_constraintStart_toStartOf="@+id/tv_create_profile_title"
-        app:layout_constraintTop_toBottomOf="@+id/tv_create_profile_title">
+        app:layout_constraintEnd_toEndOf="@+id/text_view_trip_season_choosing_title"
+        app:layout_constraintStart_toStartOf="@+id/text_view_trip_season_choosing_title"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_trip_season_choosing_title">
 
         <RadioButton
-            android:id="@+id/radio_season_summer_create_trip"
+            android:id="@+id/radio_button_trip_creating_season_summer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -45,20 +45,20 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <RadioButton
-            android:id="@+id/radio_season_winter_create_trip"
+            android:id="@+id/radio_button_trip_season_choosing_winter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:text="Зимний"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/radio_season_summer_create_trip"
-            app:layout_constraintStart_toStartOf="@+id/radio_season_summer_create_trip"
-            app:layout_constraintTop_toBottomOf="@+id/radio_season_summer_create_trip" />
+            app:layout_constraintEnd_toEndOf="@+id/radio_button_trip_creating_season_summer"
+            app:layout_constraintStart_toStartOf="@+id/radio_button_trip_creating_season_summer"
+            app:layout_constraintTop_toBottomOf="@+id/radio_button_trip_creating_season_summer" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/tv_create_profile_title"
+        android:id="@+id/text_view_trip_season_choosing_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
