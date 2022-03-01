@@ -8,8 +8,8 @@ import kotlinx.coroutines.withContext
 
 class TripDayInteractor(private val tripDayRepository: TripDayRepository) {
 
-    suspend fun fetchTripDay(tripDayId: String): TripDay? = withContext(Dispatchers.IO) {
-        tripDayRepository.fetchTripDay(tripDayId = tripDayId)
+    fun fetchTripDay(tripDayId: String): Flow<TripDay?> {
+        return tripDayRepository.fetchTripDay(tripDayId = tripDayId)
     }
 
     fun fetchTripDays(): Flow<List<TripDay>> = tripDayRepository.fetchTripDays()

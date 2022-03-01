@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface TripDayRepository {
 
-    suspend fun fetchTripDay(tripDayId: String): TripDay?
+    fun fetchTripDay(tripDayId: String): Flow<TripDay?>
 
     fun fetchTripDays(): Flow<List<TripDay>>
 
