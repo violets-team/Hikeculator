@@ -9,37 +9,39 @@ import com.example.hikeculator.domain.entities.TripDay
 import com.example.hikeculator.domain.interactors.TripDayInteractor
 import com.example.hikeculator.domain.repositories.TripDayRepository
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
-import java.util.*
 
-class TripDetailViewModel(
+class TripDayDetailViewModel(
     userTripCollectionId: String,
     tripId: String,
+    tripDayId: String,
 ) : ViewModel() {
 
     private val tripDayRepository: TripDayRepository = TripDayRepositoryImpl(
         userTripCollectionId = userTripCollectionId,
         tripId = tripId
     )
-
     private val tripDayInteractor = TripDayInteractor(tripDayRepository = tripDayRepository)
 
-    val tripDays: SharedFlow<List<TripDay>> = getTripDayFlow().shareIn(
+    val tripDayData = getTripDayFlow(tripDayId = tripDayId).shareIn(
         scope = viewModelScope,
-        started = SharingStarted.Lazily,
+        started = SharingStarted.Eagerly,
         replay = 1
     )
 
-    fun addTripDay(
+    fun updateTripDay(
+        tripDayId: String,
         breakfastProducts: List<Product>,
         lunchProducts: List<Product>,
         dinnerProducts: List<Product>,
         snackProducts: List<Product>,
     ) {
-
-        val tripDay = TripDay(
-            id = UUID.randomUUID().toString(),
+        val updatedTripDay = TripDay(
+            id = tripDayId,
             breakfast = DayMeal(products = breakfastProducts),
             lunch = DayMeal(products = lunchProducts),
             dinner = DayMeal(products = dinnerProducts),
@@ -51,11 +53,13 @@ class TripDetailViewModel(
         }
 
         viewModelScope.launch(context = exceptionHandler) {
-            tripDayInteractor.insertTripDay(tripDay = tripDay)
+            tripDayInteractor.insertTripDay(tripDay = updatedTripDay)
         }
     }
 
-    private fun getTripDayFlow(): Flow<List<TripDay>> = tripDayInteractor.fetchTripDays().catch {
-        TODO("Handle the exception here")
+    private fun getTripDayFlow(tripDayId: String): Flow<TripDay?> {
+        return tripDayInteractor.fetchTripDay(tripDayId = tripDayId).catch {
+            TODO("Handel the excepting here")
+        }
     }
 }
