@@ -5,10 +5,9 @@ import com.example.hikeculator.domain.enums.Gender.*
 
 data class FirestoreUser(
     val uid: String = DEFAULT_STRING_VALUE,
-    val token: String = DEFAULT_STRING_VALUE,
+    val token: String? = DEFAULT_STRING_VALUE,
     val name: String = DEFAULT_STRING_VALUE,
     val email: String = DEFAULT_STRING_VALUE,
-    val password: String = DEFAULT_STRING_VALUE,
     val age: Int = DEFAULT_INT_VALUE,
     val weight: Double = DEFAULT_DOUBLE_VALUE,
     val height: Double = DEFAULT_DOUBLE_VALUE,
