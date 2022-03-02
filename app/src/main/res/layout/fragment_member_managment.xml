@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <com.nicolettilu.hiddensearchwithrecyclerview.HiddenSearchWithRecyclerView
-        android:id="@+id/hidden_search_recycler_member_management_members"
+        android:id="@+id/hidden_search_members"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"

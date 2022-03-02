@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
         <!--two way binding-->
         <EditText
-            android:id="@+id/search_edittext"
+            android:id="@+id/edit_text_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -49,7 +49,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview_search_products"
+        android:id="@+id/recycler_view_products"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -62,7 +62,7 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <ProgressBar
-        android:id="@+id/progressbar_search"
+        android:id="@+id/progressbar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraint_layout_search_bar" />
 
     <TextView
-        android:id="@+id/text_view_search_not_found"
+        android:id="@+id/text_view_not_found"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"

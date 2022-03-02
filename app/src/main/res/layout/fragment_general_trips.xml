@@ -31,7 +31,7 @@
     </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottom_app_bar_general_trips"
+        android:id="@+id/bottom_app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
@@ -42,11 +42,11 @@
         app:navigationContentDescription="Navigation icon" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/action_button_general_trips_create_trip"
+        android:id="@+id/action_button_create_trip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/light_grey"
-        app:layout_anchor="@id/bottom_app_bar_general_trips"
+        app:layout_anchor="@id/bottom_app_bar"
         app:srcCompat="@drawable/ic_add" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

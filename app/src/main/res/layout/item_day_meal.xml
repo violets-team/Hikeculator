@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
     android:background="@drawable/auth_input_style">
 
     <TextView
-        android:id="@+id/text_view_item_overview_name"
+        android:id="@+id/text_view_food_name"
         style="@style/text_view_overview_foodname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,17 +18,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_view_item_overview_grams"
+        android:id="@+id/text_view_food_weight"
         style="@style/text_view_overview_foodlabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="100 g"
-        app:layout_constraintStart_toEndOf="@+id/text_view_item_overview_name"
-        app:layout_constraintTop_toTopOf="@+id/text_view_item_overview_name" />
+        app:layout_constraintStart_toEndOf="@+id/text_view_food_name"
+        app:layout_constraintTop_toTopOf="@+id/text_view_food_name" />
 
     <TextView
-        android:id="@+id/text_view_item_overview_kcal"
+        android:id="@+id/text_view_food_calories"
         style="@style/text_view_overview_foodlabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,51 +36,51 @@
         android:layout_marginBottom="8dp"
         android:text="120 kcal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/text_view_item_overview_name"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_item_overview_name" />
+        app:layout_constraintStart_toStartOf="@+id/text_view_food_name"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_food_name" />
 
     <TextView
-        android:id="@+id/text_view_item_overview_carbs"
+        android:id="@+id/text_view_food_carbs"
         style="@style/text_view_overview_foodlabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="50 g"
         android:textColor="@color/blueMacro"
-        app:layout_constraintStart_toStartOf="@+id/text_view_item_overview_grams"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_item_overview_grams" />
+        app:layout_constraintStart_toStartOf="@+id/text_view_food_weight"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_food_weight" />
 
     <TextView
-        android:id="@+id/text_view_item_overview_proteins"
+        android:id="@+id/text_view_food_proteins"
         style="@style/text_view_overview_foodlabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="50 g"
         android:textColor="@color/greenMacro"
-        app:layout_constraintStart_toEndOf="@+id/text_view_item_overview_carbs"
-        app:layout_constraintTop_toTopOf="@+id/text_view_item_overview_carbs" />
+        app:layout_constraintStart_toEndOf="@+id/text_view_food_carbs"
+        app:layout_constraintTop_toTopOf="@+id/text_view_food_carbs" />
 
     <TextView
-        android:id="@+id/text_view_item_overview_fats"
+        android:id="@+id/text_view_food_fats"
         style="@style/text_view_overview_foodlabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="50 g"
         android:textColor="@color/orangeMacro"
-        app:layout_constraintStart_toEndOf="@+id/text_view_item_overview_proteins"
-        app:layout_constraintTop_toTopOf="@+id/text_view_item_overview_proteins" />
+        app:layout_constraintStart_toEndOf="@+id/text_view_food_proteins"
+        app:layout_constraintTop_toTopOf="@+id/text_view_food_proteins" />
 
     <ImageButton
-        android:id="@+id/btn_delete_item_overview"
+        android:id="@+id/button_delete_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:background="@null"
         android:src="@drawable/ic_cancel"
-        app:layout_constraintBottom_toBottomOf="@+id/text_view_item_overview_fats"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view_food_fats"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/text_view_item_overview_grams" />
+        app:layout_constraintTop_toTopOf="@+id/text_view_food_weight" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
