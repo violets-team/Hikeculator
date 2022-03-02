@@ -1,11 +1,11 @@
 package com.example.hikeculator.domain.repositories
 
-import com.example.hikeculator.data.entities.FirestoreUser
+import com.example.hikeculator.domain.entities.User
 
 
 interface UserProfileRepository {
 
-    suspend fun fetchUser(userUid: String): FirestoreUser?
+    suspend fun fetchUser(userUid: String): User?
 
-    suspend fun createUserProfile(user: FirestoreUser)
+    suspend fun createUserProfile(user: User)
 }
