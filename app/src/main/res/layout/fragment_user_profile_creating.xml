@@ -7,7 +7,7 @@
     android:background="@drawable/gradient_green">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_create_profile_done"
+        android:id="@+id/button_ready"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
@@ -30,34 +30,34 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/circular_background"
-        app:layout_constraintBottom_toTopOf="@+id/button_create_profile_done"
+        app:layout_constraintBottom_toTopOf="@+id/button_ready"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view_profile_creating_title"
         app:layout_constraintVertical_bias="0.0">
 
         <RadioButton
-            android:id="@+id/radio_button_profile_creating_man"
+            android:id="@+id/radio_button_man"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_marginEnd="79dp"
             android:text="@string/text_radio_man_create_profile"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/radio_button_season_winter_trip_creating"
+            app:layout_constraintEnd_toStartOf="@+id/radio_button_woman"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline"
             app:layout_constraintVertical_bias="0.0" />
 
         <RadioButton
-            android:id="@+id/radio_button_season_winter_trip_creating"
+            android:id="@+id/radio_button_woman"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:text="@string/text_radio_woman_create_profile"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/radio_button_profile_creating_man"
+            app:layout_constraintStart_toEndOf="@+id/radio_button_man"
             app:layout_constraintTop_toTopOf="@+id/guideline"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -95,7 +95,7 @@
             app:layout_constraintTop_toBottomOf="@+id/input_layout_profile_creating_name">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_create_profile_weight"
+                android:id="@+id/edit_text_create_profile_weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>

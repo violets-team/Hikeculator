@@ -14,9 +14,13 @@ class TripCreatingFragment: Fragment(R.layout.fragment_trip_creating) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.editTextTripCreatingSeason.setOnClickListener {
+        binding.editTextSeason.setOnClickListener {
             var dialogSeason = SeasonDialogFragment()
-            dialogSeason.show(activity!!.supportFragmentManager, "customDialod")
+            dialogSeason.show(requireActivity().supportFragmentManager, "customDialogSeason")
+        }
+        binding.editTextLevel.setOnClickListener {
+            var dialogLevel = CategoryDialogFragment()
+            dialogLevel.show(requireActivity().supportFragmentManager, "customDialogLevel")
         }
     }
 }

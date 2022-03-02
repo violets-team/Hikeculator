@@ -15,11 +15,11 @@ class TripGeneralFragment: Fragment(R.layout.fragment_general_trips) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.actionButtonGeneralTripsCreateTrip.setOnClickListener {
+        binding.actionButtonCreateTrip.setOnClickListener {
            findNavController().navigate(R.id.action_hikesFragment_to_createHikeFragment)
         }
 
-        binding.bottomAppBarGeneralTrips.setOnMenuItemClickListener {
+        binding.bottomAppBar.setOnMenuItemClickListener {
             when(it.itemId){
                 R.id.app_bar_item_profile -> {
                     findNavController().navigate(R.id.action_hikesFragment_to_profileFragment)
