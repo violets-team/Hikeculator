@@ -25,8 +25,8 @@
     <color name="color_bought_product">#A4C890</color>
 
     <color name="color_header_breakfast">#64C0E9</color>
-    <color name="color_header_dinner">#EDB14D</color>
-    <color name="color_header_evening_meal">#A482E1</color>
+    <color name="color_header_lunch">#EDB14D</color>
+    <color name="color_header_dinner">#A482E1</color>
     <color name="color_header_snack">#5F8F8B</color>
 
 

@@ -40,11 +40,11 @@
         <item name="android:textColor">@color/orangeMacro</item>
     </style>
 
-    <style name="text_view_overview_foodname">
+    <style name="text_view_overview_food_name">
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">16sp</item>
     </style>
-    <style name="text_view_overview_foodlabel">
+    <style name="text_view_overview_food_label">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/grey</item>
     </style>
