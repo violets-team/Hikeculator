@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_green">
 
+    <TextView
+        android:id="@+id/text_view_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/text_create_profile_title"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_ready"
         android:layout_width="0dp"
@@ -33,7 +46,7 @@
         app:layout_constraintBottom_toTopOf="@+id/button_ready"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_profile_creating_title"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_title"
         app:layout_constraintVertical_bias="0.0">
 
         <RadioButton
@@ -62,7 +75,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_profile_creating_name"
+            android:id="@+id/input_layout_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,7 +84,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:hint="@string/hint_profile_name"
-            app:layout_constraintBottom_toTopOf="@id/input_layout_profile_creating_weight"
+            app:layout_constraintBottom_toTopOf="@id/input_layout_weight"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="8dp">
 
@@ -82,7 +95,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_profile_creating_weight"
+            android:id="@+id/input_layout_weight"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,17 +104,17 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:hint="@string/hint_profile_weight"
-            app:layout_constraintBottom_toTopOf="@id/input_layout_profile_height"
-            app:layout_constraintTop_toBottomOf="@+id/input_layout_profile_creating_name">
+            app:layout_constraintBottom_toTopOf="@id/input_layout_height"
+            app:layout_constraintTop_toBottomOf="@+id/input_layout_name">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_create_profile_weight"
+                android:id="@+id/edit_text_weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_profile_height"
+            android:id="@+id/input_layout_height"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -110,8 +123,8 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:hint="@string/hint_profile_height"
-            app:layout_constraintBottom_toTopOf="@id/input_layout_profile_creating_age"
-            app:layout_constraintTop_toBottomOf="@+id/input_layout_profile_creating_weight">
+            app:layout_constraintBottom_toTopOf="@id/input_layout_age"
+            app:layout_constraintTop_toBottomOf="@+id/input_layout_weight">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_profile_height"
@@ -120,7 +133,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_profile_creating_age"
+            android:id="@+id/input_layout_age"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -130,10 +143,10 @@
             android:layout_marginBottom="8dp"
             android:hint="@string/text_profile_age"
             app:layout_constraintBottom_toTopOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/input_layout_profile_height">
+            app:layout_constraintTop_toBottomOf="@+id/input_layout_height">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_profile_creating_age"
+                android:id="@+id/edit_text_age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -146,18 +159,5 @@
             app:layout_constraintGuide_begin="327dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/text_view_profile_creating_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/text_create_profile_title"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

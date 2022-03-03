@@ -33,7 +33,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/text_view_count"
+            android:id="@+id/text_view_count_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -45,7 +45,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/text_view_date"
+            android:id="@+id/text_view_date_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -65,7 +65,7 @@
         android:padding="2dp">
 
         <TextView
-            android:id="@+id/text_view_title_trip_general"
+            android:id="@+id/text_view_trip_mame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -74,7 +74,7 @@
             android:textColor="@color/white" />
 
         <TextView
-            android:id="@+id/text_view_count_trip_general"
+            android:id="@+id/text_view_member_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -83,7 +83,7 @@
             android:textColor="@color/white" />
 
         <TextView
-            android:id="@+id/text_view_date_trip_general"
+            android:id="@+id/text_view_trip_dates"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

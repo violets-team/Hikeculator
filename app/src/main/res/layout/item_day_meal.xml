@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/text_view_food_name"
-        style="@style/text_view_overview_foodname"
+        style="@style/text_view_overview_food_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -19,7 +19,7 @@
 
     <TextView
         android:id="@+id/text_view_food_weight"
-        style="@style/text_view_overview_foodlabel"
+        style="@style/text_view_overview_food_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -29,7 +29,7 @@
 
     <TextView
         android:id="@+id/text_view_food_calories"
-        style="@style/text_view_overview_foodlabel"
+        style="@style/text_view_overview_food_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -41,7 +41,7 @@
 
     <TextView
         android:id="@+id/text_view_food_carbs"
-        style="@style/text_view_overview_foodlabel"
+        style="@style/text_view_overview_food_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -52,7 +52,7 @@
 
     <TextView
         android:id="@+id/text_view_food_proteins"
-        style="@style/text_view_overview_foodlabel"
+        style="@style/text_view_overview_food_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -63,7 +63,7 @@
 
     <TextView
         android:id="@+id/text_view_food_fats"
-        style="@style/text_view_overview_foodlabel"
+        style="@style/text_view_overview_food_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

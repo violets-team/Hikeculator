@@ -16,7 +16,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/text_view_username_bag_header"
+            android:id="@+id/text_view_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -29,14 +29,14 @@
             card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/text_view_email_bag_header"
+            android:id="@+id/text_view_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="alex@gmail.com"
             android:textColor="@color/colorSecondary50"
-            card_view:layout_constraintStart_toStartOf="@+id/text_view_username_bag_header"
-            card_view:layout_constraintTop_toBottomOf="@+id/text_view_username_bag_header" />
+            card_view:layout_constraintStart_toStartOf="@+id/text_view_username"
+            card_view:layout_constraintTop_toBottomOf="@+id/text_view_username" />
 
         <TextView
             android:id="@+id/text_view_add_label_header"
@@ -45,19 +45,20 @@
             android:layout_marginStart="8dp"
             android:text="добавил:"
             android:textColor="@color/white"
-            card_view:layout_constraintBottom_toBottomOf="@+id/text_view_username_bag_header"
-            card_view:layout_constraintStart_toEndOf="@+id/text_view_username_bag_header"
-            card_view:layout_constraintTop_toTopOf="@+id/text_view_username_bag_header" />
+            card_view:layout_constraintBottom_toBottomOf="@+id/text_view_username"
+            card_view:layout_constraintStart_toEndOf="@+id/text_view_username"
+            card_view:layout_constraintTop_toTopOf="@+id/text_view_username" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_products_add"
+            android:id="@+id/recycler_view_added_products"
             android:layout_width="409dp"
             android:layout_height="676dp"
             android:layout_marginTop="8dp"
+            tools:itemCount="2"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/text_view_email_bag_header"
+            card_view:layout_constraintTop_toBottomOf="@+id/text_view_email"
             tools:listitem="@layout/item_bought_product" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
