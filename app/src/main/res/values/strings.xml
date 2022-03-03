@@ -1,3 +1,44 @@
 <resources>
     <string name="app_name">Hikeculator</string>
+    <string name="text_item_rv_title_name_label">Название</string>
+    <string name="text_item_rv_title_member_label">Число участников</string>
+    <string name="text_item_rv_title_date_label">Дата</string>
+    <string name="text_item_rv_title_tools">Волга</string>
+    <string name="text_item_rv_count_tools">5</string>
+    <string name="text_item_rv_date_tools">24.02.2020-\n01.03.2022</string>
+    <string name="text_item_rv_date2_tools">24.02.2020</string>
+    <string name="text_title_profile">Профиль</string>
+    <string name="text_email_profile">romrom@gmail.com</string>
+    <string name="text_calories_label">Рекомендуемое количество калорий</string>
+    <string name="text_profile_calories">3100 Ккал</string>
+    <string name="text_name_profile">Roman</string>
+    <string name="text_radio_man">Мужской</string>
+    <string name="text_radio_woman">Женский</string>
+    <string name="hint_profile_name">Имя</string>
+    <string name="text_profile_name">Roman</string>
+    <string name="hint_profile_age">Возраст</string>
+    <string name="text_profile_age">29</string>
+    <string name="hint_profile_height">Рост</string>
+    <string name="text_profile_height">178</string>
+    <string name="hint_profile_weight">Масса тела</string>
+    <string name="text_profile_weight">79</string>
+    <string name="text_button_save">Сохранить</string>
+    <string name="text_app_bar_item_profile">Профиль</string>
+    <string name="text_app_bar_item_hike">Походы</string>
+    <string name="text_bottom_menu_item_hike">Поход</string>
+    <string name="text_bottom_menu_item_bag">Корзина</string>
+    <string name="text_bottom_menu_item_members">Участники</string>
+    <string name="text_button_done">Готово</string>
+    <string name="text_radio_man_create_profile">Мужской</string>
+    <string name="text_radio_woman_create_profile">Женский</string>
+    <string name="text_create_profile_title">Создать профиль</string>
+    <string name="text_title_create_hike">Создать поход</string>
+    <string name="hint_create_hike_name">Название похода</string>
+    <string name="text_create_hike_name">Домбай</string>
+    <string name="text_title_hike">Название похода</string>
+    <string name="text_weight_trip_label">Масса за поход</string>
+    <string name="text_weight_trip">12.5 кг</string>
+    <string name="text_item_rv_day">День 1</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
