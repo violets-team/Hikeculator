@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/hikesFragment"
+        android:name="com.example.hikeculator.presentation.general_trip_list.TripGeneralFragment"
+        android:label="HikesFragment" >
+        <action
+            android:id="@+id/action_hikesFragment_to_createHikeFragment"
+            app:destination="@id/createHikeFragment" />
+        <action
+            android:id="@+id/action_hikesFragment_to_hikeFragment"
+            app:destination="@id/hikeFragment" />
+        <action
+            android:id="@+id/action_hikesFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createHikeFragment"
+        android:name="com.example.hikeculator.presentation.trip_creating.TripCreatingFragment"
+        android:label="CreateHikeFragment" />
+    <fragment
+        android:id="@+id/dayFragment"
+        android:name="com.example.hikeculator.presentation.trip_day_details.TripDayDetailFragment"
+        android:label="DayFragment" />
+    <fragment
+        android:id="@+id/bagFragment"
+        android:name="com.example.hikeculator.presentation.provision_bag.ProvisionBagFragment"
+        android:label="BagFragment" />
+    <fragment
+        android:id="@+id/membersFragment"
+        android:name="com.example.hikeculator.presentation.member_managment.MemberManagementFragment"
+        android:label="MembersFragment" />
+    <fragment
+        android:id="@+id/hikeFragment"
+        android:name="com.example.hikeculator.presentation.trip_details.TripDetailFragment"
+        android:label="HikeFragment" >
+        <action
+            android:id="@+id/action_hikeFragment_to_bagFragment"
+            app:destination="@id/bagFragment" />
+        <action
+            android:id="@+id/action_hikeFragment_to_membersFragment"
+            app:destination="@id/membersFragment" />
+        <action
+            android:id="@+id/action_hikeFragment_to_dayFragment"
+            app:destination="@id/dayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.hikeculator.presentation.profile.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.hikeculator.presentation.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_hikesFragment"
+            app:destination="@id/hikesFragment" />
+    </fragment>
+</navigation>
