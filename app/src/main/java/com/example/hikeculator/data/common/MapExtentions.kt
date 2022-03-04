@@ -28,6 +28,7 @@ fun Trip.mapToFirestoreTrip(): FirestoreTrip = FirestoreTrip(
 )
 
 fun User.mapToFirestoreUser(token: String?) = FirestoreUser(
+    uid = uid,
     token = token,
     name = name,
     email = email,

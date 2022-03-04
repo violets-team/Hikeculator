@@ -1,4 +1,4 @@
-package com.example.hikeculator.presentation
+package com.example.hikeculator.presentation.general_trip_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,17 +13,12 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-class GeneralTripViewModel(userTripCollectionId: String) : ViewModel() {
+class GeneralTripViewModel(private val tripInteractor: TripInteractor) : ViewModel() {
 
-    private val tripRepository: TripRepository =
-        TripRepositoryImpl(tripCollectionId = userTripCollectionId)
-    private val tripInteractor = TripInteractor(tripRepository)
-
-
-    val tripData: StateFlow<Set<Trip>> = getTripFlow().stateIn(
+    val tripData: SharedFlow<Set<Trip>> = getTripFlow().shareIn(
         scope = viewModelScope,
         started = SharingStarted.Lazily,
-        initialValue = emptySet()
+        replay = 1
     )
 
     fun createTrip(
