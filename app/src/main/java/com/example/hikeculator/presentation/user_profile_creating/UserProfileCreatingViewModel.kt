@@ -1,18 +1,18 @@
-package com.example.hikeculator.presentation
+package com.example.hikeculator.presentation.user_profile_creating
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hikeculator.domain.common.NutritionalCalculator
 import com.example.hikeculator.domain.entities.User
 import com.example.hikeculator.domain.enums.Gender
+import com.example.hikeculator.domain.enums.Gender.*
 import com.example.hikeculator.domain.interactors.UserProfileInteractor
-import com.example.hikeculator.domain.repositories.UserProfileRepository
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class UserProfileCreatingViewModel(
-    private val userProfileInteractor: UserProfileInteractor
+    private val userProfileInteractor: UserProfileInteractor,
 ) : ViewModel() {
 
     fun createUser(
@@ -21,10 +21,11 @@ class UserProfileCreatingViewModel(
         email: String,
         age: Int,
         weight: Double,
-        height: Double,
-        gender: Gender,
+        height: Int,
+        isMan: Boolean,
     ) {
-        val calorieNorm = NutritionalCalculator().calculateCalorieNorm()
+//        val calorieNorm = NutritionalCalculator().calculateCalorieNorm()
+        val calorieNorm = 13143214L
 
         val user = User(
             uid = uid,
@@ -33,7 +34,7 @@ class UserProfileCreatingViewModel(
             age = age,
             weight = weight,
             height = height,
-            gender = gender,
+            gender = getGender(isMan = isMan),
             calorieNorm = calorieNorm
         )
 
@@ -45,4 +46,6 @@ class UserProfileCreatingViewModel(
             userProfileInteractor.createUserProfile(user = user)
         }
     }
+
+    private fun getGender(isMan: Boolean): Gender = if (isMan) MAN else WOMAN
 }

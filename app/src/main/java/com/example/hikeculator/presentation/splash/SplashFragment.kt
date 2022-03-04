@@ -24,7 +24,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
     private fun observeViewModel() {
         viewModel.status.observe(viewLifecycleOwner) {
             if (it) {
-                findNavController().navigate(R.id.action_splashFragment_to_hikesFragment)
+                findNavController().navigate(R.id.action_splashFragment_to_entranceFragment)
             }
         }
     }

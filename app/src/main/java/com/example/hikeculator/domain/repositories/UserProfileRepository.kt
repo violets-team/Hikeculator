@@ -8,4 +8,6 @@ interface UserProfileRepository {
     suspend fun fetchUser(userUid: String): User?
 
     suspend fun createUserProfile(user: User)
+
+    suspend fun isUserCreated(userUid: String): Boolean
 }

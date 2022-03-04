@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".presentation.EntranceFragment">
+    android:background="@drawable/hike_splash"
+    tools:context=".presentation.entrance.EntranceFragment">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

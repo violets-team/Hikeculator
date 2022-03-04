@@ -1,25 +1,23 @@
-package com.example.hikeculator.presentation
+package com.example.hikeculator.presentation.entrance
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import by.kirich1409.viewbindingdelegate.viewBinding
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.hikeculator.R
-import com.example.hikeculator.databinding.FragmentEntranceBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EntranceFragment : Fragment(R.layout.fragment_entrance) {
 
-    private val binding by viewBinding(FragmentEntranceBinding::bind)
     private val viewModel by viewModel<EntranceViewModel>()
-
+    private val navController by lazy { findNavController() }
 
     private val entranceLauncher = this.registerForActivityResult(
         FirebaseAuthUIActivityResultContract()
@@ -28,11 +26,14 @@ class EntranceFragment : Fragment(R.layout.fragment_entrance) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         if (viewModel.isCurrentUserSignedIn()) {
             val userUid = viewModel.getUserUid()
-            if (userUid != null) {
-//                TODO("Navigate to  fragment and pass userUid")
+            val userEmail = viewModel.getUserEmail()
+
+            if (userUid != null && userEmail != null) {
+                lifecycleScope.launch {
+                    navigateByUserState(userUid = userUid, userEmail = userEmail)
+                }
             } else {
                 TODO("Notify that the user isn't authenticated")
             }
@@ -42,10 +43,12 @@ class EntranceFragment : Fragment(R.layout.fragment_entrance) {
     }
 
     private fun onSignInResult(authenticationResult: FirebaseAuthUIAuthenticationResult) {
-        if (authenticationResult.resultCode == AppCompatActivity.RESULT_OK) {
+        if (isResultOk(result = authenticationResult)) {
             val userUid = viewModel.getSignedInUserUid()
-            if (userUid != null) {
-                TODO("Navigate to profile creating fragment and pass userUid")
+            val userEmail = viewModel.getSignedInUserEmail()
+
+            if (userUid != null && userEmail != null) {
+                navigateToUserProfileCreatingFragment(uid = userUid, email = userEmail)
             } else {
                 TODO("Notify that something went wrong")
             }
@@ -61,17 +64,37 @@ class EntranceFragment : Fragment(R.layout.fragment_entrance) {
     private fun getSignInIntent(): Intent {
         return AuthUI.getInstance()
             .createSignInIntentBuilder()
-//            .setLogo(R.drawable.my_great_logo) // Set logo drawable
-//            .setTheme(R.style.MySuperAppTheme) // Set theme
             .setAvailableProviders(getAuthenticationProviders())
             .build()
     }
 
     private fun getAuthenticationProviders(): List<AuthUI.IdpConfig> = listOf(
         AuthUI.IdpConfig.EmailBuilder().build(),
-        AuthUI.IdpConfig.GoogleBuilder().build(),
-//            AuthUI.IdpConfig.PhoneBuilder().build(),
-//            AuthUI.IdpConfig.FacebookBuilder().build(),
-//            AuthUI.IdpConfig.TwitterBuilder().build()
+        AuthUI.IdpConfig.GoogleBuilder().build()
     )
+
+    private fun isResultOk(result: FirebaseAuthUIAuthenticationResult): Boolean {
+        return result.resultCode == AppCompatActivity.RESULT_OK
+    }
+
+    private suspend fun navigateByUserState(userUid: String, userEmail: String) {
+        if (viewModel.isUserCreated(userUid = userUid)) {
+            navigateToGeneralTripFragment(userUid = userUid)
+        } else {
+            navigateToUserProfileCreatingFragment(uid = userUid, email = userEmail)
+        }
+    }
+
+    private fun navigateToGeneralTripFragment(userUid: String) {
+        EntranceFragmentDirections.actionEntranceFragmentToGeneralTripFragment(
+            userUid = userUid
+        ).also { navController.navigate(directions = it) }
+    }
+
+    private fun navigateToUserProfileCreatingFragment(uid: String, email: String) {
+        EntranceFragmentDirections.actionEntranceFragmentToUserProfileCreatingFragment(
+            userUid = uid,
+            userEmail = email
+        ).also { navController.navigate(directions = it) }
+    }
 }

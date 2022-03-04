@@ -8,7 +8,7 @@ data class User(
     val email: String,
     val age: Int,
     val weight: Double,
-    val height: Double,
+    val height: Int,
     val gender: Gender,
     val calorieNorm: Long,
 )
