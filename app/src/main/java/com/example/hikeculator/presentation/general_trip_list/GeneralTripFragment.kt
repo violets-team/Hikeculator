@@ -25,7 +25,6 @@ class GeneralTripFragment : Fragment(R.layout.fragment_general_trips) {
 
     private val tripRepository by inject<TripRepository> { parametersOf(args.userUid) }
     private val tripInteractor by inject<TripInteractor> { parametersOf(tripRepository) }
-
     private val viewModel by viewModel<GeneralTripViewModel> { parametersOf(tripInteractor) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,7 +35,7 @@ class GeneralTripFragment : Fragment(R.layout.fragment_general_trips) {
         }.launchWhenStarted(lifecycleScope)
 
         binding.actionButtonCreateTrip.setOnClickListener {
-           findNavController().navigate(R.id.action_generalTripFragment_to_tripCreatingFragment)
+            findNavController().navigate(R.id.action_generalTripFragment_to_tripCreatingFragment)
         }
 
         binding.bottomAppBar.setOnMenuItemClickListener {

@@ -21,36 +21,6 @@ class GeneralTripViewModel(private val tripInteractor: TripInteractor) : ViewMod
         replay = 1
     )
 
-    fun createTrip(
-        id: String,
-        name: String,
-        startDate: Long,
-        endDate: Long,
-        memberCount: Int,
-        totalCalories: Double,
-        type: TripType,
-        difficultyCategory: TripDifficultyCategory,
-        season: Seasons,
-    ) {
-        val trip = Trip(
-            id = id,
-            name = name,
-            startDate = startDate,
-            endDate = endDate,
-            memberCount = memberCount,
-            totalCalories = totalCalories,
-            type = type,
-            difficultyCategory = difficultyCategory,
-            season = season
-        )
-
-        val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
-            TODO("Handle the exception here")
-        }
-
-        viewModelScope.launch(exceptionHandler) { tripInteractor.insertTrip(trip = trip) }
-    }
-
     fun deleteTrip(tripId: String) {
         val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
             TODO("Handle the exception here")
