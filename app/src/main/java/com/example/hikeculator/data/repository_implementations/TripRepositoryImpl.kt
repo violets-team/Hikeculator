@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 
-class TripRepositoryImpl(private val tripCollectionId: String) : TripRepository {
+class TripRepositoryImpl(private val userUid: String) : TripRepository {
 
     private val firestore = Firebase.firestore
 
@@ -23,7 +23,7 @@ class TripRepositoryImpl(private val tripCollectionId: String) : TripRepository 
         val firestoreTrip = trip.mapToFirestoreTrip()
 
         firestore.collection(GENERAL_TRIP_COLLECTION_NAME)
-            .document(tripCollectionId)
+            .document(userUid)
             .collection(GENERAL_TRIP_SUB_COLLECTION_NAME)
             .document(firestoreTrip.id)
             .set(firestoreTrip)
@@ -32,7 +32,7 @@ class TripRepositoryImpl(private val tripCollectionId: String) : TripRepository 
 
     override suspend fun removeTrip(tripId: String) {
         firestore.collection(GENERAL_TRIP_COLLECTION_NAME)
-            .document(tripCollectionId)
+            .document(userUid)
             .collection(GENERAL_TRIP_SUB_COLLECTION_NAME)
             .document(tripId)
             .delete()
@@ -42,7 +42,7 @@ class TripRepositoryImpl(private val tripCollectionId: String) : TripRepository 
     override fun fetchTrips(): Flow<Set<Trip>> = callbackFlow {
         val listener = try {
             firestore.collection(GENERAL_TRIP_COLLECTION_NAME)
-                .document(tripCollectionId)
+                .document(userUid)
                 .collection(GENERAL_TRIP_SUB_COLLECTION_NAME)
                 .addSnapshotListener { querySnapshot, error ->
                     if (error != null) {

@@ -14,13 +14,13 @@
     <string name="text_name_profile">Roman</string>
     <string name="text_radio_man">Мужской</string>
     <string name="text_radio_woman">Женский</string>
-    <string name="hint_profile_name">Имя</string>
+    <string name="hint_profile_name">Name</string>
     <string name="text_profile_name">Roman</string>
     <string name="hint_profile_age">Возраст</string>
-    <string name="text_profile_age">29</string>
-    <string name="hint_profile_height">Рост</string>
+    <string name="text_profile_age">Age</string>
+    <string name="hint_profile_height">Height</string>
     <string name="text_profile_height">178</string>
-    <string name="hint_profile_weight">Масса тела</string>
+    <string name="hint_profile_weight">Weight</string>
     <string name="text_profile_weight">79</string>
     <string name="text_button_save">Сохранить</string>
     <string name="text_app_bar_item_profile">Профиль</string>
@@ -28,10 +28,10 @@
     <string name="text_bottom_menu_item_hike">Поход</string>
     <string name="text_bottom_menu_item_bag">Корзина</string>
     <string name="text_bottom_menu_item_members">Участники</string>
-    <string name="text_button_done">Готово</string>
-    <string name="text_radio_man_create_profile">Мужской</string>
-    <string name="text_radio_woman_create_profile">Женский</string>
-    <string name="text_create_profile_title">Создать профиль</string>
+    <string name="text_button_create">Create</string>
+    <string name="text_radio_man_create_profile">Man</string>
+    <string name="text_radio_woman_create_profile">Woman</string>
+    <string name="text_create_profile_title">Profile creating</string>
     <string name="text_title_create_hike">Создать поход</string>
     <string name="hint_create_hike_name">Название похода</string>
     <string name="text_create_hike_name">Домбай</string>
@@ -41,4 +41,5 @@
     <string name="text_item_rv_day">День 1</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="all_fields_have_to_be_filled">All fields have to be filled</string>
 </resources>
