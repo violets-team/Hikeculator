@@ -27,12 +27,11 @@ fun Trip.mapToFirestoreTrip(): FirestoreTrip = FirestoreTrip(
     season = season
 )
 
-fun User.mapToFirestoreUser(uid: String, token: String) = FirestoreUser(
+fun User.mapToFirestoreUser(token: String?) = FirestoreUser(
     uid = uid,
     token = token,
     name = name,
     email = email,
-    password = email,
     age = age,
     weight = weight,
     height = height,
