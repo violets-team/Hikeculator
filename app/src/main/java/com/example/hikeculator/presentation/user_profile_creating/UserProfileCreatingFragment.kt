@@ -62,7 +62,7 @@ class UserProfileCreatingFragment : Fragment(R.layout.fragment_user_profile_crea
             editTextWeight,
             editTextHeight
         ).filter { it.toTrimmed().isNotEmpty() }
-            .also { editTexts -> block(editTexts.isEmpty())}
+            .also { editTexts -> block(editTexts.isNotEmpty())}
     }
 
     private fun showToast(message: String) {
