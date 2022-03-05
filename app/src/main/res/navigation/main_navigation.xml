@@ -38,7 +38,8 @@
         tools:layout="@layout/fragment_splash" >
         <action
             android:id="@+id/action_splashFragment_to_entranceFragment"
-            app:destination="@id/entranceFragment" />
+            app:destination="@id/entranceFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/entranceFragment"
@@ -47,10 +48,14 @@
         tools:layout="@layout/fragment_entrance" >
         <action
             android:id="@+id/action_entranceFragment_to_generalTripFragment"
-            app:destination="@id/generalTripFragment" />
+            app:destination="@id/generalTripFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_entranceFragment_to_userProfileCreatingFragment"
-            app:destination="@id/userProfileCreatingFragment" />
+            app:destination="@id/userProfileCreatingFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/generalTripFragment"
@@ -80,7 +85,9 @@
             app:argType="string" />
         <action
             android:id="@+id/action_userProfileCreatingFragment_to_generalTripFragment"
-            app:destination="@id/generalTripFragment" />
+            app:destination="@id/generalTripFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/tripCreatingFragment"
