@@ -1,8 +1,10 @@
 package com.example.hikeculator.di
 
 import com.example.hikeculator.data.entities.FirebaseAuthentication
+import com.example.hikeculator.data.repository_implementations.MemberGroupRepositoryImpl
 import com.example.hikeculator.data.repository_implementations.TripRepositoryImpl
 import com.example.hikeculator.data.repository_implementations.UserProfileRepositoryImpl
+import com.example.hikeculator.domain.repositories.MemberGroupRepository
 import com.example.hikeculator.domain.repositories.TripRepository
 import com.example.hikeculator.domain.repositories.UserProfileRepository
 import com.google.firebase.auth.FirebaseAuth
@@ -24,4 +26,6 @@ val dataModule = module {
     single<UserProfileRepository> { UserProfileRepositoryImpl(firestore = get()) }
 
     single<TripRepository> { (userUid: String) -> TripRepositoryImpl(userUid = userUid) }
+
+    single<MemberGroupRepository> { MemberGroupRepositoryImpl(firestore = get()) }
 }

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hikeculator.databinding.ItemTripBinding
 import com.example.hikeculator.domain.entities.Trip
+import com.example.hikeculator.presentation.common.TripDateFormat
 
 class GeneralTripAdapter(
     private val onItemClick: (tripId: String) -> Unit,
@@ -27,15 +28,21 @@ class GeneralTripAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(trip: Trip) {
+
             with(binding) {
-                val dates = "${trip.startDate} - ${trip.endDate}"
                 textViewTripName.text = trip.name
-                textViewMemberCount.text = trip.memberCount.toString()
-                textViewTripDates.text = dates
+                textViewMemberCount.text = trip.memberUids.size.toString()
+                textViewStartDate.text = TripDateFormat.toFormattedDate(time = trip.endDate)
+                textViewEndDate.text = TripDateFormat.toFormattedDate(trip.endDate)
 
                 root.setOnClickListener { onItemClick.invoke(getItem(absoluteAdapterPosition).id) }
 
                 root.setOnLongClickListener {
+                    onLongItemClick(getItem(absoluteAdapterPosition).id)
+                    true
+                }
+
+                root.setOnLongClickListener() {
                     onLongItemClick(getItem(absoluteAdapterPosition).id)
                     true
                 }
