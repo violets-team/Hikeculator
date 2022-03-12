@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="text_view_trip_creating_component">
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:paddingTop">1dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:background">@drawable/background_trip_creating_component</item>
+        <item name="android:drawableEnd">@drawable/ic_arrow_forward</item>
+    </style>
+</resources>

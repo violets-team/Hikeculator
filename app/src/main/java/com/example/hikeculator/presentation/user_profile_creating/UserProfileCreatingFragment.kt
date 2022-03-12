@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.hikeculator.R
 import com.example.hikeculator.databinding.FragmentUserProfileCreatingBinding
+import com.example.hikeculator.presentation.common.toTrimmed
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UserProfileCreatingFragment : Fragment(R.layout.fragment_user_profile_creating) {
@@ -68,6 +69,4 @@ class UserProfileCreatingFragment : Fragment(R.layout.fragment_user_profile_crea
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
-
-    private fun EditText.toTrimmed(): String = text.toString().trim()
 }

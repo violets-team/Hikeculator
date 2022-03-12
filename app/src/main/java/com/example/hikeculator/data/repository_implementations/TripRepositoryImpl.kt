@@ -47,14 +47,13 @@ class TripRepositoryImpl(private val userUid: String) : TripRepository {
                 .addSnapshotListener { querySnapshot, error ->
                     if (error != null) {
                         close(cause = error)
-                        return@addSnapshotListener
-                    }
-
-                    querySnapshot?.run {
-                        documents.mapNotNull { document -> document?.toObject<FirestoreTrip>() }
-                            .map { firestoreTrip -> firestoreTrip.mapToTrip() }
-                            .toSet()
-                            .also { trips -> offer(trips) }
+                    } else {
+                        querySnapshot?.run {
+                            documents.mapNotNull { document -> document?.toObject<FirestoreTrip>() }
+                                .map { firestoreTrip -> firestoreTrip.mapToTrip() }
+                                .toSet()
+                                .also { trips -> offer(trips) }
+                        }
                     }
                 }
         } catch (e: Exception) {
