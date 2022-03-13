@@ -52,7 +52,7 @@ class TripRepositoryImpl(private val userUid: String) : TripRepository {
                             documents.mapNotNull { document -> document?.toObject<FirestoreTrip>() }
                                 .map { firestoreTrip -> firestoreTrip.mapToTrip() }
                                 .toSet()
-                                .also { trips -> offer(trips) }
+                                .also { trips -> trySend(trips) }
                         }
                     }
                 }

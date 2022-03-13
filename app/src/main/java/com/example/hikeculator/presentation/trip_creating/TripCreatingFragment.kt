@@ -71,10 +71,7 @@ class TripCreatingFragment : Fragment(R.layout.fragment_trip_creating) {
         binding.textViewType.setOnClickListener { navigateToTripTypeDialog() }
         binding.buttonCreate.setOnClickListener { createTrip() }
         binding.groupMemberCount.setOnClickListener { navigateToMemberDialog() }
-
-        binding.textViewDate.setOnClickListener {
-            TripDatePicker(onPositiveButtonClick = ::setTripDate).show(childFragmentManager)
-        }
+        binding.textViewDate.setOnClickListener { showDatePicker() }
     }
 
     override fun onDestroy() {
@@ -95,6 +92,13 @@ class TripCreatingFragment : Fragment(R.layout.fragment_trip_creating) {
             )
             adapter = addedMemberAdapter
         }
+    }
+
+    private fun showDatePicker() {
+        TripDatePicker(
+            title = getString(R.string.date_picker_title_select_trip_date),
+            onPositiveButtonClick = ::setTripDate
+        ).show(childFragmentManager)
     }
 
     private fun setTripDate(pickedDate: androidx.core.util.Pair<Long, Long>) {

@@ -33,8 +33,8 @@ class TripDayRepositoryImpl(
                     } else {
                         document?.toObject<FirestoreTripDay>()
                             ?.mapToTripDay()
-                            ?.also { tripDay -> offer(element = tripDay) }
-                            ?: offer(element = null)
+                            ?.also { tripDay -> trySend(element = tripDay) }
+                            ?: trySend(element = null)
                     }
                 }
         } catch (e: Exception) {
@@ -57,8 +57,8 @@ class TripDayRepositoryImpl(
                         querySnapshot?.documents
                             ?.mapNotNull { document -> document?.toObject<FirestoreTripDay>() }
                             ?.map { firestoreTripDay -> firestoreTripDay.mapToTripDay() }
-                            ?.also { tripDays -> offer(element = tripDays) }
-                            ?: offer(emptyList())
+                            ?.also { tripDays -> trySend(element = tripDays) }
+                            ?: trySend(emptyList())
                     }
                 }
         } catch (e: Exception) {
