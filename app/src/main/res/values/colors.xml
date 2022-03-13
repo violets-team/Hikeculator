@@ -29,7 +29,8 @@
     <color name="color_header_dinner">#A482E1</color>
     <color name="color_header_snack">#5F8F8B</color>
 
-
+    <color name="primary_color">#9FC376</color>
+    <color name="add_trip_member_icon_color">#D04C7D83</color>
 
 
 </resources>
