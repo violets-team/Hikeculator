@@ -41,11 +41,6 @@ class GeneralTripAdapter(
                     onLongItemClick(getItem(absoluteAdapterPosition).id)
                     true
                 }
-
-                root.setOnLongClickListener() {
-                    onLongItemClick(getItem(absoluteAdapterPosition).id)
-                    true
-                }
             }
         }
     }

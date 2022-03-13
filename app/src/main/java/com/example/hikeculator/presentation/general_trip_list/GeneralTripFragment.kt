@@ -45,7 +45,6 @@ class GeneralTripFragment : Fragment(R.layout.fragment_general_trips) {
 
         binding.actionButtonCreateTrip.setOnClickListener {
             navigateToTripCreatingFragment()
-//            navController.navigate(R.id.action_generalTripFragment_to_tripCreatingFragment)
         }
 
         binding.bottomAppBar.setOnMenuItemClickListener {
