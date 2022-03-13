@@ -82,7 +82,23 @@
         android:id="@+id/tripCreatingFragment"
         android:name="com.example.hikeculator.presentation.trip_creating.TripCreatingFragment"
         android:label="fragment_trip_creating"
-        tools:layout="@layout/fragment_trip_creating" />
+        tools:layout="@layout/fragment_trip_creating" >
+        <argument
+            android:name="userUid"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_tripCreatingFragment_to_seasonDialogFragment"
+            app:destination="@id/seasonDialogFragment" />
+        <action
+            android:id="@+id/action_tripCreatingFragment_to_categoryDialogFragment"
+            app:destination="@id/categoryDialogFragment" />
+        <action
+            android:id="@+id/action_tripCreatingFragment_to_tripTypeDialogFragment"
+            app:destination="@id/tripTypeDialogFragment" />
+        <action
+            android:id="@+id/action_tripCreatingFragment_to_memberDialogFragment"
+            app:destination="@id/memberDialogFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.hikeculator.presentation.profile.ProfileFragment"
@@ -100,4 +116,28 @@
             android:name="tripId"
             app:argType="string" />
     </fragment>
+    <dialog
+        android:id="@+id/seasonDialogFragment"
+        android:name="com.example.hikeculator.presentation.trip_creating.SeasonDialogFragment"
+        android:label="dialog_fragment_trip_season_choosing"
+        tools:layout="@layout/dialog_fragment_trip_season_choosing" >
+        <argument
+            android:name="userUid"
+            app:argType="string" />
+    </dialog>
+    <dialog
+        android:id="@+id/categoryDialogFragment"
+        android:name="com.example.hikeculator.presentation.trip_creating.CategoryDialogFragment"
+        android:label="dialog_fragment_trip_category_choosing"
+        tools:layout="@layout/dialog_fragment_trip_category_choosing" />
+    <dialog
+        android:id="@+id/tripTypeDialogFragment"
+        android:name="com.example.hikeculator.presentation.trip_creating.TripTypeDialogFragment"
+        android:label="dialog_fragment_trip_type_choosing"
+        tools:layout="@layout/dialog_fragment_trip_type_choosing" />
+    <dialog
+        android:id="@+id/memberDialogFragment"
+        android:name="com.example.hikeculator.presentation.trip_creating.member_search_dialog.MemberSearchDialogFragment"
+        android:label="dialog_fragment_member_choosing"
+        tools:layout="@layout/dialog_fragment_member_searching" />
 </navigation>

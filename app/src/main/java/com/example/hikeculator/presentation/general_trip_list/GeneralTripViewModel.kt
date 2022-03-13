@@ -2,13 +2,8 @@ package com.example.hikeculator.presentation.general_trip_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.hikeculator.data.repository_implementations.TripRepositoryImpl
 import com.example.hikeculator.domain.entities.Trip
-import com.example.hikeculator.domain.enums.Seasons
-import com.example.hikeculator.domain.enums.TripDifficultyCategory
-import com.example.hikeculator.domain.enums.TripType
 import com.example.hikeculator.domain.interactors.TripInteractor
-import com.example.hikeculator.domain.repositories.TripRepository
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

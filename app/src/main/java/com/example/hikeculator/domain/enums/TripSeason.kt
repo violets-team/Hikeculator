@@ -1,6 +1,6 @@
 package com.example.hikeculator.domain.enums
 
-enum class Seasons {
+enum class TripSeason {
 
     SPRING,
     SUMMER,
