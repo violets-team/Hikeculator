@@ -1,6 +1,7 @@
 package com.example.hikeculator.presentation.general_trip_list
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -10,11 +11,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.hikeculator.R
+import com.example.hikeculator.data.repository_implementations.UserProfileRepositoryImpl
 import com.example.hikeculator.databinding.FragmentGeneralTripsBinding
 import com.example.hikeculator.domain.interactors.TripInteractor
 import com.example.hikeculator.domain.repositories.TripRepository
-import com.example.hikeculator.presentation.common.launchWhenStarted
-import kotlinx.coroutines.flow.onEach
+import com.example.hikeculator.presentation.common.collectWhenStarted
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -40,12 +45,29 @@ class GeneralTripFragment : Fragment(R.layout.fragment_general_trips) {
 
         initializeTripRecyclerView()
 
-        viewModel.tripData.onEach { trips -> tripAdapter.submitList(trips.toList()) }
-            .launchWhenStarted(lifecycleScope)
+        viewModel.tripData.collectWhenStarted(lifecycleScope) { trips ->
+            tripAdapter.submitList(trips.toList())
 
-        binding.actionButtonCreateTrip.setOnClickListener {
-            navigateToTripCreatingFragment()
+            lifecycleScope.launch {
+                UserProfileRepositoryImpl(Firebase.firestore, FirebaseAuth.getInstance())
+                    .fetchUser(userUid = "i63ONyptCDNxjvJMHnAJZbYanId2")?.let { user ->
+                        Log.i("app_log",
+                            "onViewCreated: ${user.calorieNorm}"
+                        )
+
+//                        trips.onEach { trip ->
+//                            Log.i("app_log", "onViewCreated:" +
+//                                    "\n  ${trip}" +
+//                                    "\n trip cal ->${NutritionalCalculator().calculateCalorieNorm(trip, user)}" +
+//                                    "\n ******************************"
+//                            )
+//                        }
+                    }
+            }
+
         }
+
+        binding.actionButtonCreateTrip.setOnClickListener { navigateToTripCreatingFragment() }
 
         binding.bottomAppBar.setOnMenuItemClickListener {
             when (it.itemId) {
@@ -56,6 +78,9 @@ class GeneralTripFragment : Fragment(R.layout.fragment_general_trips) {
                 else -> false
             }
         }
+
+
+
     }
 
     private fun initializeTripRecyclerView() {

@@ -11,7 +11,7 @@ interface MemberGroupRepository {
 
     fun fetchTripMembers(): Flow<Set<User>>
 
-    fun fetchTripMember(): User
+    suspend fun fetchTripMember(userUid: String): User?
 
     suspend fun searchTripMembers(email: String): Set<User>
 }

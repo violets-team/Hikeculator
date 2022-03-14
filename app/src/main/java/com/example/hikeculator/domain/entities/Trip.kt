@@ -10,7 +10,7 @@ data class Trip(
     val startDate: Long,
     val endDate: Long,
     val memberUids: Set<String>,
-    val totalCalories: Double,
+    val totalCalories: Long,
     val type: TripType,
     val difficultyCategory: TripDifficultyCategory,
     val season: TripSeason,

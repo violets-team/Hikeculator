@@ -17,5 +17,11 @@ val presentationModule = module {
 
     viewModel { (interactor: TripInteractor) -> GeneralTripViewModel(tripInteractor = interactor) }
 
-    viewModel { (interactor: TripInteractor) -> TripCreatingViewModel(tripInteractor = interactor, get()) }
+    viewModel { (interactor: TripInteractor) ->
+        TripCreatingViewModel(
+            tripInteractor = interactor,
+            memberInteractor = get(),
+            tripCreatorUid = get()
+        )
+    }
 }
