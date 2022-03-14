@@ -1,6 +1,7 @@
 package com.example.hikeculator.presentation.trip_creating
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.StringRes
@@ -34,7 +35,9 @@ class TripCreatingFragment : Fragment(R.layout.fragment_trip_creating) {
 
     private val tripRepository by inject<TripRepository> { parametersOf(args.userUid) }
     private val tripInteractor by inject<TripInteractor> { parametersOf(tripRepository) }
-    private val viewModel by sharedViewModel<TripCreatingViewModel> { parametersOf(tripInteractor) }
+    private val viewModel by sharedViewModel<TripCreatingViewModel> {
+        parametersOf(tripInteractor, args.userUid )
+    }
 
     private val navController by lazy { findNavController() }
 
@@ -66,6 +69,10 @@ class TripCreatingFragment : Fragment(R.layout.fragment_trip_creating) {
             binding.textViewMemberQuantity.text = "${addedMembers.size}"
         }
 
+        viewModel.problemMessage.collectWhenStarted(lifecycleScope) { stringId ->
+            getString(stringId)
+        }
+
         binding.textViewSeason.setOnClickListener { navigateToSeasonDialog() }
         binding.textViewDifficultyCategory.setOnClickListener { navigateToCategoryDialog() }
         binding.textViewType.setOnClickListener { navigateToTripTypeDialog() }
@@ -76,7 +83,7 @@ class TripCreatingFragment : Fragment(R.layout.fragment_trip_creating) {
 
     override fun onDestroy() {
         super.onDestroy()
-        requireActivity().viewModelStore.clear()
+//        requireActivity().viewModelStore.clear()
     }
 
     private fun removeAddedMember(user: User) {
