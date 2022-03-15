@@ -24,7 +24,7 @@ class UserProfileCreatingViewModel(
         height: Int,
         isMan: Boolean,
     ) {
-        val calorieNorm = NutritionalCalculator().calculateCalorieNorm(
+        val calorieNorm = NutritionalCalculator.calculateCalorieNorm(
             weight =  weight,
             height = height,
             age = age,

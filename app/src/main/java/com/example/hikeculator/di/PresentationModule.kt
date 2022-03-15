@@ -3,6 +3,7 @@ package com.example.hikeculator.di
 import com.example.hikeculator.domain.interactors.TripInteractor
 import com.example.hikeculator.presentation.entrance.EntranceViewModel
 import com.example.hikeculator.presentation.general_trip_list.GeneralTripViewModel
+import com.example.hikeculator.presentation.trip_creating.ITripCreatingViewModel
 import com.example.hikeculator.presentation.trip_creating.TripCreatingViewModel
 import com.example.hikeculator.presentation.user_profile_creating.UserProfileCreatingViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -17,7 +18,7 @@ val presentationModule = module {
 
     viewModel { (interactor: TripInteractor) -> GeneralTripViewModel(tripInteractor = interactor) }
 
-    viewModel { (interactor: TripInteractor) ->
+    viewModel<ITripCreatingViewModel> { (interactor: TripInteractor) ->
         TripCreatingViewModel(
             tripInteractor = interactor,
             memberInteractor = get(),
