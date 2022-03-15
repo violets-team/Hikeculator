@@ -17,7 +17,7 @@ class TripTypeDialogFragment : DialogFragment(R.layout.dialog_fragment_trip_type
 
     private val binding by viewBinding(DialogFragmentTripTypeChoosingBinding::bind)
 
-    private val viewModel by sharedViewModel<TripCreatingViewModel>()
+    private val viewModel by sharedViewModel<ITripCreatingViewModel>()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return super.onCreateDialog(savedInstanceState).also { dialog ->
