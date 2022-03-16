@@ -14,7 +14,7 @@ data class FirestoreTrip(
     val startDate: Long = DEFAULT_LONG_VALUE,
     val endDate: Long = DEFAULT_LONG_VALUE,
     val memberUids: List<String> = emptyList(),
-    val totalCalories: Double = DEFAULT_DOUBLE_VALUE,
+    val totalCalories: Long = DEFAULT_LONG_VALUE,
     val type: TripType = TripType.HIKE,
     val difficultyCategory: TripDifficultyCategory = TripDifficultyCategory.CATEGORY_1,
     val season: TripSeason = TripSeason.FALL,

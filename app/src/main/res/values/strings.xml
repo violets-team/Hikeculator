@@ -84,4 +84,5 @@
     <string name="trip_category_6">Category 6</string>
     <string name="trip_member_searching_input_hint">type email for searching</string>
     <string name="date_picker_title_select_trip_date">Select the trip date</string>
+    <string name="message_failed_to_create_the_trip">Failed to create the trip</string>
 </resources>
