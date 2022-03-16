@@ -47,24 +47,6 @@ class GeneralTripFragment : Fragment(R.layout.fragment_general_trips) {
 
         viewModel.tripData.collectWhenStarted(lifecycleScope) { trips ->
             tripAdapter.submitList(trips.toList())
-
-            lifecycleScope.launch {
-                UserProfileRepositoryImpl(Firebase.firestore, FirebaseAuth.getInstance())
-                    .fetchUser(userUid = "i63ONyptCDNxjvJMHnAJZbYanId2")?.let { user ->
-                        Log.i("app_log",
-                            "onViewCreated: ${user.calorieNorm}"
-                        )
-
-//                        trips.onEach { trip ->
-//                            Log.i("app_log", "onViewCreated:" +
-//                                    "\n  ${trip}" +
-//                                    "\n trip cal ->${NutritionalCalculator().calculateCalorieNorm(trip, user)}" +
-//                                    "\n ******************************"
-//                            )
-//                        }
-                    }
-            }
-
         }
 
         binding.actionButtonCreateTrip.setOnClickListener { navigateToTripCreatingFragment() }
@@ -78,9 +60,6 @@ class GeneralTripFragment : Fragment(R.layout.fragment_general_trips) {
                 else -> false
             }
         }
-
-
-
     }
 
     private fun initializeTripRecyclerView() {
