@@ -84,4 +84,8 @@
     <string name="trip_category_6">Category 6</string>
     <string name="trip_member_searching_input_hint">type email for searching</string>
     <string name="date_picker_title_select_trip_date">Select the trip date</string>
+    <string name="search_food">Search food</string>
+    <string name="text_done">Done</string>
+    <string name="text_add_custom_product">Add custom product</string>
+    <string name="text_search_result">SEARCH RESULT</string>
 </resources>

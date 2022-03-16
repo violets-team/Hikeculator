@@ -42,6 +42,9 @@
             app:destination="@id/userProfileCreatingFragment"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_entranceFragment_to_foodSearchFragment"
+            app:destination="@id/foodSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/generalTripFragment"
@@ -140,4 +143,8 @@
         android:name="com.example.hikeculator.presentation.trip_creating.member_search_dialog.MemberSearchDialogFragment"
         android:label="dialog_fragment_member_choosing"
         tools:layout="@layout/dialog_fragment_member_searching" />
+    <fragment
+        android:id="@+id/foodSearchFragment"
+        android:name="com.example.hikeculator.presentation.food_search.FoodSearchFragment"
+        android:label="FoodSearchFragment" />
 </navigation>
