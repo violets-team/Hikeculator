@@ -25,7 +25,7 @@ class UserProfileCreatingViewModel(
         isMan: Boolean,
     ) {
         val calorieNorm = NutritionalCalculator.calculateCalorieNorm(
-            weight =  weight,
+            weight = weight,
             height = height,
             age = age,
             gender = getGender(isMan = isMan)
@@ -46,7 +46,7 @@ class UserProfileCreatingViewModel(
             TODO("Handle the exception here")
         }
 
-        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+        viewModelScope.launch(context = Dispatchers.IO + exceptionHandler) {
             userProfileInteractor.createUserProfile(user = user)
         }
     }

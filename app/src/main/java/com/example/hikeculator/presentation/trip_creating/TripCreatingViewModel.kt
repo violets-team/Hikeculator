@@ -10,6 +10,7 @@ import com.example.hikeculator.domain.enums.TripSeason
 import com.example.hikeculator.domain.enums.TripType
 import com.example.hikeculator.domain.interactors.MemberGroupInteractor
 import com.example.hikeculator.domain.interactors.TripInteractor
+import com.example.hikeculator.presentation.common.TripDateFormat
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -99,7 +100,10 @@ class TripCreatingViewModel(
                     type = type,
                     difficultyCategory = difficultyCategory,
                     season = season,
-                    dayQuantity = getDayQuantity(startDate = startDate, endDate = endDate),
+                    dayQuantity = TripDateFormat.getDayQuantity(
+                        startDate = startDate,
+                        endDate = endDate
+                    ),
                     members = addedMembers.value.toTypedArray()
                 )
 
@@ -121,10 +125,6 @@ class TripCreatingViewModel(
                 problemMessage.tryEmit(value = R.string.message_failed_to_create_the_trip)
             }
         }
-    }
-
-    private fun getDayQuantity(startDate: Long, endDate: Long): Int {
-        return TimeUnit.MILLISECONDS.toDays(endDate - startDate).toInt() + 1
     }
 
     override fun clearTripCreatingState() {
