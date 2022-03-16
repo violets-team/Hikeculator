@@ -12,7 +12,9 @@ class MemberGroupInteractor(private val memberGroupRepository: MemberGroupReposi
 
     fun removeTripMember(user: User) = memberGroupRepository.removeTripMember(user)
 
-    fun fetchTripMember(): User = memberGroupRepository.fetchTripMember()
+    suspend fun fetchTripMember(userUid: String): User? = withContext(Dispatchers.IO) {
+        memberGroupRepository.fetchTripMember(userUid = userUid)
+    }
 
     fun fetchTripMembers(): Flow<Set<User>> = memberGroupRepository.fetchTripMembers()
 

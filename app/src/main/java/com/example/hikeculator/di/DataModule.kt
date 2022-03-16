@@ -11,7 +11,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import org.koin.dsl.module
-import kotlin.math.sin
 
 val dataModule = module {
 
@@ -23,7 +22,9 @@ val dataModule = module {
 
     single { FirebaseAuthentication(firebase = get(), firebaseAuth = get()) }
 
-    single<UserProfileRepository> { UserProfileRepositoryImpl(firestore = get()) }
+    single<UserProfileRepository> {
+        UserProfileRepositoryImpl(firestore = get(), firebaseAuth = get())
+    }
 
     single<TripRepository> { (userUid: String) -> TripRepositoryImpl(userUid = userUid) }
 
