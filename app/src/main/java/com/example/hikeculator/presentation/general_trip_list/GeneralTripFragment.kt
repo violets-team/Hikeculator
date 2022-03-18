@@ -29,8 +29,7 @@ class GeneralTripFragment : Fragment(R.layout.fragment_general_trips) {
     private val binding by viewBinding(FragmentGeneralTripsBinding::bind)
     private val args by navArgs<GeneralTripFragmentArgs>()
 
-    private val tripRepository by inject<TripRepository> { parametersOf(args.userUid) }
-    private val tripInteractor by inject<TripInteractor> { parametersOf(tripRepository) }
+    private val tripInteractor by inject<TripInteractor> { parametersOf(args.userUid) }
     private val viewModel by viewModel<GeneralTripViewModel> { parametersOf(tripInteractor) }
 
     private val navController by lazy { findNavController() }

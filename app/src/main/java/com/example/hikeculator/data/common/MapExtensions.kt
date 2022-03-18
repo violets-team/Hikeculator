@@ -52,6 +52,7 @@ fun FirestoreUser.mapToUser() = User(
 
 fun TripDay.mapToFirestoreTripDay(): FirestoreTripDay = FirestoreTripDay(
     id = id,
+    date = date,
     breakfast = breakfast.mapToFirestoreDayMeal(),
     lunch = lunch.mapToFirestoreDayMeal(),
     dinner = dinner.mapToFirestoreDayMeal(),
@@ -60,6 +61,7 @@ fun TripDay.mapToFirestoreTripDay(): FirestoreTripDay = FirestoreTripDay(
 
 fun FirestoreTripDay.mapToTripDay(): TripDay = TripDay(
     id = id,
+    date = date,
     breakfast = breakfast.mapToDayMeal(),
     lunch = lunch.mapToDayMeal(),
     dinner = dinner.mapToDayMeal(),
