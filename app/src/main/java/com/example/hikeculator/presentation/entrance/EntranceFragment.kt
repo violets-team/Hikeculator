@@ -86,9 +86,10 @@ class EntranceFragment : Fragment(R.layout.fragment_entrance) {
     }
 
     private fun navigateToGeneralTripFragment(userUid: String) {
-        EntranceFragmentDirections.actionEntranceFragmentToGeneralTripFragment(
-            userUid = userUid
-        ).also { navController.navigate(directions = it) }
+//        EntranceFragmentDirections.actionEntranceFragmentToGeneralTripFragment(
+//            userUid = userUid
+//        ).also { navController.navigate(directions = it) }
+        findNavController().navigate(R.id.action_entranceFragment_to_foodSearchFragment)
     }
 
     private fun navigateToUserProfileCreatingFragment(uid: String, email: String) {
