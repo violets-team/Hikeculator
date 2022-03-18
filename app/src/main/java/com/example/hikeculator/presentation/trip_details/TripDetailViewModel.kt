@@ -2,30 +2,30 @@ package com.example.hikeculator.presentation.trip_details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.hikeculator.data.repository_implementations.TripDayRepositoryImpl
 import com.example.hikeculator.domain.entities.DayMeal
 import com.example.hikeculator.domain.entities.Product
+import com.example.hikeculator.domain.entities.Trip
 import com.example.hikeculator.domain.entities.TripDay
 import com.example.hikeculator.domain.interactors.TripDayInteractor
-import com.example.hikeculator.domain.repositories.TripDayRepository
+import com.example.hikeculator.domain.interactors.TripInteractor
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.util.*
 
 class TripDetailViewModel(
-    userTripCollectionId: String,
-    tripId: String,
+    tripInteractor: TripInteractor,
+    private val tripDayInteractor: TripDayInteractor,
+    private val tripId: String,
 ) : ViewModel() {
 
-    private val tripDayRepository: TripDayRepository = TripDayRepositoryImpl(
-        userTripCollectionId = userTripCollectionId,
-        tripId = tripId
+    val tripDays: SharedFlow<List<TripDay>> = getTripDayFlow().shareIn(
+        scope = viewModelScope,
+        started = SharingStarted.Lazily,
+        replay = 1
     )
 
-    private val tripDayInteractor = TripDayInteractor(tripDayRepository = tripDayRepository)
-
-    val tripDays: SharedFlow<List<TripDay>> = getTripDayFlow().shareIn(
+    val trip: SharedFlow<Trip?> = tripInteractor.fetchTrip(tripId = tripId).shareIn(
         scope = viewModelScope,
         started = SharingStarted.Lazily,
         replay = 1
@@ -40,6 +40,7 @@ class TripDetailViewModel(
 
         val tripDay = TripDay(
             id = UUID.randomUUID().toString(),
+            date = System.currentTimeMillis(),
             breakfast = DayMeal(products = breakfastProducts),
             lunch = DayMeal(products = lunchProducts),
             dinner = DayMeal(products = dinnerProducts),
@@ -51,11 +52,13 @@ class TripDetailViewModel(
         }
 
         viewModelScope.launch(context = exceptionHandler) {
-            tripDayInteractor.insertTripDay(tripDay = tripDay)
+            tripDayInteractor.insertTripDay(tripId = tripId, tripDay = tripDay)
         }
     }
 
-    private fun getTripDayFlow(): Flow<List<TripDay>> = tripDayInteractor.fetchTripDays().catch {
-        TODO("Handle the exception here")
+    private fun getTripDayFlow(): Flow<List<TripDay>> {
+        return tripDayInteractor.fetchTripDays(tripId = tripId).catch {
+            TODO("Handle the exception here")
+        }
     }
 }

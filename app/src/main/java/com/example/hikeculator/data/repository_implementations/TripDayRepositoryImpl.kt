@@ -13,19 +13,15 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 
 class TripDayRepositoryImpl(
-    private val userTripCollectionId: String,
-    private val tripId: String,
+    private val userUid: String,
+//    private val tripId: String,
 ) : TripDayRepository {
 
     private val firestore = Firebase.firestore
 
-    override fun fetchTripDay(tripDayId: String): Flow<TripDay?> = callbackFlow {
+    override fun fetchTripDay(tripId: String, tripDayId: String): Flow<TripDay?> = callbackFlow {
         val listener = try {
-            firestore.collection(GENERAL_TRIP_COLLECTION_NAME)
-                .document(userTripCollectionId)
-                .collection(GENERAL_TRIP_SUB_COLLECTION_NAME)
-                .document(tripId)
-                .collection(TRIP_DAY_COLLECTION_NAME)
+            firestore.getTripDayCollection(userUid = userUid, tripId = tripId)
                 .document(tripDayId)
                 .addSnapshotListener { document, error ->
                     if (error != null) {
@@ -44,13 +40,11 @@ class TripDayRepositoryImpl(
         awaitClose { listener?.remove() }
     }
 
-    override fun fetchTripDays(): Flow<List<TripDay>> = callbackFlow {
+    override fun fetchTripDays(tripId: String): Flow<List<TripDay>> = callbackFlow {
         val listener = try {
-            firestore.collection(GENERAL_TRIP_COLLECTION_NAME)
-                .document(userTripCollectionId)
-                .collection(GENERAL_TRIP_SUB_COLLECTION_NAME)
-                .document(tripId)
-                .collection(TRIP_DAY_COLLECTION_NAME).addSnapshotListener { querySnapshot, error ->
+            firestore.getTripDayCollection(userUid = userUid, tripId = tripId)
+                .orderBy(TripDay::date.name)
+                .addSnapshotListener { querySnapshot, error ->
                     if (error != null) {
                         close(cause = error)
                     } else {
@@ -68,14 +62,10 @@ class TripDayRepositoryImpl(
         awaitClose { listener?.remove() }
     }
 
-    override suspend fun insertTripDay(tripDay: TripDay) {
+    override suspend fun insertTripDay(tripId: String, tripDay: TripDay) {
         val firestoreTripDay = tripDay.mapToFirestoreTripDay()
 
-        firestore.collection(GENERAL_TRIP_COLLECTION_NAME)
-            .document(userTripCollectionId)
-            .collection(GENERAL_TRIP_SUB_COLLECTION_NAME)
-            .document(tripId)
-            .collection(TRIP_DAY_COLLECTION_NAME)
+        firestore.getTripDayCollection(userUid = userUid, tripId = tripId)
             .document(firestoreTripDay.id)
             .set(firestoreTripDay)
             .await()

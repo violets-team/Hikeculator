@@ -11,4 +11,27 @@
         <item name="android:background">@drawable/background_trip_creating_component</item>
         <item name="android:drawableEnd">@drawable/ic_arrow_forward</item>
     </style>
+
+    <style name="progress_bar_pfc_info">
+        <item name="android:layout_width">@dimen/progress_bar_pfc_radius</item>
+        <item name="android:layout_height">@dimen/progress_bar_pfc_radius</item>
+        <item name="indicatorColor">#CEDD8A70</item>
+        <item name="trackColor">#5269D4E1</item>
+        <item name="trackCornerRadius">10dp</item>
+        <item name="indicatorSize">@dimen/progress_bar_pfc_radius</item>
+        <item name="indicatorInset">00dp</item>
+        <item name="trackThickness">5dp</item>
+    </style>
+
+    <style name="text_view_pfc_info">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold|italic</item>
+    </style>
+
+    <style name="text_view_pfc_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
