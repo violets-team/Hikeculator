@@ -4,9 +4,9 @@ data class DayMeal(
     val products: List<Product>,
 ) {
 
-    val totalCalories: Long
+    val totalCalories: Double
         get() = products.map { it.nutritionalValue.calories }.sum()
 
-    val totalWeight: Long
+    val totalWeight: Double
         get() = products.map { it.weight }.sum()
 }

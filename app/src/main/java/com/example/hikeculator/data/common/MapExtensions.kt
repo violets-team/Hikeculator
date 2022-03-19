@@ -1,6 +1,8 @@
 package com.example.hikeculator.data.common
 
 import com.example.hikeculator.data.entities.*
+import com.example.hikeculator.data.entities.api_edaman.ApiProductHolder
+import com.example.hikeculator.data.entities.api_edaman.FoodSearchResponse
 import com.example.hikeculator.domain.entities.*
 
 fun FirestoreTrip.mapToTrip() = Trip(
@@ -101,3 +103,19 @@ fun FirestoreNutritionValue.mapToNutritionalValue(): NutritionalValue = Nutritio
     fats = fats,
     carbohydrates = carbohydrates
 )
+
+fun ApiProductHolder.mapToProduct(): Product {
+    return Product(
+        name = product.name,
+        weight = WEIGHT_UNIT,
+        nutritionalValue = NutritionalValue(
+            calories = product.nutritionalValue.calories / DEFAULT_PRODUCT_WEIGHT,
+            proteins = product.nutritionalValue.proteins / DEFAULT_PRODUCT_WEIGHT,
+            fats = product.nutritionalValue.fats / DEFAULT_PRODUCT_WEIGHT,
+            carbohydrates = product.nutritionalValue.carbohydrates / DEFAULT_PRODUCT_WEIGHT,
+        ),
+    )
+}
+
+fun FoodSearchResponse.mapToProductList(): List<Product> =
+    productHolders.map { productHolder -> productHolder.mapToProduct() }
