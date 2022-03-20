@@ -1,7 +1,9 @@
 package com.example.hikeculator.presentation.common
 
-import android.view.View
+import android.content.Context
 import android.widget.EditText
+import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.lifecycle.LifecycleCoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -26,3 +28,7 @@ inline fun <T> Flow<T>.collectWhenStarted(
 }
 
 fun EditText.toTrimmed(): String = text.toString().trim()
+
+fun Context.showToast(@StringRes messageId: Int) {
+    Toast.makeText(this, getString(messageId), Toast.LENGTH_SHORT).show()
+}

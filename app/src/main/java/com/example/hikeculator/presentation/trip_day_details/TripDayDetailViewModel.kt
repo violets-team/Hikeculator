@@ -16,14 +16,11 @@ import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
 
 class TripDayDetailViewModel(
-    userTripCollectionId: String,
     private val tripId: String,
     tripDayId: String,
+    private val tripDayRepository: TripDayRepository
 ) : ViewModel() {
 
-    private val tripDayRepository: TripDayRepository = TripDayRepositoryImpl(
-        userUid = userTripCollectionId
-    )
     private val tripDayInteractor = TripDayInteractor(tripDayRepository = tripDayRepository)
 
     val tripDayData = getTripDayFlow(tripDayId = tripDayId).shareIn(
