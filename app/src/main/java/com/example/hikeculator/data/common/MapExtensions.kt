@@ -52,6 +52,7 @@ fun FirestoreUser.mapToUser() = User(
 
 fun TripDay.mapToFirestoreTripDay(): FirestoreTripDay = FirestoreTripDay(
     id = id,
+    date = date,
     breakfast = breakfast.mapToFirestoreDayMeal(),
     lunch = lunch.mapToFirestoreDayMeal(),
     dinner = dinner.mapToFirestoreDayMeal(),
@@ -60,6 +61,7 @@ fun TripDay.mapToFirestoreTripDay(): FirestoreTripDay = FirestoreTripDay(
 
 fun FirestoreTripDay.mapToTripDay(): TripDay = TripDay(
     id = id,
+    date = date,
     breakfast = breakfast.mapToDayMeal(),
     lunch = lunch.mapToDayMeal(),
     dinner = dinner.mapToDayMeal(),
@@ -91,7 +93,7 @@ fun NutritionalValue.mapToFirestoreNutritionalValue(): FirestoreNutritionValue {
         calories = calories,
         proteins = proteins,
         fats = fats,
-        carbohydrates = carbohydrates
+        carbohydrates = carbs
     )
 }
 
@@ -99,5 +101,5 @@ fun FirestoreNutritionValue.mapToNutritionalValue(): NutritionalValue = Nutritio
     calories = calories,
     proteins = proteins,
     fats = fats,
-    carbohydrates = carbohydrates
+    carbs = carbohydrates
 )

@@ -1,291 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.trip_details.TripDetailFragment">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/content_start"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/content_end"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/content_top"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/content_bottom"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="16dp" />
+
+
+    <TextView
+        android:id="@+id/text_view_trip_name_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="@id/content_end"
+        app:layout_constraintStart_toStartOf="@id/content_start"
+        app:layout_constraintTop_toTopOf="@id/content_top"
+        tools:text="@string/text_title_hike" />
+
     <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/circular_indicator_calories_trip"
+        android:id="@+id/progress_indicator_calorie_info"
         android:layout_width="121dp"
         android:layout_height="118dp"
         android:layout_marginTop="16dp"
-        android:progress="60"
-        app:indicatorColor="@color/purple_500"
-        app:indicatorInset="0dp"
+        app:indicatorColor="#E289C83B"
         app:indicatorSize="150dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_title_trip"
-        app:trackColor="@color/teal_200"
+        app:layout_constraintEnd_toEndOf="@id/content_end"
+        app:layout_constraintStart_toStartOf="@id/content_start"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_trip_name_title"
+        app:trackColor="#5CC89E90"
         app:trackCornerRadius="10dp"
         app:trackThickness="12dp" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view_detailed_pfc"
-        style="@style/CardViewUsual"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:backgroundTint="@color/detailed_card"
-        app:cardCornerRadius="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/circular_indicator_calories_trip">
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_indicator_carb_info"
+        style="@style/progress_bar_pfc_info"
+        app:layout_constraintEnd_toEndOf="@id/content_end"
+        app:layout_constraintStart_toEndOf="@id/progress_indicator_fat_info"
+        app:layout_constraintTop_toTopOf="@id/progress_indicator_fat_info" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp">
+    <TextView
+        android:id="@+id/text_view_carb_info"
+        style="@style/text_view_pfc_info"
+        app:layout_constraintBottom_toBottomOf="@id/progress_indicator_carb_info"
+        app:layout_constraintEnd_toEndOf="@id/progress_indicator_carb_info"
+        app:layout_constraintStart_toStartOf="@id/progress_indicator_carb_info"
+        app:layout_constraintTop_toTopOf="@id/progress_indicator_carb_info"
+        tools:text="0%" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_toStartOf="@id/constraint_layout_proteins">
+    <TextView
+        android:id="@+id/text_view_carb_title"
+        style="@style/text_view_pfc_title"
+        android:text="@string/carbs"
+        app:layout_constraintEnd_toEndOf="@id/progress_indicator_carb_info"
+        app:layout_constraintStart_toStartOf="@id/progress_indicator_carb_info"
+        app:layout_constraintTop_toBottomOf="@id/progress_indicator_carb_info" />
 
-                <ProgressBar
-                    android:id="@+id/progress_bar_info_carbs"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:progress="0"
-                    android:progressDrawable="@drawable/circleprogressbar"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_indicator_fat_info"
+        style="@style/progress_bar_pfc_info"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@id/progress_indicator_carb_info"
+        app:layout_constraintStart_toEndOf="@id/progress_indicator_protein_info"
+        app:layout_constraintTop_toBottomOf="@id/progress_indicator_calorie_info" />
 
-                <TextView
-                    android:id="@+id/text_view_info_carbs"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginStart="4dp"
-                    android:text="0%"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/progress_bar_info_carbs"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/progress_bar_info_carbs" />
+    <TextView
+        android:id="@+id/text_view_fat_info"
+        style="@style/text_view_pfc_info"
+        app:layout_constraintBottom_toBottomOf="@id/progress_indicator_fat_info"
+        app:layout_constraintEnd_toEndOf="@id/progress_indicator_fat_info"
+        app:layout_constraintStart_toStartOf="@id/progress_indicator_fat_info"
+        app:layout_constraintTop_toTopOf="@id/progress_indicator_fat_info"
+        tools:text="100%" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="Углеводы"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/progress_bar_info_carbs" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/text_view_fat_title"
+        style="@style/text_view_pfc_title"
+        android:text="@string/fats"
+        app:layout_constraintEnd_toEndOf="@id/progress_indicator_fat_info"
+        app:layout_constraintStart_toStartOf="@id/progress_indicator_fat_info"
+        app:layout_constraintTop_toBottomOf="@id/progress_indicator_fat_info" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_toEndOf="@id/constraint_layout_proteins">
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_indicator_protein_info"
+        style="@style/progress_bar_pfc_info"
+        app:layout_constraintEnd_toStartOf="@id/progress_indicator_fat_info"
+        app:layout_constraintStart_toStartOf="@id/content_start"
+        app:layout_constraintTop_toTopOf="@id/progress_indicator_fat_info" />
 
-                <ProgressBar
-                    android:id="@+id/progress_bar_info_fats"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:progress="0"
-                    android:progressDrawable="@drawable/circleprogressbar"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/text_view_protein_info"
+        style="@style/text_view_pfc_info"
+        app:layout_constraintBottom_toBottomOf="@id/progress_indicator_protein_info"
+        app:layout_constraintEnd_toEndOf="@id/progress_indicator_protein_info"
+        app:layout_constraintStart_toStartOf="@id/progress_indicator_protein_info"
+        app:layout_constraintTop_toTopOf="@id/progress_indicator_protein_info"
+        tools:text="0%" />
 
-                <TextView
-                    android:id="@+id/text_view_info_fats"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginStart="4dp"
-                    android:text="0%"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/progress_bar_info_fats"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/progress_bar_info_fats" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="Жиры"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/progress_bar_info_fats" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraint_layout_proteins"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp">
-
-                <ProgressBar
-                    android:id="@+id/progress_bar_info_proteins"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:progress="0"
-                    android:progressDrawable="@drawable/circleprogressbar"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/text_view_info_proteins"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginStart="4dp"
-                    android:text="0%"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/progress_bar_info_proteins"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/progress_bar_info_proteins" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="Белки"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/progress_bar_info_proteins" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </RelativeLayout>
-
-
-    </androidx.cardview.widget.CardView>
+    <TextView
+        android:id="@+id/text_view_protein_title"
+        style="@style/text_view_pfc_title"
+        android:text="@string/proteins"
+        app:layout_constraintEnd_toEndOf="@id/progress_indicator_protein_info"
+        app:layout_constraintStart_toStartOf="@id/progress_indicator_protein_info"
+        app:layout_constraintTop_toBottomOf="@id/progress_indicator_protein_info" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_trip_days"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_view_trip_weight"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation_view"
+        app:layout_constraintEnd_toEndOf="@id/content_end"
+        app:layout_constraintStart_toStartOf="@id/content_start"
+        app:layout_constraintTop_toBottomOf="@id/text_view_trip_provision_weight"
+        app:layout_constraintVertical_bias="0.0"
+        tools:itemCount="3"
         tools:listitem="@layout/item_day" />
 
-    <TextView
-        android:id="@+id/text_view_title_trip"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_provision_calorie_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/text_title_hike"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_menu" />
+        android:layout_marginBottom="8dp"
+        android:text="@string/grained_calorie_percents"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@id/text_view_trip_calories"
+        app:layout_constraintEnd_toEndOf="@id/text_view_trip_calories"
+        app:layout_constraintStart_toStartOf="@id/text_view_trip_calories" />
 
     <TextView
         android:id="@+id/text_view_trip_calories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="5800 Ккал"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/circular_indicator_calories_trip"
-        app:layout_constraintEnd_toEndOf="@+id/circular_indicator_calories_trip"
-        app:layout_constraintStart_toStartOf="@+id/circular_indicator_calories_trip"
-        app:layout_constraintTop_toTopOf="@+id/circular_indicator_calories_trip" />
+        app:layout_constraintBottom_toBottomOf="@+id/progress_indicator_calorie_info"
+        app:layout_constraintEnd_toEndOf="@+id/progress_indicator_calorie_info"
+        app:layout_constraintStart_toStartOf="@+id/progress_indicator_calorie_info"
+        app:layout_constraintTop_toTopOf="@+id/progress_indicator_calorie_info"
+        tools:text="5800" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view_trip_weight"
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardBackgroundColor="@color/purple_700"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/card_view_detailed_pfc"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="226dp">
+        android:layout_marginTop="8dp"
+        android:text="@string/kcal"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="@id/text_view_trip_calories"
+        app:layout_constraintStart_toStartOf="@id/text_view_trip_calories"
+        app:layout_constraintTop_toBottomOf="@id/text_view_trip_calories" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/text_view_trip_provision_weight_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="@string/text_weight_trip_label"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="@id/content_start"
+        app:layout_constraintTop_toBottomOf="@id/text_view_fat_title" />
 
-            <TextView
-                android:id="@+id/text_view_trip_weight_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:text="@string/text_weight_trip_label"
-                android:textColor="@color/light_grey"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/text_view_trip_provision_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_trip_provision_weight"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="@id/text_view_trip_provision_weight_label"
+        app:layout_constraintStart_toEndOf="@+id/text_view_trip_provision_weight_label"
+        app:layout_constraintTop_toTopOf="@+id/text_view_trip_provision_weight_label"
+        app:layout_constraintVertical_bias="1.0" />
 
-            <TextView
-                android:id="@+id/text_view_trip_weight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/text_weight_trip"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/text_view_trip_weight_label"
-                app:layout_constraintTop_toBottomOf="@+id/text_view_trip_weight_label" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_save"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
-        android:padding="8dp"
-        android:text="@string/text_button_save"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view"
-        app:layout_constraintEnd_toEndOf="@+id/recycler_view_trip_days"
-        app:layout_constraintStart_toStartOf="@+id/recycler_view_trip_days"
-        app:rippleColor="@color/white" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

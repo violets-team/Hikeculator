@@ -17,13 +17,12 @@ import kotlinx.coroutines.launch
 
 class TripDayDetailViewModel(
     userTripCollectionId: String,
-    tripId: String,
+    private val tripId: String,
     tripDayId: String,
 ) : ViewModel() {
 
     private val tripDayRepository: TripDayRepository = TripDayRepositoryImpl(
-        userTripCollectionId = userTripCollectionId,
-        tripId = tripId
+        userUid = userTripCollectionId
     )
     private val tripDayInteractor = TripDayInteractor(tripDayRepository = tripDayRepository)
 
@@ -35,6 +34,7 @@ class TripDayDetailViewModel(
 
     fun updateTripDay(
         tripDayId: String,
+        dayDate: Long,
         breakfastProducts: List<Product>,
         lunchProducts: List<Product>,
         dinnerProducts: List<Product>,
@@ -42,6 +42,7 @@ class TripDayDetailViewModel(
     ) {
         val updatedTripDay = TripDay(
             id = tripDayId,
+            date = dayDate,
             breakfast = DayMeal(products = breakfastProducts),
             lunch = DayMeal(products = lunchProducts),
             dinner = DayMeal(products = dinnerProducts),
@@ -53,12 +54,12 @@ class TripDayDetailViewModel(
         }
 
         viewModelScope.launch(context = exceptionHandler) {
-            tripDayInteractor.insertTripDay(tripDay = updatedTripDay)
+            tripDayInteractor.insertTripDay(tripId = tripId, tripDay = updatedTripDay)
         }
     }
 
     private fun getTripDayFlow(tripDayId: String): Flow<TripDay?> {
-        return tripDayInteractor.fetchTripDay(tripDayId = tripDayId).catch {
+        return tripDayInteractor.fetchTripDay(tripId = tripId, tripDayId = tripDayId).catch {
             TODO("Handel the excepting here")
         }
     }

@@ -2,36 +2,34 @@ package com.example.hikeculator.presentation.trip_details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.hikeculator.data.repository_implementations.TripDayRepositoryImpl
+import com.example.hikeculator.R
 import com.example.hikeculator.domain.entities.DayMeal
 import com.example.hikeculator.domain.entities.Product
+import com.example.hikeculator.domain.entities.Trip
 import com.example.hikeculator.domain.entities.TripDay
 import com.example.hikeculator.domain.interactors.TripDayInteractor
-import com.example.hikeculator.domain.repositories.TripDayRepository
+import com.example.hikeculator.domain.interactors.TripInteractor
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.util.*
 
 class TripDetailViewModel(
-    userTripCollectionId: String,
-    tripId: String,
+    private val tripInteractor: TripInteractor,
+    private val tripDayInteractor: TripDayInteractor,
+    private val tripId: String,
 ) : ViewModel() {
 
-    private val tripDayRepository: TripDayRepository = TripDayRepositoryImpl(
-        userTripCollectionId = userTripCollectionId,
-        tripId = tripId
-    )
-
-    private val tripDayInteractor = TripDayInteractor(tripDayRepository = tripDayRepository)
-
-    val tripDays: SharedFlow<List<TripDay>> = getTripDayFlow().shareIn(
+    val data: SharedFlow<Pair<Trip?, List<TripDay>>> = getTripData().shareIn(
         scope = viewModelScope,
-        started = SharingStarted.Lazily,
+        started = SharingStarted.Eagerly,
         replay = 1
     )
 
-    fun addTripDay(
+    private val _problemMessage = MutableSharedFlow<Int>()
+    val problemMessage: SharedFlow<Int> = _problemMessage.asSharedFlow()
+
+    fun updateTripDay(
         breakfastProducts: List<Product>,
         lunchProducts: List<Product>,
         dinnerProducts: List<Product>,
@@ -40,22 +38,35 @@ class TripDetailViewModel(
 
         val tripDay = TripDay(
             id = UUID.randomUUID().toString(),
+            date = System.currentTimeMillis(),
             breakfast = DayMeal(products = breakfastProducts),
             lunch = DayMeal(products = lunchProducts),
             dinner = DayMeal(products = dinnerProducts),
             snack = DayMeal(products = snackProducts)
         )
 
-        val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
-            TODO("Handle the exception here")
+        val exceptionHandler = CoroutineExceptionHandler { _, _ ->
+            _problemMessage.tryEmit(R.string.problem_with_trip_updating)
         }
 
         viewModelScope.launch(context = exceptionHandler) {
-            tripDayInteractor.insertTripDay(tripDay = tripDay)
+            tripDayInteractor.insertTripDay(tripId = tripId, tripDay = tripDay)
         }
     }
 
-    private fun getTripDayFlow(): Flow<List<TripDay>> = tripDayInteractor.fetchTripDays().catch {
-        TODO("Handle the exception here")
+    private fun getTripData(): Flow<Pair<Trip?, List<TripDay>>> {
+        return combine(getTrip(), getTripDays()) { trip: Trip?, tripDays ->
+            trip to tripDays
+        }
+    }
+
+    private fun getTripDays(): Flow<List<TripDay>> {
+        return tripDayInteractor.fetchTripDays(tripId = tripId).catch {
+            _problemMessage.tryEmit(R.string.problem_with_trip_getting)
+        }
+    }
+
+    private fun getTrip(): Flow<Trip?> = tripInteractor.fetchTrip(tripId = tripId).catch {
+        _problemMessage.tryEmit(R.string.problem_with_trip_getting)
     }
 }
