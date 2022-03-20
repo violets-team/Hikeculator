@@ -22,6 +22,7 @@ import com.example.hikeculator.domain.interactors.TripDayInteractor
 import com.example.hikeculator.domain.interactors.TripInteractor
 import com.example.hikeculator.domain.repositories.TripDayRepository
 import com.example.hikeculator.presentation.common.collectWhenStarted
+import com.example.hikeculator.presentation.common.showToast
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -71,8 +72,8 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
             }
         }
 
-        viewModel.problemMessage.collectWhenStarted(lifecycleScope) { stringId ->
-            Toast.makeText(requireContext(), getString(stringId), Toast.LENGTH_SHORT).show()
+        viewModel.problemMessage.collectWhenStarted(lifecycleScope) { messageId ->
+            requireContext().showToast(messageId = messageId)
         }
     }
 

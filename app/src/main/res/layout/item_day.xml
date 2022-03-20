@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:drawablePadding="8dp"
             android:gravity="center"
-            tools:text="@string/text_item_rv_date2_tools"
+            tools:text="01-23-22"
             android:textStyle="italic"
             app:drawableEndCompat="@drawable/ic_arrow_forward"
             app:layout_constraintBottom_toBottomOf="parent"
