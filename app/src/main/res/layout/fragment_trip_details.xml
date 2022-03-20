@@ -47,7 +47,7 @@
         tools:text="@string/text_title_hike" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/circular_indicator_calories_trip"
+        android:id="@+id/progress_indicator_calorie_info"
         android:layout_width="121dp"
         android:layout_height="118dp"
         android:layout_marginTop="16dp"
@@ -61,77 +61,77 @@
         app:trackThickness="12dp" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/progress_bar_carb_info"
+        android:id="@+id/progress_indicator_carb_info"
         style="@style/progress_bar_pfc_info"
         app:layout_constraintEnd_toEndOf="@id/content_end"
-        app:layout_constraintStart_toEndOf="@id/progress_bar_fat_info"
-        app:layout_constraintTop_toTopOf="@id/progress_bar_fat_info" />
+        app:layout_constraintStart_toEndOf="@id/progress_indicator_fat_info"
+        app:layout_constraintTop_toTopOf="@id/progress_indicator_fat_info" />
 
     <TextView
         android:id="@+id/text_view_carb_info"
         style="@style/text_view_pfc_info"
-        app:layout_constraintBottom_toBottomOf="@id/progress_bar_carb_info"
-        app:layout_constraintEnd_toEndOf="@id/progress_bar_carb_info"
-        app:layout_constraintStart_toStartOf="@id/progress_bar_carb_info"
-        app:layout_constraintTop_toTopOf="@id/progress_bar_carb_info"
+        app:layout_constraintBottom_toBottomOf="@id/progress_indicator_carb_info"
+        app:layout_constraintEnd_toEndOf="@id/progress_indicator_carb_info"
+        app:layout_constraintStart_toStartOf="@id/progress_indicator_carb_info"
+        app:layout_constraintTop_toTopOf="@id/progress_indicator_carb_info"
         tools:text="0%" />
 
     <TextView
         android:id="@+id/text_view_carb_title"
         style="@style/text_view_pfc_title"
         android:text="@string/carbs"
-        app:layout_constraintEnd_toEndOf="@id/progress_bar_carb_info"
-        app:layout_constraintStart_toStartOf="@id/progress_bar_carb_info"
-        app:layout_constraintTop_toBottomOf="@id/progress_bar_carb_info" />
+        app:layout_constraintEnd_toEndOf="@id/progress_indicator_carb_info"
+        app:layout_constraintStart_toStartOf="@id/progress_indicator_carb_info"
+        app:layout_constraintTop_toBottomOf="@id/progress_indicator_carb_info" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/progress_bar_fat_info"
+        android:id="@+id/progress_indicator_fat_info"
         style="@style/progress_bar_pfc_info"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@id/progress_bar_carb_info"
-        app:layout_constraintStart_toEndOf="@id/progress_bar_protein_info"
-        app:layout_constraintTop_toBottomOf="@id/circular_indicator_calories_trip" />
+        app:layout_constraintEnd_toStartOf="@id/progress_indicator_carb_info"
+        app:layout_constraintStart_toEndOf="@id/progress_indicator_protein_info"
+        app:layout_constraintTop_toBottomOf="@id/progress_indicator_calorie_info" />
 
     <TextView
         android:id="@+id/text_view_fat_info"
         style="@style/text_view_pfc_info"
-        app:layout_constraintBottom_toBottomOf="@id/progress_bar_fat_info"
-        app:layout_constraintEnd_toEndOf="@id/progress_bar_fat_info"
-        app:layout_constraintStart_toStartOf="@id/progress_bar_fat_info"
-        app:layout_constraintTop_toTopOf="@id/progress_bar_fat_info"
+        app:layout_constraintBottom_toBottomOf="@id/progress_indicator_fat_info"
+        app:layout_constraintEnd_toEndOf="@id/progress_indicator_fat_info"
+        app:layout_constraintStart_toStartOf="@id/progress_indicator_fat_info"
+        app:layout_constraintTop_toTopOf="@id/progress_indicator_fat_info"
         tools:text="100%" />
 
     <TextView
         android:id="@+id/text_view_fat_title"
         style="@style/text_view_pfc_title"
         android:text="@string/fats"
-        app:layout_constraintEnd_toEndOf="@id/progress_bar_fat_info"
-        app:layout_constraintStart_toStartOf="@id/progress_bar_fat_info"
-        app:layout_constraintTop_toBottomOf="@id/progress_bar_fat_info" />
+        app:layout_constraintEnd_toEndOf="@id/progress_indicator_fat_info"
+        app:layout_constraintStart_toStartOf="@id/progress_indicator_fat_info"
+        app:layout_constraintTop_toBottomOf="@id/progress_indicator_fat_info" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/progress_bar_protein_info"
+        android:id="@+id/progress_indicator_protein_info"
         style="@style/progress_bar_pfc_info"
-        app:layout_constraintEnd_toStartOf="@id/progress_bar_fat_info"
+        app:layout_constraintEnd_toStartOf="@id/progress_indicator_fat_info"
         app:layout_constraintStart_toStartOf="@id/content_start"
-        app:layout_constraintTop_toTopOf="@id/progress_bar_fat_info" />
+        app:layout_constraintTop_toTopOf="@id/progress_indicator_fat_info" />
 
     <TextView
         android:id="@+id/text_view_protein_info"
         style="@style/text_view_pfc_info"
-        app:layout_constraintBottom_toBottomOf="@id/progress_bar_protein_info"
-        app:layout_constraintEnd_toEndOf="@id/progress_bar_protein_info"
-        app:layout_constraintStart_toStartOf="@id/progress_bar_protein_info"
-        app:layout_constraintTop_toTopOf="@id/progress_bar_protein_info"
+        app:layout_constraintBottom_toBottomOf="@id/progress_indicator_protein_info"
+        app:layout_constraintEnd_toEndOf="@id/progress_indicator_protein_info"
+        app:layout_constraintStart_toStartOf="@id/progress_indicator_protein_info"
+        app:layout_constraintTop_toTopOf="@id/progress_indicator_protein_info"
         tools:text="0%" />
 
     <TextView
         android:id="@+id/text_view_protein_title"
         style="@style/text_view_pfc_title"
         android:text="@string/proteins"
-        app:layout_constraintEnd_toEndOf="@id/progress_bar_protein_info"
-        app:layout_constraintStart_toStartOf="@id/progress_bar_protein_info"
-        app:layout_constraintTop_toBottomOf="@id/progress_bar_protein_info" />
+        app:layout_constraintEnd_toEndOf="@id/progress_indicator_protein_info"
+        app:layout_constraintStart_toStartOf="@id/progress_indicator_protein_info"
+        app:layout_constraintTop_toBottomOf="@id/progress_indicator_protein_info" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_trip_days"
@@ -147,11 +147,11 @@
         tools:listitem="@layout/item_day" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/text_view_grained_calorie_percents"
+        android:id="@+id/text_view_provision_calorie_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="@string/gained_calorie_percents"
+        android:text="@string/grained_calorie_percents"
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@id/text_view_trip_calories"
         app:layout_constraintEnd_toEndOf="@id/text_view_trip_calories"
@@ -163,10 +163,10 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/circular_indicator_calories_trip"
-        app:layout_constraintEnd_toEndOf="@+id/circular_indicator_calories_trip"
-        app:layout_constraintStart_toStartOf="@+id/circular_indicator_calories_trip"
-        app:layout_constraintTop_toTopOf="@+id/circular_indicator_calories_trip"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_indicator_calorie_info"
+        app:layout_constraintEnd_toEndOf="@+id/progress_indicator_calorie_info"
+        app:layout_constraintStart_toStartOf="@+id/progress_indicator_calorie_info"
+        app:layout_constraintTop_toTopOf="@+id/progress_indicator_calorie_info"
         tools:text="5800" />
 
     <androidx.appcompat.widget.AppCompatTextView

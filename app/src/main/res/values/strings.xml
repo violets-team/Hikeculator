@@ -35,7 +35,7 @@
     <string name="text_create_hike_name">Домбай</string>
     <string name="text_title_hike">Trip name</string>
     <string name="text_weight_trip_label">Provision weight:</string>
-    <string name="text_trip_provision_weight">%.2f kg</string>
+    <string name="text_trip_provision_weight">%d kg</string>
     <string name="text_item_day">Day %1$d</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -87,9 +87,12 @@
     <string name="poblem_with_trip_creating">There is a problem with trip cteating</string>
     <string name="problem_with_member_search">There is a problem with member search</string>
     <string name="kcal">Kcal</string>
-    <string name="gained_calorie_percents">%1$d%%</string>
+    <string name="grained_calorie_percents">%1$d%%</string>
     <string name="pfc_persents">%1$d%%</string>
     <string name="proteins">proteins</string>
     <string name="fats">fats</string>
     <string name="carbs">carbs</string>
+    <string name="problem_with_trip_getting">There is a problem with trip getting</string>
+    <string name="problem_with_trip_updating">There is a problem with trip updating</string>
+    <string name="problem_with_trip_getting">There is a problem with trip getting</string>
 </resources>

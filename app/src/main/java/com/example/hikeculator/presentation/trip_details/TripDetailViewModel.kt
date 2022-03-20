@@ -2,6 +2,7 @@ package com.example.hikeculator.presentation.trip_details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.hikeculator.R
 import com.example.hikeculator.domain.entities.DayMeal
 import com.example.hikeculator.domain.entities.Product
 import com.example.hikeculator.domain.entities.Trip
@@ -14,24 +15,21 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 class TripDetailViewModel(
-    tripInteractor: TripInteractor,
+    private val tripInteractor: TripInteractor,
     private val tripDayInteractor: TripDayInteractor,
     private val tripId: String,
 ) : ViewModel() {
 
-    val tripDays: SharedFlow<List<TripDay>> = getTripDayFlow().shareIn(
+    val data: SharedFlow<Pair<Trip?, List<TripDay>>> = getTripData().shareIn(
         scope = viewModelScope,
-        started = SharingStarted.Lazily,
+        started = SharingStarted.Eagerly,
         replay = 1
     )
 
-    val trip: SharedFlow<Trip?> = tripInteractor.fetchTrip(tripId = tripId).shareIn(
-        scope = viewModelScope,
-        started = SharingStarted.Lazily,
-        replay = 1
-    )
+    private val _problemMessage = MutableSharedFlow<Int>()
+    val problemMessage: SharedFlow<Int> = _problemMessage.asSharedFlow()
 
-    fun addTripDay(
+    fun updateTripDay(
         breakfastProducts: List<Product>,
         lunchProducts: List<Product>,
         dinnerProducts: List<Product>,
@@ -47,8 +45,8 @@ class TripDetailViewModel(
             snack = DayMeal(products = snackProducts)
         )
 
-        val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
-            TODO("Handle the exception here")
+        val exceptionHandler = CoroutineExceptionHandler { _, _ ->
+            _problemMessage.tryEmit(R.string.problem_with_trip_updating)
         }
 
         viewModelScope.launch(context = exceptionHandler) {
@@ -56,9 +54,19 @@ class TripDetailViewModel(
         }
     }
 
-    private fun getTripDayFlow(): Flow<List<TripDay>> {
-        return tripDayInteractor.fetchTripDays(tripId = tripId).catch {
-            TODO("Handle the exception here")
+    private fun getTripData(): Flow<Pair<Trip?, List<TripDay>>> {
+        return combine(getTrip(), getTripDays()) { trip: Trip?, tripDays ->
+            trip to tripDays
         }
+    }
+
+    private fun getTripDays(): Flow<List<TripDay>> {
+        return tripDayInteractor.fetchTripDays(tripId = tripId).catch {
+            _problemMessage.tryEmit(R.string.problem_with_trip_getting)
+        }
+    }
+
+    private fun getTrip(): Flow<Trip?> = tripInteractor.fetchTrip(tripId = tripId).catch {
+        _problemMessage.tryEmit(R.string.problem_with_trip_getting)
     }
 }

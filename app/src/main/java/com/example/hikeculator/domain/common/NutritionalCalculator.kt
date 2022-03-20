@@ -41,4 +41,17 @@ object NutritionalCalculator {
                 dayQuantity
                 ).toLong()
     }
+
+    fun getProteinsNorm(calories: Long): Long {
+        return (calories * 0.3).toLong()
+    }
+
+    fun getFatNorm(calories: Long): Long {
+        return (calories * 0.3).toLong()
+    }
+
+    fun getCarbNorm(calories: Long): Long {
+        return (calories * 0.4).toLong()
+    }
+
 }
