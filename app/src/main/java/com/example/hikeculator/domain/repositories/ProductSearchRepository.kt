@@ -4,5 +4,5 @@ import com.example.hikeculator.domain.entities.Product
 
 interface ProductSearchRepository {
 
-    fun search(query: String): Set<Product>
+    suspend fun search(searchExpression: String): List<Product>
 }
