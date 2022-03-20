@@ -19,7 +19,9 @@ val presentationModule = module {
 
     viewModel { UserProfileCreatingViewModel(userProfileInteractor = get()) }
 
-    viewModel { (interactor: TripInteractor) -> GeneralTripViewModel(tripInteractor = interactor) }
+    viewModel { (tripInteractor: TripInteractor, tripDayInteractor: TripDayInteractor) ->
+        GeneralTripViewModel(tripInteractor = tripInteractor, tripDayInteractor = tripDayInteractor)
+    }
 
     viewModel<ITripCreatingViewModel> {
             (

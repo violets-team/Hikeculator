@@ -1,7 +1,6 @@
 package com.example.hikeculator.presentation.general_trip_list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -11,15 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.hikeculator.R
-import com.example.hikeculator.data.repository_implementations.UserProfileRepositoryImpl
 import com.example.hikeculator.databinding.FragmentGeneralTripsBinding
+import com.example.hikeculator.domain.interactors.TripDayInteractor
 import com.example.hikeculator.domain.interactors.TripInteractor
-import com.example.hikeculator.domain.repositories.TripRepository
+import com.example.hikeculator.domain.repositories.TripDayRepository
 import com.example.hikeculator.presentation.common.collectWhenStarted
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.launch
+import com.example.hikeculator.presentation.common.showToast
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -27,12 +23,17 @@ import org.koin.core.parameter.parametersOf
 class GeneralTripFragment : Fragment(R.layout.fragment_general_trips) {
 
     private val binding by viewBinding(FragmentGeneralTripsBinding::bind)
+
     private val args by navArgs<GeneralTripFragmentArgs>()
+    private val navController by lazy { findNavController() }
+
+    private val tripDayRepository by inject<TripDayRepository> { parametersOf(args.userUid) }
+    private val tripDayInteractor by inject<TripDayInteractor>{ parametersOf(tripDayRepository) }
 
     private val tripInteractor by inject<TripInteractor> { parametersOf(args.userUid) }
-    private val viewModel by viewModel<GeneralTripViewModel> { parametersOf(tripInteractor) }
-
-    private val navController by lazy { findNavController() }
+    private val viewModel by viewModel<GeneralTripViewModel> {
+        parametersOf(tripInteractor, tripDayInteractor)
+    }
 
     private val tripAdapter = GeneralTripAdapter(
         onItemClick = ::navigateToTripDetailFragment,
@@ -43,10 +44,7 @@ class GeneralTripFragment : Fragment(R.layout.fragment_general_trips) {
         super.onViewCreated(view, savedInstanceState)
 
         initializeTripRecyclerView()
-
-        viewModel.tripData.collectWhenStarted(lifecycleScope) { trips ->
-            tripAdapter.submitList(trips.toList())
-        }
+        observeTripListSate()
 
         binding.actionButtonCreateTrip.setOnClickListener { navigateToTripCreatingFragment() }
 
@@ -69,6 +67,16 @@ class GeneralTripFragment : Fragment(R.layout.fragment_general_trips) {
                 false
             )
             adapter = tripAdapter
+        }
+    }
+
+    private fun  observeTripListSate() {
+        viewModel.tripData.collectWhenStarted(lifecycleScope) { trips ->
+            tripAdapter.submitList(trips.toList())
+        }
+
+        viewModel.problemMessage.collectWhenStarted(lifecycleScope) { messageId ->
+            requireContext().showToast(messageId = messageId)
         }
     }
 

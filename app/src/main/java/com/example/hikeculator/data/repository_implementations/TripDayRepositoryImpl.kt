@@ -4,9 +4,8 @@ import com.example.hikeculator.data.common.*
 import com.example.hikeculator.data.entities.FirestoreTripDay
 import com.example.hikeculator.domain.entities.TripDay
 import com.example.hikeculator.domain.repositories.TripDayRepository
-import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -14,9 +13,8 @@ import kotlinx.coroutines.tasks.await
 
 class TripDayRepositoryImpl(
     private val userUid: String,
+    private val firestore: FirebaseFirestore,
 ) : TripDayRepository {
-
-    private val firestore = Firebase.firestore
 
     override fun fetchTripDay(tripId: String, tripDayId: String): Flow<TripDay?> = callbackFlow {
         val listener = try {
@@ -68,5 +66,14 @@ class TripDayRepositoryImpl(
             .document(firestoreTripDay.id)
             .set(firestoreTripDay)
             .await()
+    }
+
+
+    override suspend fun removeTripDayCollection(tripId: String) {
+        firestore.getTripDayCollection(userUid = userUid, tripId = tripId)
+            .get()
+            .await()
+            .documents
+            .onEach { document -> document.reference.delete().await() }
     }
 }

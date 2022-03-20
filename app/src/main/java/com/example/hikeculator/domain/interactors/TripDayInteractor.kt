@@ -21,4 +21,8 @@ class TripDayInteractor(private val tripDayRepository: TripDayRepository) {
             tripDayRepository.insertTripDay(tripId = tripId, tripDay = tripDay)
         }
     }
+
+    suspend fun removeTripDayCollection(tripId: String) {
+        withContext(Dispatchers.IO) { tripDayRepository.removeTripDayCollection(tripId = tripId) }
+    }
 }
