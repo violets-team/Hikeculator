@@ -1,13 +1,14 @@
 package com.example.hikeculator.data.repository_implementations
 
-import com.example.hikeculator.data.common.*
+import com.example.hikeculator.data.common.getTripDocument
+import com.example.hikeculator.data.common.getTripSubCollection
+import com.example.hikeculator.data.common.mapToFirestoreTrip
+import com.example.hikeculator.data.common.mapToTrip
 import com.example.hikeculator.data.entities.FirestoreTrip
 import com.example.hikeculator.domain.entities.Trip
 import com.example.hikeculator.domain.repositories.TripRepository
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -16,11 +17,10 @@ import kotlinx.coroutines.tasks.await
 class TripRepositoryImpl(private val firestore: FirebaseFirestore) : TripRepository {
 
     override suspend fun insertTrip(userUid: String, trip: Trip) {
-        trip.mapToFirestoreTrip().apply {
-            firestore.getTripDocument(userUid = userUid, tripId = id)
-                .set(this)
-                .await()
-        }
+        val firestoreTrip = trip.mapToFirestoreTrip()
+        firestore.getTripDocument(userUid = userUid, tripId = firestoreTrip.id)
+            .set(firestoreTrip)
+            .await()
     }
 
     override suspend fun removeTrip(userUid: String, tripId: String) {
