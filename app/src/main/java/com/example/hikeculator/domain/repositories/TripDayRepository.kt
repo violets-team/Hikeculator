@@ -10,4 +10,6 @@ interface TripDayRepository {
     fun fetchTripDays(tripId: String): Flow<List<TripDay>>
 
     suspend fun insertTripDay(tripId: String, tripDay: TripDay)
+
+    suspend fun removeTripDayCollection(tripId: String)
 }

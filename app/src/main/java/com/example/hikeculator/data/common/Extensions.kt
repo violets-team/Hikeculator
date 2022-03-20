@@ -18,5 +18,4 @@ fun FirebaseFirestore.getTripDocument(userUid: String, tripId: String): Document
 fun FirebaseFirestore.getTripDayCollection(userUid: String, tripId: String):CollectionReference {
     return getTripDocument(userUid = userUid, tripId = tripId)
         .collection(TRIP_DAY_COLLECTION_NAME)
-
 }
