@@ -44,4 +44,6 @@ abstract class ITripCreatingViewModel : ViewModel() {
     )
 
     protected abstract fun clearTripCreatingState()
+
+    protected abstract fun createEmptyTripDays(tripId: String, startDate: Long, endDate: Long)
 }

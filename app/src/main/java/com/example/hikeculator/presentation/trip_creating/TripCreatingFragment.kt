@@ -11,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.hikeculator.R
+import com.example.hikeculator.data.repository_implementations.TripDayRepositoryImpl
 import com.example.hikeculator.databinding.FragmentTripCreatingBinding
 import com.example.hikeculator.domain.entities.User
 import com.example.hikeculator.domain.enums.TripDifficultyCategory
@@ -18,7 +19,9 @@ import com.example.hikeculator.domain.enums.TripDifficultyCategory.*
 import com.example.hikeculator.domain.enums.TripSeason
 import com.example.hikeculator.domain.enums.TripSeason.*
 import com.example.hikeculator.domain.enums.TripType
+import com.example.hikeculator.domain.interactors.TripDayInteractor
 import com.example.hikeculator.domain.interactors.TripInteractor
+import com.example.hikeculator.domain.repositories.TripDayRepository
 import com.example.hikeculator.domain.repositories.TripRepository
 import com.example.hikeculator.presentation.common.TripDateFormat
 import com.example.hikeculator.presentation.common.collectWhenStarted
@@ -30,15 +33,20 @@ import org.koin.core.parameter.parametersOf
 class TripCreatingFragment : Fragment(R.layout.fragment_trip_creating) {
 
     private val binding by viewBinding(FragmentTripCreatingBinding::bind)
-    private val args by navArgs<TripCreatingFragmentArgs>()
 
-    private val tripRepository by inject<TripRepository> { parametersOf(args.userUid) }
-    private val tripInteractor by inject<TripInteractor> { parametersOf(tripRepository) }
-    private val viewModel by sharedViewModel<ITripCreatingViewModel> {
-        parametersOf(tripInteractor, args.userUid)
+    private val args by navArgs<TripCreatingFragmentArgs>()
+    private val navController by lazy { findNavController() }
+
+    private val tripRepository by inject<TripRepository>()
+    private val tripInteractor by inject<TripInteractor> {
+        parametersOf(args.userUid, tripRepository)
     }
 
-    private val navController by lazy { findNavController() }
+    private val tripDayRepository by inject<TripDayRepository> { parametersOf(args.userUid) }
+    private val tripDayInteractor by inject<TripDayInteractor> { parametersOf(tripDayRepository) }
+    private val viewModel by sharedViewModel<ITripCreatingViewModel> {
+        parametersOf(tripInteractor, tripDayInteractor, args.userUid)
+    }
 
     private val addedMemberAdapter = AddedTripMemberAdapter(onRemoveItemClick = ::removeAddedMember)
 

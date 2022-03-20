@@ -32,7 +32,7 @@ class GeneralTripAdapter(
             with(binding) {
                 textViewTripName.text = trip.name
                 textViewMemberCount.text = trip.memberUids.size.toString()
-                textViewStartDate.text = TripDateFormat.toFormattedDate(time = trip.endDate)
+                textViewStartDate.text = TripDateFormat.toFormattedDate(time = trip.startDate)
                 textViewEndDate.text = TripDateFormat.toFormattedDate(trip.endDate)
 
                 root.setOnClickListener { onItemClick.invoke(getItem(absoluteAdapterPosition).id) }
