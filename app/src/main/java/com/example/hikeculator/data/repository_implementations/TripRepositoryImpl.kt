@@ -4,6 +4,7 @@ import com.example.hikeculator.data.common.*
 import com.example.hikeculator.data.entities.FirestoreTrip
 import com.example.hikeculator.domain.entities.Trip
 import com.example.hikeculator.domain.repositories.TripRepository
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -12,9 +13,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 
-class TripRepositoryImpl : TripRepository {
-
-    private val firestore = Firebase.firestore
+class TripRepositoryImpl(private val firestore: FirebaseFirestore) : TripRepository {
 
     override suspend fun insertTrip(userUid: String, trip: Trip) {
         trip.mapToFirestoreTrip().apply {
@@ -67,6 +66,7 @@ class TripRepositoryImpl : TripRepository {
         } catch (e: Exception) {
             null
         }
+
         awaitClose { listener?.remove() }
     }
 }

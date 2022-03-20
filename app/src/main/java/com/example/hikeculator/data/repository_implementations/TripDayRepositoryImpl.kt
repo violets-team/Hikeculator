@@ -14,7 +14,6 @@ import kotlinx.coroutines.tasks.await
 
 class TripDayRepositoryImpl(
     private val userUid: String,
-//    private val tripId: String,
 ) : TripDayRepository {
 
     private val firestore = Firebase.firestore

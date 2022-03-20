@@ -33,19 +33,20 @@ import org.koin.core.parameter.parametersOf
 class TripCreatingFragment : Fragment(R.layout.fragment_trip_creating) {
 
     private val binding by viewBinding(FragmentTripCreatingBinding::bind)
+
     private val args by navArgs<TripCreatingFragmentArgs>()
+    private val navController by lazy { findNavController() }
 
     private val tripRepository by inject<TripRepository>()
-    private val tripInteractor by inject<TripInteractor> { parametersOf(args.userUid, tripRepository) }
+    private val tripInteractor by inject<TripInteractor> {
+        parametersOf(args.userUid, tripRepository)
+    }
 
     private val tripDayRepository by inject<TripDayRepository> { parametersOf(args.userUid) }
-    private val tripDayInteractor by inject<TripDayInteractor> { parametersOf(tripDayRepository)}
-
+    private val tripDayInteractor by inject<TripDayInteractor> { parametersOf(tripDayRepository) }
     private val viewModel by sharedViewModel<ITripCreatingViewModel> {
         parametersOf(tripInteractor, tripDayInteractor, args.userUid)
     }
-
-    private val navController by lazy { findNavController() }
 
     private val addedMemberAdapter = AddedTripMemberAdapter(onRemoveItemClick = ::removeAddedMember)
 

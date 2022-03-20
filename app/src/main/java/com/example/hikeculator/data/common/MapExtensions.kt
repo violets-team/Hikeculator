@@ -93,7 +93,7 @@ fun NutritionalValue.mapToFirestoreNutritionalValue(): FirestoreNutritionValue {
         calories = calories,
         proteins = proteins,
         fats = fats,
-        carbohydrates = carbohydrates
+        carbohydrates = carbs
     )
 }
 
@@ -101,5 +101,5 @@ fun FirestoreNutritionValue.mapToNutritionalValue(): NutritionalValue = Nutritio
     calories = calories,
     proteins = proteins,
     fats = fats,
-    carbohydrates = carbohydrates
+    carbs = carbohydrates
 )

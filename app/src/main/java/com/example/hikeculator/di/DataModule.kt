@@ -28,11 +28,9 @@ val dataModule = module {
         UserProfileRepositoryImpl(firestore = get(), firebaseAuth = get())
     }
 
-    single<TripRepository> { TripRepositoryImpl() }
+    single<TripRepository> { TripRepositoryImpl(firestore = get()) }
 
     single<MemberGroupRepository> { MemberGroupRepositoryImpl(firestore = get()) }
 
-    single<TripDayRepository> { (userUid: String) ->
-        TripDayRepositoryImpl(userUid = userUid)
-    }
+    single<TripDayRepository> { (userUid: String) -> TripDayRepositoryImpl(userUid = userUid) }
 }
