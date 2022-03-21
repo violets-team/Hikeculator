@@ -35,6 +35,7 @@ abstract class ITripCreatingViewModel : ViewModel() {
     abstract fun searchByEmail(text: String)
 
     abstract fun createTrip(
+        tripCreatorUid: String,
         name: String,
         startDate: Long,
         endDate: Long,
@@ -42,8 +43,4 @@ abstract class ITripCreatingViewModel : ViewModel() {
         difficultyCategory: TripDifficultyCategory,
         season: TripSeason,
     )
-
-    protected abstract fun clearTripCreatingState()
-
-    protected abstract fun createEmptyTripDays(tripId: String, startDate: Long, endDate: Long)
 }

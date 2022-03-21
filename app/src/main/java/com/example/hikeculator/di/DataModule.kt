@@ -1,14 +1,8 @@
 package com.example.hikeculator.di
 
 import com.example.hikeculator.data.entities.FirebaseAuthentication
-import com.example.hikeculator.data.repository_implementations.MemberGroupRepositoryImpl
-import com.example.hikeculator.data.repository_implementations.TripDayRepositoryImpl
-import com.example.hikeculator.data.repository_implementations.TripRepositoryImpl
-import com.example.hikeculator.data.repository_implementations.UserProfileRepositoryImpl
-import com.example.hikeculator.domain.repositories.MemberGroupRepository
-import com.example.hikeculator.domain.repositories.TripDayRepository
-import com.example.hikeculator.domain.repositories.TripRepository
-import com.example.hikeculator.domain.repositories.UserProfileRepository
+import com.example.hikeculator.data.repository_implementations.*
+import com.example.hikeculator.domain.repositories.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -35,4 +29,6 @@ val dataModule = module {
     single<TripDayRepository> { (userUid: String) ->
         TripDayRepositoryImpl(userUid = userUid, firestore = get())
     }
+
+    single<ProvisionBagRepository> { ProvisionBagRepositoryImpl(firestore = get()) }
 }

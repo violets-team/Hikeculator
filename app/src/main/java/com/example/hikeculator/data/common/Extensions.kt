@@ -15,7 +15,17 @@ fun FirebaseFirestore.getTripDocument(userUid: String, tripId: String): Document
         .document(tripId)
 }
 
-fun FirebaseFirestore.getTripDayCollection(userUid: String, tripId: String):CollectionReference {
+fun FirebaseFirestore.getTripDayCollection(userUid: String, tripId: String): CollectionReference {
     return getTripDocument(userUid = userUid, tripId = tripId)
         .collection(TRIP_DAY_COLLECTION_NAME)
+}
+
+fun FirebaseFirestore.getProvisionBagCollection(userUid: String, tripId: String): CollectionReference {
+    return getTripDocument(userUid = userUid, tripId = tripId)
+        .collection(TRIP_PROVISION_BAG_COLLECTION_NAME)
+}
+
+fun FirebaseFirestore.getProvisionBagDocument(userUid: String, tripId: String): DocumentReference {
+    return getProvisionBagCollection(userUid = userUid, tripId = tripId)
+        .document()
 }
