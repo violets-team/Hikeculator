@@ -6,11 +6,9 @@ import com.example.hikeculator.presentation.entrance.EntranceViewModel
 import com.example.hikeculator.presentation.general_trip_list.GeneralTripViewModel
 import com.example.hikeculator.presentation.trip_creating.ITripCreatingViewModel
 import com.example.hikeculator.presentation.trip_creating.TripCreatingViewModel
-import com.example.hikeculator.presentation.trip_day_details.TripDayDetailViewModel
 import com.example.hikeculator.presentation.trip_details.TripDetailViewModel
 import com.example.hikeculator.presentation.user_profile_creating.UserProfileCreatingViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val presentationModule = module {
@@ -20,21 +18,24 @@ val presentationModule = module {
     viewModel { UserProfileCreatingViewModel(userProfileInteractor = get()) }
 
     viewModel { (tripInteractor: TripInteractor, tripDayInteractor: TripDayInteractor) ->
-        GeneralTripViewModel(tripInteractor = tripInteractor, tripDayInteractor = tripDayInteractor)
+        GeneralTripViewModel(
+            tripInteractor = tripInteractor,
+            tripDayInteractor = tripDayInteractor,
+            provisionBagInteractor = get()
+        )
     }
 
     viewModel<ITripCreatingViewModel> {
             (
                 tripInteractor: TripInteractor,
                 tripDayInteractor: TripDayInteractor,
-                tripCreatorUid: String,
             ),
         ->
         TripCreatingViewModel(
             tripInteractor = tripInteractor,
             memberInteractor = get(),
             tripDayInteractor = tripDayInteractor,
-            tripCreatorUid = tripCreatorUid
+            provisionBagInteractor = get()
         )
     }
 
