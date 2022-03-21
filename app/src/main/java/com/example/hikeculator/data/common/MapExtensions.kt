@@ -68,6 +68,14 @@ fun FirestoreTripDay.mapToTripDay(): TripDay = TripDay(
     snack = snack.mapToDayMeal(),
 )
 
+fun ProvisionBag.mapToFirestoreProvisionBag() = FirestoreProvisionBag(
+    productList = productList.toList()
+)
+
+fun FirestoreProvisionBag.mapToProvisionBag() = ProvisionBag(
+    productList = productList.toSet()
+)
+
 fun DayMeal.mapToFirestoreDayMeal(): FirestoreDayMeal = FirestoreDayMeal(
     products = products.map { product -> product.mapToFirestoreProduct() }
 )

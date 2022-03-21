@@ -81,7 +81,7 @@ class GeneralTripFragment : Fragment(R.layout.fragment_general_trips) {
     }
 
     private fun deleteTrip(tripId: String) {
-        viewModel.deleteTrip(tripId = tripId)
+        viewModel.deleteTrip(userUid = args.userUid, tripId = tripId)
     }
 
     private fun navigateToTripDetailFragment(tripId: String) {
