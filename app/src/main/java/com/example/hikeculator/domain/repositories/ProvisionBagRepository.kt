@@ -8,4 +8,8 @@ interface ProvisionBagRepository {
     fun insertProductToProvisionBag(product: Product)
 
     fun fetchProvisionBag(): ProvisionBag
+
+    suspend fun createProvisionBag(userUid: String, tripId: String, provisionBag: ProvisionBag)
+
+    suspend fun removeProvisionBag(userUid: String, tripId: String)
 }

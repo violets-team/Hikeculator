@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hikeculator.R
 import com.example.hikeculator.domain.entities.Trip
+import com.example.hikeculator.domain.interactors.ProvisionBagInteractor
 import com.example.hikeculator.domain.interactors.TripDayInteractor
 import com.example.hikeculator.domain.interactors.TripInteractor
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -13,6 +14,7 @@ import kotlinx.coroutines.launch
 class GeneralTripViewModel(
     private val tripInteractor: TripInteractor,
     private val tripDayInteractor: TripDayInteractor,
+    private val provisionBagInteractor: ProvisionBagInteractor,
 ) : ViewModel() {
 
     val tripData: SharedFlow<Set<Trip>> = fetchTrip().shareIn(
@@ -24,7 +26,7 @@ class GeneralTripViewModel(
     private val _problemMessage = MutableSharedFlow<Int>()
     val problemMessage = _problemMessage.asSharedFlow()
 
-    fun deleteTrip(tripId: String) {
+    fun deleteTrip(userUid: String, tripId: String) {
         val exceptionHandler = CoroutineExceptionHandler { _, _ ->
             _problemMessage.tryEmit(R.string.problem_with_trip_deleting)
         }
@@ -32,6 +34,7 @@ class GeneralTripViewModel(
         viewModelScope.launch(exceptionHandler) {
             launch { tripDayInteractor.removeTripDayCollection(tripId = tripId) }
             launch { tripInteractor.removeTrip(tripId = tripId) }
+            launch { provisionBagInteractor.removeProvisionBag(userUid = userUid, tripId = tripId) }
         }
     }
 
