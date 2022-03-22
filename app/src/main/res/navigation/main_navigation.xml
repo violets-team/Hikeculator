@@ -145,6 +145,6 @@
         tools:layout="@layout/dialog_fragment_member_searching" />
     <fragment
         android:id="@+id/foodSearchFragment"
-        android:name="com.example.hikeculator.presentation.food_search.FoodSearchFragment"
+        android:name="com.example.hikeculator.presentation.food_search.ProductSearchFragment"
         android:label="FoodSearchFragment" />
 </navigation>

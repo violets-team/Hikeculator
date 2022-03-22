@@ -20,6 +20,7 @@
         android:elevation="16dp"
         android:hint="@string/search_food"
         android:inputType="text"
+        android:imeOptions="actionSearch"
         android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +83,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/hr_line"
-        tools:listitem="@layout/item_searched_food" />
+        tools:listitem="@layout/item_searched_product" />
 
     <ProgressBar
         android:id="@+id/progress_bar_search"
@@ -91,6 +92,7 @@
         android:layout_height="wrap_content"
         android:indeterminateTint="@color/light_green"
         android:visibility="gone"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="@id/recycler_view_list_of_products"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

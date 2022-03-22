@@ -3,21 +3,18 @@ package com.example.hikeculator.presentation.food_search
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hikeculator.databinding.ItemSearchedFoodBinding
+import com.example.hikeculator.databinding.ItemSearchedProductBinding
 import com.example.hikeculator.domain.entities.NutritionalValue
 import com.example.hikeculator.domain.entities.Product
-import com.example.hikeculator.presentation.common.FORMAT_CALORIES
-import com.example.hikeculator.presentation.common.FORMAT_CARBS
-import com.example.hikeculator.presentation.common.FORMAT_FAT
-import com.example.hikeculator.presentation.common.FORMAT_PROTEIN
+import com.example.hikeculator.presentation.common.*
 
-class FoodSearchAdapter : RecyclerView.Adapter<FoodSearchAdapter.FoodSearchViewHolder>() {
+class ProductSearchAdapter : RecyclerView.Adapter<ProductSearchAdapter.FoodSearchViewHolder>() {
 
     private val listOfSearchedProducts: MutableList<Product> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodSearchViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return FoodSearchViewHolder(ItemSearchedFoodBinding.inflate(inflater, parent, false))
+        return FoodSearchViewHolder(ItemSearchedProductBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(holder: FoodSearchViewHolder, position: Int) {
@@ -26,17 +23,17 @@ class FoodSearchAdapter : RecyclerView.Adapter<FoodSearchAdapter.FoodSearchViewH
         val nutrition: NutritionalValue = product.nutritionalValue
 
         holder.binding.apply {
+            root
             textViewFoodName.text = product.name
-            textViewCalories.text = String.format(FORMAT_CALORIES, nutrition.calories.toDouble())
-            textViewFat.text =  String.format(FORMAT_FAT, nutrition.fats.toDouble())
-            textViewCarbs.text =  String.format(FORMAT_CARBS, nutrition.carbohydrates.toDouble())
-            textViewProtein.text = String.format(FORMAT_PROTEIN, nutrition.proteins.toDouble())
+            textViewCalories.text = String.format(FORMAT_CALORIES, nutrition.calories * DEFAULT_WEIGHT_100)
+            textViewFat.text =  String.format(FORMAT_FAT, nutrition.fats * DEFAULT_WEIGHT_100)
+            textViewCarbs.text =  String.format(FORMAT_CARBS, nutrition.carbohydrates * DEFAULT_WEIGHT_100)
+            textViewProtein.text = String.format(FORMAT_PROTEIN, nutrition.proteins * DEFAULT_WEIGHT_100)
         }
     }
 
-    override fun getItemCount(): Int {
-        return listOfSearchedProducts.size
-    }
+    override fun getItemCount(): Int = listOfSearchedProducts.size
+
 
     fun setSearchedList(list: List<Product>) {
         listOfSearchedProducts.apply {
@@ -46,6 +43,6 @@ class FoodSearchAdapter : RecyclerView.Adapter<FoodSearchAdapter.FoodSearchViewH
         notifyDataSetChanged()
     }
 
-    class FoodSearchViewHolder(val binding: ItemSearchedFoodBinding) :
+    class FoodSearchViewHolder(val binding: ItemSearchedProductBinding) :
         RecyclerView.ViewHolder(binding.root)
 }

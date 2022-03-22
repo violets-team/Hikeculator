@@ -6,6 +6,6 @@ import com.example.hikeculator.domain.repositories.ProductSearchRepository
 
 class ProductSearchRepositoryImpl : ProductSearchRepository {
 
-    override suspend fun search(sarchExpression: String): List<Product> =
-        FoodSearchAPI().search(sarchExpression)
-}x
+    override suspend fun search(searchExpression: String): List<Product> =
+        FoodSearchAPI().search(searchExpression)
+}
