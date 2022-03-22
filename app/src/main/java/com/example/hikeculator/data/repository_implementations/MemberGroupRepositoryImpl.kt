@@ -1,12 +1,15 @@
 package com.example.hikeculator.data.repository_implementations
 
+import android.util.Log
 import com.example.hikeculator.data.common.USER_COLLECTION_NAME
 import com.example.hikeculator.data.common.mapToUser
 import com.example.hikeculator.data.entities.FirestoreUser
 import com.example.hikeculator.domain.entities.User
 import com.example.hikeculator.domain.repositories.MemberGroupRepository
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
@@ -30,20 +33,25 @@ class MemberGroupRepositoryImpl(private val firestore: FirebaseFirestore) : Memb
         TODO("Not yet implemented")
     }
 
-    override fun fetchTripMember(): User {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun searchTripMembers(email: String): Set<User> {
-        val emailPropertyName = FirestoreUser::email.name
-
+    override suspend fun fetchTripMember(userUid: String): User? {
         return firestore.collection(USER_COLLECTION_NAME)
-            .whereGreaterThanOrEqualTo(emailPropertyName, email)
-            .whereLessThanOrEqualTo(emailPropertyName, "$email$UNICODE_RANGE")
+            .document(userUid)
             .get()
             .await()
-            .documents.mapNotNull { document -> document.toObject<FirestoreUser>() }
-            .map { firestoreUser -> firestoreUser.mapToUser() }
-            .toSet()
-    }
+            ?.toObject<FirestoreUser>()
+            ?.mapToUser()
+}
+
+override suspend fun searchTripMembers(email: String): Set<User> {
+    val emailPropertyName = FirestoreUser::email.name
+
+    return firestore.collection(USER_COLLECTION_NAME)
+        .whereGreaterThanOrEqualTo(emailPropertyName, email)
+        .whereLessThanOrEqualTo(emailPropertyName, "$email$UNICODE_RANGE")
+        .get()
+        .await()
+        .documents.mapNotNull { document -> document.toObject<FirestoreUser>() }
+        .map { firestoreUser -> firestoreUser.mapToUser() }
+        .toSet()
+}
 }

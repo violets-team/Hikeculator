@@ -1,4 +1,4 @@
-package com.example.hikeculator.presentation.food_search
+package com.example.hikeculator.presentation.product_search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

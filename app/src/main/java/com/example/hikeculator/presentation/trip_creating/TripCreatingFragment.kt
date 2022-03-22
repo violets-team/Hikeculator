@@ -18,8 +18,9 @@ import com.example.hikeculator.domain.enums.TripDifficultyCategory.*
 import com.example.hikeculator.domain.enums.TripSeason
 import com.example.hikeculator.domain.enums.TripSeason.*
 import com.example.hikeculator.domain.enums.TripType
+import com.example.hikeculator.domain.interactors.TripDayInteractor
 import com.example.hikeculator.domain.interactors.TripInteractor
-import com.example.hikeculator.domain.repositories.TripRepository
+import com.example.hikeculator.domain.repositories.TripDayRepository
 import com.example.hikeculator.presentation.common.TripDateFormat
 import com.example.hikeculator.presentation.common.collectWhenStarted
 import com.example.hikeculator.presentation.common.toTrimmed
@@ -30,13 +31,18 @@ import org.koin.core.parameter.parametersOf
 class TripCreatingFragment : Fragment(R.layout.fragment_trip_creating) {
 
     private val binding by viewBinding(FragmentTripCreatingBinding::bind)
+
     private val args by navArgs<TripCreatingFragmentArgs>()
-
-    private val tripRepository by inject<TripRepository> { parametersOf(args.userUid) }
-    private val tripInteractor by inject<TripInteractor> { parametersOf(tripRepository) }
-    private val viewModel by sharedViewModel<TripCreatingViewModel> { parametersOf(tripInteractor) }
-
     private val navController by lazy { findNavController() }
+
+    private val tripInteractor by inject<TripInteractor> { parametersOf(args.userUid) }
+
+    private val tripDayRepository by inject<TripDayRepository> { parametersOf(args.userUid) }
+    private val tripDayInteractor by inject<TripDayInteractor> { parametersOf(tripDayRepository) }
+
+    private val viewModel by sharedViewModel<ITripCreatingViewModel> {
+        parametersOf(tripInteractor, tripDayInteractor)
+    }
 
     private val addedMemberAdapter = AddedTripMemberAdapter(onRemoveItemClick = ::removeAddedMember)
 
@@ -44,39 +50,8 @@ class TripCreatingFragment : Fragment(R.layout.fragment_trip_creating) {
         super.onViewCreated(view, savedInstanceState)
 
         initializeMemberRecyclerView()
-
-        viewModel.season.collectWhenStarted(lifecycleScope) { season: TripSeason? ->
-            binding.textViewSeason.text = getTripSeasonTextViewContent(season)
-        }
-
-        viewModel.category.collectWhenStarted(lifecycleScope) { category: TripDifficultyCategory? ->
-            binding.textViewDifficultyCategory.text = getTripCategoryTextViewContent(category)
-        }
-
-        viewModel.type.collectWhenStarted(lifecycleScope) { tripType: TripType? ->
-            binding.textViewType.text = getTripTypeTextViewContent(tripType)
-        }
-
-        viewModel.date.collectWhenStarted(lifecycleScope) { date: Pair<Long, Long>? ->
-            binding.textViewDate.text = getDateTextViewContent(date)
-        }
-
-        viewModel.addedMembers.collectWhenStarted(lifecycleScope) { addedMembers ->
-            addedMemberAdapter.submitList(addedMembers.toList())
-            binding.textViewMemberQuantity.text = "${addedMembers.size}"
-        }
-
-        binding.textViewSeason.setOnClickListener { navigateToSeasonDialog() }
-        binding.textViewDifficultyCategory.setOnClickListener { navigateToCategoryDialog() }
-        binding.textViewType.setOnClickListener { navigateToTripTypeDialog() }
-        binding.buttonCreate.setOnClickListener { createTrip() }
-        binding.groupMemberCount.setOnClickListener { navigateToMemberDialog() }
-        binding.textViewDate.setOnClickListener { showDatePicker() }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        requireActivity().viewModelStore.clear()
+        observeTripCreatingState()
+        setClickListeners()
     }
 
     private fun removeAddedMember(user: User) {
@@ -92,6 +67,42 @@ class TripCreatingFragment : Fragment(R.layout.fragment_trip_creating) {
             )
             adapter = addedMemberAdapter
         }
+    }
+
+    private fun observeTripCreatingState() {
+        viewModel.seasonState.collectWhenStarted(lifecycleScope) { season: TripSeason? ->
+            binding.textViewSeason.text = getTripSeasonTextViewContent(season)
+        }
+
+        viewModel.categoryState.collectWhenStarted(lifecycleScope) { category: TripDifficultyCategory? ->
+            binding.textViewDifficultyCategory.text = getTripCategoryTextViewContent(category)
+        }
+
+        viewModel.typeState.collectWhenStarted(lifecycleScope) { tripType: TripType? ->
+            binding.textViewType.text = getTripTypeTextViewContent(tripType)
+        }
+
+        viewModel.dateState.collectWhenStarted(lifecycleScope) { date: Pair<Long, Long>? ->
+            binding.textViewDate.text = getDateTextViewContent(date)
+        }
+
+        viewModel.addedMembers.collectWhenStarted(lifecycleScope) { addedMembers ->
+            addedMemberAdapter.submitList(addedMembers.toList())
+            binding.textViewMemberQuantity.text = "${addedMembers.size}"
+        }
+
+        viewModel.problemMessage.collectWhenStarted(lifecycleScope) { stringId ->
+            getString(stringId)
+        }
+    }
+
+    private fun setClickListeners() {
+        binding.textViewSeason.setOnClickListener { navigateToSeasonDialog() }
+        binding.textViewDifficultyCategory.setOnClickListener { navigateToCategoryDialog() }
+        binding.textViewType.setOnClickListener { navigateToTripTypeDialog() }
+        binding.buttonCreate.setOnClickListener { createTrip() }
+        binding.groupMemberCount.setOnClickListener { navigateToMemberDialog() }
+        binding.textViewDate.setOnClickListener { showDatePicker() }
     }
 
     private fun showDatePicker() {
@@ -122,10 +133,10 @@ class TripCreatingFragment : Fragment(R.layout.fragment_trip_creating) {
     }
 
     private fun createTrip() {
-        val season = viewModel.season.value
-        val category = viewModel.category.value
-        val tripType = viewModel.type.value
-        val date = viewModel.date.value
+        val season = viewModel.seasonState.value
+        val category = viewModel.categoryState.value
+        val tripType = viewModel.typeState.value
+        val date = viewModel.dateState.value
 
         when {
             binding.editTextName.toTrimmed()
@@ -136,6 +147,7 @@ class TripCreatingFragment : Fragment(R.layout.fragment_trip_creating) {
             date == null -> showToast(R.string.trip_date_picking_action)
             else -> {
                 viewModel.createTrip(
+                    tripCreatorUid = args.userUid,
                     name = binding.editTextName.toTrimmed(),
                     startDate = date.first,
                     endDate = date.second,

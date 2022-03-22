@@ -12,8 +12,7 @@ class UserProfileInteractor(private val userProfileRepository: UserProfileReposi
     }
 
     suspend fun createUserProfile(user: User) {
-        withContext(Dispatchers.IO) {
-            userProfileRepository.createUserProfile(user = user) }
+        withContext(Dispatchers.IO) { userProfileRepository.createUserProfile(user = user) }
     }
 
     suspend fun isUserCreated(userUid: String): Boolean {

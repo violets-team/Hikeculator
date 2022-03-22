@@ -54,6 +54,7 @@ fun FirestoreUser.mapToUser() = User(
 
 fun TripDay.mapToFirestoreTripDay(): FirestoreTripDay = FirestoreTripDay(
     id = id,
+    date = date,
     breakfast = breakfast.mapToFirestoreDayMeal(),
     lunch = lunch.mapToFirestoreDayMeal(),
     dinner = dinner.mapToFirestoreDayMeal(),
@@ -62,10 +63,19 @@ fun TripDay.mapToFirestoreTripDay(): FirestoreTripDay = FirestoreTripDay(
 
 fun FirestoreTripDay.mapToTripDay(): TripDay = TripDay(
     id = id,
+    date = date,
     breakfast = breakfast.mapToDayMeal(),
     lunch = lunch.mapToDayMeal(),
     dinner = dinner.mapToDayMeal(),
     snack = snack.mapToDayMeal(),
+)
+
+fun ProvisionBag.mapToFirestoreProvisionBag() = FirestoreProvisionBag(
+    productList = productList.toList()
+)
+
+fun FirestoreProvisionBag.mapToProvisionBag() = ProvisionBag(
+    productList = productList.toSet()
 )
 
 fun DayMeal.mapToFirestoreDayMeal(): FirestoreDayMeal = FirestoreDayMeal(
@@ -93,7 +103,7 @@ fun NutritionalValue.mapToFirestoreNutritionalValue(): FirestoreNutritionValue {
         calories = calories,
         proteins = proteins,
         fats = fats,
-        carbohydrates = carbohydrates
+        carbohydrates = carbs
     )
 }
 
@@ -101,7 +111,7 @@ fun FirestoreNutritionValue.mapToNutritionalValue(): NutritionalValue = Nutritio
     calories = calories,
     proteins = proteins,
     fats = fats,
-    carbohydrates = carbohydrates
+    carbs = carbohydrates
 )
 
 fun ApiProductHolder.mapToProduct(): Product {
@@ -113,7 +123,7 @@ fun ApiProductHolder.mapToProduct(): Product {
             calories = product.nutritionalValue.calories / DEFAULT_PRODUCT_WEIGHT,
             proteins = product.nutritionalValue.proteins / DEFAULT_PRODUCT_WEIGHT,
             fats = product.nutritionalValue.fats / DEFAULT_PRODUCT_WEIGHT,
-            carbohydrates = product.nutritionalValue.carbohydrates / DEFAULT_PRODUCT_WEIGHT,
+            carbs = product.nutritionalValue.carbohydrates / DEFAULT_PRODUCT_WEIGHT,
         ),
     )
 }

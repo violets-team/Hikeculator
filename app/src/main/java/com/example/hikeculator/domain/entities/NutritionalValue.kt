@@ -4,5 +4,5 @@ data class NutritionalValue(
     val calories: Double,
     val proteins: Double,
     val fats: Double,
-    val carbohydrates: Double,
+    val carbs: Double,
 )

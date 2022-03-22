@@ -5,9 +5,11 @@ import kotlinx.coroutines.flow.Flow
 
 interface TripDayRepository {
 
-    fun fetchTripDay(tripDayId: String): Flow<TripDay?>
+    fun fetchTripDay(tripId: String, tripDayId: String): Flow<TripDay?>
 
-    fun fetchTripDays(): Flow<List<TripDay>>
+    fun fetchTripDays(tripId: String): Flow<List<TripDay>>
 
-    suspend fun insertTripDay(tripDay: TripDay)
+    suspend fun insertTripDay(tripId: String, tripDay: TripDay)
+
+    suspend fun removeTripDayCollection(tripId: String)
 }

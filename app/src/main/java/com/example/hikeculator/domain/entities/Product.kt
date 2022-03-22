@@ -5,6 +5,6 @@ import java.util.*
 data class Product(
     val id: String = UUID.randomUUID().toString(),
     val name: String,
-    val weight: Double,
+    val weight: Long,
     val nutritionalValue: NutritionalValue,
 )

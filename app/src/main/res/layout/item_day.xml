@@ -1,43 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/card_view"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    android:layout_marginStart="20dp"
-    android:layout_marginLeft="20dp"
-    android:background="@color/black"
-    android:backgroundTint="@color/light_grey"
-    card_view:cardCornerRadius="4dp"
-    card_view:cardElevation="20dp"
-    card_view:contentPadding="20dp">
+    android:layout_margin="4dp"
+    android:background="@drawable/background_day_item">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_day_item"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="8dp">
 
         <TextView
-            android:id="@+id/text_view_trip_day"
+            android:id="@+id/text_view_trip_day_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_item_rv_day"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="bold"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent" />
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/text_item_day" />
 
         <TextView
             android:id="@+id/text_view_trip_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:text="@string/text_item_rv_date2_tools"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent" />
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            tools:text="01-23-22"
+            android:textStyle="italic"
+            app:drawableEndCompat="@drawable/ic_arrow_forward"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
