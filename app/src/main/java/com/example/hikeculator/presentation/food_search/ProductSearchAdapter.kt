@@ -23,7 +23,6 @@ class ProductSearchAdapter : RecyclerView.Adapter<ProductSearchAdapter.FoodSearc
         val nutrition: NutritionalValue = product.nutritionalValue
 
         holder.binding.apply {
-            root
             textViewFoodName.text = product.name
             textViewCalories.text = String.format(FORMAT_CALORIES, nutrition.calories * DEFAULT_WEIGHT_100)
             textViewFat.text =  String.format(FORMAT_FAT, nutrition.fats * DEFAULT_WEIGHT_100)

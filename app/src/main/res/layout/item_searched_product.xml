@@ -79,5 +79,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_green_plus" />
+        app:srcCompat="@drawable/ic_green_plus"
+        android:contentDescription="@string/text_description_add_product" />
 </androidx.constraintlayout.widget.ConstraintLayout>

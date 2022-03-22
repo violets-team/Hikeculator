@@ -106,6 +106,7 @@ fun FirestoreNutritionValue.mapToNutritionalValue(): NutritionalValue = Nutritio
 
 fun ApiProductHolder.mapToProduct(): Product {
     return Product(
+        id = product.id,
         name = product.name,
         weight = WEIGHT_UNIT,
         nutritionalValue = NutritionalValue(
