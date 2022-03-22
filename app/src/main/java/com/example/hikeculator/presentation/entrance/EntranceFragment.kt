@@ -16,8 +16,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EntranceFragment : Fragment(R.layout.fragment_entrance) {
 
-    private val viewModel by viewModel<EntranceViewModel>()
     private val navController by lazy { findNavController() }
+
+    private val viewModel by viewModel<EntranceViewModel>()
 
     private val entranceLauncher = this.registerForActivityResult(
         FirebaseAuthUIActivityResultContract()
@@ -31,6 +32,8 @@ class EntranceFragment : Fragment(R.layout.fragment_entrance) {
             val userEmail = viewModel.getUserEmail()
 
             if (userUid != null && userEmail != null) {
+                viewModel.saveUserUid(uid = userUid)
+
                 lifecycleScope.launch {
                     navigateByUserState(userUid = userUid, userEmail = userEmail)
                 }
@@ -48,6 +51,8 @@ class EntranceFragment : Fragment(R.layout.fragment_entrance) {
             val userEmail = viewModel.getSignedInUserEmail()
 
             if (userUid != null && userEmail != null) {
+                viewModel.saveUserUid(uid = userUid)
+
                 navigateToUserProfileCreatingFragment(uid = userUid, email = userEmail)
             } else {
                 TODO("Notify that something went wrong")

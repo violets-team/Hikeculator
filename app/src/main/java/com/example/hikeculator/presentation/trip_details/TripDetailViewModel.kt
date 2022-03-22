@@ -30,6 +30,7 @@ class TripDetailViewModel(
     val problemMessage: SharedFlow<Int> = _problemMessage.asSharedFlow()
 
     fun updateTripDay(
+        tripId: String,
         breakfastProducts: List<Product>,
         lunchProducts: List<Product>,
         dinnerProducts: List<Product>,
@@ -55,9 +56,10 @@ class TripDetailViewModel(
     }
 
     private fun getTripData(): Flow<Pair<Trip?, List<TripDay>>> {
-        return combine(getTrip(), getTripDays()) { trip: Trip?, tripDays ->
-            trip to tripDays
-        }
+        return combine(
+            getTrip(),
+            getTripDays()
+        ) { trip: Trip?, tripDays -> trip to tripDays }
     }
 
     private fun getTripDays(): Flow<List<TripDay>> {
@@ -66,7 +68,9 @@ class TripDetailViewModel(
         }
     }
 
-    private fun getTrip(): Flow<Trip?> = tripInteractor.fetchTrip(tripId = tripId).catch {
-        _problemMessage.tryEmit(R.string.problem_with_trip_getting)
+    private fun getTrip(): Flow<Trip?> {
+        return tripInteractor.fetchTrip(tripId = tripId).catch {
+            _problemMessage.tryEmit(R.string.problem_with_trip_getting)
+        }
     }
 }
