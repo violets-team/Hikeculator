@@ -1,4 +1,4 @@
-package com.example.hikeculator.presentation.food_search
+package com.example.hikeculator.presentation.product_search
 
 import android.os.Bundle
 import android.view.View

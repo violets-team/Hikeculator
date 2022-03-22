@@ -6,10 +6,6 @@
     app:startDestination="@id/splashFragment">
 
     <fragment
-        android:id="@+id/dayFragment"
-        android:name="com.example.hikeculator.presentation.trip_day_details.TripDayDetailFragment"
-        android:label="DayFragment" />
-    <fragment
         android:id="@+id/bagFragment"
         android:name="com.example.hikeculator.presentation.provision_bag.ProvisionBagFragment"
         android:label="BagFragment" />
@@ -43,8 +39,8 @@
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_entranceFragment_to_foodSearchFragment"
-            app:destination="@id/foodSearchFragment" />
+            android:id="@+id/action_entranceFragment_to_productSearchFragment"
+            app:destination="@id/productSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/generalTripFragment"
@@ -118,6 +114,9 @@
         <argument
             android:name="tripId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_tripDetailFragment_to_tripDayDetailFragment"
+            app:destination="@id/tripDayDetailFragment" />
     </fragment>
     <dialog
         android:id="@+id/seasonDialogFragment"
@@ -144,7 +143,12 @@
         android:label="dialog_fragment_member_choosing"
         tools:layout="@layout/dialog_fragment_member_searching" />
     <fragment
-        android:id="@+id/foodSearchFragment"
-        android:name="com.example.hikeculator.presentation.food_search.ProductSearchFragment"
-        android:label="FoodSearchFragment" />
+        android:id="@+id/tripDayDetailFragment"
+        android:name="com.example.hikeculator.presentation.trip_day_details.TripDayDetailFragment"
+        android:label="fragment_trip_day_details"
+        tools:layout="@layout/fragment_trip_day_details" />
+    <fragment
+        android:id="@+id/productSearchFragment"
+        android:name="com.example.hikeculator.presentation.product_search.ProductSearchFragment"
+        android:label="ProductSearchFragment" />
 </navigation>

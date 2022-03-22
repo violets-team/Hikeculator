@@ -1,4 +1,4 @@
-package com.example.hikeculator.presentation.food_search
+package com.example.hikeculator.presentation.product_search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -24,12 +24,14 @@ class ProductSearchAdapter : RecyclerView.Adapter<ProductSearchAdapter.FoodSearc
 
         holder.binding.apply {
             textViewFoodName.text = product.name
-            textViewCalories.text = String.format(FORMAT_CALORIES, nutrition.calories * DEFAULT_WEIGHT_100)
-            textViewFat.text =  String.format(FORMAT_FAT, nutrition.fats * DEFAULT_WEIGHT_100)
-            textViewCarbs.text =  String.format(FORMAT_CARBS, nutrition.carbohydrates * DEFAULT_WEIGHT_100)
-            textViewProtein.text = String.format(FORMAT_PROTEIN, nutrition.proteins * DEFAULT_WEIGHT_100)
+            textViewCalories.text = FORMAT_CALORIES.format(nutrition.calories * DEFAULT_WEIGHT_100)
+            textViewFat.text =  FORMAT_FAT.format(nutrition.fats * DEFAULT_WEIGHT_100)
+            textViewCarbs.text = FORMAT_CARBS.format(nutrition.carbs * DEFAULT_WEIGHT_100)
+            textViewProtein.text = FORMAT_PROTEIN.format(nutrition.proteins * DEFAULT_WEIGHT_100)
         }
     }
+
+
 
     override fun getItemCount(): Int = listOfSearchedProducts.size
 

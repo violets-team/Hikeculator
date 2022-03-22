@@ -2,29 +2,43 @@ package com.example.hikeculator.presentation.general_trip_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.hikeculator.R
 import com.example.hikeculator.domain.entities.Trip
+import com.example.hikeculator.domain.interactors.ProvisionBagInteractor
+import com.example.hikeculator.domain.interactors.TripDayInteractor
 import com.example.hikeculator.domain.interactors.TripInteractor
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-class GeneralTripViewModel(private val tripInteractor: TripInteractor) : ViewModel() {
+class GeneralTripViewModel(
+    private val tripInteractor: TripInteractor,
+    private val tripDayInteractor: TripDayInteractor,
+    private val provisionBagInteractor: ProvisionBagInteractor,
+) : ViewModel() {
 
-    val tripData: SharedFlow<Set<Trip>> = getTripFlow().shareIn(
+    val tripData: SharedFlow<Set<Trip>> = fetchTrip().shareIn(
         scope = viewModelScope,
-        started = SharingStarted.Lazily,
+        started = SharingStarted.Eagerly,
         replay = 1
     )
 
-    fun deleteTrip(tripId: String) {
-        val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
-            TODO("Handle the exception here")
+    private val _problemMessage = MutableSharedFlow<Int>()
+    val problemMessage = _problemMessage.asSharedFlow()
+
+    fun deleteTrip(userUid: String, tripId: String) {
+        val exceptionHandler = CoroutineExceptionHandler { _, _ ->
+            _problemMessage.tryEmit(R.string.problem_with_trip_deleting)
         }
 
-        viewModelScope.launch(exceptionHandler) { tripInteractor.removeTrip(tripId = tripId) }
+        viewModelScope.launch(exceptionHandler) {
+            launch { tripDayInteractor.removeTripDayCollection(tripId = tripId) }
+            launch { tripInteractor.removeTrip(tripId = tripId) }
+            launch { provisionBagInteractor.removeProvisionBag(userUid = userUid, tripId = tripId) }
+        }
     }
 
-    private fun getTripFlow(): Flow<Set<Trip>> = tripInteractor.fetchTrips().catch { throwable ->
-        TODO("Handle the exception here")
+    private fun fetchTrip(): Flow<Set<Trip>> = tripInteractor.fetchTrips().catch { _ ->
+        _problemMessage.tryEmit(R.string.problem_with_trip_getting)
     }
 }
