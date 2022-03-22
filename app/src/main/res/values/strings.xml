@@ -88,4 +88,6 @@
     <string name="text_done">Done</string>
     <string name="text_add_custom_product">Add custom product</string>
     <string name="text_search_result">SEARCH RESULT</string>
+    <string name="text_error_search">Internet or search error</string>
+    <string name="text_description_add_product">Add product button</string>
 </resources>

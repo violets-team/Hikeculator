@@ -14,6 +14,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 class FoodSearchAPI {
 
     suspend fun search(searchExpression: String): List<Product> {
+        if (isStringEmpty(searchExpression)) { return listOf() }
+
         val retrofit = getRetrofit()
         val service = retrofit.create(IFoodSearchAPI::class.java)
         val searchResponse: FoodSearchResponse =
@@ -34,4 +36,7 @@ class FoodSearchAPI {
             .client(client)
             .build()
     }
+
+    private fun isStringEmpty(text: String): Boolean = text.trim().isEmpty()
+
 }
