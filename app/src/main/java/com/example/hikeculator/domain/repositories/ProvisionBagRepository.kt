@@ -9,7 +9,7 @@ interface ProvisionBagRepository {
 
     fun fetchProvisionBag(): ProvisionBag
 
-    suspend fun createProvisionBag(userUid: String, tripId: String, provisionBag: ProvisionBag)
+    suspend fun createProvisionBag(tripId: String, provisionBag: ProvisionBag)
 
-    suspend fun removeProvisionBag(userUid: String, tripId: String)
+    suspend fun removeProvisionBag(tripId: String)
 }
