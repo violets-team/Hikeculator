@@ -1,15 +1,10 @@
 package com.example.hikeculator.presentation.product_search
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import androidx.annotation.IdRes
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -17,10 +12,11 @@ import com.example.hikeculator.R
 import com.example.hikeculator.databinding.FragmentProductSearchBinding
 import com.example.hikeculator.presentation.common.collectWhenStarted
 import com.google.android.material.snackbar.Snackbar
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
 
-    private val viewModel by viewModels<ProductSearchViewModel>()
+    private val viewModel by viewModel<ProductSearchViewModel>()
 
     private val viewBinding by viewBinding(FragmentProductSearchBinding::bind)
 
