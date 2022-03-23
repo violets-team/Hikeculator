@@ -12,16 +12,13 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
-class ProductSearchViewModel() : ViewModel() {
+class ProductSearchViewModel(private val searchInteractor: ProductSearchInteractor) : ViewModel() {
 
     private val _productSearchResult = MutableSharedFlow<List<Product>>()
     val productSearchResult = _productSearchResult.asSharedFlow()
 
     private val _searchError = MutableSharedFlow<Int>()
     val searchError = _searchError.asSharedFlow()
-
-    private val searchInteractor: ProductSearchInteractor =
-        ProductSearchInteractor(ProductSearchRepositoryImpl())
 
     private val exceptionHandler = CoroutineExceptionHandler { _, exception ->
         exception.printStackTrace()
