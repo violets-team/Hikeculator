@@ -38,9 +38,6 @@
             app:destination="@id/userProfileCreatingFragment"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_entranceFragment_to_productSearchFragment"
-            app:destination="@id/productSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/generalTripFragment"
@@ -146,9 +143,14 @@
         android:id="@+id/tripDayDetailFragment"
         android:name="com.example.hikeculator.presentation.trip_day_details.TripDayDetailFragment"
         android:label="fragment_trip_day_details"
-        tools:layout="@layout/fragment_trip_day_details" />
+        tools:layout="@layout/fragment_trip_day_details" >
+        <action
+            android:id="@+id/action_tripDayDetailFragment_to_productSearchFragment"
+            app:destination="@id/productSearchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/productSearchFragment"
         android:name="com.example.hikeculator.presentation.product_search.ProductSearchFragment"
-        android:label="ProductSearchFragment" />
+        android:label="ProductSearchFragment"
+        tools:layout="@layout/fragment_product_search"/>
 </navigation>
