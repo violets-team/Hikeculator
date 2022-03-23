@@ -32,7 +32,9 @@ val dataModule = module {
         TripDayRepositoryImpl(firestore = get(), userUidRepository = get())
     }
 
-    single<ProvisionBagRepository> { ProvisionBagRepositoryImpl(firestore = get()) }
+    single<ProvisionBagRepository> {
+        ProvisionBagRepositoryImpl(firestore = get(), userUidRepository = get())
+    }
 
     single<ProductSearchRepository> { ProductSearchRepositoryImpl() }
 }
