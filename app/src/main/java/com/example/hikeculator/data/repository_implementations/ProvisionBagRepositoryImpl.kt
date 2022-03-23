@@ -12,7 +12,7 @@ import kotlinx.coroutines.tasks.await
 
 class ProvisionBagRepositoryImpl(
     private val firestore: FirebaseFirestore,
-    private val userUidRepositiory: UserUidRepositiory
+    private val userUidRepository: UserUidRepositiory
 ) : ProvisionBagRepository {
 
     override fun insertProductToProvisionBag(product: Product) {
@@ -27,13 +27,13 @@ class ProvisionBagRepositoryImpl(
         tripId: String,
         provisionBag: ProvisionBag,
     ) {
-        firestore.getProvisionBagDocument(userUid = userUidRepositiory.uid, tripId = tripId)
+        firestore.getProvisionBagDocument(userUid = userUidRepository.uid, tripId = tripId)
             .set(provisionBag.mapToFirestoreProvisionBag())
             .await()
     }
 
     override suspend fun removeProvisionBag(tripId: String) {
-        firestore.getProvisionBagCollection(userUid = userUidRepositiory.uid, tripId = tripId)
+        firestore.getProvisionBagCollection(userUid = userUidRepository.uid, tripId = tripId)
             .get()
             .await()
             .documents
