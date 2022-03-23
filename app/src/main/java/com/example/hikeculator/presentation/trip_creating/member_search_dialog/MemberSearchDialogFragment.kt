@@ -21,9 +21,12 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 class MemberSearchDialogFragment : DialogFragment(R.layout.dialog_fragment_member_searching) {
 
     private val binding by viewBinding(DialogFragmentMemberSearchingBinding::bind)
+
     private val viewModel by sharedViewModel<TripCreatingViewModel>()
-    private val memberAdapter =
-        TripMemberSearchAdapter(onItemClick = ::manageSearchedMemberSelection)
+
+    private val memberAdapter = TripMemberSearchAdapter(
+        onItemClick = ::manageSearchedMemberSelection
+    )
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return super.onCreateDialog(savedInstanceState).also { dialog ->
