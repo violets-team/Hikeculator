@@ -130,7 +130,7 @@ class TripCreatingViewModel(
                 launch {
                     createEmptyTripDays(tripId = tripId, startDate = startDate, endDate = endDate)
                 }
-                launch { createEmptyTripProvisionBag(userUdi = tripCreatorUid, tripId = tripId) }
+                launch { createEmptyTripProvisionBag(tripId = tripId) }
 
                 clearTripCreatingState()
             } else {
@@ -148,7 +148,11 @@ class TripCreatingViewModel(
         searchedMembers.value = emptySet()
     }
 
-    private suspend fun createEmptyTripDays(tripId: String, startDate: Long, endDate: Long) {
+    private suspend fun createEmptyTripDays(
+        tripId: String,
+        startDate: Long,
+        endDate: Long,
+    ) {
         val dayQuantity = TripDateFormat.getDayQuantity(startDate = startDate, endDate = endDate)
 
         (0 until dayQuantity).forEach { dayOrdinal ->
@@ -174,9 +178,8 @@ class TripCreatingViewModel(
         snack = createEmptyDayMeal(),
     )
 
-    private suspend fun createEmptyTripProvisionBag(userUdi: String, tripId: String) {
+    private suspend fun createEmptyTripProvisionBag(tripId: String) {
         provisionBagInteractor.createProvisionBag(
-            userUid = userUdi,
             tripId = tripId,
             provisionBag = ProvisionBag(productList = emptySet())
         )

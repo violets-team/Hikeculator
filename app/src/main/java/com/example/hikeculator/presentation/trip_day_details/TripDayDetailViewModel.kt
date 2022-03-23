@@ -2,12 +2,10 @@ package com.example.hikeculator.presentation.trip_day_details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.hikeculator.data.repository_implementations.TripDayRepositoryImpl
 import com.example.hikeculator.domain.entities.DayMeal
 import com.example.hikeculator.domain.entities.Product
 import com.example.hikeculator.domain.entities.TripDay
 import com.example.hikeculator.domain.interactors.TripDayInteractor
-import com.example.hikeculator.domain.repositories.TripDayRepository
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
@@ -18,10 +16,8 @@ import kotlinx.coroutines.launch
 class TripDayDetailViewModel(
     private val tripId: String,
     tripDayId: String,
-    private val tripDayRepository: TripDayRepository
+    private val tripDayInteractor: TripDayInteractor,
 ) : ViewModel() {
-
-    private val tripDayInteractor = TripDayInteractor(tripDayRepository = tripDayRepository)
 
     val tripDayData = getTripDayFlow(tripDayId = tripDayId).shareIn(
         scope = viewModelScope,

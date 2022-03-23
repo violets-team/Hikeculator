@@ -5,7 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.hikeculator.domain.common.NutritionalCalculator
 import com.example.hikeculator.domain.entities.User
 import com.example.hikeculator.domain.enums.Gender
-import com.example.hikeculator.domain.enums.Gender.*
+import com.example.hikeculator.domain.enums.Gender.MAN
+import com.example.hikeculator.domain.enums.Gender.WOMAN
 import com.example.hikeculator.domain.interactors.UserProfileInteractor
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers

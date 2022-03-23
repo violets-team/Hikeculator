@@ -6,11 +6,13 @@ import com.example.hikeculator.data.common.mapToFirestoreProvisionBag
 import com.example.hikeculator.domain.entities.Product
 import com.example.hikeculator.domain.entities.ProvisionBag
 import com.example.hikeculator.domain.repositories.ProvisionBagRepository
+import com.example.hikeculator.domain.repositories.UserUidRepositiory
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
 class ProvisionBagRepositoryImpl(
     private val firestore: FirebaseFirestore,
+    private val userUidRepository: UserUidRepositiory
 ) : ProvisionBagRepository {
 
     override fun insertProductToProvisionBag(product: Product) {
@@ -22,17 +24,16 @@ class ProvisionBagRepositoryImpl(
     }
 
     override suspend fun createProvisionBag(
-        userUid: String,
         tripId: String,
         provisionBag: ProvisionBag,
     ) {
-        firestore.getProvisionBagDocument(userUid = userUid, tripId = tripId)
+        firestore.getProvisionBagDocument(userUid = userUidRepository.uid, tripId = tripId)
             .set(provisionBag.mapToFirestoreProvisionBag())
             .await()
     }
 
-    override suspend fun removeProvisionBag(userUid: String, tripId: String) {
-        firestore.getProvisionBagCollection(userUid = userUid, tripId = tripId)
+    override suspend fun removeProvisionBag(tripId: String) {
+        firestore.getProvisionBagCollection(userUid = userUidRepository.uid, tripId = tripId)
             .get()
             .await()
             .documents

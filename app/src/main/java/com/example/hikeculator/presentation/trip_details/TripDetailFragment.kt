@@ -32,16 +32,7 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
     private val binding by viewBinding(FragmentTripDetailsBinding::bind)
     private val args by navArgs<TripDetailFragmentArgs>()
 
-    private val tripInteractor by inject<TripInteractor> { parametersOf(args.userUid) }
-
-    private val tripDayRepository by inject<TripDayRepository> {
-        parametersOf(args.userUid, args.tripId)
-    }
-    private val tripDayInteractor by inject<TripDayInteractor> { parametersOf(tripDayRepository) }
-
-    private val viewModel by viewModel<TripDetailViewModel> {
-        parametersOf(tripInteractor, tripDayInteractor, args.tripId)
-    }
+    private val viewModel by viewModel<TripDetailViewModel> { parametersOf(args.tripId) }
 
     private val tripDetailDayAdapter = TripDetailDayAdapter(onItemClick = ::navigateToTriDayDetails)
 

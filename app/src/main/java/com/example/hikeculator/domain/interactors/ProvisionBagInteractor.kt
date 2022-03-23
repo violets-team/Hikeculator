@@ -13,23 +13,13 @@ class ProvisionBagInteractor(private val provisionBagRepository: ProvisionBagRep
 
     fun fetchProvisionBag(): ProvisionBag = provisionBagRepository.fetchProvisionBag()
 
-    suspend fun createProvisionBag(
-        userUid: String,
-        tripId: String,
-        provisionBag: ProvisionBag,
-    ) {
+    suspend fun createProvisionBag(tripId: String, provisionBag: ProvisionBag) {
         withContext(Dispatchers.IO) {
-            provisionBagRepository.createProvisionBag(
-                userUid = userUid,
-                tripId = tripId,
-                provisionBag = provisionBag
-            )
+            provisionBagRepository.createProvisionBag(tripId = tripId, provisionBag = provisionBag)
         }
     }
 
-    suspend fun removeProvisionBag(userUid: String, tripId: String) {
-        withContext(Dispatchers.IO) {
-            provisionBagRepository.removeProvisionBag(userUid = userUid, tripId = tripId)
-        }
+    suspend fun removeProvisionBag(tripId: String) {
+        withContext(Dispatchers.IO) { provisionBagRepository.removeProvisionBag(tripId = tripId) }
     }
 }
