@@ -26,19 +26,21 @@ class GeneralTripViewModel(
     private val _problemMessage = MutableSharedFlow<Int>()
     val problemMessage = _problemMessage.asSharedFlow()
 
-    fun deleteTrip(userUid: String, tripId: String) {
+    fun deleteTrip(tripId: String) {
         val exceptionHandler = CoroutineExceptionHandler { _, _ ->
             _problemMessage.tryEmit(R.string.problem_with_trip_deleting)
         }
 
         viewModelScope.launch(exceptionHandler) {
             launch { tripDayInteractor.removeTripDayCollection(tripId = tripId) }
+            launch { provisionBagInteractor.removeProvisionBag(tripId = tripId) }
             launch { tripInteractor.removeTrip(tripId = tripId) }
-            launch { provisionBagInteractor.removeProvisionBag(userUid = userUid, tripId = tripId) }
         }
     }
 
-    private fun fetchTrip(): Flow<Set<Trip>> = tripInteractor.fetchTrips().catch { _ ->
-        _problemMessage.tryEmit(R.string.problem_with_trip_getting)
+    private fun fetchTrip(): Flow<Set<Trip>> {
+        return tripInteractor.fetchTrips().catch { _ ->
+            _problemMessage.tryEmit(R.string.problem_with_trip_getting)
+        }
     }
 }

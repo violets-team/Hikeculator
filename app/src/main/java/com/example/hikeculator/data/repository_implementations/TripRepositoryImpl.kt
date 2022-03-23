@@ -7,6 +7,7 @@ import com.example.hikeculator.data.common.mapToTrip
 import com.example.hikeculator.data.entities.FirestoreTrip
 import com.example.hikeculator.domain.entities.Trip
 import com.example.hikeculator.domain.repositories.TripRepository
+import com.example.hikeculator.domain.repositories.UserUidRepositiory
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.channels.awaitClose
@@ -14,24 +15,27 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 
-class TripRepositoryImpl(private val firestore: FirebaseFirestore) : TripRepository {
+class TripRepositoryImpl(
+    private val firestore: FirebaseFirestore,
+    private val userUidRepositiory: UserUidRepositiory,
+) : TripRepository {
 
-    override suspend fun insertTrip(userUid: String, trip: Trip) {
+    override suspend fun insertTrip(trip: Trip) {
         val firestoreTrip = trip.mapToFirestoreTrip()
-        firestore.getTripDocument(userUid = userUid, tripId = firestoreTrip.id)
+        firestore.getTripDocument(userUid = userUidRepositiory.uid, tripId = firestoreTrip.id)
             .set(firestoreTrip)
             .await()
     }
 
-    override suspend fun removeTrip(userUid: String, tripId: String) {
-        firestore.getTripDocument(userUid = userUid, tripId = tripId)
+    override suspend fun removeTrip(tripId: String) {
+        firestore.getTripDocument(userUid = userUidRepositiory.uid, tripId = tripId)
             .delete()
             .await()
     }
 
-    override fun fetchTrips(userUid: String): Flow<Set<Trip>> = callbackFlow {
+    override fun fetchTrips(): Flow<Set<Trip>> = callbackFlow {
         val listener = try {
-            firestore.getTripSubCollection(userUid = userUid)
+            firestore.getTripSubCollection(userUid = userUidRepositiory.uid)
                 .addSnapshotListener { querySnapshot, error ->
                     if (error != null) {
                         close(cause = error)
@@ -51,9 +55,9 @@ class TripRepositoryImpl(private val firestore: FirebaseFirestore) : TripReposit
         awaitClose { listener?.remove() }
     }
 
-    override fun fetchTrip(userUid: String, tripId: String): Flow<Trip?> = callbackFlow {
+    override fun fetchTrip(tripId: String): Flow<Trip?> = callbackFlow {
         val listener = try {
-            firestore.getTripDocument(userUid = userUid, tripId = tripId)
+            firestore.getTripDocument(userUid = userUidRepositiory.uid, tripId = tripId)
                 .addSnapshotListener { document, error ->
                     if (error != null) {
                         close(cause = null)

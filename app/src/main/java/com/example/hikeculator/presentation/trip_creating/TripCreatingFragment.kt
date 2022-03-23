@@ -35,14 +35,7 @@ class TripCreatingFragment : Fragment(R.layout.fragment_trip_creating) {
     private val args by navArgs<TripCreatingFragmentArgs>()
     private val navController by lazy { findNavController() }
 
-    private val tripInteractor by inject<TripInteractor> { parametersOf(args.userUid) }
-
-    private val tripDayRepository by inject<TripDayRepository> { parametersOf(args.userUid) }
-    private val tripDayInteractor by inject<TripDayInteractor> { parametersOf(tripDayRepository) }
-
-    private val viewModel by sharedViewModel<ITripCreatingViewModel> {
-        parametersOf(tripInteractor, tripDayInteractor)
-    }
+    private val viewModel by sharedViewModel<ITripCreatingViewModel>()
 
     private val addedMemberAdapter = AddedTripMemberAdapter(onRemoveItemClick = ::removeAddedMember)
 
