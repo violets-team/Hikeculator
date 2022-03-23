@@ -4,6 +4,7 @@ import com.example.hikeculator.data.common.*
 import com.example.hikeculator.data.entities.FirestoreTripDay
 import com.example.hikeculator.domain.entities.TripDay
 import com.example.hikeculator.domain.repositories.TripDayRepository
+import com.example.hikeculator.domain.repositories.UserUidRepositiory
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.channels.awaitClose
@@ -12,13 +13,13 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 
 class TripDayRepositoryImpl(
-    private val userUid: String,
     private val firestore: FirebaseFirestore,
+    private val userUidRepository: UserUidRepositiory,
 ) : TripDayRepository {
 
     override fun fetchTripDay(tripId: String, tripDayId: String): Flow<TripDay?> = callbackFlow {
         val listener = try {
-            firestore.getTripDayCollection(userUid = userUid, tripId = tripId)
+            firestore.getTripDayCollection(userUid = userUidRepository.uid, tripId = tripId)
                 .document(tripDayId)
                 .addSnapshotListener { document, error ->
                     if (error != null) {
@@ -39,7 +40,7 @@ class TripDayRepositoryImpl(
 
     override fun fetchTripDays(tripId: String): Flow<List<TripDay>> = callbackFlow {
         val listener = try {
-            firestore.getTripDayCollection(userUid = userUid, tripId = tripId)
+            firestore.getTripDayCollection(userUid = userUidRepository.uid, tripId = tripId)
                 .orderBy(TripDay::date.name)
                 .addSnapshotListener { querySnapshot, error ->
                     if (error != null) {
@@ -62,7 +63,7 @@ class TripDayRepositoryImpl(
     override suspend fun insertTripDay(tripId: String, tripDay: TripDay) {
         val firestoreTripDay = tripDay.mapToFirestoreTripDay()
 
-        firestore.getTripDayCollection(userUid = userUid, tripId = tripId)
+        firestore.getTripDayCollection(userUid = userUidRepository.uid, tripId = tripId)
             .document(firestoreTripDay.id)
             .set(firestoreTripDay)
             .await()
@@ -70,7 +71,7 @@ class TripDayRepositoryImpl(
 
 
     override suspend fun removeTripDayCollection(tripId: String) {
-        firestore.getTripDayCollection(userUid = userUid, tripId = tripId)
+        firestore.getTripDayCollection(userUid = userUidRepository.uid, tripId = tripId)
             .get()
             .await()
             .documents

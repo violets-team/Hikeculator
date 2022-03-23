@@ -11,9 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.hikeculator.R
 import com.example.hikeculator.databinding.FragmentGeneralTripsBinding
-import com.example.hikeculator.domain.interactors.TripDayInteractor
 import com.example.hikeculator.domain.interactors.TripInteractor
-import com.example.hikeculator.domain.repositories.TripDayRepository
 import com.example.hikeculator.presentation.common.collectWhenStarted
 import com.example.hikeculator.presentation.common.showToast
 import org.koin.android.ext.android.inject
@@ -26,14 +24,11 @@ class GeneralTripFragment : Fragment(R.layout.fragment_general_trips) {
 
     private val args by navArgs<GeneralTripFragmentArgs>()
     private val navController by lazy { findNavController() }
+//
+//    private val tripDayInteractor by inject<TripDayInteractor>{ parametersOf(tripDayRepository) }
 
-    private val tripDayRepository by inject<TripDayRepository> { parametersOf(args.userUid) }
-    private val tripDayInteractor by inject<TripDayInteractor>{ parametersOf(tripDayRepository) }
-
-    private val tripInteractor by inject<TripInteractor> { parametersOf(args.userUid) }
-    private val viewModel by viewModel<GeneralTripViewModel> {
-        parametersOf(tripInteractor, tripDayInteractor)
-    }
+//    private val tripInteractor by inject<TripInteractor> { parametersOf(args.userUid) }
+    private val viewModel by viewModel<GeneralTripViewModel>()
 
     private val tripAdapter = GeneralTripAdapter(
         onItemClick = ::navigateToTripDetailFragment,
@@ -81,7 +76,7 @@ class GeneralTripFragment : Fragment(R.layout.fragment_general_trips) {
     }
 
     private fun deleteTrip(tripId: String) {
-        viewModel.deleteTrip(userUid = args.userUid, tripId = tripId)
+        viewModel.deleteTrip(tripId = tripId)
     }
 
     private fun navigateToTripDetailFragment(tripId: String) {

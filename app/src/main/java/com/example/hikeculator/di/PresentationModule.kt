@@ -15,43 +15,38 @@ import org.koin.dsl.module
 
 val presentationModule = module {
 
-    viewModel { EntranceViewModel(firebaseAuthentication = get(), userProfileInteractor = get()) }
+    viewModel {
+        EntranceViewModel(
+            firebaseAuthentication = get(),
+            userProfileInteractor = get(),
+            userUidRepositiory = get()
+        )
+    }
 
     viewModel { UserProfileCreatingViewModel(userProfileInteractor = get()) }
 
-    viewModel { (tripInteractor: TripInteractor, tripDayInteractor: TripDayInteractor) ->
+    viewModel {
         GeneralTripViewModel(
-            tripInteractor = tripInteractor,
-            tripDayInteractor = tripDayInteractor,
+            tripInteractor = get(),
+            tripDayInteractor = get(),
             provisionBagInteractor = get()
         )
     }
 
     viewModel<ITripCreatingViewModel> {
-            (
-                tripInteractor: TripInteractor,
-                tripDayInteractor: TripDayInteractor,
-            ),
-        ->
         TripCreatingViewModel(
-            tripInteractor = tripInteractor,
+            tripInteractor = get(),
             memberInteractor = get(),
-            tripDayInteractor = tripDayInteractor,
+            tripDayInteractor = get(),
             provisionBagInteractor = get()
         )
     }
 
-    viewModel {
-            (
-                tripInteractor: TripInteractor,
-                tripDayInteractor: TripDayInteractor,
-                tripId: String,
-            ),
-        ->
+    viewModel { (tripId: String) ->
         TripDetailViewModel(
-            tripInteractor = tripInteractor,
-            tripDayInteractor = tripDayInteractor,
-            tripId = tripId
+            tripInteractor = get(),
+            tripDayInteractor = get(),
+            tripId = tripId,
         )
     }
 

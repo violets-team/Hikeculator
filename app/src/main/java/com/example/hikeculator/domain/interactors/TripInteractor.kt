@@ -6,24 +6,19 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
-class TripInteractor(
-    private val userUid: String,
-    private val tripRepository: TripRepository,
-) {
+class TripInteractor(private val tripRepository: TripRepository) {
 
     suspend fun insertTrip(trip: Trip) {
-        withContext(Dispatchers.IO) { tripRepository.insertTrip(userUid = userUid, trip = trip) }
+        withContext(Dispatchers.IO) { tripRepository.insertTrip(trip = trip) }
     }
 
     suspend fun removeTrip(tripId: String) {
-        withContext(Dispatchers.IO) {
-            tripRepository.removeTrip(userUid = userUid, tripId = tripId)
-        }
+        withContext(Dispatchers.IO) { tripRepository.removeTrip(tripId = tripId) }
     }
 
-    fun fetchTrips(): Flow<Set<Trip>> = tripRepository.fetchTrips(userUid = userUid)
+    fun fetchTrips(): Flow<Set<Trip>> = tripRepository.fetchTrips()
 
     fun fetchTrip(tripId: String): Flow<Trip?> {
-        return tripRepository.fetchTrip(userUid = userUid, tripId = tripId)
+        return tripRepository.fetchTrip(tripId = tripId)
     }
 }
