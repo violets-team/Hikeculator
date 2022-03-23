@@ -1,9 +1,12 @@
 package com.example.hikeculator.presentation.product_search
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.annotation.IdRes
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -38,18 +41,20 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
 
     private fun initializeFlowCollectors() {
         viewModel.productSearchResult.collectWhenStarted(lifecycleScope = lifecycleScope) { products ->
-            searchedProductsAdapter.setSearchedList(products)
+            searchedProductsAdapter.submitList(products)
+            viewBinding.recyclerViewListOfProducts.smoothScrollToPosition(0)
             viewBinding.progressBarSearch.visibility = View.GONE
         }
-        viewModel.searchError.collectWhenStarted(lifecycleScope = lifecycleScope) { stringId ->
-            showSnackBar(stringId)
+        viewModel.searchError.collectWhenStarted(lifecycleScope = lifecycleScope) { stringResId ->
+            showSnackBar(stringResId)
         }
     }
 
     private fun initializeSearchEditTextListeners() {
-        viewBinding.editTextSearch.addTextChangedListener { editable ->
-            searchProducts(editable.toString())
+        viewBinding.editTextSearch.addTextChangedListener { text ->
+            searchProducts(text.toString())
         }
+
         viewBinding.editTextSearch.setOnEditorActionListener { textView, actionId, _ ->
             when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> {
@@ -63,7 +68,7 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
 
     private fun initializeSearchRecyclerView() {
         viewBinding.recyclerViewListOfProducts.apply {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = LinearLayoutManager(requireContext())
             adapter = searchedProductsAdapter
         }
     }
