@@ -101,4 +101,8 @@
     <string name="problem_with_trip_updating">There is a problem with trip updating</string>
     <string name="problem_with_trip_getting">There is a problem with trip getting</string>
     <string name="problem_with_trip_deleting">There is a problem with trip deleting</string>
+    <string name="text_kcal">kcal</string>
+    <string name="text_fat">Fat</string>
+    <string name="text_carbs">Carbs</string>
+    <string name="text_protein">Protein</string>
 </resources>

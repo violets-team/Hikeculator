@@ -3,6 +3,7 @@ package com.example.hikeculator.presentation.product_search
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import androidx.annotation.IdRes
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -41,13 +42,13 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
             viewBinding.progressBarSearch.visibility = View.GONE
         }
         viewModel.searchError.collectWhenStarted(lifecycleScope = lifecycleScope) { stringId ->
-            Snackbar.make(viewBinding.root, getString(stringId), Snackbar.LENGTH_SHORT).show()
+            showSnackBar(stringId)
         }
     }
 
     private fun initializeSearchEditTextListeners() {
         viewBinding.editTextSearch.addTextChangedListener { editable ->
-           searchProducts(editable.toString())
+            searchProducts(editable.toString())
         }
         viewBinding.editTextSearch.setOnEditorActionListener { textView, actionId, _ ->
             when (actionId) {
@@ -60,11 +61,13 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
         }
     }
 
-
     private fun initializeSearchRecyclerView() {
         viewBinding.recyclerViewListOfProducts.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = searchedProductsAdapter
         }
     }
+
+    private fun showSnackBar(resId: Int) =
+        Snackbar.make(viewBinding.root, getString(resId), Snackbar.LENGTH_SHORT).show()
 }
