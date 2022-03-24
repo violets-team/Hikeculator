@@ -1,4 +1,4 @@
-package com.example.hikeculator.presentation.member_managment
+package com.example.hikeculator.presentation.member_management
 
 import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding

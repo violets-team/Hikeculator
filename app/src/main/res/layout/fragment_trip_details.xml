@@ -133,19 +133,6 @@
         app:layout_constraintStart_toStartOf="@id/progress_indicator_protein_info"
         app:layout_constraintTop_toBottomOf="@id/progress_indicator_protein_info" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_trip_days"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@id/bottom_navigation_view"
-        app:layout_constraintEnd_toEndOf="@id/content_end"
-        app:layout_constraintStart_toStartOf="@id/content_start"
-        app:layout_constraintTop_toBottomOf="@id/text_view_trip_provision_weight"
-        app:layout_constraintVertical_bias="0.0"
-        tools:itemCount="3"
-        tools:listitem="@layout/item_day" />
-
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_view_provision_calorie_info"
         android:layout_width="wrap_content"
@@ -203,14 +190,41 @@
         app:layout_constraintTop_toTopOf="@+id/text_view_trip_provision_weight_label"
         app:layout_constraintVertical_bias="1.0" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation_view"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_trip_days"
         android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:paddingBottom="100dp"
+        app:layout_constraintBottom_toTopOf="@id/content_bottom"
+        app:layout_constraintEnd_toEndOf="@id/content_end"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/content_start"
+        app:layout_constraintTop_toBottomOf="@id/text_view_trip_provision_weight"
+        app:layout_constraintVertical_bias="1.0"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_day" />
+
+    <com.example.hikeculator.presentation.trip_details.TripDetailButtonView
+        android:id="@+id/trip_detail_buttons"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_menu" />
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        app:mainButtonBackground="@color/main_button_background"
+        app:provisionBagButtonBackground="@color/provision_bag_button_background"
+        app:memberButtonBackground="@color/member_button_background"
+        app:mainButtonImage="@drawable/ic_fingerprint_24"
+        app:provisionBagButtonImage="@drawable/ic_bag"
+        app:memberButtonImage="@drawable/ic_people"
+        app:mainButtonTint="@color/trip_detail_button_tint"
+        app:provisionBagButtonTint="@color/trip_detail_button_tint"
+        app:memberButtonTint="@color/trip_detail_button_tint"
+        app:layout_constraintEnd_toEndOf="@id/content_end"
+        app:layout_constraintBottom_toBottomOf="@id/content_bottom"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
