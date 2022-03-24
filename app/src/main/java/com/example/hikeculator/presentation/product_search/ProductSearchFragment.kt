@@ -1,11 +1,13 @@
 package com.example.hikeculator.presentation.product_search
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.hikeculator.R
@@ -21,6 +23,8 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
     private val viewBinding by viewBinding(FragmentProductSearchBinding::bind)
 
     private val searchedProductsAdapter = ProductSearchAdapter()
+
+    private val args by navArgs<ProductSearchFragmentArgs>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

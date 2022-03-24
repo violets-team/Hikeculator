@@ -211,7 +211,7 @@
                     android:textSize="14dp" />
 
                 <LinearLayout
-                    android:id="@+id/btn_add_product_to_meal_breakfast"
+                    android:id="@+id/button_add_product_to_breakfast"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -273,7 +273,7 @@
                     android:textSize="14dp" />
 
                 <LinearLayout
-                    android:id="@+id/button_add_product_to_lunch_meal"
+                    android:id="@+id/button_add_product_to_lunch"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -335,7 +335,7 @@
                     android:textSize="14dp" />
 
                 <LinearLayout
-                    android:id="@+id/button_add_product_to_dinner_meal"
+                    android:id="@+id/button_add_product_to_dinner"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -391,10 +391,10 @@
                     android:fontFamily="@font/capriola"
                     android:text="Перекус"
                     android:textColor="@color/black"
-                    android:textSize="14dp" />
+                    android:textSize="14sp" />
 
                 <LinearLayout
-                    android:id="@+id/button_add_product_to_snack_meal"
+                    android:id="@+id/button_add_product_to_snack"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
