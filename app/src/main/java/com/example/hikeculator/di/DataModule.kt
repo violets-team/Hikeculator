@@ -33,6 +33,6 @@ val dataModule = module {
     }
 
     single<ProvisionBagRepository> {
-        ProvisionBagRepositoryImpl(firestore = get(), userUidRepositiory = get())
+        ProvisionBagRepositoryImpl(firestore = get(), userUidRepository = get())
     }
 }

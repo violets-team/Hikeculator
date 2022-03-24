@@ -6,14 +6,6 @@
     app:startDestination="@id/splashFragment">
 
     <fragment
-        android:id="@+id/bagFragment"
-        android:name="com.example.hikeculator.presentation.provision_bag.ProvisionBagFragment"
-        android:label="BagFragment" />
-    <fragment
-        android:id="@+id/membersFragment"
-        android:name="com.example.hikeculator.presentation.member_managment.MemberManagementFragment"
-        android:label="MembersFragment" />
-    <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.hikeculator.presentation.splash.SplashFragment"
         android:label="fragment_splash"
@@ -100,21 +92,6 @@
         android:name="com.example.hikeculator.presentation.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
-    <fragment
-        android:id="@+id/tripDetailFragment"
-        android:name="com.example.hikeculator.presentation.trip_details.TripDetailFragment"
-        android:label="fragment_trip_details"
-        tools:layout="@layout/fragment_trip_details" >
-        <argument
-            android:name="userUid"
-            app:argType="string" />
-        <argument
-            android:name="tripId"
-            app:argType="string" />
-        <action
-            android:id="@+id/action_tripDetailFragment_to_tripDayDetailFragment"
-            app:destination="@id/tripDayDetailFragment" />
-    </fragment>
     <dialog
         android:id="@+id/seasonDialogFragment"
         android:name="com.example.hikeculator.presentation.trip_creating.SeasonDialogFragment"
@@ -140,8 +117,36 @@
         android:label="dialog_fragment_member_choosing"
         tools:layout="@layout/dialog_fragment_member_searching" />
     <fragment
+        android:id="@+id/provisionBagFragment"
+        android:name="com.example.hikeculator.presentation.provision_bag.ProvisionBagFragment"
+        android:label="fragment_provision_bag"
+        tools:layout="@layout/fragment_provision_bag" />
+    <fragment
         android:id="@+id/tripDayDetailFragment"
         android:name="com.example.hikeculator.presentation.trip_day_details.TripDayDetailFragment"
         android:label="fragment_trip_day_details"
         tools:layout="@layout/fragment_trip_day_details" />
+    <fragment
+        android:id="@+id/tripDetailFragment"
+        android:name="com.example.hikeculator.presentation.trip_details.TripDetailFragment"
+        android:label="fragment_trip_details"
+        tools:layout="@layout/fragment_trip_details" >
+        <argument
+            android:name="tripId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_tripDetailFragment_to_memberManagementFragment"
+            app:destination="@id/memberManagementFragment" />
+        <action
+            android:id="@+id/action_tripDetailFragment_to_tripDayDetailFragment"
+            app:destination="@id/tripDayDetailFragment" />
+        <action
+            android:id="@+id/action_tripDetailFragment_to_provisionBagFragment"
+            app:destination="@id/provisionBagFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/memberManagementFragment"
+        android:name="com.example.hikeculator.presentation.member_management.MemberManagementFragment"
+        android:label="fragment_member_managment"
+        tools:layout="@layout/fragment_member_managment" />
 </navigation>

@@ -1,6 +1,7 @@
 package com.example.hikeculator.presentation.common
 
 import android.content.Context
+import android.util.TypedValue
 import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.StringRes
@@ -32,3 +33,6 @@ fun EditText.toTrimmed(): String = text.toString().trim()
 fun Context.showToast(@StringRes messageId: Int) {
     Toast.makeText(this, getString(messageId), Toast.LENGTH_SHORT).show()
 }
+
+
+
