@@ -92,8 +92,8 @@ class EntranceFragment : Fragment(R.layout.fragment_entrance) {
 
     private fun navigateToGeneralTripFragment(userUid: String) {
         EntranceFragmentDirections.actionEntranceFragmentToGeneralTripFragment(
-             userUid = userUid
-         ).also { navController.navigate(directions = it) }
+            userUid = userUid
+        ).also { navController.navigate(directions = it) }
     }
 
     private fun navigateToUserProfileCreatingFragment(uid: String, email: String) {

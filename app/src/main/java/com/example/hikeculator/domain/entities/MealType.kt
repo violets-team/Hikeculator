@@ -1,4 +1,4 @@
-package com.example.hikeculator.presentation.common
+package com.example.hikeculator.domain.entities
 
 enum class MealType {
     BREAKFAST, LUNCH, DINNER, SNACK,

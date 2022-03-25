@@ -4,10 +4,10 @@ import com.example.hikeculator.domain.entities.DayMeal
 import com.example.hikeculator.domain.entities.TripDay
 import java.math.RoundingMode
 import java.text.DecimalFormat
+import kotlin.math.roundToInt
 
 private const val ONE_HUNDRED_PERCENT = 100
 private const val ZERO = 0
-private const val ROUNDING_FORMAT = "0.0#"
 
 fun <T> MutableList<T>.update(newData: List<T>) {
     clear()
@@ -55,8 +55,9 @@ infix fun Double.percentageOf(totalValue: Double): Int {
 }
 
 fun Double.roundToTwoDecimalPlaces(): Double {
-    val formatter = DecimalFormat(ROUNDING_FORMAT)
-    formatter.roundingMode = RoundingMode.HALF_EVEN
-    val roundedValueInString =  formatter.format(this)
-    return formatter.parse(roundedValueInString).toDouble()
+   return (this * VALUE_ONE_HUNDRED).roundToInt().toDouble() / VALUE_ONE_HUNDRED
 }
+
+fun Double.divideByOneHundred(): Double = div(VALUE_ONE_HUNDRED)
+
+fun String.isEmptyWithoutSpaces(): Boolean = this.trim().isEmpty()

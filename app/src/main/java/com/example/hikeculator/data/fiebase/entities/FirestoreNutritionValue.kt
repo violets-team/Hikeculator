@@ -1,6 +1,6 @@
-package com.example.hikeculator.data.entities
+package com.example.hikeculator.data.fiebase.entities
 
-import com.example.hikeculator.data.common.DEFAULT_DOUBLE_VALUE
+import com.example.hikeculator.data.fiebase.DEFAULT_DOUBLE_VALUE
 
 class FirestoreNutritionValue(
     val calories: Double = DEFAULT_DOUBLE_VALUE,

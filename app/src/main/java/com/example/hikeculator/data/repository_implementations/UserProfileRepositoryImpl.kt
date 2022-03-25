@@ -1,7 +1,8 @@
 package com.example.hikeculator.data.repository_implementations
 
 import com.example.hikeculator.data.common.*
-import com.example.hikeculator.data.entities.FirestoreUser
+import com.example.hikeculator.data.fiebase.USER_COLLECTION_NAME
+import com.example.hikeculator.data.fiebase.entities.FirestoreUser
 import com.example.hikeculator.domain.entities.User
 import com.example.hikeculator.domain.repositories.UserProfileRepository
 import com.google.firebase.auth.FirebaseAuth

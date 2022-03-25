@@ -11,14 +11,14 @@ import com.example.hikeculator.databinding.ItemSearchedProductBinding
 import com.example.hikeculator.domain.common.roundToTwoDecimalPlaces
 import com.example.hikeculator.domain.entities.NutritionalValue
 import com.example.hikeculator.domain.entities.Product
-import com.example.hikeculator.presentation.common.*
 
 class ProductSearchAdapter :
     ListAdapter<Product, ProductSearchAdapter.FoodSearchViewHolder>(SearchItemDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodSearchViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return FoodSearchViewHolder(ItemSearchedProductBinding.inflate(inflater, parent, false))
+        val binding = ItemSearchedProductBinding.inflate(inflater, parent, false)
+        return FoodSearchViewHolder(binding = binding)
     }
 
     override fun onBindViewHolder(holder: FoodSearchViewHolder, position: Int) {
@@ -29,21 +29,21 @@ class ProductSearchAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(product: Product) {
-            setContent(product)
+            setViewContent(product)
         }
 
-        private fun setContent(product: Product) {
+        private fun setViewContent(product: Product) {
             val nutrition: NutritionalValue = product.nutritionalValue.mapToNutritionHundredGrams()
             binding.apply {
                 textViewFoodName.text = product.name
-                textViewCalories.setContent(nutrition.calories, R.string.format_kcal)
-                textViewFat.setContent(nutrition.fats, R.string.format_fat)
-                textViewCarbs.setContent(nutrition.carbs, R.string.format_carbs)
-                textViewProtein.setContent(nutrition.proteins, R.string.format_protein)
+                textViewCalories.setViewContent(nutrition.calories, R.string.format_kcal)
+                textViewFat.setViewContent(nutrition.fats, R.string.format_fat)
+                textViewCarbs.setViewContent(nutrition.carbs, R.string.format_carbs)
+                textViewProtein.setViewContent(nutrition.proteins, R.string.format_protein)
             }
         }
 
-        private fun TextView.setContent(value: Double, @StringRes idRes: Int) {
+        private fun TextView.setViewContent(value: Double, @StringRes idRes: Int) {
             text = context.getString(idRes, value.roundToTwoDecimalPlaces())
         }
     }

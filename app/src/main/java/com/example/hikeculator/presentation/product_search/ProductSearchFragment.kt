@@ -1,7 +1,6 @@
 package com.example.hikeculator.presentation.product_search
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.core.widget.addTextChangedListener
@@ -31,12 +30,14 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
 
         initializeSearchRecyclerView()
         initializeFlowCollectors()
-        initializeSearchEditTextListeners()
+        collectData()
     }
 
-    private fun searchProducts(searchExpression: String) {
-        viewBinding.progressBarSearch.visibility = View.VISIBLE
-        viewModel.search(searchExpression)
+    private fun initializeSearchRecyclerView() {
+        viewBinding.recyclerViewListOfProducts.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = searchedProductsAdapter
+        }
     }
 
     private fun initializeFlowCollectors() {
@@ -50,7 +51,7 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
         }
     }
 
-    private fun initializeSearchEditTextListeners() {
+    private fun collectData() {
         viewBinding.editTextSearch.addTextChangedListener { text ->
             searchProducts(text.toString())
         }
@@ -66,11 +67,9 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
         }
     }
 
-    private fun initializeSearchRecyclerView() {
-        viewBinding.recyclerViewListOfProducts.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = searchedProductsAdapter
-        }
+    private fun searchProducts(searchExpression: String) {
+        viewBinding.progressBarSearch.visibility = View.VISIBLE
+        viewModel.search(searchExpression)
     }
 
     private fun showSnackBar(resId: Int) =
