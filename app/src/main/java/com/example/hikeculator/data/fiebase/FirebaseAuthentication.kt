@@ -1,4 +1,4 @@
-package com.example.hikeculator.data.entities
+package com.example.hikeculator.data.fiebase
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

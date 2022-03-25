@@ -1,7 +1,7 @@
-package com.example.hikeculator.data.entities
+package com.example.hikeculator.data.fiebase.entities
 
-import com.example.hikeculator.data.common.DEFAULT_LONG_VALUE
-import com.example.hikeculator.data.common.DEFAULT_STRING_VALUE
+import com.example.hikeculator.data.fiebase.DEFAULT_LONG_VALUE
+import com.example.hikeculator.data.fiebase.DEFAULT_STRING_VALUE
 
 class FirestoreTripDay(
     val id: String = DEFAULT_STRING_VALUE,

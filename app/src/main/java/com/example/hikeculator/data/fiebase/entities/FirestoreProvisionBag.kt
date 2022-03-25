@@ -1,4 +1,4 @@
-package com.example.hikeculator.data.entities
+package com.example.hikeculator.data.fiebase.entities
 
 import com.example.hikeculator.domain.entities.Product
 

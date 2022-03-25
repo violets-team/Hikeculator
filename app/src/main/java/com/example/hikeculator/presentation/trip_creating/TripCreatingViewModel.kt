@@ -90,7 +90,7 @@ class TripCreatingViewModel(
         season: TripSeason,
     ) {
         val exceptionHandler = CoroutineExceptionHandler { _, _ ->
-            problemMessage.tryEmit(R.string.poblem_with_trip_creating)
+            problemMessage.tryEmit(R.string.problem_with_trip_creating)
         }
 
         viewModelScope.launch(exceptionHandler) {
