@@ -167,6 +167,6 @@
             app:argType="string" />
         <argument
             android:name="mealType"
-            app:argType="com.example.hikeculator.presentation.common.MealType"/>
+            app:argType="com.example.hikeculator.domain.entities.MealType"/>
     </fragment>
 </navigation>

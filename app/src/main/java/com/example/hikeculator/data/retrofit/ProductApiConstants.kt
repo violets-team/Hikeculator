@@ -1,4 +1,4 @@
-package com.example.hikeculator.data.common
+package com.example.hikeculator.data.retrofit
 
 const val BASE_URL = "https://api.edamam.com/"
 

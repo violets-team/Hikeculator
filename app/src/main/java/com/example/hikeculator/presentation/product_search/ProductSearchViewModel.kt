@@ -20,8 +20,7 @@ class ProductSearchViewModel(private val searchInteractor: ProductSearchInteract
     private val _searchError = MutableSharedFlow<Int>()
     val searchError = _searchError.asSharedFlow()
 
-    private val exceptionHandler = CoroutineExceptionHandler { _, exception ->
-        exception.printStackTrace()
+    private val exceptionHandler = CoroutineExceptionHandler { _, _ ->
         viewModelScope.launch { _searchError.emit(R.string.text_error_search) }
     }
 

@@ -1,4 +1,4 @@
-package com.example.hikeculator.data.entities.api_edaman
+package com.example.hikeculator.data.retrofit.entities
 
 import com.google.gson.annotations.SerializedName
 

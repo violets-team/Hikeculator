@@ -55,5 +55,4 @@ object NutritionalCalculator {
     fun getCarbNorm(calories: Double): Double {
         return calories * CARBS_NORM_PERCENTAGE
     }
-
 }

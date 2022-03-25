@@ -1,9 +1,8 @@
-package com.example.hikeculator.data.entities
+package com.example.hikeculator.data.fiebase.entities
 
-import com.example.hikeculator.data.common.DEFAULT_DOUBLE_VALUE
-import com.example.hikeculator.data.common.DEFAULT_INT_VALUE
-import com.example.hikeculator.data.common.DEFAULT_LONG_VALUE
-import com.example.hikeculator.data.common.DEFAULT_STRING_VALUE
+import com.example.hikeculator.data.fiebase.DEFAULT_DOUBLE_VALUE
+import com.example.hikeculator.data.fiebase.DEFAULT_LONG_VALUE
+import com.example.hikeculator.data.fiebase.DEFAULT_STRING_VALUE
 import com.example.hikeculator.domain.enums.TripSeason
 import com.example.hikeculator.domain.enums.TripDifficultyCategory
 import com.example.hikeculator.domain.enums.TripType

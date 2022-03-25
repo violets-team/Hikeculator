@@ -1,6 +1,6 @@
 package com.example.hikeculator.di
 
-import com.example.hikeculator.data.entities.FirebaseAuthentication
+import com.example.hikeculator.data.fiebase.FirebaseAuthentication
 import com.example.hikeculator.data.repository_implementations.*
 import com.example.hikeculator.domain.repositories.*
 import com.google.firebase.auth.FirebaseAuth

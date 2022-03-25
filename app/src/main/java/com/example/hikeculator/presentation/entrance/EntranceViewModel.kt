@@ -1,7 +1,7 @@
 package com.example.hikeculator.presentation.entrance
 
 import androidx.lifecycle.ViewModel
-import com.example.hikeculator.data.entities.FirebaseAuthentication
+import com.example.hikeculator.data.fiebase.FirebaseAuthentication
 import com.example.hikeculator.domain.interactors.UserProfileInteractor
 import com.example.hikeculator.domain.repositories.UserUidRepositiory
 

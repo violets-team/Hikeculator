@@ -8,8 +8,8 @@ import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.hikeculator.R
 import com.example.hikeculator.databinding.FragmentTripDayDetailsBinding
-import com.example.hikeculator.presentation.common.MealType
-import com.example.hikeculator.presentation.common.MealType.*
+import com.example.hikeculator.domain.entities.MealType
+import com.example.hikeculator.domain.entities.MealType.*
 
 class TripDayDetailFragment: Fragment(R.layout.fragment_trip_day_details) {
 
@@ -21,10 +21,10 @@ class TripDayDetailFragment: Fragment(R.layout.fragment_trip_day_details) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setMealListeners()
+        setMealClickListeners()
     }
 
-    private fun setMealListeners() {
+    private fun setMealClickListeners() {
         binding.apply {
             buttonAddProductToBreakfast.setOnClickListener {
                 navigateToSearchFragment(BREAKFAST)
