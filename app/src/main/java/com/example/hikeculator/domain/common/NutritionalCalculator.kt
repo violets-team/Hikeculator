@@ -14,6 +14,9 @@ object NutritionalCalculator {
     private const val MAN_GENDER_FACTOR = -161
     private const val WOMAN_GENDER_FACTOR = 5
     private const val PHYSICAL_LOAD_FACTOR = 1.55
+    private const val PROTEINS_NORM_PERCENTAGE = 0.3
+    private const val FAT_NORM_PERCENTAGE = 0.3
+    private const val CARBS_NORM_PERCENTAGE = 0.4
 
     fun calculateCalorieNorm(weight: Double, height: Int, age: Int, gender: Gender): Long {
         val genderFactor = if (gender == Gender.MAN) MAN_GENDER_FACTOR else WOMAN_GENDER_FACTOR
@@ -32,26 +35,24 @@ object NutritionalCalculator {
         season: TripSeason,
         dayQuantity: Int,
         vararg members: User,
-    ): Long {
+    ): Double {
         val memberCalorieNormSum = members.sumOf { user -> user.calorieNorm }
-        return (memberCalorieNormSum *
+        return memberCalorieNormSum *
                 difficultyCategory.factor *
                 type.factor *
                 season.factor *
                 dayQuantity
-                ).toLong()
     }
 
-    fun getProteinsNorm(calories: Long): Long {
-        return (calories * 0.3).toLong()
+    fun getProteinsNorm(calories: Double): Double {
+        return calories * PROTEINS_NORM_PERCENTAGE
     }
 
-    fun getFatNorm(calories: Long): Long {
-        return (calories * 0.3).toLong()
+    fun getFatNorm(calories: Double): Double {
+        return calories * FAT_NORM_PERCENTAGE
     }
 
-    fun getCarbNorm(calories: Long): Long {
-        return (calories * 0.4).toLong()
+    fun getCarbNorm(calories: Double): Double {
+        return calories * CARBS_NORM_PERCENTAGE
     }
-
 }

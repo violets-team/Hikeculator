@@ -1,5 +1,9 @@
 package com.example.hikeculator.data.common
 
+import com.example.hikeculator.data.fiebase.GENERAL_TRIP_COLLECTION_NAME
+import com.example.hikeculator.data.fiebase.GENERAL_TRIP_SUB_COLLECTION_NAME
+import com.example.hikeculator.data.fiebase.TRIP_DAY_COLLECTION_NAME
+import com.example.hikeculator.data.fiebase.TRIP_PROVISION_BAG_COLLECTION_NAME
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore

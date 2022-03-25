@@ -4,7 +4,7 @@ import com.example.hikeculator.data.common.getTripDocument
 import com.example.hikeculator.data.common.getTripSubCollection
 import com.example.hikeculator.data.common.mapToFirestoreTrip
 import com.example.hikeculator.data.common.mapToTrip
-import com.example.hikeculator.data.entities.FirestoreTrip
+import com.example.hikeculator.data.fiebase.entities.FirestoreTrip
 import com.example.hikeculator.domain.entities.Trip
 import com.example.hikeculator.domain.repositories.TripRepository
 import com.example.hikeculator.domain.repositories.UserUidRepositiory

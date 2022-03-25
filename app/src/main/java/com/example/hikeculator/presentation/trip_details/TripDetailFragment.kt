@@ -3,7 +3,6 @@ package com.example.hikeculator.presentation.trip_details
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -18,20 +17,18 @@ import com.example.hikeculator.domain.common.NutritionalCalculator.getFatNorm
 import com.example.hikeculator.domain.common.NutritionalCalculator.getProteinsNorm
 import com.example.hikeculator.domain.entities.Trip
 import com.example.hikeculator.domain.entities.TripDay
-import com.example.hikeculator.domain.interactors.TripDayInteractor
-import com.example.hikeculator.domain.interactors.TripInteractor
-import com.example.hikeculator.domain.repositories.TripDayRepository
 import com.example.hikeculator.presentation.common.collectWhenStarted
 import com.example.hikeculator.presentation.common.showToast
 import com.google.android.material.progressindicator.CircularProgressIndicator
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
 
     private val binding by viewBinding(FragmentTripDetailsBinding::bind)
+
     private val args by navArgs<TripDetailFragmentArgs>()
+    private val navController by lazy { findNavController() }
 
     private val viewModel by viewModel<TripDetailViewModel> { parametersOf(args.tripId) }
 
@@ -69,7 +66,11 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
     }
 
     private fun navigateToTriDayDetails(dayId: String) {
-        findNavController().navigate(R.id.action_tripDetailFragment_to_tripDayDetailFragment)
+        TripDetailFragmentDirections.actionTripDetailFragmentToTripDayDetailFragment(
+            tripId = args.tripId,
+            dayId = dayId
+        ).also { navController.navigate(directions = it)  }
+
     }
 
     private fun FragmentTripDetailsBinding.setViewContent(trip: Trip, tripDays: List<TripDay>) {
@@ -105,8 +106,8 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
     }
 
     private fun FragmentTripDetailsBinding.displayCalorieInfo(
-        calorieNorm: Long,
-        provisionCalories: Long,
+        calorieNorm: Double,
+        provisionCalories: Double,
     ) {
         displayNutritionInfo(
             nutritionNorm = calorieNorm,
@@ -115,12 +116,12 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
             nutritionInfoProgressIndicator = progressIndicatorCalorieInfo
         )
 
-        textViewTripCalories.text = calorieNorm.toString()
+        textViewTripCalories.text = calorieNorm.toLong().toString()
     }
 
     private fun FragmentTripDetailsBinding.displayProteinInfo(
-        proteinNorm: Long,
-        provisionProteins: Long,
+        proteinNorm: Double,
+        provisionProteins: Double,
     ) {
         displayNutritionInfo(
             nutritionNorm = proteinNorm,
@@ -130,7 +131,7 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
         )
     }
 
-    private fun FragmentTripDetailsBinding.displayFatInfo(fatNorm: Long, provisionFats: Long) {
+    private fun FragmentTripDetailsBinding.displayFatInfo(fatNorm: Double, provisionFats: Double) {
         displayNutritionInfo(
             nutritionNorm = fatNorm,
             provisionNutritionValue = provisionFats,
@@ -139,7 +140,7 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
         )
     }
 
-    private fun FragmentTripDetailsBinding.displayCarbInfo(carbNorm: Long, provisionCarbs: Long) {
+    private fun FragmentTripDetailsBinding.displayCarbInfo(carbNorm: Double, provisionCarbs: Double) {
         displayNutritionInfo(
             nutritionNorm = carbNorm,
             provisionNutritionValue = provisionCarbs,
@@ -149,14 +150,14 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
     }
 
     private fun displayNutritionInfo(
-        nutritionNorm: Long,
-        provisionNutritionValue: Long,
+        nutritionNorm: Double,
+        provisionNutritionValue: Double,
         nutritionInfoTextView: TextView,
         nutritionInfoProgressIndicator: CircularProgressIndicator,
     ) {
         val nutritionPercent = provisionNutritionValue percentageOf nutritionNorm
 
-        nutritionInfoTextView.text = getString(R.string.pfc_persents, nutritionPercent)
+        nutritionInfoTextView.text = getString(R.string.pfc_percents, nutritionPercent)
         nutritionInfoProgressIndicator.progress = nutritionPercent
     }
 

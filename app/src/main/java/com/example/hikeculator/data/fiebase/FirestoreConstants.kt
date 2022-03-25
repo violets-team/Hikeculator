@@ -1,4 +1,4 @@
-package com.example.hikeculator.data.common
+package com.example.hikeculator.data.fiebase
 
 const val DEFAULT_STRING_VALUE = "empty"
 const val DEFAULT_DOUBLE_VALUE = -1.0

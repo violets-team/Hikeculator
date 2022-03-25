@@ -32,5 +32,5 @@
     <color name="primary_color">#9FC376</color>
     <color name="add_trip_member_icon_color">#D04C7D83</color>
 
-
+    <color name="light_green">#0FC376</color>
 </resources>

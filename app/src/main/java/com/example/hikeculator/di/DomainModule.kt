@@ -1,6 +1,8 @@
 package com.example.hikeculator.di
 
 import com.example.hikeculator.domain.interactors.*
+import com.example.hikeculator.domain.repositories.TripDayRepository
+import com.example.hikeculator.domain.repositories.TripRepository
 import org.koin.dsl.module
 
 val domainModule = module {
@@ -14,4 +16,6 @@ val domainModule = module {
     factory { TripDayInteractor(tripDayRepository = get()) }
 
     factory { ProvisionBagInteractor(provisionBagRepository = get()) }
+
+    factory { ProductSearchInteractor(productSearchRepository = get()) }
 }
