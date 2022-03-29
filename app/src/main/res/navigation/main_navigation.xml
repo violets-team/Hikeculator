@@ -120,7 +120,10 @@
         android:id="@+id/provisionBagFragment"
         android:name="com.example.hikeculator.presentation.provision_bag.ProvisionBagFragment"
         android:label="fragment_provision_bag"
-        tools:layout="@layout/fragment_provision_bag" />
+        tools:layout="@layout/fragment_provision_bag" >
+        <argument android:name="tripId"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/tripDayDetailFragment"
         android:name="com.example.hikeculator.presentation.trip_day_details.TripDayDetailFragment"

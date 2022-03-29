@@ -4,6 +4,7 @@ import com.example.hikeculator.domain.interactors.TripDayInteractor
 import com.example.hikeculator.domain.interactors.TripInteractor
 import com.example.hikeculator.presentation.entrance.EntranceViewModel
 import com.example.hikeculator.presentation.general_trip_list.GeneralTripViewModel
+import com.example.hikeculator.presentation.provision_bag.ProvisionBagViewModel
 import com.example.hikeculator.presentation.trip_creating.ITripCreatingViewModel
 import com.example.hikeculator.presentation.trip_creating.TripCreatingViewModel
 import com.example.hikeculator.presentation.trip_details.TripDetailViewModel
@@ -46,5 +47,9 @@ val presentationModule = module {
             tripDayInteractor = get(),
             tripId = tripId,
         )
+    }
+
+    viewModel { (tripId: String) ->
+        ProvisionBagViewModel(tripId = tripId, provisionBagInteractor = get())
     }
 }

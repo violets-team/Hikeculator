@@ -67,7 +67,10 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
     }
 
     private fun setListeners() {
-        binding.tripDetailButtons.setOnProvisionBagButtonClickListener { navigateToProvisionBag() }
+        binding.tripDetailButtons.setOnProvisionBagButtonClickListener {
+            navigateToProvisionBag(tripId = args.tripId)
+        }
+
         binding.tripDetailButtons.setOnMemberButtonClickListener { navigateToMembers() }
     }
 
@@ -75,8 +78,10 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
         navController.navigate(R.id.action_tripDetailFragment_to_tripDayDetailFragment)
     }
 
-    private fun navigateToProvisionBag() {
-        navController.navigate(R.id.action_tripDetailFragment_to_provisionBagFragment)
+    private fun navigateToProvisionBag(tripId: String) {
+        TripDetailFragmentDirections.actionTripDetailFragmentToProvisionBagFragment(
+            tripId = tripId
+        ).also { navController.navigate(it) }
     }
 
     private fun navigateToMembers() {
