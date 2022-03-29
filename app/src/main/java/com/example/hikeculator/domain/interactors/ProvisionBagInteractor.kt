@@ -4,14 +4,17 @@ import com.example.hikeculator.domain.entities.Product
 import com.example.hikeculator.domain.entities.ProvisionBag
 import com.example.hikeculator.domain.repositories.ProvisionBagRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
 class ProvisionBagInteractor(private val provisionBagRepository: ProvisionBagRepository) {
 
-    fun insertProductToProvisionBag(product: Product) =
-        provisionBagRepository.insertProductToProvisionBag(product)
+    suspend fun insertProduct(tripId: String, product: Product) =
+        provisionBagRepository.insertProductToProvisionBag(tripId = tripId, product = product)
 
-    fun fetchProvisionBag(): ProvisionBag = provisionBagRepository.fetchProvisionBag()
+    fun fetchProvisionBag(tripId: String): Flow<ProvisionBag> {
+        return provisionBagRepository.fetchProvisionBag(tripId = tripId)
+    }
 
     suspend fun createProvisionBag(tripId: String, provisionBag: ProvisionBag) {
         withContext(Dispatchers.IO) {
