@@ -1,7 +1,7 @@
 package com.example.hikeculator.data.repository_implementations
 
 import com.example.hikeculator.data.common.*
-import com.example.hikeculator.data.entities.FirestoreTripDay
+import com.example.hikeculator.data.fiebase.entities.FirestoreTripDay
 import com.example.hikeculator.domain.entities.TripDay
 import com.example.hikeculator.domain.repositories.TripDayRepository
 import com.example.hikeculator.domain.repositories.UserUidRepositiory

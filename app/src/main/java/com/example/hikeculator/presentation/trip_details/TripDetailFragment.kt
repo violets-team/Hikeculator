@@ -26,8 +26,8 @@ import org.koin.core.parameter.parametersOf
 class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
 
     private val binding by viewBinding(FragmentTripDetailsBinding::bind)
-    private val args by navArgs<TripDetailFragmentArgs>()
 
+    private val args by navArgs<TripDetailFragmentArgs>()
     private val navController by lazy { findNavController() }
 
     private val viewModel by viewModel<TripDetailViewModel> { parametersOf(args.tripId) }
@@ -75,7 +75,10 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
     }
 
     private fun navigateToTriDayDetails(dayId: String) {
-        navController.navigate(R.id.action_tripDetailFragment_to_tripDayDetailFragment)
+        TripDetailFragmentDirections.actionTripDetailFragmentToTripDayDetailFragment(
+            tripId = args.tripId,
+            dayId = dayId
+        ).also { navController.navigate(directions = it)  }
     }
 
     private fun navigateToProvisionBag(tripId: String) {
@@ -85,7 +88,8 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
     }
 
     private fun navigateToMembers() {
-        navController.navigate(R.id.action_tripDetailFragment_to_memberManagementFragment)
+        TripDetailFragmentDirections.actionTripDetailFragmentToMemberManagementFragment(
+        ).also { navController.navigate(directions = it) }
     }
 
     private fun FragmentTripDetailsBinding.setViewContent(trip: Trip, tripDays: List<TripDay>) {
@@ -121,8 +125,8 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
     }
 
     private fun FragmentTripDetailsBinding.displayCalorieInfo(
-        calorieNorm: Long,
-        provisionCalories: Long,
+        calorieNorm: Double,
+        provisionCalories: Double,
     ) {
         displayNutritionInfo(
             nutritionNorm = calorieNorm,
@@ -131,12 +135,12 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
             nutritionInfoProgressIndicator = progressIndicatorCalorieInfo
         )
 
-        textViewTripCalories.text = calorieNorm.toString()
+        textViewTripCalories.text = calorieNorm.toLong().toString()
     }
 
     private fun FragmentTripDetailsBinding.displayProteinInfo(
-        proteinNorm: Long,
-        provisionProteins: Long,
+        proteinNorm: Double,
+        provisionProteins: Double,
     ) {
         displayNutritionInfo(
             nutritionNorm = proteinNorm,
@@ -146,7 +150,7 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
         )
     }
 
-    private fun FragmentTripDetailsBinding.displayFatInfo(fatNorm: Long, provisionFats: Long) {
+    private fun FragmentTripDetailsBinding.displayFatInfo(fatNorm: Double, provisionFats: Double) {
         displayNutritionInfo(
             nutritionNorm = fatNorm,
             provisionNutritionValue = provisionFats,
@@ -155,7 +159,10 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
         )
     }
 
-    private fun FragmentTripDetailsBinding.displayCarbInfo(carbNorm: Long, provisionCarbs: Long) {
+    private fun FragmentTripDetailsBinding.displayCarbInfo(
+        carbNorm: Double,
+        provisionCarbs: Double,
+    ) {
         displayNutritionInfo(
             nutritionNorm = carbNorm,
             provisionNutritionValue = provisionCarbs,
@@ -165,14 +172,14 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
     }
 
     private fun displayNutritionInfo(
-        nutritionNorm: Long,
-        provisionNutritionValue: Long,
+        nutritionNorm: Double,
+        provisionNutritionValue: Double,
         nutritionInfoTextView: TextView,
         nutritionInfoProgressIndicator: CircularProgressIndicator,
     ) {
         val nutritionPercent = provisionNutritionValue percentageOf nutritionNorm
 
-        nutritionInfoTextView.text = getString(R.string.pfc_persents, nutritionPercent)
+        nutritionInfoTextView.text = getString(R.string.pfc_percents, nutritionPercent)
         nutritionInfoProgressIndicator.progress = nutritionPercent
     }
 

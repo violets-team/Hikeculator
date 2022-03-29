@@ -36,5 +36,5 @@
     <color name="member_button_background">#B5A27D</color>
     <color name="trip_detail_button_tint">#fff</color>
 
-
+    <color name="light_green">#0FC376</color>
 </resources>

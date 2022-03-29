@@ -1,6 +1,11 @@
 package com.example.hikeculator.data.common
 
-import com.example.hikeculator.data.entities.*
+import com.example.hikeculator.data.fiebase.entities.*
+import com.example.hikeculator.data.retrofit.WEIGHT_UNIT
+import com.example.hikeculator.data.retrofit.entities.ApiNutritionalValue
+import com.example.hikeculator.data.retrofit.entities.ApiProductHolder
+import com.example.hikeculator.data.retrofit.entities.FoodSearchResponse
+import com.example.hikeculator.domain.common.divideByOneHundred
 import com.example.hikeculator.domain.entities.*
 
 fun FirestoreTrip.mapToTrip() = Trip(
@@ -110,4 +115,22 @@ fun FirestoreNutritionValue.mapToNutritionalValue(): NutritionalValue = Nutritio
     proteins = proteins,
     fats = fats,
     carbs = carbohydrates
+)
+
+fun FoodSearchResponse.mapToProductList(): List<Product> =
+    productHolders.map { productHolder -> productHolder.mapToProduct() }
+
+
+fun ApiProductHolder.mapToProduct() = Product(
+    id = product.id,
+    name = product.name,
+    weight = WEIGHT_UNIT,
+    nutritionalValue = product.nutritionalValue.mapToNutritionalValue(),
+)
+
+fun ApiNutritionalValue.mapToNutritionalValue() = NutritionalValue(
+    calories = calories.divideByOneHundred(),
+    proteins = proteins.divideByOneHundred(),
+    fats = fats.divideByOneHundred(),
+    carbs = carbohydrates.divideByOneHundred()
 )

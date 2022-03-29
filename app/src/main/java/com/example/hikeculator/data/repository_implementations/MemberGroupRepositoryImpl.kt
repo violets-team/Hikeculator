@@ -1,15 +1,12 @@
 package com.example.hikeculator.data.repository_implementations
 
-import android.util.Log
-import com.example.hikeculator.data.common.USER_COLLECTION_NAME
+import com.example.hikeculator.data.fiebase.USER_COLLECTION_NAME
 import com.example.hikeculator.data.common.mapToUser
-import com.example.hikeculator.data.entities.FirestoreUser
+import com.example.hikeculator.data.fiebase.entities.FirestoreUser
 import com.example.hikeculator.domain.entities.User
 import com.example.hikeculator.domain.repositories.MemberGroupRepository
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
