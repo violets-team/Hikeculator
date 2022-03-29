@@ -6,6 +6,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.lifecycle.LifecycleCoroutineScope
+import com.example.hikeculator.domain.entities.NutritionalValue
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 

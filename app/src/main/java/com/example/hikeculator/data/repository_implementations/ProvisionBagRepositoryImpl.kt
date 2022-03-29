@@ -1,7 +1,7 @@
 package com.example.hikeculator.data.repository_implementations
 
 import com.example.hikeculator.data.common.*
-import com.example.hikeculator.data.entities.FirestoreProvisionBag
+import com.example.hikeculator.data.fiebase.entities.FirestoreProvisionBag
 import com.example.hikeculator.domain.entities.Product
 import com.example.hikeculator.domain.entities.ProvisionBag
 import com.example.hikeculator.domain.repositories.ProvisionBagRepository

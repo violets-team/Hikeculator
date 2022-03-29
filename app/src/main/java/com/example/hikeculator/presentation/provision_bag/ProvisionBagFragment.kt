@@ -31,8 +31,6 @@ class ProvisionBagFragment: Fragment(R.layout.fragment_provision_bag) {
         viewModel.products.collectWhenStarted(lifecycleScope) { products ->
             provisionBagAdapter.updateData(data = products.toList())
         }
-
-        binding.button.setOnClickListener { viewModel.insertProduct() }
     }
 
     private fun initializeRecyclerView() {
