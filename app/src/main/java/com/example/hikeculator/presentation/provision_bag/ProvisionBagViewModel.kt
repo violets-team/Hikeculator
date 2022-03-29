@@ -30,19 +30,4 @@ class ProvisionBagViewModel(
     private fun getProvisionBag(): Flow<ProvisionBag> {
         return provisionBagInteractor.fetchProvisionBag(tripId = tripId)
     }
-
-    fun insertProduct() {
-        viewModelScope.launch {
-
-            Log.i("app_log", "insert: **********************")
-            provisionBagInteractor.insertProduct(
-                tripId = tripId,
-                product = Product(
-                    name = "Product ${(0..1111111).random()}",
-                    weight = 255,
-                    nutritionalValue = NutritionalValue(1000.0, 10.0, 10.0, 10.0)
-                )
-            )
-        }
-    }
 }
