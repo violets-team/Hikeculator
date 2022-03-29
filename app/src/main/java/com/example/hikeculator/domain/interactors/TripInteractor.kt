@@ -12,11 +12,13 @@ class TripInteractor(private val tripRepository: TripRepository) {
         withContext(Dispatchers.IO) { tripRepository.insertTrip(trip = trip) }
     }
 
-    suspend fun removeTrip(tripId: String) {
-        withContext(Dispatchers.IO) { tripRepository.removeTrip(tripId = tripId) }
+    suspend fun removeTrip(trip: Trip) {
+        withContext(Dispatchers.IO) { tripRepository.removeTrip(trip = trip) }
     }
 
-    fun fetchTrips(): Flow<Set<Trip>> = tripRepository.fetchTrips()
+    suspend fun fetchTrips(): Set<Trip> = withContext(Dispatchers.IO) {
+        tripRepository.fetchTrips()
+    }
 
     fun fetchTrip(tripId: String): Flow<Trip?> {
         return tripRepository.fetchTrip(tripId = tripId)

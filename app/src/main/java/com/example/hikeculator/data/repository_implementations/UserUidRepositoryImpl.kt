@@ -1,8 +1,8 @@
 package com.example.hikeculator.data.repository_implementations
 
-import com.example.hikeculator.domain.repositories.UserUidRepositiory
+import com.example.hikeculator.domain.repositories.UserUidRepository
 
-class UserUidRepositoryImpl : UserUidRepositiory {
+class UserUidRepositoryImpl : UserUidRepository {
 
     companion object {
 
