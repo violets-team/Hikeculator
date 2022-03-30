@@ -1,5 +1,6 @@
 package com.example.hikeculator.data.repository_implementations
 
+import android.util.Log
 import com.example.hikeculator.data.common.getTripDocument
 import com.example.hikeculator.data.common.mapToFirestoreTrip
 import com.example.hikeculator.data.common.mapToTrip
@@ -17,20 +18,19 @@ import kotlinx.coroutines.tasks.await
 
 class TripRepositoryImpl(
     private val firestore: FirebaseFirestore,
-    private val userUidRepository: UserUidRepository,
     private val userProfileRepository: UserProfileRepository,
 ) : TripRepository {
 
     override suspend fun insertTrip(trip: Trip) {
-        trip.memberUids.onEach { memberId ->
-            userProfileRepository.addTripIdToUserProfile(userUid = memberId, tripId = trip.id)
-        }
-
         val firestoreTrip = trip.mapToFirestoreTrip()
 
         firestore.getTripDocument(tripId = firestoreTrip.id)
             .set(firestoreTrip)
             .await()
+
+        trip.memberUids.onEach { memberId ->
+            userProfileRepository.addTripIdToUserProfile(userUid = memberId, tripId = trip.id)
+        }
     }
 
     override suspend fun removeTrip(trip: Trip) {
@@ -44,17 +44,19 @@ class TripRepositoryImpl(
     }
 
     override suspend fun fetchTrips(vararg tripId: String): Set<Trip> {
-        val user =
-            userProfileRepository.fetchUser(userUid = userUidRepository.uid) ?: return emptySet()
-
         return mutableListOf<Trip>().apply {
-            user.tripIds.onEach { id ->
+            tripId.onEach { id ->
+
+                Log.i("app_log", "observeUserProfile: ******** repository $tripId")
                 firestore.getTripDocument(tripId = id)
                     .get()
                     .await()
                     ?.toObject<FirestoreTrip>()
                     ?.mapToTrip()
-                    ?.also { trip -> add(trip) }
+                    ?.also { trip ->
+                        Log.i("app_log", "observeUserProfile: ******** adding $tripId")
+                        add(trip)
+                    }
             }
         }.toSet()
     }

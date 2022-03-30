@@ -105,4 +105,5 @@
     <string name="format_fat">Fat %.2f</string>
     <string name="format_carbs">Carbs %.2f</string>
     <string name="format_protein">Protein %.2f</string>
+    <string name="porblem_with_trip_collection_getting">There is a problem with tirip collection getting</string>
 </resources>
