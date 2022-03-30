@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.hikeculator.R
+import com.example.hikeculator.domain.entities.MealType
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
@@ -94,6 +95,11 @@ class EntranceFragment : Fragment(R.layout.fragment_entrance) {
         EntranceFragmentDirections.actionEntranceFragmentToGeneralTripFragment(
             userUid = userUid
         ).also { navController.navigate(directions = it) }
+//        EntranceFragmentDirections.actionEntranceFragmentToProductSearchFragment(
+//            "",
+//            "",
+//            MealType.BREAKFAST
+//        ).also { navController.navigate(directions = it) }
     }
 
     private fun navigateToUserProfileCreatingFragment(uid: String, email: String) {

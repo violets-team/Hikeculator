@@ -12,7 +12,7 @@ import com.example.hikeculator.domain.common.roundToTwoDecimalPlaces
 import com.example.hikeculator.domain.entities.NutritionalValue
 import com.example.hikeculator.domain.entities.Product
 
-class ProductSearchAdapter :
+class ProductSearchAdapter(private val onItemClicked: (Product) -> Unit) :
     ListAdapter<Product, ProductSearchAdapter.FoodSearchViewHolder>(SearchItemDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodSearchViewHolder {
@@ -30,6 +30,7 @@ class ProductSearchAdapter :
 
         fun bind(product: Product) {
             setViewContent(product)
+            setItemClickListener()
         }
 
         private fun setViewContent(product: Product) {
@@ -41,6 +42,10 @@ class ProductSearchAdapter :
                 textViewCarbs.setViewContent(nutrition.carbs, R.string.format_carbs)
                 textViewProtein.setViewContent(nutrition.proteins, R.string.format_protein)
             }
+        }
+
+        private fun setItemClickListener() {
+            binding.root.setOnClickListener { onItemClicked(getItem(absoluteAdapterPosition)) }
         }
 
         private fun TextView.setViewContent(value: Double, @StringRes idRes: Int) {

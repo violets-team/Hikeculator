@@ -1,8 +1,10 @@
 package com.example.hikeculator.presentation.product_search
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -10,18 +12,23 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.hikeculator.R
+import com.example.hikeculator.data.repository_implementations.SelectedProductRepositoryImpl
 import com.example.hikeculator.databinding.FragmentProductSearchBinding
+import com.example.hikeculator.domain.entities.Product
 import com.example.hikeculator.presentation.common.collectWhenStarted
+import com.example.hikeculator.presentation.product_dialogs.add_product.AddOrEditProductDialog
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.launch
+import okhttp3.internal.wait
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
 
     private val viewModel by viewModel<ProductSearchViewModel>()
 
-    private val viewBinding by viewBinding(FragmentProductSearchBinding::bind)
+    private val binding by viewBinding(FragmentProductSearchBinding::bind)
 
-    private val searchedProductsAdapter = ProductSearchAdapter()
+    private val searchedProductsAdapter = ProductSearchAdapter(::showAddProductDialog)
 
     private val args by navArgs<ProductSearchFragmentArgs>()
 
@@ -33,8 +40,9 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
         collectData()
     }
 
+
     private fun initializeSearchRecyclerView() {
-        viewBinding.recyclerViewListOfProducts.apply {
+        binding.recyclerViewListOfProducts.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = searchedProductsAdapter
         }
@@ -43,8 +51,8 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
     private fun initializeFlowCollectors() {
         viewModel.productSearchResult.collectWhenStarted(lifecycleScope = lifecycleScope) { products ->
             searchedProductsAdapter.submitList(products)
-            viewBinding.recyclerViewListOfProducts.smoothScrollToPosition(0)
-            viewBinding.progressBarSearch.visibility = View.GONE
+            binding.recyclerViewListOfProducts.smoothScrollToPosition(0)
+            binding.progressBarSearch.visibility = View.GONE
         }
         viewModel.searchError.collectWhenStarted(lifecycleScope = lifecycleScope) { stringResId ->
             showSnackBar(stringResId)
@@ -52,11 +60,11 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
     }
 
     private fun collectData() {
-        viewBinding.editTextSearch.addTextChangedListener { text ->
+        binding.editTextSearch.addTextChangedListener { text ->
             searchProducts(text.toString())
         }
 
-        viewBinding.editTextSearch.setOnEditorActionListener { textView, actionId, _ ->
+        binding.editTextSearch.setOnEditorActionListener { textView, actionId, _ ->
             when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> {
                     searchProducts(textView.text.toString())
@@ -68,10 +76,29 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
     }
 
     private fun searchProducts(searchExpression: String) {
-        viewBinding.progressBarSearch.visibility = View.VISIBLE
+        binding.progressBarSearch.visibility = View.VISIBLE
         viewModel.search(searchExpression)
     }
 
+    private fun showAddProductDialog(product: Product) {
+        activity?.application?.let {
+            val repository = SelectedProductRepositoryImpl(appContext = it)
+            lifecycleScope.launch {
+                repository.saveProduct(product)
+                AddOrEditProductDialog().show(parentFragmentManager, null)
+            }
+        }
+        hideKeyBoardIfOpened()
+    }
+
+    private fun hideKeyBoardIfOpened() {
+        activity?.currentFocus.let { view ->
+            val imm =  activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            imm?.hideSoftInputFromWindow(view?.windowToken, 0)
+        }
+    }
+
     private fun showSnackBar(resId: Int) =
-        Snackbar.make(viewBinding.root, getString(resId), Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(binding.root, getString(resId), Snackbar.LENGTH_SHORT).show()
+
 }
