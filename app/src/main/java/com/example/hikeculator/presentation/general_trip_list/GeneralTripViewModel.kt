@@ -1,6 +1,5 @@
 package com.example.hikeculator.presentation.general_trip_list
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hikeculator.R
@@ -19,7 +18,7 @@ class GeneralTripViewModel(
     private val tripInteractor: TripInteractor,
     private val tripDayInteractor: TripDayInteractor,
     private val provisionBagInteractor: ProvisionBagInteractor,
-    private val userProfileInteractor: UserProfileInteractor
+    userProfileInteractor: UserProfileInteractor
 ) : ViewModel() {
 
     private val _trips = MutableSharedFlow<Set<Trip>>(
@@ -56,10 +55,7 @@ class GeneralTripViewModel(
     private fun observeUserProfile() {
         viewModelScope.launch {
             user.onEach { user: User? ->
-                Log.i("app_log", "observeUserProfile: ******** on Each")
-                user?.let {
-                    Log.i("app_log", "observeUserProfile: ******** on let User ${user.tripIds}")
-                    fetchTrips(tripId = user.tripIds.toTypedArray()) }
+                user?.let { fetchTrips(tripId = user.tripIds.toTypedArray()) }
             }.collect()
         }
     }
@@ -70,10 +66,8 @@ class GeneralTripViewModel(
         }
 
         viewModelScope.launch(context = exceptionHandler) {
-            Log.i("app_log", "observeUserProfile: ******** passed trip ID ${tripId.size}  size *********")
             val trips = tripInteractor.fetchTrips(tripId = tripId)
-            Log.i("app_log", "observeUserProfile: ******** fetched trips ${trips.size}")
-            _trips.emit(trips)
+            _trips.emit(value = trips)
         }
     }
 }

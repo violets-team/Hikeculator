@@ -1,6 +1,5 @@
 package com.example.hikeculator.data.repository_implementations
 
-import android.util.Log
 import com.example.hikeculator.data.common.getTripDocument
 import com.example.hikeculator.data.common.mapToFirestoreTrip
 import com.example.hikeculator.data.common.mapToTrip
@@ -8,7 +7,6 @@ import com.example.hikeculator.data.fiebase.entities.FirestoreTrip
 import com.example.hikeculator.domain.entities.Trip
 import com.example.hikeculator.domain.repositories.TripRepository
 import com.example.hikeculator.domain.repositories.UserProfileRepository
-import com.example.hikeculator.domain.repositories.UserUidRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.channels.awaitClose
@@ -47,16 +45,12 @@ class TripRepositoryImpl(
         return mutableListOf<Trip>().apply {
             tripId.onEach { id ->
 
-                Log.i("app_log", "observeUserProfile: ******** repository $tripId")
                 firestore.getTripDocument(tripId = id)
                     .get()
                     .await()
                     ?.toObject<FirestoreTrip>()
                     ?.mapToTrip()
-                    ?.also { trip ->
-                        Log.i("app_log", "observeUserProfile: ******** adding $tripId")
-                        add(trip)
-                    }
+                    ?.also { trip -> add(trip) }
             }
         }.toSet()
     }
