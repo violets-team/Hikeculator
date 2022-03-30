@@ -15,14 +15,14 @@ import com.example.hikeculator.R
 import com.example.hikeculator.databinding.DialogFragmentMemberSearchingBinding
 import com.example.hikeculator.domain.entities.User
 import com.example.hikeculator.presentation.common.collectWhenStarted
-import com.example.hikeculator.presentation.trip_creating.TripCreatingViewModel
+import com.example.hikeculator.presentation.trip_creating.ITripCreatingViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class MemberSearchDialogFragment : DialogFragment(R.layout.dialog_fragment_member_searching) {
 
     private val binding by viewBinding(DialogFragmentMemberSearchingBinding::bind)
 
-    private val viewModel by sharedViewModel<TripCreatingViewModel>()
+    private val viewModel by sharedViewModel<ITripCreatingViewModel>()
 
     private val memberAdapter = TripMemberSearchAdapter(
         onItemClick = ::manageSearchedMemberSelection

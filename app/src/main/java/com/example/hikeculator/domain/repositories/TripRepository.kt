@@ -7,9 +7,9 @@ interface TripRepository {
 
     suspend fun insertTrip(trip: Trip)
 
-    suspend fun removeTrip(tripId: String)
+    suspend fun removeTrip(trip: Trip)
 
-    fun fetchTrips(): Flow<Set<Trip>>
+    suspend fun fetchTrips(vararg tripId: String): Set<Trip>
 
     fun fetchTrip(tripId: String): Flow<Trip?>
 }

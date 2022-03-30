@@ -11,4 +11,5 @@ data class User(
     val height: Int,
     val gender: Gender,
     val calorieNorm: Long,
+    val tripIds: Set<String> = emptySet()
 )

@@ -18,23 +18,17 @@ val dataModule = module {
 
     single { FirebaseAuthentication(firebase = get(), firebaseAuth = get()) }
 
-    single<UserUidRepositiory> { UserUidRepositoryImpl() }
+    single<UserUidRepository> { UserUidRepositoryImpl() }
 
-    single<UserProfileRepository> {
-        UserProfileRepositoryImpl(firestore = get(), firebaseAuth = get())
-    }
+    single<UserProfileRepository> { UserProfileRepositoryImpl(firestore = get()) }
 
-    single<TripRepository> { TripRepositoryImpl(firestore = get(), userUidRepositiory = get()) }
+    single<TripRepository> { TripRepositoryImpl(firestore = get(), userProfileRepository = get()) }
 
     single<MemberGroupRepository> { MemberGroupRepositoryImpl(firestore = get()) }
 
-    single<TripDayRepository> {
-        TripDayRepositoryImpl(firestore = get(), userUidRepository = get())
-    }
+    single<TripDayRepository> { TripDayRepositoryImpl(firestore = get()) }
 
-    single<ProvisionBagRepository> {
-        ProvisionBagRepositoryImpl(firestore = get(), userUidRepository = get())
-    }
+    single<ProvisionBagRepository> { ProvisionBagRepositoryImpl(firestore = get()) }
 
     single<ProductSearchRepository> { ProductSearchRepositoryImpl() }
 }

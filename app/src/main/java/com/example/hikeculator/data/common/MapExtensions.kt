@@ -32,16 +32,16 @@ fun Trip.mapToFirestoreTrip(): FirestoreTrip = FirestoreTrip(
     season = season
 )
 
-fun User.mapToFirestoreUser(token: String?) = FirestoreUser(
+fun User.mapToFirestoreUser() = FirestoreUser(
     uid = uid,
-    token = token,
     name = name,
     email = email,
     age = age,
     weight = weight,
     height = height,
     gender = gender,
-    calorieNorm = calorieNorm
+    calorieNorm = calorieNorm,
+    tripIds = tripIds.toList()
 )
 
 fun FirestoreUser.mapToUser() = User(
@@ -52,7 +52,8 @@ fun FirestoreUser.mapToUser() = User(
     weight = weight,
     height = height,
     gender = gender,
-    calorieNorm = calorieNorm
+    calorieNorm = calorieNorm,
+    tripIds = tripIds.toSet()
 )
 
 fun TripDay.mapToFirestoreTripDay(): FirestoreTripDay = FirestoreTripDay(
