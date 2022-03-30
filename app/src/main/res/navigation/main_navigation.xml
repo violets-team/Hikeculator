@@ -38,6 +38,9 @@
             app:destination="@id/userProfileCreatingFragment"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_entranceFragment_to_productSearchFragment"
+            app:destination="@id/productSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/generalTripFragment"
@@ -169,4 +172,5 @@
             android:name="mealType"
             app:argType="com.example.hikeculator.domain.entities.MealType"/>
     </fragment>
+    <fragment android:id="@+id/placeholder" />
 </navigation>

@@ -84,6 +84,7 @@
     <string name="date_picker_title_select_trip_date">Select the trip date</string>
     <string name="search_food">Search food</string>
     <string name="text_done">Done</string>
+    <string name="text_cancel">Cancel</string>
     <string name="text_add_custom_product">Add custom product</string>
     <string name="text_search_result">SEARCH RESULT</string>
     <string name="text_error_search">Internet or search error</string>
@@ -105,4 +106,9 @@
     <string name="format_fat">Fat %.2f</string>
     <string name="format_carbs">Carbs %.2f</string>
     <string name="format_protein">Protein %.2f</string>
+    <string name="text_carbs">Carbs</string>
+    <string name="text_view_calories">Calories</string>
+    <string name="text_proteins">Proteins</string>
+    <string name="text_fat">Fat</string>
+    <string name="text_zero">0</string>
 </resources>
