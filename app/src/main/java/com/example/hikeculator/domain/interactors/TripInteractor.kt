@@ -16,8 +16,8 @@ class TripInteractor(private val tripRepository: TripRepository) {
         withContext(Dispatchers.IO) { tripRepository.removeTrip(trip = trip) }
     }
 
-    suspend fun fetchTrips(): Set<Trip> = withContext(Dispatchers.IO) {
-        tripRepository.fetchTrips()
+    suspend fun fetchTrips(vararg tripId: String): Set<Trip> = withContext(Dispatchers.IO) {
+        tripRepository.fetchTrips(tripId = tripId)
     }
 
     fun fetchTrip(tripId: String): Flow<Trip?> {

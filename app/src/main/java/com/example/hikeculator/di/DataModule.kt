@@ -22,13 +22,7 @@ val dataModule = module {
 
     single<UserProfileRepository> { UserProfileRepositoryImpl(firestore = get()) }
 
-    single<TripRepository> {
-        TripRepositoryImpl(
-            firestore = get(),
-            userUidRepository = get(),
-            userProfileRepository = get()
-        )
-    }
+    single<TripRepository> { TripRepositoryImpl(firestore = get(), userProfileRepository = get()) }
 
     single<MemberGroupRepository> { MemberGroupRepositoryImpl(firestore = get()) }
 

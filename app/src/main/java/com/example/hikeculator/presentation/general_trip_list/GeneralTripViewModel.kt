@@ -1,14 +1,17 @@
 package com.example.hikeculator.presentation.general_trip_list
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hikeculator.R
 import com.example.hikeculator.domain.entities.Trip
+import com.example.hikeculator.domain.entities.User
 import com.example.hikeculator.domain.interactors.ProvisionBagInteractor
 import com.example.hikeculator.domain.interactors.TripDayInteractor
 import com.example.hikeculator.domain.interactors.TripInteractor
 import com.example.hikeculator.domain.interactors.UserProfileInteractor
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
@@ -19,15 +22,24 @@ class GeneralTripViewModel(
     private val userProfileInteractor: UserProfileInteractor
 ) : ViewModel() {
 
-    init {
-       observeUserProfile()
-    }
-
-    private val _trips = MutableSharedFlow<Set<Trip>>()
+    private val _trips = MutableSharedFlow<Set<Trip>>(
+        replay = 1,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
     val trips = _trips
 
     private val _problemMessage = MutableSharedFlow<Int>()
     val problemMessage = _problemMessage.asSharedFlow()
+
+    private val user = userProfileInteractor.fetchObservableUserProfile().shareIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        replay = 1
+    )
+
+    init {
+        observeUserProfile()
+    }
 
     fun deleteTrip(trip: Trip) {
         val exceptionHandler = CoroutineExceptionHandler { _, _ ->
@@ -43,22 +55,25 @@ class GeneralTripViewModel(
 
     private fun observeUserProfile() {
         viewModelScope.launch {
-            userProfileInteractor.fetchObservableUserProfile().shareIn(
-                scope = viewModelScope,
-                started = SharingStarted.Eagerly,
-                replay = 1
-            ).onEach { fetchTrips() }
-                .collect()
+            user.onEach { user: User? ->
+                Log.i("app_log", "observeUserProfile: ******** on Each")
+                user?.let {
+                    Log.i("app_log", "observeUserProfile: ******** on let User ${user.tripIds}")
+                    fetchTrips(tripId = user.tripIds.toTypedArray()) }
+            }.collect()
         }
     }
 
-    private fun fetchTrips() {
+    private fun fetchTrips(vararg tripId: String) {
         val exceptionHandler = CoroutineExceptionHandler { _, _ ->
-            TODO()
+            _problemMessage.tryEmit(R.string.porblem_with_trip_collection_getting)
         }
 
         viewModelScope.launch(context = exceptionHandler) {
-            _trips.emit(tripInteractor.fetchTrips())
+            Log.i("app_log", "observeUserProfile: ******** passed trip ID ${tripId.size}  size *********")
+            val trips = tripInteractor.fetchTrips(tripId = tripId)
+            Log.i("app_log", "observeUserProfile: ******** fetched trips ${trips.size}")
+            _trips.emit(trips)
         }
     }
 }
