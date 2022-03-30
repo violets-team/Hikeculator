@@ -10,7 +10,7 @@ import com.example.hikeculator.presentation.common.TripDateFormat
 
 class GeneralTripAdapter(
     private val onItemClick: (tripId: String) -> Unit,
-    private val onLongItemClick: (tripId: String) -> Unit,
+    private val onLongItemClick: (trip: Trip) -> Unit,
 ) : ListAdapter<Trip, GeneralTripAdapter.TripViewHolder>(TripItemDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TripViewHolder {
@@ -38,7 +38,7 @@ class GeneralTripAdapter(
                 root.setOnClickListener { onItemClick.invoke(getItem(absoluteAdapterPosition).id) }
 
                 root.setOnLongClickListener {
-                    onLongItemClick(getItem(absoluteAdapterPosition).id)
+                    onLongItemClick(getItem(absoluteAdapterPosition))
                     true
                 }
             }

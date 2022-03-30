@@ -5,7 +5,6 @@ import com.example.hikeculator.data.fiebase.entities.FirestoreProvisionBag
 import com.example.hikeculator.domain.entities.Product
 import com.example.hikeculator.domain.entities.ProvisionBag
 import com.example.hikeculator.domain.repositories.ProvisionBagRepository
-import com.example.hikeculator.domain.repositories.UserUidRepositiory
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.channels.awaitClose
@@ -15,11 +14,11 @@ import kotlinx.coroutines.tasks.await
 
 class ProvisionBagRepositoryImpl(
     private val firestore: FirebaseFirestore,
-    private val userUidRepository: UserUidRepositiory,
+//    private val userUidRepository: UserUidRepositiory,
 ) : ProvisionBagRepository {
 
     override suspend fun insertProductToProvisionBag(tripId: String, product: Product) {
-        firestore.getProvisionBagCollection(userUid = userUidRepository.uid, tripId = tripId)
+        firestore.getProvisionBagCollection(tripId = tripId)
             .get()
             .await()
             ?.documents
@@ -41,7 +40,7 @@ class ProvisionBagRepositoryImpl(
 
     override fun fetchProvisionBag(tripId: String): Flow<ProvisionBag> = callbackFlow {
         val listener = try {
-            firestore.getProvisionBagCollection(userUid = userUidRepository.uid, tripId = tripId)
+            firestore.getProvisionBagCollection(tripId = tripId)
                 .addSnapshotListener { querySnapshot, error ->
                     if (error != null) {
                         close(cause = error)
@@ -60,13 +59,13 @@ class ProvisionBagRepositoryImpl(
     }
 
     override suspend fun createProvisionBag(tripId: String, provisionBag: ProvisionBag) {
-        firestore.getProvisionBagDocument(userUid = userUidRepository.uid, tripId = tripId)
+        firestore.getProvisionBagDocument(tripId = tripId)
             .set(provisionBag.mapToFirestoreProvisionBag())
             .await()
     }
 
     override suspend fun removeProvisionBag(tripId: String) {
-        firestore.getProvisionBagCollection(userUid = userUidRepository.uid, tripId = tripId)
+        firestore.getProvisionBagCollection(tripId = tripId)
             .get()
             .await()
             .documents

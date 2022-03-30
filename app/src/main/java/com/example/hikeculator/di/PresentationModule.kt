@@ -17,7 +17,7 @@ val presentationModule = module {
         EntranceViewModel(
             firebaseAuthentication = get(),
             userProfileInteractor = get(),
-            userUidRepositiory = get()
+            userUidRepository = get()
         )
     }
 
@@ -27,7 +27,8 @@ val presentationModule = module {
         GeneralTripViewModel(
             tripInteractor = get(),
             tripDayInteractor = get(),
-            provisionBagInteractor = get()
+            provisionBagInteractor = get(),
+            userProfileInteractor = get()
         )
     }
 

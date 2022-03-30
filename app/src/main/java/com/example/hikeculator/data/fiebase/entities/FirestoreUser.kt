@@ -5,7 +5,6 @@ import com.example.hikeculator.domain.enums.Gender.*
 
 data class FirestoreUser(
     val uid: String = DEFAULT_STRING_VALUE,
-    val token: String? = DEFAULT_STRING_VALUE,
     val name: String = DEFAULT_STRING_VALUE,
     val email: String = DEFAULT_STRING_VALUE,
     val age: Int = DEFAULT_INT_VALUE,
@@ -13,6 +12,7 @@ data class FirestoreUser(
     val height: Int = DEFAULT_INT_VALUE,
     val gender: Gender = MAN,
     val calorieNorm: Long = DEFAULT_LONG_VALUE,
+    val tripIds: List<String> = emptyList()
 ) {
     companion object {
         private const val DEFAULT_STRING_VALUE: String = ""
