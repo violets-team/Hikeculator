@@ -6,18 +6,10 @@
     app:startDestination="@id/splashFragment">
 
     <fragment
-        android:id="@+id/bagFragment"
-        android:name="com.example.hikeculator.presentation.provision_bag.ProvisionBagFragment"
-        android:label="BagFragment" />
-    <fragment
-        android:id="@+id/membersFragment"
-        android:name="com.example.hikeculator.presentation.member_managment.MemberManagementFragment"
-        android:label="MembersFragment" />
-    <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.hikeculator.presentation.splash.SplashFragment"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
+        tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_entranceFragment"
             app:destination="@id/entranceFragment"
@@ -27,7 +19,7 @@
         android:id="@+id/entranceFragment"
         android:name="com.example.hikeculator.presentation.entrance.EntranceFragment"
         android:label="fragment_entrance"
-        tools:layout="@layout/fragment_entrance" >
+        tools:layout="@layout/fragment_entrance">
         <action
             android:id="@+id/action_entranceFragment_to_generalTripFragment"
             app:destination="@id/generalTripFragment"
@@ -43,7 +35,7 @@
         android:id="@+id/generalTripFragment"
         android:name="com.example.hikeculator.presentation.general_trip_list.GeneralTripFragment"
         android:label="fragment_general_trips"
-        tools:layout="@layout/fragment_general_trips" >
+        tools:layout="@layout/fragment_general_trips">
         <argument
             android:name="userUid"
             app:argType="string" />
@@ -61,7 +53,7 @@
         android:id="@+id/userProfileCreatingFragment"
         android:name="com.example.hikeculator.presentation.user_profile_creating.UserProfileCreatingFragment"
         android:label="fragment_user_profile_creating"
-        tools:layout="@layout/fragment_user_profile_creating" >
+        tools:layout="@layout/fragment_user_profile_creating">
         <argument
             android:name="userUid"
             app:argType="string" />
@@ -78,7 +70,7 @@
         android:id="@+id/tripCreatingFragment"
         android:name="com.example.hikeculator.presentation.trip_creating.TripCreatingFragment"
         android:label="fragment_trip_creating"
-        tools:layout="@layout/fragment_trip_creating" >
+        tools:layout="@layout/fragment_trip_creating">
         <argument
             android:name="userUid"
             app:argType="string" />
@@ -100,26 +92,11 @@
         android:name="com.example.hikeculator.presentation.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
-    <fragment
-        android:id="@+id/tripDetailFragment"
-        android:name="com.example.hikeculator.presentation.trip_details.TripDetailFragment"
-        android:label="fragment_trip_details"
-        tools:layout="@layout/fragment_trip_details" >
-        <argument
-            android:name="userUid"
-            app:argType="string" />
-        <argument
-            android:name="tripId"
-            app:argType="string" />
-        <action
-            android:id="@+id/action_tripDetailFragment_to_tripDayDetailFragment"
-            app:destination="@id/tripDayDetailFragment" />
-    </fragment>
     <dialog
         android:id="@+id/seasonDialogFragment"
         android:name="com.example.hikeculator.presentation.trip_creating.SeasonDialogFragment"
         android:label="dialog_fragment_trip_season_choosing"
-        tools:layout="@layout/dialog_fragment_trip_season_choosing" >
+        tools:layout="@layout/dialog_fragment_trip_season_choosing">
         <argument
             android:name="userUid"
             app:argType="string" />
@@ -140,10 +117,19 @@
         android:label="dialog_fragment_member_choosing"
         tools:layout="@layout/dialog_fragment_member_searching" />
     <fragment
+        android:id="@+id/provisionBagFragment"
+        android:name="com.example.hikeculator.presentation.provision_bag.ProvisionBagFragment"
+        android:label="fragment_provision_bag"
+        tools:layout="@layout/fragment_provision_bag">
+        <argument
+            android:name="tripId"
+            app:argType="string" />
+    </fragment>
+    <fragment
         android:id="@+id/tripDayDetailFragment"
         android:name="com.example.hikeculator.presentation.trip_day_details.TripDayDetailFragment"
         android:label="fragment_trip_day_details"
-        tools:layout="@layout/fragment_trip_day_details" >
+        tools:layout="@layout/fragment_trip_day_details">
         <argument
             android:name="tripId"
             app:argType="string" />
@@ -154,6 +140,29 @@
             android:id="@+id/action_tripDayDetailFragment_to_productSearchFragment"
             app:destination="@id/productSearchFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/tripDetailFragment"
+        android:name="com.example.hikeculator.presentation.trip_details.TripDetailFragment"
+        android:label="fragment_trip_details"
+        tools:layout="@layout/fragment_trip_details">
+        <argument
+            android:name="tripId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_tripDetailFragment_to_memberManagementFragment"
+            app:destination="@id/memberManagementFragment" />
+        <action
+            android:id="@+id/action_tripDetailFragment_to_tripDayDetailFragment"
+            app:destination="@id/tripDayDetailFragment" />
+        <action
+            android:id="@+id/action_tripDetailFragment_to_provisionBagFragment"
+            app:destination="@id/provisionBagFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/memberManagementFragment"
+        android:name="com.example.hikeculator.presentation.member_management.MemberManagementFragment"
+        android:label="fragment_member_managment"
+        tools:layout="@layout/fragment_member_managment" />
     <fragment
         android:id="@+id/productSearchFragment"
         android:name="com.example.hikeculator.presentation.product_search.ProductSearchFragment"
@@ -167,7 +176,7 @@
             app:argType="string" />
         <argument
             android:name="mealType"
-            app:argType="com.example.hikeculator.domain.entities.MealType"/>
+            app:argType="com.example.hikeculator.domain.entities.MealType" />
     </fragment>
     <fragment android:id="@+id/placeholder" />
 </navigation>

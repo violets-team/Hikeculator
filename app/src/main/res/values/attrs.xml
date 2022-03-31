@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TripDetailButtonView">
+        <attr name="provisionBagButtonBackground" format="color" />
+        <attr name="memberButtonBackground" format="color" />
+        <attr name="mainButtonBackground" format="color" />
+
+        <attr name="provisionBagButtonTint" format="color" />
+        <attr name="memberButtonTint" format="color" />
+        <attr name="mainButtonTint" format="color" />
+
+        <attr name="provisionBagButtonImage" format="reference" />
+        <attr name="memberButtonImage" format="reference" />
+        <attr name="mainButtonImage" format="reference" />
+    </declare-styleable>
+
+</resources>

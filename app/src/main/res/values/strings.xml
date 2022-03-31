@@ -111,4 +111,5 @@
     <string name="text_proteins">Proteins</string>
     <string name="text_fat">Fat</string>
     <string name="text_zero">0</string>
+    <string name="porblem_with_trip_collection_getting">There is a problem with tirip collection getting</string>
 </resources>

@@ -39,6 +39,7 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
 
         initializeTripDayRecyclerView()
         observeTripDetailState()
+        setListeners()
     }
 
     private fun initializeTripDayRecyclerView() {
@@ -65,12 +66,30 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
         }
     }
 
+    private fun setListeners() {
+        binding.tripDetailButtons.setOnProvisionBagButtonClickListener {
+            navigateToProvisionBag(tripId = args.tripId)
+        }
+
+        binding.tripDetailButtons.setOnMemberButtonClickListener { navigateToMembers() }
+    }
+
     private fun navigateToTriDayDetails(dayId: String) {
         TripDetailFragmentDirections.actionTripDetailFragmentToTripDayDetailFragment(
             tripId = args.tripId,
             dayId = dayId
         ).also { navController.navigate(directions = it)  }
+    }
 
+    private fun navigateToProvisionBag(tripId: String) {
+        TripDetailFragmentDirections.actionTripDetailFragmentToProvisionBagFragment(
+            tripId = tripId
+        ).also { navController.navigate(it) }
+    }
+
+    private fun navigateToMembers() {
+        TripDetailFragmentDirections.actionTripDetailFragmentToMemberManagementFragment(
+        ).also { navController.navigate(directions = it) }
     }
 
     private fun FragmentTripDetailsBinding.setViewContent(trip: Trip, tripDays: List<TripDay>) {
@@ -140,7 +159,10 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
         )
     }
 
-    private fun FragmentTripDetailsBinding.displayCarbInfo(carbNorm: Double, provisionCarbs: Double) {
+    private fun FragmentTripDetailsBinding.displayCarbInfo(
+        carbNorm: Double,
+        provisionCarbs: Double,
+    ) {
         displayNutritionInfo(
             nutritionNorm = carbNorm,
             provisionNutritionValue = provisionCarbs,

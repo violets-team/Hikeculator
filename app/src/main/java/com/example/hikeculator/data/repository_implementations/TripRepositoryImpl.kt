@@ -1,13 +1,12 @@
 package com.example.hikeculator.data.repository_implementations
 
 import com.example.hikeculator.data.common.getTripDocument
-import com.example.hikeculator.data.common.getTripSubCollection
 import com.example.hikeculator.data.common.mapToFirestoreTrip
 import com.example.hikeculator.data.common.mapToTrip
 import com.example.hikeculator.data.fiebase.entities.FirestoreTrip
 import com.example.hikeculator.domain.entities.Trip
 import com.example.hikeculator.domain.repositories.TripRepository
-import com.example.hikeculator.domain.repositories.UserUidRepositiory
+import com.example.hikeculator.domain.repositories.UserProfileRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.channels.awaitClose
@@ -17,47 +16,48 @@ import kotlinx.coroutines.tasks.await
 
 class TripRepositoryImpl(
     private val firestore: FirebaseFirestore,
-    private val userUidRepositiory: UserUidRepositiory,
+    private val userProfileRepository: UserProfileRepository,
 ) : TripRepository {
 
     override suspend fun insertTrip(trip: Trip) {
         val firestoreTrip = trip.mapToFirestoreTrip()
-        firestore.getTripDocument(userUid = userUidRepositiory.uid, tripId = firestoreTrip.id)
+
+        firestore.getTripDocument(tripId = firestoreTrip.id)
             .set(firestoreTrip)
             .await()
+
+        trip.memberUids.onEach { memberId ->
+            userProfileRepository.addTripIdToUserProfile(userUid = memberId, tripId = trip.id)
+        }
     }
 
-    override suspend fun removeTrip(tripId: String) {
-        firestore.getTripDocument(userUid = userUidRepositiory.uid, tripId = tripId)
+    override suspend fun removeTrip(trip: Trip) {
+        trip.memberUids.onEach { memberId ->
+            userProfileRepository.removeTripIdFromUserProfile(userUid = memberId, tripId = trip.id)
+        }
+
+        firestore.getTripDocument(tripId = trip.id)
             .delete()
             .await()
     }
 
-    override fun fetchTrips(): Flow<Set<Trip>> = callbackFlow {
-        val listener = try {
-            firestore.getTripSubCollection(userUid = userUidRepositiory.uid)
-                .addSnapshotListener { querySnapshot, error ->
-                    if (error != null) {
-                        close(cause = error)
-                    } else {
-                        querySnapshot?.run {
-                            documents.mapNotNull { document -> document?.toObject<FirestoreTrip>() }
-                                .map { firestoreTrip -> firestoreTrip.mapToTrip() }
-                                .toSet()
-                                .also { trips -> trySend(trips) }
-                        }
-                    }
-                }
-        } catch (e: Exception) {
-            null
-        }
+    override suspend fun fetchTrips(vararg tripId: String): Set<Trip> {
+        return mutableListOf<Trip>().apply {
+            tripId.onEach { id ->
 
-        awaitClose { listener?.remove() }
+                firestore.getTripDocument(tripId = id)
+                    .get()
+                    .await()
+                    ?.toObject<FirestoreTrip>()
+                    ?.mapToTrip()
+                    ?.also { trip -> add(trip) }
+            }
+        }.toSet()
     }
 
     override fun fetchTrip(tripId: String): Flow<Trip?> = callbackFlow {
         val listener = try {
-            firestore.getTripDocument(userUid = userUidRepositiory.uid, tripId = tripId)
+            firestore.getTripDocument(tripId = tripId)
                 .addSnapshotListener { document, error ->
                     if (error != null) {
                         close(cause = null)

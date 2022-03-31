@@ -11,12 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.hikeculator.R
 import com.example.hikeculator.databinding.FragmentGeneralTripsBinding
-import com.example.hikeculator.domain.interactors.TripInteractor
+import com.example.hikeculator.domain.entities.Trip
 import com.example.hikeculator.presentation.common.collectWhenStarted
 import com.example.hikeculator.presentation.common.showToast
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.parameter.parametersOf
 
 class GeneralTripFragment : Fragment(R.layout.fragment_general_trips) {
 
@@ -24,10 +22,7 @@ class GeneralTripFragment : Fragment(R.layout.fragment_general_trips) {
 
     private val args by navArgs<GeneralTripFragmentArgs>()
     private val navController by lazy { findNavController() }
-//
-//    private val tripDayInteractor by inject<TripDayInteractor>{ parametersOf(tripDayRepository) }
 
-//    private val tripInteractor by inject<TripInteractor> { parametersOf(args.userUid) }
     private val viewModel by viewModel<GeneralTripViewModel>()
 
     private val tripAdapter = GeneralTripAdapter(
@@ -65,8 +60,8 @@ class GeneralTripFragment : Fragment(R.layout.fragment_general_trips) {
         }
     }
 
-    private fun  observeTripListSate() {
-        viewModel.tripData.collectWhenStarted(lifecycleScope) { trips ->
+    private fun observeTripListSate() {
+        viewModel.trips.collectWhenStarted(lifecycleScope) { trips ->
             tripAdapter.submitList(trips.toList())
         }
 
@@ -75,13 +70,12 @@ class GeneralTripFragment : Fragment(R.layout.fragment_general_trips) {
         }
     }
 
-    private fun deleteTrip(tripId: String) {
-        viewModel.deleteTrip(tripId = tripId)
+    private fun deleteTrip(trip: Trip) {
+        viewModel.deleteTrip(trip = trip)
     }
 
     private fun navigateToTripDetailFragment(tripId: String) {
         GeneralTripFragmentDirections.actionGeneralTripFragmentToTripDetailFragment(
-            userUid = args.userUid,
             tripId = tripId
         ).also { navController.navigate(directions = it) }
     }
