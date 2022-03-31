@@ -31,6 +31,10 @@
 
     <color name="primary_color">#9FC376</color>
     <color name="add_trip_member_icon_color">#D04C7D83</color>
+    <color name="main_button_background">#8BC34A</color>
+    <color name="provision_bag_button_background">#77B8C1</color>
+    <color name="member_button_background">#B5A27D</color>
+    <color name="trip_detail_button_tint">#fff</color>
 
     <color name="light_green">#0FC376</color>
 </resources>

@@ -1,6 +1,6 @@
 package com.example.hikeculator.domain.repositories
 
-interface UserUidRepositiory {
+interface UserUidRepository {
 
     var uid: String
 }

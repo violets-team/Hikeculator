@@ -7,7 +7,7 @@ import org.koin.dsl.module
 
 val domainModule = module {
 
-    factory { UserProfileInteractor(userProfileRepository = get()) }
+    factory { UserProfileInteractor(userProfileRepository = get(), userUidRepository = get()) }
 
     factory { TripInteractor(tripRepository = get()) }
 

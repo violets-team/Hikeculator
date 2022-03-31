@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="androidx.appcompat.widget.LinearLayoutCompat"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/action_button_provision_bag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:maxImageSize="25dp"
+        app:layout_constraintStart_toStartOf="@id/action_button_main"
+        app:layout_constraintEnd_toEndOf="@id/action_button_main"
+        app:layout_constraintBottom_toTopOf="@id/action_button_members"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/action_button_members"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:maxImageSize="25dp"
+        app:layout_constraintEnd_toEndOf="@id/action_button_provision_bag"
+        app:layout_constraintBottom_toTopOf="@id/action_button_main"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/action_button_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:maxImageSize="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+</merge>
