@@ -5,7 +5,9 @@ import com.example.hikeculator.domain.interactors.TripDayInteractor
 import com.example.hikeculator.domain.interactors.TripInteractor
 import com.example.hikeculator.presentation.entrance.EntranceViewModel
 import com.example.hikeculator.presentation.general_trip_list.GeneralTripViewModel
+import com.example.hikeculator.presentation.product_dialogs.add_product.AddOrEditProductDialogViewModel
 import com.example.hikeculator.presentation.product_search.ProductSearchViewModel
+import com.example.hikeculator.presentation.provision_bag.ProvisionBagViewModel
 import com.example.hikeculator.presentation.trip_creating.ITripCreatingViewModel
 import com.example.hikeculator.presentation.trip_creating.TripCreatingViewModel
 import com.example.hikeculator.presentation.trip_details.TripDetailViewModel
@@ -19,7 +21,7 @@ val presentationModule = module {
         EntranceViewModel(
             firebaseAuthentication = get(),
             userProfileInteractor = get(),
-            userUidRepositiory = get()
+            userUidRepository = get()
         )
     }
 
@@ -29,7 +31,8 @@ val presentationModule = module {
         GeneralTripViewModel(
             tripInteractor = get(),
             tripDayInteractor = get(),
-            provisionBagInteractor = get()
+            provisionBagInteractor = get(),
+            userProfileInteractor = get()
         )
     }
 
