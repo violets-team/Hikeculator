@@ -1,14 +1,16 @@
 package com.example.hikeculator.domain.repositories
 
-import com.example.hikeculator.domain.entities.Product
 import com.example.hikeculator.domain.entities.ProvisionBag
+import com.example.hikeculator.domain.entities.ProvisionBagProduct
 import kotlinx.coroutines.flow.Flow
 
 interface ProvisionBagRepository {
 
-    suspend fun insertProductToProvisionBag(tripId: String, product: Product)
+    suspend fun insertProductToProvisionBag(tripId: String, product: ProvisionBagProduct)
 
-    fun fetchProvisionBag(tripId: String): Flow<ProvisionBag>
+    suspend fun updateProduct(tripId: String, updatedProduct: ProvisionBagProduct)
+
+    fun fetchObservableProvisionBag(tripId: String): Flow<ProvisionBag>
 
     suspend fun createProvisionBag(tripId: String, provisionBag: ProvisionBag)
 
