@@ -7,4 +7,10 @@ data class Product(
     val name: String,
     val weight: Long,
     val nutritionalValue: NutritionalValue,
-)
+) {
+
+    fun getNewProductByWeight(weight: Long) = copy(
+        weight = weight,
+        nutritionalValue = nutritionalValue.getNutritionalValueByWeight(weight)
+    )
+}

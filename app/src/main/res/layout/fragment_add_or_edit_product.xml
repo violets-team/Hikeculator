@@ -25,7 +25,7 @@
         tools:text="Breakfast" />
 
     <TextView
-        android:id="@+id/text_view_product_name"
+        android:id="@+id/text_view_product_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -44,7 +44,7 @@
         android:background="@color/light_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_view_product_name" />
+        app:layout_constraintTop_toBottomOf="@id/text_view_product_title" />
 
     <TextView
         android:id="@+id/text_view_calories_title"
@@ -66,12 +66,12 @@
         android:layout_marginTop="8dp"
         android:text="@string/text_proteins"
         android:textColor="@android:color/holo_orange_light"
-        app:layout_constraintEnd_toStartOf="@id/text_view_fat_title"
+        app:layout_constraintEnd_toStartOf="@id/text_view_fats_title"
         app:layout_constraintStart_toEndOf="@id/text_view_calories_title"
         app:layout_constraintTop_toBottomOf="@id/hr_line" />
 
     <TextView
-        android:id="@+id/text_view_fat_title"
+        android:id="@+id/text_view_fats_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -89,7 +89,7 @@
         android:layout_marginEnd="16dp"
         android:text="@string/text_carbs"
         android:textColor="@android:color/holo_red_light"
-        app:layout_constraintStart_toEndOf="@id/text_view_fat_title"
+        app:layout_constraintStart_toEndOf="@id/text_view_fats_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/hr_line" />
 
@@ -114,14 +114,14 @@
         app:layout_constraintEnd_toEndOf="@id/text_view_proteins_title"/>
 
     <TextView
-        android:id="@+id/text_view_fat"
+        android:id="@+id/text_view_fats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="@string/text_zero"
-        app:layout_constraintTop_toBottomOf="@id/text_view_fat_title"
-        app:layout_constraintStart_toStartOf="@id/text_view_fat_title"
-        app:layout_constraintEnd_toEndOf="@id/text_view_fat_title"/>
+        app:layout_constraintTop_toBottomOf="@id/text_view_fats_title"
+        app:layout_constraintStart_toStartOf="@id/text_view_fats_title"
+        app:layout_constraintEnd_toEndOf="@id/text_view_fats_title"/>
 
     <TextView
         android:id="@+id/text_view_carbs"
@@ -144,7 +144,7 @@
         android:inputType="number"
         android:paddingHorizontal="16dp"
         android:paddingVertical="8dp"
-        android:text="@string/text_zero"
+        android:maxLength="5"
         android:hint="@string/text_zero"
         app:layout_constraintBottom_toBottomOf="@id/button_done"
         app:layout_constraintEnd_toStartOf="@id/button_done"

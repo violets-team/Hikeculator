@@ -1,21 +1,31 @@
 package com.example.hikeculator.presentation.product_dialogs.add_product
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.hikeculator.R
 import com.example.hikeculator.databinding.FragmentAddOrEditProductBinding
+import com.example.hikeculator.domain.common.roundToTwoDecimalPlaces
+import com.example.hikeculator.domain.entities.MealType.*
+import com.example.hikeculator.domain.entities.NutritionalValue
+import com.example.hikeculator.presentation.common.collectWhenStarted
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AddOrEditProductDialog : BottomSheetDialogFragment() {
 
     private val binding by viewBinding(FragmentAddOrEditProductBinding::bind)
+
+    private val args by navArgs<AddOrEditProductDialogArgs>()
 
     private val viewModel by viewModel<AddOrEditProductDialogViewModel>()
 
@@ -32,8 +42,62 @@ class AddOrEditProductDialog : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setListenerWhenKeyBoardIsOpenExpandSheetFragment()
 
+        setListenerWhenKeyBoardIsOpenExpandSheetFragment()
+        collectSelectedProduct()
+    }
+
+    private fun collectSelectedProduct() {
+        lifecycleScope.launch {
+            viewModel.selectedProduct.collect { product ->
+                setProductTitle(productName = product.name)
+                setMealType()
+                setWeightChangeListener()
+                collectOnProductChanges()
+                setButtonDoneListener()
+                setSoftKeyBoardDoneListener()
+            }
+        }
+    }
+
+    private fun collectOnProductChanges() {
+        lifecycleScope.launch {
+            viewModel.displayedProduct.collectWhenStarted(lifecycleScope) { product ->
+                product?.apply {
+                    binding.setNutritionalValueContent(nutritional = nutritionalValue)
+                }
+            }
+        }
+    }
+
+    private fun setWeightChangeListener() {
+        binding.editTextWeight.doAfterTextChanged { weight ->
+            val textWeight = weight.toString()
+            if (textWeight.isNotEmpty()) {
+                viewModel.setWeight(weight = textWeight.toLong())
+            } else {
+                viewModel.setWeight(weight = 0L)
+            }
+        }
+    }
+
+    private fun setMealType() {
+        val mealType = when (args.mealType) {
+            BREAKFAST -> getString(R.string.text_breakfast)
+            LUNCH -> getString(R.string.text_lunch)
+            DINNER -> getString(R.string.text_dinner)
+            SNACK -> getString(R.string.text_snack)
+        }
+        binding.textViewDayMealType.text = mealType
+    }
+
+    private fun setButtonDoneListener() {
+        TODO("Not yet implemented")
+    }
+
+
+    private fun setSoftKeyBoardDoneListener() {
+        TODO("Not yet implemented")
     }
 
     private fun setListenerWhenKeyBoardIsOpenExpandSheetFragment() {
@@ -44,6 +108,19 @@ class AddOrEditProductDialog : BottomSheetDialogFragment() {
                 dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
                 sheet.parent.parent.requestLayout()
             }
+        }
+    }
+
+    private fun setProductTitle(productName: String) {
+        binding.textViewProductTitle.text = productName
+    }
+
+    private fun FragmentAddOrEditProductBinding.setNutritionalValueContent(nutritional: NutritionalValue) {
+        nutritional.apply {
+            textViewCalories.text = calories.roundToTwoDecimalPlaces().toString()
+            textViewProteins.text = proteins.roundToTwoDecimalPlaces().toString()
+            textViewFats.text = fats.roundToTwoDecimalPlaces().toString()
+            textViewCarbs.text = carbs.roundToTwoDecimalPlaces().toString()
         }
     }
 }
