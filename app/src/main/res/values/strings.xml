@@ -110,7 +110,12 @@
     <string name="text_view_calories">Calories</string>
     <string name="text_proteins">Proteins</string>
     <string name="text_fats">Fats</string>
+    <string name="text_calories">Calories</string>
     <string name="text_zero">0</string>
     <string name="porblem_with_trip_collection_getting">There is a problem with tirip collection getting</string>
-    <string name="text_calories">Calories</string>
+    <string name="text_breakfast">Breakfast</string>
+    <string name="text_lunch">Lunch</string>
+    <string name="text_dinner">Dinner</string>
+    <string name="text_snack">Snack</string>
+
 </resources>

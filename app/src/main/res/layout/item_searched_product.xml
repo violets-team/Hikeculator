@@ -47,8 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:fontFamily="sans-serif-condensed-light"
-        app:layout_constraintStart_toEndOf="@id/text_view_calories"
-        app:layout_constraintTop_toTopOf="@id/text_view_calories"
+        app:layout_constraintStart_toEndOf="@id/text_view_protein"
+        app:layout_constraintTop_toTopOf="@id/text_view_protein"
         tools:text="Fat 12.4g" />
 
     <TextView
@@ -67,8 +67,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:fontFamily="sans-serif-condensed-light"
-        app:layout_constraintStart_toEndOf="@id/text_view_carbs"
-        app:layout_constraintTop_toTopOf="@id/text_view_carbs"
+        app:layout_constraintStart_toEndOf="@id/text_view_calories"
+        app:layout_constraintTop_toTopOf="@id/text_view_calories"
         tools:text="Protein 29.41g" />
 
     <ImageView

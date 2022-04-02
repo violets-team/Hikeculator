@@ -2,6 +2,7 @@ package com.example.hikeculator.presentation.product_search
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.View.*
 import android.view.inputmethod.EditorInfo
@@ -20,24 +21,26 @@ import com.example.hikeculator.presentation.common.collectWhenStarted
 import com.google.android.material.snackbar.Snackbar
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
 
-    private val viewModel by viewModel<ProductSearchViewModel>()
-
     private val binding by viewBinding(FragmentProductSearchBinding::bind)
 
-    private val searchedProductsAdapter = ProductSearchAdapter(::showAddOrEditProductDialog)
-
     private val navController by lazy { findNavController() }
-
     private val args by navArgs<ProductSearchFragmentArgs>()
+
+    private val viewModel by viewModel<ProductSearchViewModel> { parametersOf(args.tripId)}
+
+    private val searchedProductsAdapter = ProductSearchAdapter(::showAddOrEditProductDialog)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initializeSearchRecyclerView()
-        collectData()
+        collectErrors()
+        collectSearchResult()
+        collectProvisionBagStats()
         setEditTextListeners()
         setSoftKeyShowListener()
     }
@@ -51,7 +54,6 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
         }
     }
 
-
     private fun initializeSearchRecyclerView() {
         binding.recyclerViewListOfProducts.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -59,13 +61,23 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
         }
     }
 
-    private fun collectData() {
-        viewModel.productSearchResult.collectWhenStarted(lifecycleScope = lifecycleScope) { products ->
+
+    private fun collectErrors() {
+        viewModel.searchError.collectWhenStarted(lifecycleScope) { stringResId ->
+            showSnackBar(stringResId)
+        }
+    }
+
+    private fun collectSearchResult() {
+        viewModel.productSearchResult.collectWhenStarted(lifecycleScope) { products ->
             searchedProductsAdapter.submitList(products)
             binding.progressBarSearch.visibility = GONE
         }
-        viewModel.searchError.collectWhenStarted(lifecycleScope = lifecycleScope) { stringResId ->
-            showSnackBar(stringResId)
+    }
+
+    private fun collectProvisionBagStats() {
+        viewModel.provisionBag.collectWhenStarted(lifecycleScope) { provisionBag ->
+            TODO()
         }
     }
 

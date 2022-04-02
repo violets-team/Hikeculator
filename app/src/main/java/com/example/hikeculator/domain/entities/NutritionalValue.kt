@@ -18,4 +18,11 @@ data class NutritionalValue(
 
     private fun nutritionValueForHundredGrams(value: Double): Double = VALUE_ONE_HUNDRED * value
 
+    fun getNutritionalValueByWeight(weight: Long): NutritionalValue = copy(
+        calories = calories * weight,
+        proteins = proteins * weight,
+        fats = fats * weight,
+        carbs = carbs * weight
+    )
+
 }
