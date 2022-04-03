@@ -19,6 +19,7 @@ import com.example.hikeculator.domain.entities.Product
 import com.example.hikeculator.presentation.common.collectWhenStarted
 import com.google.android.material.snackbar.Snackbar
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
+import net.yslibrary.android.keyboardvisibilityevent.Unregistrar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -33,6 +34,8 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
 
     private val searchedProductsAdapter = ProductSearchAdapter(::showAddOrEditProductDialog)
 
+    private var keyBoardShowListener: Unregistrar? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -43,8 +46,13 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
         setSoftKeyShowListener()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        keyBoardShowListener?.unregister()
+    }
+
     private fun setSoftKeyShowListener() {
-        KeyboardVisibilityEvent.setEventListener(activity) {
+        keyBoardShowListener = KeyboardVisibilityEvent.registerEventListener(activity) {
             when (it) {
                 true -> { binding.groupProductStatics.visibility = GONE }
                 false -> { binding.groupProductStatics.visibility = VISIBLE }

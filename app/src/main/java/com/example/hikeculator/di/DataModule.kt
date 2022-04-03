@@ -9,6 +9,7 @@ import com.google.firebase.ktx.Firebase
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
+import kotlin.math.sign
 
 val dataModule = module {
 
@@ -35,4 +36,6 @@ val dataModule = module {
     single<ProductSearchRepository> { ProductSearchRepositoryImpl() }
 
     single<SelectedProductRepository> { SelectedProductRepositoryImpl(appContext = androidApplication()) }
+
+    single<ProductRepository> { ProductRepositoryImpl(firestore = get())}
 }

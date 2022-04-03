@@ -4,23 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.EditText
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.hikeculator.R
-import com.example.hikeculator.data.repository_implementations.ProductRepositoryImpl
 import com.example.hikeculator.databinding.FragmentAddOrEditProductBinding
 import com.example.hikeculator.domain.common.roundToTwoDecimalPlaces
 import com.example.hikeculator.domain.entities.MealType.*
 import com.example.hikeculator.domain.entities.NutritionalValue
-import com.example.hikeculator.domain.entities.Product
 import com.example.hikeculator.presentation.common.collectWhenStarted
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -47,7 +45,7 @@ class AddOrEditProductDialog : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setListenerWhenKeyBoardIsOpenExpandSheetFragment()
+        setListenerExpandFragmentIfKeyBoardIsOpen()
         getSelectedProduct()
     }
 
@@ -59,15 +57,28 @@ class AddOrEditProductDialog : BottomSheetDialogFragment() {
                 setWeightChangeListener()
                 collectOnProductChanges()
                 setButtonDoneListener()
-                //setSoftKeyBoardDoneListener()
+                setSoftKeyBoardDoneListener()
             }
+        }
+    }
+
+    private fun addProductToTrip() {
+        val textWeight = binding.editTextWeight.text.toString()
+        val weight = textWeight.toLongOrNull()
+        weight?.let {
+            viewModel.addProductToTrip(
+                tripId = args.tripId,
+                dayId = args.dayId,
+                mealType = args.mealType,
+                weight = it
+            )
         }
     }
 
     private fun collectOnProductChanges() {
         lifecycleScope.launch {
             viewModel.displayedProduct.collectWhenStarted(lifecycleScope) { product ->
-                product?.apply {
+                product.apply {
                     binding.setNutritionalValueContent(nutritional = nutritionalValue)
                 }
             }
@@ -96,21 +107,18 @@ class AddOrEditProductDialog : BottomSheetDialogFragment() {
     }
 
     private fun setButtonDoneListener() {
-        binding.buttonDone.setOnClickListener {
-            lifecycleScope.launch {
-                val repository = ProductRepositoryImpl(firestore = Firebase.firestore)
-                val pr = Product(weight = 40, name = "Marshmello", nutritionalValue = NutritionalValue(10.23,1.0,10.0,1.0,))
-                repository.insertProduct(product = pr, tripId = args.tripId, tripDayId = args.dayId, mealType = BREAKFAST)
-            }
-        }
+        binding.buttonDone.setOnClickListener { addProductToTrip() }
     }
-
 
     private fun setSoftKeyBoardDoneListener() {
-        TODO("Not yet implemented")
+        binding.editTextWeight.onDone { addProductToTrip() }
     }
 
-    private fun setListenerWhenKeyBoardIsOpenExpandSheetFragment() {
+    private fun setProductTitle(productName: String) {
+        binding.textViewProductTitle.text = productName
+    }
+
+    private fun setListenerExpandFragmentIfKeyBoardIsOpen() {
         dialog?.setOnShowListener {
             val dialog = it as BottomSheetDialog
             val bottomSheet = dialog.findViewById<View>(R.id.design_bottom_sheet)
@@ -121,16 +129,22 @@ class AddOrEditProductDialog : BottomSheetDialogFragment() {
         }
     }
 
-    private fun setProductTitle(productName: String) {
-        binding.textViewProductTitle.text = productName
-    }
-
     private fun FragmentAddOrEditProductBinding.setNutritionalValueContent(nutritional: NutritionalValue) {
         nutritional.apply {
             textViewCalories.text = calories.roundToTwoDecimalPlaces().toString()
             textViewProteins.text = proteins.roundToTwoDecimalPlaces().toString()
             textViewFats.text = fats.roundToTwoDecimalPlaces().toString()
             textViewCarbs.text = carbs.roundToTwoDecimalPlaces().toString()
+        }
+    }
+
+    fun EditText.onDone(callback: () -> Unit) {
+        setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                callback.invoke()
+                true
+            }
+            false
         }
     }
 }
