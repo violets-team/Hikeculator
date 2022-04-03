@@ -1,6 +1,5 @@
 package com.example.hikeculator.data.repository_implementations
 
-import android.util.Log
 import com.example.hikeculator.data.common.getTripDayDocument
 import com.example.hikeculator.data.common.mapToFirestoreProduct
 import com.example.hikeculator.data.fiebase.entities.FirestoreDayMeal
@@ -10,6 +9,7 @@ import com.example.hikeculator.domain.entities.MealType
 import com.example.hikeculator.domain.entities.MealType.*
 import com.example.hikeculator.domain.entities.Product
 import com.example.hikeculator.domain.repositories.ProductRepository
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.tasks.await
@@ -19,10 +19,10 @@ class ProductRepositoryImpl(private val firestore: FirebaseFirestore) : ProductR
     override suspend fun insertProduct(
         product: Product,
         tripId: String,
-        tripDayId: String,
+        dayId: String,
         mealType: MealType
     ) {
-        firestore.getTripDayDocument(tripId = tripId, tripDayId = tripDayId)
+        firestore.getTripDayDocument(tripId = tripId, tripDayId = dayId)
             .let { documentReference ->
                 documentReference.get().await()
                     ?.toObject<FirestoreTripDay>()
@@ -39,12 +39,25 @@ class ProductRepositoryImpl(private val firestore: FirebaseFirestore) : ProductR
                             firestoreProduct = firestoreProduct
                         )
 
-
-                        documentReference.update(FirestoreTripDay::breakfast.name, updatedDayMeal).addOnFailureListener {
-                            Log.d("REPOS", "FAIL UDATE" )
-                        }
+                        updateDayMeal(
+                            documentReference = documentReference,
+                            updatedDayMeal = updatedDayMeal,
+                            mealType = mealType
+                        )
                     }
             }
+    }
+
+    private fun getTypedDayMeal(
+        firestoreTripDay: FirestoreTripDay,
+        mealType: MealType
+    ): FirestoreDayMeal {
+        return when (mealType) {
+            BREAKFAST -> firestoreTripDay.breakfast
+            LUNCH -> firestoreTripDay.lunch
+            DINNER -> firestoreTripDay.dinner
+            SNACK -> firestoreTripDay.snack
+        }
     }
 
     private fun getUpdatedDayMeal(
@@ -80,15 +93,16 @@ class ProductRepositoryImpl(private val firestore: FirebaseFirestore) : ProductR
         return FirestoreDayMeal(products = updatedProductList)
     }
 
-    private fun getTypedDayMeal(
-        firestoreTripDay: FirestoreTripDay,
+    private fun updateDayMeal(
+        documentReference: DocumentReference,
+        updatedDayMeal: FirestoreDayMeal,
         mealType: MealType
-    ): FirestoreDayMeal {
-        return when (mealType) {
-            BREAKFAST -> firestoreTripDay.breakfast
-            LUNCH -> firestoreTripDay.lunch
-            DINNER -> firestoreTripDay.dinner
-            SNACK -> firestoreTripDay.snack
+    ) {
+        when (mealType) {
+            BREAKFAST -> documentReference.update(FirestoreTripDay::breakfast.name, updatedDayMeal)
+            LUNCH -> documentReference.update(FirestoreTripDay::lunch.name, updatedDayMeal)
+            DINNER -> documentReference.update(FirestoreTripDay::dinner.name, updatedDayMeal)
+            SNACK -> documentReference.update(FirestoreTripDay::snack.name, updatedDayMeal)
         }
     }
 }

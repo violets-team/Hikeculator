@@ -11,7 +11,7 @@ class FirestoreProduct(
 ) {
 
     fun summarizeProduct(product: FirestoreProduct) = FirestoreProduct(
-        id = id,
+        id = product.id,
         name = name,
         weight = weight.plus(product.weight),
         nutritionalValue = nutritionalValue

@@ -93,6 +93,7 @@ fun FirestoreDayMeal.mapToDayMeal(): DayMeal = DayMeal(
 )
 
 fun Product.mapToFirestoreProduct(): FirestoreProduct = FirestoreProduct(
+    id = id,
     name = name,
     weight = weight,
     nutritionalValue = nutritionalValue.mapToFirestoreNutritionalValue(),

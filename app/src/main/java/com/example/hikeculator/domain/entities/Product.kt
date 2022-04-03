@@ -9,8 +9,8 @@ data class Product(
     val nutritionalValue: NutritionalValue,
 ) {
 
-    fun getNewProductByWeight(weight: Long) = copy(
+    fun getProductWithCalculatedNutritionalValue(weight: Long) = copy(
         weight = weight,
-        nutritionalValue = nutritionalValue.getNutritionalValueByWeight(weight)
+        nutritionalValue = nutritionalValue.getCalculatedNutritionalValue(weight)
     )
 }
