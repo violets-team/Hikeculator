@@ -2,13 +2,13 @@ package com.example.hikeculator.presentation.provision_bag
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import android.view.animation.AnticipateOvershootInterpolator
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hikeculator.R
 import com.example.hikeculator.databinding.ItemProvisionBagProductBinding
 import com.example.hikeculator.domain.entities.ProvisionBagProduct
+import com.example.hikeculator.presentation.common.getAnimated
 
 class ProvisionBagAdapter(
     private val onItemClick: (updatedProduct: ProvisionBagProduct) -> Unit
@@ -16,16 +16,19 @@ class ProvisionBagAdapter(
     ProvisionBagProductItemDiffCallback()
 ) {
 
-    private var rootRecyclerView: RecyclerView? = null
-    private var wasNotAnimated = true
-
     private companion object {
         const val MAX_ALPHA = 1F
         const val MIN_ALPHA = 0f
         const val TRANSACTION_START_SHIFT_VALUE = 400f
         const val TRANSLATION_DESTINATION = 0f
         const val DURATION = 500L
+
+        const val LOW_ELEVATION: Float = 8F
+        const val HIGH_ELEVATION: Float = 30F
     }
+
+    private var rootRecyclerView: RecyclerView? = null
+    private var recyclerWasNotAnimated = true
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
@@ -42,26 +45,16 @@ class ProvisionBagAdapter(
 
     override fun onBindViewHolder(holder: ProductItemHolder, position: Int) {
         holder.bind(product = getItem(holder.absoluteAdapterPosition))
-
     }
 
     override fun submitList(list: List<ProvisionBagProduct>?) {
         super.submitList(list)
 
-        if (wasNotAnimated) {
-            animateRecyclerView()
-            wasNotAnimated = false
-        }
-    }
-
-    private fun animateRecyclerView() {
-        rootRecyclerView?.apply {
-            val layoutAnimationController = AnimationUtils.loadLayoutAnimation(
-                context,
-                R.anim.recycler_view_provision_bag_layout_animation
-            )
-
-            layoutAnimation = layoutAnimationController
+        if (recyclerWasNotAnimated) {
+            rootRecyclerView?.apply {
+                getAnimated(layoutAnimationId = R.anim.recycler_view_provision_bag_layout_animation)
+                recyclerWasNotAnimated = false
+            }
         }
     }
 
@@ -78,6 +71,8 @@ class ProvisionBagAdapter(
                     product.weight
                 )
 
+                setItemElevation(isChecked = product.isBought)
+
                 root.apply {
                     val updatedProduct = product.copy(isBought = !product.isBought)
 
@@ -86,6 +81,14 @@ class ProvisionBagAdapter(
                         animateItem()
                     }
                 }
+            }
+        }
+
+        private fun setItemElevation(isChecked: Boolean) {
+            if (isChecked) {
+                binding.root.elevation = LOW_ELEVATION
+            } else {
+                binding.root.elevation = HIGH_ELEVATION
             }
         }
 

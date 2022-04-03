@@ -107,6 +107,6 @@
     <string name="format_protein">Protein %.2f</string>
     <string name="porblem_with_trip_collection_getting">There is a problem with tirip collection getting</string>
     <string name="text_provision_bag_product_weight">%1$d g</string>
-    <string name="provision_bag_screen_title">Provision bag of</string>
+    <string name="provision_bag_screen_title">The provision bag of</string>
     <string name="problem_with_product_updating">There is a problem with product updating</string>
 </resources>
