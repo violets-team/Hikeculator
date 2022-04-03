@@ -181,7 +181,7 @@ class TripCreatingViewModel(
     private suspend fun createEmptyTripProvisionBag(tripId: String) {
         provisionBagInteractor.createProvisionBag(
             tripId = tripId,
-            provisionBag = ProvisionBag(productList = emptySet())
+            provisionBag = ProvisionBag(productList = emptyList())
         )
     }
 

@@ -75,11 +75,11 @@ fun FirestoreTripDay.mapToTripDay(): TripDay = TripDay(
 )
 
 fun ProvisionBag.mapToFirestoreProvisionBag() = FirestoreProvisionBag(
-    productList = productList.map { it.mapToFirestoreProduct() }
+    productList = productList.map { product -> product.mapToFirestoreInstance() }
 )
 
 fun FirestoreProvisionBag.mapToProvisionBag() = ProvisionBag(
-    productList = productList.map { it.mapToProduct() }.toSet()
+    productList = productList.map { product -> product.mapToDomainInstance() }
 )
 
 fun DayMeal.mapToFirestoreDayMeal(): FirestoreDayMeal = FirestoreDayMeal(
@@ -134,4 +134,20 @@ fun ApiNutritionalValue.mapToNutritionalValue() = NutritionalValue(
     proteins = proteins.divideByOneHundred(),
     fats = fats.divideByOneHundred(),
     carbs = carbohydrates.divideByOneHundred()
+)
+
+fun ProvisionBagProduct.mapToFirestoreInstance() = FirestoreProvisionBagProduct(
+    name = name,
+    weight = weight,
+    nutritionalValue = nutritionalValue.mapToFirestoreNutritionalValue(),
+    isBought = isBought,
+    id = id
+)
+
+fun FirestoreProvisionBagProduct.mapToDomainInstance() = ProvisionBagProduct(
+    name = name,
+    weight = weight,
+    nutritionalValue = nutritionalValue.mapToNutritionalValue(),
+    isBought = isBought,
+    id = id
 )
