@@ -30,7 +30,8 @@ class TripDetailButtonView(
 
         private const val LEFT_CONTENT_POSITION_DP = 10
         private const val CHILD_MARGIN = 8
-        private const val TOP_PARENT_PADDING = 20
+        private const val TOP_PARENT_PADDING = 40
+        private const val BOTTOM_CHILD_PADDING = 8
 
         private const val CLICK_DURATION: Long = 40
 
@@ -66,6 +67,7 @@ class TripDetailButtonView(
     private val leftContentPosition = LEFT_CONTENT_POSITION_DP.toPixels()
     private val childMargin = CHILD_MARGIN.toPixels()
     private val topParentPadding = TOP_PARENT_PADDING.toPixels()
+    private val bottomChildPadding = BOTTOM_CHILD_PADDING.toPixels()
     private val contentHeight get() = children.map { it.measuredHeight + childMargin }.sum()
 
     private val FloatingActionButton.clickAnimator: ViewPropertyAnimator
@@ -116,7 +118,7 @@ class TripDetailButtonView(
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
-        var topPosition = bottom - top - contentHeight
+        var topPosition = bottom - top - contentHeight - bottomChildPadding
 
         binding.actionButtonProvisionBag.apply {
             place(topPosition = topPosition)
@@ -160,7 +162,7 @@ class TripDetailButtonView(
     private fun setMainButtonAttributes(typedArray: TypedArray) {
         binding.actionButtonMain.setAttributes(
             typedArray = typedArray,
-            backgroundId =  R.styleable.TripDetailButtonView_mainButtonBackground,
+            backgroundId = R.styleable.TripDetailButtonView_mainButtonBackground,
             imageId = R.styleable.TripDetailButtonView_mainButtonImage,
             tintId = R.styleable.TripDetailButtonView_mainButtonTint,
         )
@@ -169,7 +171,7 @@ class TripDetailButtonView(
     private fun setProvisionBagButtonAttributes(typedArray: TypedArray) {
         binding.actionButtonProvisionBag.setAttributes(
             typedArray = typedArray,
-            backgroundId =   R.styleable.TripDetailButtonView_provisionBagButtonBackground,
+            backgroundId = R.styleable.TripDetailButtonView_provisionBagButtonBackground,
             imageId = R.styleable.TripDetailButtonView_provisionBagButtonImage,
             tintId = R.styleable.TripDetailButtonView_provisionBagButtonTint,
         )
@@ -178,7 +180,7 @@ class TripDetailButtonView(
     private fun setMemberButtonAttributes(typedArray: TypedArray) {
         binding.actionButtonMembers.setAttributes(
             typedArray = typedArray,
-            backgroundId =   R.styleable.TripDetailButtonView_memberButtonBackground,
+            backgroundId = R.styleable.TripDetailButtonView_memberButtonBackground,
             imageId = R.styleable.TripDetailButtonView_memberButtonImage,
             tintId = R.styleable.TripDetailButtonView_memberButtonTint,
         )

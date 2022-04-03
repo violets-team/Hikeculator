@@ -1,5 +1,5 @@
 package com.example.hikeculator.data.fiebase.entities
 
-class FirestoreDayMeal(
+data class FirestoreDayMeal(
     val products: List<FirestoreProduct> = emptyList(),
 )
