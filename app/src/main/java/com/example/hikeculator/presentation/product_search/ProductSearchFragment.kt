@@ -2,7 +2,6 @@ package com.example.hikeculator.presentation.product_search
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.View.*
 import android.view.inputmethod.EditorInfo
@@ -40,7 +39,6 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
         initializeSearchRecyclerView()
         collectErrors()
         collectSearchResult()
-        collectProvisionBagStats()
         setEditTextListeners()
         setSoftKeyShowListener()
     }
@@ -72,12 +70,6 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
         viewModel.productSearchResult.collectWhenStarted(lifecycleScope) { products ->
             searchedProductsAdapter.submitList(products)
             binding.progressBarSearch.visibility = GONE
-        }
-    }
-
-    private fun collectProvisionBagStats() {
-        viewModel.provisionBag.collectWhenStarted(lifecycleScope) { provisionBag ->
-            TODO()
         }
     }
 

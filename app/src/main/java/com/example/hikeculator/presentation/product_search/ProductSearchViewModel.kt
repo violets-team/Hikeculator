@@ -16,8 +16,7 @@ import kotlinx.coroutines.launch
 class ProductSearchViewModel(
     private val searchInteractor: ProductSearchInteractor,
     val selectedProductRepository: SelectedProductRepository,
-    val tripId: String,
-    val provisionBagInteractor: ProvisionBagInteractor
+    val tripId: String
 ) : ViewModel() {
 
     private val _productSearchResult = MutableSharedFlow<List<Product>>(
@@ -26,12 +25,6 @@ class ProductSearchViewModel(
         BufferOverflow.DROP_OLDEST
     )
     val productSearchResult = _productSearchResult.asSharedFlow()
-
-    val provisionBag = provisionBagInteractor.fetchProvisionBag(tripId = tripId).shareIn(
-        viewModelScope,
-        started = SharingStarted.Lazily,
-        replay = 1
-    )
 
     private val _searchError = MutableSharedFlow<Int>()
     val searchError = _searchError.asSharedFlow()

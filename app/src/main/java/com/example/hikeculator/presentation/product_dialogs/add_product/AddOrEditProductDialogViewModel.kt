@@ -10,8 +10,7 @@ import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.*
 
 class AddOrEditProductDialogViewModel(
-    private val selectedProductRepository: SelectedProductRepository,
-    private val provisionBagInteractor: ProvisionBagInteractor
+    private val selectedProductRepository: SelectedProductRepository
 ) : ViewModel() {
 
     private val _selectedProduct = MutableSharedFlow<Product>(

@@ -9,14 +9,18 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.hikeculator.R
+import com.example.hikeculator.data.repository_implementations.ProductRepositoryImpl
 import com.example.hikeculator.databinding.FragmentAddOrEditProductBinding
 import com.example.hikeculator.domain.common.roundToTwoDecimalPlaces
 import com.example.hikeculator.domain.entities.MealType.*
 import com.example.hikeculator.domain.entities.NutritionalValue
+import com.example.hikeculator.domain.entities.Product
 import com.example.hikeculator.presentation.common.collectWhenStarted
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -44,10 +48,10 @@ class AddOrEditProductDialog : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setListenerWhenKeyBoardIsOpenExpandSheetFragment()
-        collectSelectedProduct()
+        getSelectedProduct()
     }
 
-    private fun collectSelectedProduct() {
+    private fun getSelectedProduct() {
         lifecycleScope.launch {
             viewModel.selectedProduct.collect { product ->
                 setProductTitle(productName = product.name)
@@ -55,7 +59,7 @@ class AddOrEditProductDialog : BottomSheetDialogFragment() {
                 setWeightChangeListener()
                 collectOnProductChanges()
                 setButtonDoneListener()
-                setSoftKeyBoardDoneListener()
+                //setSoftKeyBoardDoneListener()
             }
         }
     }
@@ -92,7 +96,13 @@ class AddOrEditProductDialog : BottomSheetDialogFragment() {
     }
 
     private fun setButtonDoneListener() {
-        TODO("Not yet implemented")
+        binding.buttonDone.setOnClickListener {
+            lifecycleScope.launch {
+                val repository = ProductRepositoryImpl(firestore = Firebase.firestore)
+                val pr = Product(weight = 40, name = "Marshmello", nutritionalValue = NutritionalValue(10.23,1.0,10.0,1.0,))
+                repository.insertProduct(product = pr, tripId = args.tripId, tripDayId = args.dayId, mealType = BREAKFAST)
+            }
+        }
     }
 
 
