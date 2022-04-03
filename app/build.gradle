@@ -87,6 +87,4 @@ dependencies {
     /** okttp **/
     implementation "com.squareup.okhttp3:okhttp"
 
-    implementation "androidx.recyclerview:recyclerview:1.2.1"
-
 }
