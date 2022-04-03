@@ -1,5 +1,6 @@
 package com.example.hikeculator.data.repository_implementations
 
+import android.util.Log
 import com.example.hikeculator.data.common.getTripDayDocument
 import com.example.hikeculator.data.common.mapToFirestoreProduct
 import com.example.hikeculator.data.fiebase.entities.FirestoreDayMeal
@@ -39,7 +40,9 @@ class ProductRepositoryImpl(private val firestore: FirebaseFirestore) : ProductR
                         )
 
 
-                        documentReference.update(FirestoreTripDay::breakfast.name, updatedDayMeal)
+                        documentReference.update(FirestoreTripDay::breakfast.name, updatedDayMeal).addOnFailureListener {
+                            Log.d("REPOS", "FAIL UDATE" )
+                        }
                     }
             }
     }

@@ -54,17 +54,11 @@ val presentationModule = module {
         ProductSearchViewModel(
             searchInteractor = get(),
             selectedProductRepository = get(),
-            provisionBagInteractor = get(),
             tripId = tripId
         )
     }
 
-    viewModel { (tripId: String) ->
-        AddOrEditProductDialogViewModel(
-            selectedProductRepository = get(),
-            provisionBagInteractor = get()
-        )
-    }
+    viewModel { AddOrEditProductDialogViewModel(selectedProductRepository = get()) }
 
     viewModel { (tripId: String) ->
         ProvisionBagViewModel(tripId = tripId, provisionBagInteractor = get())
