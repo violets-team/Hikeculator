@@ -5,11 +5,11 @@ import kotlinx.coroutines.flow.Flow
 
 interface MemberGroupRepository {
 
-    fun addTripMember(user: User)
+    suspend fun addTripMember(tripId: String, userUid: String)
 
-    fun removeTripMember(user: User)
+    suspend fun removeTripMember(tripId: String, userUid: String)
 
-    fun fetchTripMembers(): Flow<Set<User>>
+    suspend fun fetchTripMembers(tripId: String): Set<User>
 
     suspend fun fetchTripMember(userUid: String): User?
 

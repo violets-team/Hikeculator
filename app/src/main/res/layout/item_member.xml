@@ -4,16 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    android:background="@drawable/auth_input_style">
+    android:layout_margin="8dp"
+    android:elevation="4dp"
+    android:padding="8dp"
+    android:background="@drawable/background_member_menagment_item">
 
     <ImageButton
         android:id="@+id/button_delete_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="16dp"
         android:background="@null"
+        app:tint="@color/primary_color"
         android:src="@drawable/ic_cancel"
+
         app:layout_constraintBottom_toBottomOf="@+id/image_view_user_photo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/image_view_user_photo" />
@@ -22,22 +26,20 @@
         android:id="@+id/image_view_user_photo"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        app:tint="@color/primary_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:srcCompat="@drawable/ic_user_photo" />
 
     <TextView
         android:id="@+id/text_view_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Александр"
-        android:textColor="@color/black"
-        android:textSize="16sp"
+        tools:text="Александр"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/image_view_user_photo"
         app:layout_constraintTop_toTopOf="@+id/image_view_user_photo" />
@@ -46,7 +48,8 @@
         android:id="@+id/text_view_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Alex@gmail.com"
+        tools:text="Alex@gmail.com"
+        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="@+id/image_view_user_photo"
         app:layout_constraintStart_toStartOf="@+id/text_view_user_name"
         app:layout_constraintTop_toBottomOf="@+id/text_view_user_name" />

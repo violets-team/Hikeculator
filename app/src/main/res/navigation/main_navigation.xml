@@ -162,7 +162,17 @@
         android:id="@+id/memberManagementFragment"
         android:name="com.example.hikeculator.presentation.member_management.MemberManagementFragment"
         android:label="fragment_member_managment"
-        tools:layout="@layout/fragment_member_managment" />
+        tools:layout="@layout/fragment_member_managment" >
+        <argument
+            android:name="tripId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_memberManagementFragment_to_memberDeletingDialogFragment"
+            app:destination="@id/memberDeletingDialogFragment" />
+        <action
+            android:id="@+id/action_memberManagementFragment_to_memberManagementSearchDialogFragment"
+            app:destination="@id/memberManagementSearchDialogFragment" />
+    </fragment>
     <fragment
         android:id="@+id/productSearchFragment"
         android:name="com.example.hikeculator.presentation.product_search.ProductSearchFragment"
@@ -178,4 +188,28 @@
             android:name="mealType"
             app:argType="com.example.hikeculator.domain.entities.MealType" />
     </fragment>
+    <dialog
+        android:id="@+id/memberDeletingDialogFragment"
+        android:name="com.example.hikeculator.presentation.member_management.member_deleting.MemberDeletingDialogFragment"
+        android:label="dialog_member_deleting"
+        tools:layout="@layout/dialog_fragment_member_deleting" >
+        <argument
+            android:name="memberUdi"
+            app:argType="string" />
+        <argument
+            android:name="memberName"
+            app:argType="string" />
+        <argument
+            android:name="tripId"
+            app:argType="string" />
+    </dialog>
+    <dialog
+        android:id="@+id/memberManagementSearchDialogFragment"
+        android:name="com.example.hikeculator.presentation.member_management.member_adding.MemberManagementAddingDialogFragment"
+        android:label="dialog_fragment_member_management_search"
+        tools:layout="@layout/dialog_fragment_member_management_search" >
+        <argument
+            android:name="tripId"
+            app:argType="string" />
+    </dialog>
 </navigation>

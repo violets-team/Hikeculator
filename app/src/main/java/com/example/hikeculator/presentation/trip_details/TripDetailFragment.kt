@@ -17,6 +17,7 @@ import com.example.hikeculator.domain.common.NutritionalCalculator.getFatNorm
 import com.example.hikeculator.domain.common.NutritionalCalculator.getProteinsNorm
 import com.example.hikeculator.domain.entities.Trip
 import com.example.hikeculator.domain.entities.TripDay
+import com.example.hikeculator.presentation.common.RecyclerViewAnimator
 import com.example.hikeculator.presentation.common.collectWhenStarted
 import com.example.hikeculator.presentation.common.showToast
 import com.google.android.material.progressindicator.CircularProgressIndicator
@@ -33,6 +34,9 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
     private val viewModel by viewModel<TripDetailViewModel> { parametersOf(args.tripId) }
 
     private val tripDetailDayAdapter = TripDetailDayAdapter(onItemClick = ::navigateToTriDayDetails)
+    private val recyclerViewAnimator by lazy {
+        RecyclerViewAnimator(recyclerView = binding.recyclerViewTripDays)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -57,6 +61,7 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
         viewModel.data.collectWhenStarted(lifecycleScope) { data: Pair<Trip?, List<TripDay>> ->
             data.first?.let { trip ->
                 tripDetailDayAdapter.submitList(data.second)
+                recyclerViewAnimator.animateOnlyOnce(R.anim.recycler_view_trip_details_layout_animation)
                 binding.setViewContent(trip = trip, tripDays = data.second)
             }
         }
@@ -78,7 +83,7 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
         TripDetailFragmentDirections.actionTripDetailFragmentToTripDayDetailFragment(
             tripId = args.tripId,
             dayId = dayId
-        ).also { navController.navigate(directions = it)  }
+        ).also { navController.navigate(directions = it) }
     }
 
     private fun navigateToProvisionBag(tripId: String) {
@@ -89,6 +94,7 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
 
     private fun navigateToMembers() {
         TripDetailFragmentDirections.actionTripDetailFragmentToMemberManagementFragment(
+            tripId = args.tripId
         ).also { navController.navigate(directions = it) }
     }
 

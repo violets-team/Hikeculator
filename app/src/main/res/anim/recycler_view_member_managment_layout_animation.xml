@@ -2,6 +2,6 @@
 <layoutAnimation xmlns:android="http://schemas.android.com/apk/res/android"
     android:animation="@anim/rise_up_item"
     android:animationOrder="normal"
-    android:delay="30%">
+    android:delay="20%">
 
 </layoutAnimation>
