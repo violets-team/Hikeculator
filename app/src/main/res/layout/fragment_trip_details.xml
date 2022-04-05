@@ -211,7 +211,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="18dp"
         app:mainButtonBackground="@color/main_button_background"
         app:provisionBagButtonBackground="@color/provision_bag_button_background"
         app:memberButtonBackground="@color/member_button_background"
