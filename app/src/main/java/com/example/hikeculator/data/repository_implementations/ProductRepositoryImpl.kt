@@ -1,10 +1,13 @@
 package com.example.hikeculator.data.repository_implementations
 
+import android.util.Log
 import com.example.hikeculator.data.common.getTripDayDocument
+import com.example.hikeculator.data.common.mapToDayMeal
 import com.example.hikeculator.data.common.mapToFirestoreProduct
 import com.example.hikeculator.data.fiebase.entities.FirestoreDayMeal
 import com.example.hikeculator.data.fiebase.entities.FirestoreProduct
 import com.example.hikeculator.data.fiebase.entities.FirestoreTripDay
+import com.example.hikeculator.domain.entities.DayMeal
 import com.example.hikeculator.domain.entities.MealType
 import com.example.hikeculator.domain.entities.MealType.*
 import com.example.hikeculator.domain.entities.Product
@@ -12,7 +15,11 @@ import com.example.hikeculator.domain.repositories.ProductRepository
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
+import java.lang.Exception
 
 class ProductRepositoryImpl(private val firestore: FirebaseFirestore) : ProductRepository {
 
@@ -47,6 +54,37 @@ class ProductRepositoryImpl(private val firestore: FirebaseFirestore) : ProductR
                     }
             }
     }
+
+    override fun fetchDayMeal(
+        tripId: String,
+        dayId: String,
+        mealType: MealType
+    ): Flow<DayMeal> = callbackFlow {
+        val listener = try {
+            firestore.getTripDayDocument(tripId = tripId, tripDayId = dayId)
+                .addSnapshotListener { snapshot, error ->
+                    if (error != null) {
+                        return@addSnapshotListener
+                    } else {
+                        val firestoreTripDay = snapshot?.toObject<FirestoreTripDay>()
+
+                        val firestoreDayMeal = firestoreTripDay?.let {
+                            getTypedDayMeal(
+                                firestoreTripDay = it,
+                                mealType = mealType
+                            )
+                        }
+
+                        firestoreDayMeal?.mapToDayMeal()?.let { trySend(element = it) }
+                    }
+                }
+        } catch (e: Exception) {
+            null
+        }
+
+        awaitClose { listener?.remove() }
+    }
+
 
     private fun getTypedDayMeal(
         firestoreTripDay: FirestoreTripDay,

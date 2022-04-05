@@ -1,10 +1,13 @@
 package com.example.hikeculator.domain.common
 
+import com.example.hikeculator.domain.entities.MealType
+import com.example.hikeculator.domain.entities.Trip
 import com.example.hikeculator.domain.entities.User
 import com.example.hikeculator.domain.enums.Gender
 import com.example.hikeculator.domain.enums.TripDifficultyCategory
 import com.example.hikeculator.domain.enums.TripSeason
 import com.example.hikeculator.domain.enums.TripType
+import java.util.concurrent.TimeUnit
 
 object NutritionalCalculator {
 
@@ -54,5 +57,20 @@ object NutritionalCalculator {
 
     fun getCarbNorm(calories: Double): Double {
         return calories * CARBS_NORM_PERCENTAGE
+    }
+
+    fun getMealCaloriesNorm(trip: Trip, mealType: MealType): Double {
+        val daysNumber = getDaysNumber(
+            startDate = trip.startDate,
+            endDate = trip.endDate
+        )
+
+        val caloriesDayNorm = trip.totalCalories / daysNumber
+
+        return caloriesDayNorm * mealType.mealPercentage
+    }
+
+    private fun getDaysNumber(startDate: Long, endDate: Long): Long {
+        return TimeUnit.MILLISECONDS.toDays(endDate - startDate) + 1
     }
 }

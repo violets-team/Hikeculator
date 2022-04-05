@@ -2,12 +2,10 @@ package com.example.hikeculator.data.repository_implementations
 
 import android.content.Context
 import com.example.hikeculator.NutritionalValuePreferences
-import com.example.hikeculator.ProductPreferences
 import com.example.hikeculator.data.common.mapToProduct
 import com.example.hikeculator.data.data_store.current_selected_product.productPreferenceStore
 import com.example.hikeculator.domain.entities.Product
 import com.example.hikeculator.domain.repositories.SelectedProductRepository
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 
 

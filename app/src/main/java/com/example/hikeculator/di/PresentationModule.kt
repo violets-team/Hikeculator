@@ -1,6 +1,6 @@
 package com.example.hikeculator.di
 
-import com.example.hikeculator.domain.interactors.ProductInteractor
+import com.example.hikeculator.domain.entities.MealType
 import com.example.hikeculator.presentation.entrance.EntranceViewModel
 import com.example.hikeculator.presentation.general_trip_list.GeneralTripViewModel
 import com.example.hikeculator.presentation.product_dialogs.add_product.AddOrEditProductDialogViewModel
@@ -51,11 +51,15 @@ val presentationModule = module {
         )
     }
 
-    viewModel { (tripId: String) ->
+    viewModel { (tripId: String, dayId: String, mealType: MealType) ->
         ProductSearchViewModel(
+            tripInteractor = get(),
             searchInteractor = get(),
             selectedProductRepository = get(),
-            tripId = tripId
+            productInteractor = get(),
+            tripId = tripId,
+            dayId = dayId,
+            mealType = mealType
         )
     }
 

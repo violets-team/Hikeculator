@@ -17,6 +17,8 @@ import com.example.hikeculator.R
 import com.example.hikeculator.databinding.FragmentProductSearchBinding
 import com.example.hikeculator.domain.entities.Product
 import com.example.hikeculator.presentation.common.collectWhenStarted
+import com.example.hikeculator.presentation.common.hideKeyBoardIfOpen
+import com.example.hikeculator.presentation.common.setTextPercentage
 import com.google.android.material.snackbar.Snackbar
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.Unregistrar
@@ -30,7 +32,13 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
     private val navController by lazy { findNavController() }
     private val args by navArgs<ProductSearchFragmentArgs>()
 
-    private val viewModel by viewModel<ProductSearchViewModel> { parametersOf(args.tripId)}
+    private val viewModel by viewModel<ProductSearchViewModel> {
+        parametersOf(
+            args.tripId,
+            args.dayId,
+            args.mealType
+        )
+    }
 
     private val searchedProductsAdapter = ProductSearchAdapter(::showAddOrEditProductDialog)
 
@@ -41,9 +49,10 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
 
         initializeSearchRecyclerView()
         collectErrors()
+        collectProductStatistics()
         collectSearchResult()
         setEditTextListeners()
-        setSoftKeyShowListener()
+        //setSoftKeyShowListener() - Оставить или поменять внешний вид?
     }
 
     override fun onDestroyView() {
@@ -51,11 +60,31 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
         keyBoardShowListener?.unregister()
     }
 
+    private fun collectProductStatistics() {
+       viewModel.productStatistics.collectWhenStarted(lifecycleScope) { statistics ->
+           binding.apply {
+               progressIndicatorCaloriesInfo.progress = statistics.percentageOfCalories
+               progressIndicatorProteinsInfo.progress = statistics.percentageOfProteins
+               progressIndicatorFatsInfo.progress = statistics.percentageOfFats
+               progressIndicatorCarbsInfo.progress = statistics.percentageOfCarbs
+
+               textViewCaloriesInfo.setTextPercentage(statistics.percentageOfCalories)
+               textViewProteinsInfo.setTextPercentage(statistics.percentageOfProteins)
+               textViewFatsInfo.setTextPercentage(statistics.percentageOfFats)
+               textViewCarbsInfo.setTextPercentage(statistics.percentageOfCarbs)
+           }
+       }
+    }
+
     private fun setSoftKeyShowListener() {
-        keyBoardShowListener = KeyboardVisibilityEvent.registerEventListener(activity) {
-            when (it) {
-                true -> { binding.groupProductStatics.visibility = GONE }
-                false -> { binding.groupProductStatics.visibility = VISIBLE }
+        keyBoardShowListener = KeyboardVisibilityEvent.registerEventListener(activity) { isShown ->
+            when (isShown) {
+                true -> {
+                    binding.groupProductStatics.visibility = GONE
+                }
+                false -> {
+                    binding.groupProductStatics.visibility = VISIBLE
+                }
             }
         }
     }
@@ -90,6 +119,7 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
             when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> {
                     searchProducts(textView.text.toString())
+                    requireContext().hideKeyBoardIfOpen(binding.root)
                     true
                 }
                 else -> false
