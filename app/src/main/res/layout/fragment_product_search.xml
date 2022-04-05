@@ -18,7 +18,11 @@
         text_view_calories_title,
         text_view_proteins_title,
         text_view_fats_title,
-        text_view_carbs_title" />
+        text_view_carbs_title,
+        text_view_calories_info,
+        text_view_proteins_info,
+        text_view_fats_info,
+        text_view_carbs_info" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progress_indicator_calories_info"
@@ -34,7 +38,7 @@
         android:id="@+id/progress_indicator_proteins_info"
         style="@style/progress_bar_pfc_info"
         android:layout_marginTop="16dp"
-        app:indicatorColor="@color/light_green"
+        app:indicatorColor="@android:color/holo_orange_light"
         app:layout_constraintEnd_toEndOf="@id/progress_indicator_fats_info"
         app:layout_constraintStart_toEndOf="@id/progress_indicator_calories_info"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,7 +47,7 @@
         android:id="@+id/progress_indicator_fats_info"
         style="@style/progress_bar_pfc_info"
         android:layout_marginTop="16dp"
-        app:indicatorColor="@color/light_green"
+        app:indicatorColor="@android:color/holo_blue_light"
         app:layout_constraintEnd_toStartOf="@id/progress_indicator_carbs_info"
         app:layout_constraintStart_toEndOf="@id/progress_indicator_proteins_info"
         app:layout_constraintTop_toTopOf="parent" />
@@ -52,6 +56,7 @@
         android:id="@+id/progress_indicator_carbs_info"
         style="@style/progress_bar_pfc_info"
         android:layout_marginTop="16dp"
+        app:indicatorColor="@android:color/holo_red_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/progress_indicator_fats_info"
         app:layout_constraintTop_toTopOf="parent" />
@@ -146,7 +151,7 @@
         android:drawablePadding="8dp"
         android:elevation="8dp"
         android:hint="@string/search_food"
-        android:imeOptions="actionSearch"
+        android:imeOptions="actionDone"
         android:inputType="text"
         android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -159,7 +164,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/text_search_result"
-        android:textColor="@color/light_green"
+        android:textColor="@color/primary_color"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@id/edit_text_search"
         app:layout_constraintTop_toBottomOf="@id/edit_text_search" />
@@ -176,37 +181,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_view_title_search_result" />
 
-    <Button
-        android:id="@+id/button_done"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/light_green"
-        android:text="@string/text_done"
-        app:cornerRadius="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button_add_custom_product"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/light_green"
-        android:text="@string/text_add_custom_product"
-        app:cornerRadius="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/button_done" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_list_of_products"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/button_done"
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/hr_line"

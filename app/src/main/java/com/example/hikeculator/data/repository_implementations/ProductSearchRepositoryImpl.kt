@@ -1,7 +1,6 @@
 package com.example.hikeculator.data.repository_implementations
 
 import com.example.hikeculator.data.common.mapToProductList
-import com.example.hikeculator.data.retrofit.ProductSearchApi
 import com.example.hikeculator.data.retrofit.ProductSearchService
 import com.example.hikeculator.domain.common.isEmptyWithoutSpaces
 import com.example.hikeculator.domain.entities.Product

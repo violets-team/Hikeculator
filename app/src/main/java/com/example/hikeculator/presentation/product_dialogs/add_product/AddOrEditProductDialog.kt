@@ -16,6 +16,8 @@ import com.example.hikeculator.domain.common.roundToTwoDecimalPlaces
 import com.example.hikeculator.domain.entities.MealType.*
 import com.example.hikeculator.domain.entities.NutritionalValue
 import com.example.hikeculator.presentation.common.collectWhenStarted
+import com.example.hikeculator.presentation.common.hideKeyBoardIfOpen
+import com.example.hikeculator.presentation.common.onDone
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -47,6 +49,7 @@ class AddOrEditProductDialog : BottomSheetDialogFragment() {
 
         setListenerExpandFragmentIfKeyBoardIsOpen()
         getSelectedProduct()
+        setCancelTextViewListener()
     }
 
     private fun getSelectedProduct() {
@@ -58,6 +61,24 @@ class AddOrEditProductDialog : BottomSheetDialogFragment() {
                 collectOnProductChanges()
                 setButtonDoneListener()
                 setSoftKeyBoardDoneListener()
+            }
+        }
+    }
+
+    private fun setCancelTextViewListener() {
+        binding.textViewCancel.setOnClickListener {
+            requireContext().hideKeyBoardIfOpen(binding.root)
+            dismiss()
+        }
+    }
+
+    private fun setListenerExpandFragmentIfKeyBoardIsOpen() {
+        dialog?.setOnShowListener {
+            val dialog = it as BottomSheetDialog
+            val bottomSheet = dialog.findViewById<View>(R.id.design_bottom_sheet)
+            bottomSheet?.let { sheet ->
+                dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
+                sheet.parent.parent.requestLayout()
             }
         }
     }
@@ -107,26 +128,23 @@ class AddOrEditProductDialog : BottomSheetDialogFragment() {
     }
 
     private fun setButtonDoneListener() {
-        binding.buttonDone.setOnClickListener { addProductToTrip() }
+        binding.buttonDone.setOnClickListener {
+            addProductToTrip()
+            requireContext().hideKeyBoardIfOpen(binding.root)
+            dismiss()
+        }
     }
 
     private fun setSoftKeyBoardDoneListener() {
-        binding.editTextWeight.onDone { addProductToTrip() }
+        binding.editTextWeight.onDone {
+            addProductToTrip()
+            requireContext().hideKeyBoardIfOpen(binding.root)
+            dismiss()
+        }
     }
 
     private fun setProductTitle(productName: String) {
         binding.textViewProductTitle.text = productName
-    }
-
-    private fun setListenerExpandFragmentIfKeyBoardIsOpen() {
-        dialog?.setOnShowListener {
-            val dialog = it as BottomSheetDialog
-            val bottomSheet = dialog.findViewById<View>(R.id.design_bottom_sheet)
-            bottomSheet?.let { sheet ->
-                dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
-                sheet.parent.parent.requestLayout()
-            }
-        }
     }
 
     private fun FragmentAddOrEditProductBinding.setNutritionalValueContent(nutritional: NutritionalValue) {
@@ -135,16 +153,6 @@ class AddOrEditProductDialog : BottomSheetDialogFragment() {
             textViewProteins.text = proteins.roundToTwoDecimalPlaces().toString()
             textViewFats.text = fats.roundToTwoDecimalPlaces().toString()
             textViewCarbs.text = carbs.roundToTwoDecimalPlaces().toString()
-        }
-    }
-
-    fun EditText.onDone(callback: () -> Unit) {
-        setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                callback.invoke()
-                true
-            }
-            false
         }
     }
 }
