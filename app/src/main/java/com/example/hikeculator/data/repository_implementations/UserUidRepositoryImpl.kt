@@ -10,5 +10,4 @@ class UserUidRepositoryImpl : UserUidRepository {
     }
 
     override var uid: String = EMPTY_UID
-
 }

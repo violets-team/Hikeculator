@@ -62,7 +62,6 @@ class TripRepositoryImpl(
                 .addSnapshotListener { document, error ->
                     if (error != null) {
                         close(cause = null)
-                        cancel("some")
                     } else {
                         document?.toObject<FirestoreTrip>()
                             ?.mapToTrip()

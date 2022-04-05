@@ -62,7 +62,7 @@ class GeneralTripViewModel(
 
     private fun fetchTrips(vararg tripId: String) {
         val exceptionHandler = CoroutineExceptionHandler { _, _ ->
-            _problemMessage.tryEmit(R.string.porblem_with_trip_collection_getting)
+            _problemMessage.tryEmit(R.string.problem_with_trip_collection_getting)
         }
 
         viewModelScope.launch(context = exceptionHandler) {

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_member_deleting_dialog"
+    android:padding="24dp"
+    tools:context=".presentation.member_management.member_deleting.MemberDeletingDialogFragment">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_member_deletion_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Would you like to delete?" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textStyle="bold"
+        android:background="@drawable/background_button"
+        android:textColor="@android:color/holo_red_dark"
+        android:text="@string/text_delete"
+        app:layout_constraintEnd_toStartOf="@id/button_deny"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_member_deletion_title"
+
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_deny"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_button"
+        android:textStyle="bold"
+        android:text="@string/text_deny"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/button_delete"
+        app:layout_constraintTop_toTopOf="@id/button_delete"
+
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>
