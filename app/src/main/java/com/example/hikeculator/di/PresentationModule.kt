@@ -71,6 +71,10 @@ val presentationModule = module {
     }
 
     viewModel { (tripId: String) ->
-        ProvisionBagViewModel(tripId = tripId, provisionBagInteractor = get())
+        ProvisionBagViewModel(
+            tripId = tripId,
+            provisionBagInteractor = get(),
+            tripInteractor = get()
+        )
     }
 }

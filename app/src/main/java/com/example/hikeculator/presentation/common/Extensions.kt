@@ -4,11 +4,14 @@ import android.content.Context
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.view.animation.AnimationUtils
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.AnimRes
 import androidx.annotation.StringRes
 import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.recyclerview.widget.RecyclerView
 import com.example.hikeculator.R
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -54,6 +57,12 @@ fun EditText.onDone(callback: () -> Unit) {
         false
     }
 }
+fun RecyclerView.getAnimated(@AnimRes layoutAnimationId: Int) {
+    val layoutAnimationController = AnimationUtils.loadLayoutAnimation(context, layoutAnimationId)
+
+    layoutAnimation = layoutAnimationController
+}
+
 
 fun TextView.setTextPercentage(percentage: Int) {
     val displayedPercentage = if (percentage < GREATEST_PERCENTAGE_VALUE) {

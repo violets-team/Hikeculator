@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="progress_bar_pfc_radius">50sp</dimen>
+    <dimen name="provision_bag_product_item_checkbox_padding">16dp</dimen>
 </resources>
