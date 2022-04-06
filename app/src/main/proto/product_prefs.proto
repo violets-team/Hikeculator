@@ -1,0 +1,16 @@
+syntax = "proto3";
+option java_package = "com.example.hikeculator";
+option java_multiple_files = true;
+
+message ProductPreferences {
+  string id = 1;
+  string name = 2;
+  NutritionalValuePreferences nutritionalValue = 3;
+}
+
+message NutritionalValuePreferences {
+  double calories = 1;
+  double proteins = 2;
+  double fats = 3;
+  double carbs = 4;
+}

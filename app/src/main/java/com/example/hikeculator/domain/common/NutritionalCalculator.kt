@@ -1,10 +1,13 @@
 package com.example.hikeculator.domain.common
 
+import com.example.hikeculator.domain.enums.MealType
+import com.example.hikeculator.domain.entities.Trip
 import com.example.hikeculator.domain.entities.User
 import com.example.hikeculator.domain.enums.Gender
 import com.example.hikeculator.domain.enums.TripDifficultyCategory
 import com.example.hikeculator.domain.enums.TripSeason
 import com.example.hikeculator.domain.enums.TripType
+import java.util.concurrent.TimeUnit
 
 object NutritionalCalculator {
 
@@ -17,6 +20,9 @@ object NutritionalCalculator {
     private const val PROTEINS_NORM_PERCENTAGE = 0.3
     private const val FAT_NORM_PERCENTAGE = 0.3
     private const val CARBS_NORM_PERCENTAGE = 0.4
+    private const val CALORIES_PER_GRAM_OF_CARBS = 4
+    private const val CALORIES_PER_GRAM_OF_PROTEINS = 4
+    private const val CALORIES_PER_GRAM_OF_FAT = 9
 
     fun calculateCalorieNorm(weight: Double, height: Int, age: Int, gender: Gender): Long {
         val genderFactor = if (gender == Gender.MAN) MAN_GENDER_FACTOR else WOMAN_GENDER_FACTOR
@@ -54,5 +60,32 @@ object NutritionalCalculator {
 
     fun getCarbNorm(calories: Double): Double {
         return calories * CARBS_NORM_PERCENTAGE
+    }
+
+    fun getMealCaloriesNorm(trip: Trip, mealType: MealType): Double {
+        val daysNumber = getDaysNumber(
+            startDate = trip.startDate,
+            endDate = trip.endDate
+        )
+
+        val caloriesDayNorm = trip.totalCalories / daysNumber
+
+        return caloriesDayNorm * mealType.mealPercentage
+    }
+
+    fun getProteinsNormInGrams(calories: Double): Double {
+        return getProteinsNorm(calories = calories) / CALORIES_PER_GRAM_OF_PROTEINS
+    }
+
+    fun getFatNormInGrams(calories: Double): Double {
+        return getFatNorm(calories = calories) / CALORIES_PER_GRAM_OF_FAT
+    }
+
+    fun getCarbsNormInGrams(calories: Double): Double {
+        return getCarbNorm(calories = calories) / CALORIES_PER_GRAM_OF_CARBS
+    }
+
+    private fun getDaysNumber(startDate: Long, endDate: Long): Long {
+        return TimeUnit.MILLISECONDS.toDays(endDate - startDate).inc()
     }
 }

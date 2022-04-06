@@ -1,5 +1,7 @@
 package com.example.hikeculator.data.common
 
+import com.example.hikeculator.NutritionalValuePreferences
+import com.example.hikeculator.ProductPreferences
 import com.example.hikeculator.data.fiebase.entities.*
 import com.example.hikeculator.data.retrofit.WEIGHT_UNIT
 import com.example.hikeculator.data.retrofit.entities.ApiNutritionalValue
@@ -91,6 +93,7 @@ fun FirestoreDayMeal.mapToDayMeal(): DayMeal = DayMeal(
 )
 
 fun Product.mapToFirestoreProduct(): FirestoreProduct = FirestoreProduct(
+    id = id,
     name = name,
     weight = weight,
     nutritionalValue = nutritionalValue.mapToFirestoreNutritionalValue(),
@@ -126,7 +129,7 @@ fun ApiProductHolder.mapToProduct() = Product(
     id = product.id,
     name = product.name,
     weight = WEIGHT_UNIT,
-    nutritionalValue = product.nutritionalValue.mapToNutritionalValue(),
+    nutritionalValue = product.nutritionalValue.mapToNutritionalValue()
 )
 
 fun ApiNutritionalValue.mapToNutritionalValue() = NutritionalValue(
@@ -150,4 +153,18 @@ fun FirestoreProvisionBagProduct.mapToDomainInstance() = ProvisionBagProduct(
     nutritionalValue = nutritionalValue.mapToNutritionalValue(),
     isBought = isBought,
     id = id
+)
+
+fun ProductPreferences.mapToProduct() = Product(
+    id = id,
+    weight = 0,
+    name = name,
+    nutritionalValue = nutritionalValue.mapToNutritionalValue()
+)
+
+fun NutritionalValuePreferences.mapToNutritionalValue() = NutritionalValue(
+    calories = calories,
+    proteins = proteins,
+    fats = fats,
+    carbs = carbs
 )

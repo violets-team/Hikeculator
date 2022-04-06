@@ -8,8 +8,8 @@ import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.hikeculator.R
 import com.example.hikeculator.databinding.FragmentTripDayDetailsBinding
-import com.example.hikeculator.domain.entities.MealType
-import com.example.hikeculator.domain.entities.MealType.*
+import com.example.hikeculator.domain.enums.MealType
+import com.example.hikeculator.domain.enums.MealType.*
 
 class TripDayDetailFragment: Fragment(R.layout.fragment_trip_day_details) {
 

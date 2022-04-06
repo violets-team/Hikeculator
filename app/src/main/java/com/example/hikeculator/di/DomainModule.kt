@@ -18,4 +18,6 @@ val domainModule = module {
     factory { ProvisionBagInteractor(provisionBagRepository = get()) }
 
     factory { ProductSearchInteractor(productSearchRepository = get()) }
+
+    factory { ProductInteractor(productRepository = get()) }
 }

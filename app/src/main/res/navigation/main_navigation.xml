@@ -176,6 +176,23 @@
             app:argType="string" />
         <argument
             android:name="mealType"
-            app:argType="com.example.hikeculator.domain.entities.MealType" />
+            app:argType="com.example.hikeculator.domain.enums.MealType" />
+        <action
+            android:id="@+id/action_productSearchFragment_to_addOrEditProductDialog"
+            app:destination="@id/addOrEditProductDialog" />
     </fragment>
+    <fragment android:id="@+id/placeholder" />
+    <dialog
+        android:id="@+id/addOrEditProductDialog"
+        android:name="com.example.hikeculator.presentation.product_dialogs.add_product.AddOrEditProductDialog"
+        android:label="AddOrEditProductDialog" >
+        <argument
+            android:name="tripId"
+            app:argType="string" />
+        <argument android:name="dayId"
+            app:argType="string" />
+        <argument
+            android:name="mealType"
+            app:argType="com.example.hikeculator.domain.enums.MealType" />
+    </dialog>
 </navigation>
