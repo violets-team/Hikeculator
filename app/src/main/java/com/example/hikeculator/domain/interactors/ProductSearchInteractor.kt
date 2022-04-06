@@ -7,4 +7,7 @@ class ProductSearchInteractor(private val productSearchRepository: ProductSearch
 
     suspend fun search(searchExpression: String): List<Product> =
         productSearchRepository.search(searchExpression)
+
+    suspend fun fetchHints(searchExpression: String): List<String> =
+        productSearchRepository.fetchHints(searchExpression)
 }
