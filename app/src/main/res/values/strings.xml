@@ -84,9 +84,12 @@
     <string name="date_picker_title_select_trip_date">Select the trip date</string>
     <string name="search_food">Search food</string>
     <string name="text_done">Done</string>
+    <string name="text_cancel">Cancel</string>
     <string name="text_add_custom_product">Add custom product</string>
     <string name="text_search_result">SEARCH RESULT</string>
     <string name="text_error_search">Internet or search error</string>
+    <string name="text_error_saving_selected_product">Can not open this product</string>
+    <string name="text_error_saving_receiving_product">Can not find product</string>
     <string name="text_description_add_product">Add product button</string>
     <string name="message_failed_to_create_the_trip">Failed to create the trip</string>
     <string name="problem_with_day_creating">There is a problem with day creating</string>
@@ -95,6 +98,7 @@
     <string name="kcal">Kcal</string>
     <string name="grained_calorie_percents">%1$d%%</string>
     <string name="pfc_percents">%1$d%%</string>
+    <string name="pfc_percentage">%d%%</string>
     <string name="proteins">proteins</string>
     <string name="fats">fats</string>
     <string name="carbs">carbs</string>
@@ -105,7 +109,18 @@
     <string name="format_fat">Fat %.2f</string>
     <string name="format_carbs">Carbs %.2f</string>
     <string name="format_protein">Protein %.2f</string>
+    <string name="text_carbs">Carbs</string>
+    <string name="text_view_calories">Calories</string>
+    <string name="text_proteins">Proteins</string>
+    <string name="text_fats">Fats</string>
+    <string name="text_calories">Calories</string>
+    <string name="text_zero">0</string>
     <string name="porblem_with_trip_collection_getting">There is a problem with tirip collection getting</string>
+    <string name="text_breakfast">Breakfast</string>
+    <string name="text_lunch">Lunch</string>
+    <string name="text_dinner">Dinner</string>
+    <string name="text_snack">Snack</string>
+
     <string name="text_provision_bag_product_weight">%1$d g</string>
     <string name="provision_bag_screen_title">The provision bag of</string>
     <string name="problem_with_product_updating">There is a problem with product updating</string>

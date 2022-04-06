@@ -5,6 +5,138 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_product_statics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="
+        progress_indicator_calories_info,
+        progress_indicator_carbs_info,
+        progress_indicator_proteins_info,
+        progress_indicator_fats_info,
+        text_view_calories_title,
+        text_view_proteins_title,
+        text_view_fats_title,
+        text_view_carbs_title,
+        text_view_calories_info,
+        text_view_proteins_info,
+        text_view_fats_info,
+        text_view_carbs_info" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_indicator_calories_info"
+        style="@style/progress_bar_pfc_info"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:indicatorColor="@color/light_green"
+        app:layout_constraintEnd_toStartOf="@id/progress_indicator_proteins_info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_indicator_proteins_info"
+        style="@style/progress_bar_pfc_info"
+        android:layout_marginTop="16dp"
+        app:indicatorColor="@android:color/holo_orange_light"
+        app:layout_constraintEnd_toEndOf="@id/progress_indicator_fats_info"
+        app:layout_constraintStart_toEndOf="@id/progress_indicator_calories_info"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_indicator_fats_info"
+        style="@style/progress_bar_pfc_info"
+        android:layout_marginTop="16dp"
+        app:indicatorColor="@android:color/holo_blue_light"
+        app:layout_constraintEnd_toStartOf="@id/progress_indicator_carbs_info"
+        app:layout_constraintStart_toEndOf="@id/progress_indicator_proteins_info"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_indicator_carbs_info"
+        style="@style/progress_bar_pfc_info"
+        android:layout_marginTop="16dp"
+        app:indicatorColor="@android:color/holo_red_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/progress_indicator_fats_info"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_calories_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/text_calories"
+        app:layout_constraintEnd_toEndOf="@id/progress_indicator_calories_info"
+        app:layout_constraintStart_toStartOf="@id/progress_indicator_calories_info"
+        app:layout_constraintTop_toBottomOf="@id/progress_indicator_calories_info" />
+
+    <TextView
+        android:id="@+id/text_view_proteins_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/text_proteins"
+        app:layout_constraintEnd_toEndOf="@id/progress_indicator_proteins_info"
+        app:layout_constraintStart_toStartOf="@id/progress_indicator_proteins_info"
+        app:layout_constraintTop_toBottomOf="@id/progress_indicator_proteins_info"/>
+
+    <TextView
+        android:id="@+id/text_view_fats_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/text_fats"
+        app:layout_constraintEnd_toEndOf="@id/progress_indicator_fats_info"
+        app:layout_constraintStart_toStartOf="@id/progress_indicator_fats_info"
+        app:layout_constraintTop_toBottomOf="@id/progress_indicator_fats_info"/>
+
+    <TextView
+        android:id="@+id/text_view_carbs_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/text_carbs"
+        app:layout_constraintStart_toStartOf="@id/progress_indicator_carbs_info"
+        app:layout_constraintEnd_toEndOf="@id/progress_indicator_carbs_info"
+        app:layout_constraintTop_toBottomOf="@id/progress_indicator_carbs_info"/>
+
+    <TextView
+        android:id="@+id/text_view_calories_info"
+        style="@style/text_view_pfc_info"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_indicator_calories_info"
+        app:layout_constraintEnd_toEndOf="@id/progress_indicator_calories_info"
+        app:layout_constraintStart_toStartOf="@id/progress_indicator_calories_info"
+        app:layout_constraintTop_toTopOf="@id/progress_indicator_calories_info"
+        tools:text="0%"/>
+
+    <TextView
+        android:id="@+id/text_view_proteins_info"
+        style="@style/text_view_pfc_info"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_indicator_proteins_info"
+        app:layout_constraintEnd_toEndOf="@id/progress_indicator_proteins_info"
+        app:layout_constraintStart_toStartOf="@id/progress_indicator_proteins_info"
+        app:layout_constraintTop_toTopOf="@id/progress_indicator_proteins_info"
+        tools:text="0%"/>
+
+    <TextView
+        android:id="@+id/text_view_fats_info"
+        style="@style/text_view_pfc_info"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_indicator_fats_info"
+        app:layout_constraintEnd_toEndOf="@id/progress_indicator_fats_info"
+        app:layout_constraintStart_toStartOf="@id/progress_indicator_fats_info"
+        app:layout_constraintTop_toTopOf="@id/progress_indicator_fats_info"
+        tools:text="0%"/>
+
+    <TextView
+        android:id="@+id/text_view_carbs_info"
+        style="@style/text_view_pfc_info"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_indicator_carbs_info"
+        app:layout_constraintEnd_toEndOf="@id/progress_indicator_carbs_info"
+        app:layout_constraintStart_toStartOf="@id/progress_indicator_carbs_info"
+        app:layout_constraintTop_toTopOf="@id/progress_indicator_carbs_info"
+        tools:text="0%"/>
+
     <EditText
         android:id="@+id/edit_text_search"
         android:layout_width="0dp"
@@ -17,14 +149,14 @@
         android:backgroundTint="@color/white"
         android:drawableStart="@drawable/ic_search_loop"
         android:drawablePadding="8dp"
-        android:elevation="16dp"
+        android:elevation="8dp"
         android:hint="@string/search_food"
+        android:imeOptions="actionDone"
         android:inputType="text"
-        android:imeOptions="actionSearch"
         android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/text_view_calories_title" />
 
     <TextView
         android:id="@+id/text_view_title_search_result"
@@ -32,7 +164,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/text_search_result"
-        android:textColor="@color/light_green"
+        android:textColor="@color/primary_color"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@id/edit_text_search"
         app:layout_constraintTop_toBottomOf="@id/edit_text_search" />
@@ -49,37 +181,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_view_title_search_result" />
 
-    <Button
-        android:id="@+id/button_done"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/light_green"
-        android:text="@string/text_done"
-        app:cornerRadius="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button_add_custom_product"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/light_green"
-        android:text="@string/text_add_custom_product"
-        app:cornerRadius="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/button_done" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_list_of_products"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/button_done"
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/hr_line"
@@ -90,9 +198,9 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
         android:indeterminateTint="@color/light_green"
         android:visibility="gone"
-        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="@id/recycler_view_list_of_products"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
