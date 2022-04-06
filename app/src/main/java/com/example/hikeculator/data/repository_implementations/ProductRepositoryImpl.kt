@@ -1,6 +1,5 @@
 package com.example.hikeculator.data.repository_implementations
 
-import android.util.Log
 import com.example.hikeculator.data.common.getTripDayDocument
 import com.example.hikeculator.data.common.mapToDayMeal
 import com.example.hikeculator.data.common.mapToFirestoreProduct
@@ -8,8 +7,8 @@ import com.example.hikeculator.data.fiebase.entities.FirestoreDayMeal
 import com.example.hikeculator.data.fiebase.entities.FirestoreProduct
 import com.example.hikeculator.data.fiebase.entities.FirestoreTripDay
 import com.example.hikeculator.domain.entities.DayMeal
-import com.example.hikeculator.domain.entities.MealType
-import com.example.hikeculator.domain.entities.MealType.*
+import com.example.hikeculator.domain.enums.MealType
+import com.example.hikeculator.domain.enums.MealType.*
 import com.example.hikeculator.domain.entities.Product
 import com.example.hikeculator.domain.repositories.ProductRepository
 import com.google.firebase.firestore.DocumentReference

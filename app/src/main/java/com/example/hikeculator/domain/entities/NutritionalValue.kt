@@ -24,5 +24,4 @@ data class NutritionalValue(
         fats = fats * weight,
         carbs = carbs * weight
     )
-
 }

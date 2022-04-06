@@ -2,7 +2,9 @@ package com.example.hikeculator.presentation.product_dialogs.add_product
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.hikeculator.domain.entities.MealType
+import com.example.hikeculator.R
+import com.example.hikeculator.domain.entities.NutritionalValue
+import com.example.hikeculator.domain.enums.MealType
 import com.example.hikeculator.domain.entities.Product
 import com.example.hikeculator.domain.interactors.ProductInteractor
 import com.example.hikeculator.domain.repositories.SelectedProductRepository
@@ -22,12 +24,15 @@ class AddOrEditProductDialogViewModel(
     )
     val selectedProduct = _selectedProduct.asSharedFlow()
 
-    private val _displayedProduct = MutableSharedFlow<Product>(
+    private val _displayedNutritionalValue = MutableSharedFlow<NutritionalValue>(
         replay = 1,
         extraBufferCapacity = 0,
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
-    val displayedProduct = _displayedProduct.asSharedFlow()
+    val displayedNutritionalValue = _displayedNutritionalValue.asSharedFlow()
+
+    private val _errors = MutableSharedFlow<Int>(replay = 1)
+    val errors = _errors.asSharedFlow()
 
     init {
         fetchSelectedProduct()
@@ -35,17 +40,18 @@ class AddOrEditProductDialogViewModel(
 
     fun setWeight(weight: Long) {
         val productPerUnitOfMeasure = _selectedProduct.replayCache.first()
-        _displayedProduct.tryEmit(productPerUnitOfMeasure.getProductWithCalculatedNutritionalValue(weight))
+        _displayedNutritionalValue.tryEmit(
+            productPerUnitOfMeasure.nutritionalValue.getCalculatedNutritionalValue(weight)
+        )
     }
 
     fun addProductToTrip(tripId: String, dayId: String, mealType: MealType, weight: Long) {
         viewModelScope.launch {
-            val product = selectedProduct.replayCache.firstOrNull()
-            product?.copy(weight = weight)?.let {
+            selectedProduct.replayCache.firstOrNull()?.let { product ->
                 productInteractor.insertProduct(
                     tripId = tripId,
                     dayId = dayId,
-                    product = it,
+                    product = product.copy(weight = weight),
                     mealType = mealType
                 )
             }
@@ -53,11 +59,13 @@ class AddOrEditProductDialogViewModel(
     }
 
     private fun fetchSelectedProduct() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val product: Deferred<Product> = async {
-                selectedProductRepository.fetchProduct()
-            }
-            _selectedProduct.emit(product.await())
+        val exceptionHandler = CoroutineExceptionHandler { _, _ ->
+            _errors.tryEmit(R.string.text_error_saving_receiving_product)
+        }
+
+        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+            val product = selectedProductRepository.fetchProduct()
+            _selectedProduct.emit(product)
         }
     }
 }

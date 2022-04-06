@@ -36,6 +36,23 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+    protobuf {
+        protoc {
+            artifact = "com.google.protobuf:protoc:3.14.0"
+        }
+
+        generateProtoTasks {
+            all().each { task ->
+                task.builtins {
+                    java {
+                        option 'lite'
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 dependencies {
@@ -91,25 +108,5 @@ dependencies {
     /** data store and protobuf **/
     implementation  "androidx.datastore:datastore:1.0.0"
     implementation  "com.google.protobuf:protobuf-javalite:3.18.0"
-
-    /** soft keyboard  listener **/
-    implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.1.0'
-
-
 }
 
-protobuf {
-    protoc {
-        artifact = "com.google.protobuf:protoc:3.14.0"
-    }
-
-    generateProtoTasks {
-        all().each { task ->
-            task.builtins {
-                java {
-                    option 'lite'
-                }
-            }
-        }
-    }
-}
