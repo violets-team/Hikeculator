@@ -176,7 +176,7 @@
             app:argType="string" />
         <argument
             android:name="mealType"
-            app:argType="com.example.hikeculator.domain.entities.MealType" />
+            app:argType="com.example.hikeculator.domain.enums.MealType" />
         <action
             android:id="@+id/action_productSearchFragment_to_addOrEditProductDialog"
             app:destination="@id/addOrEditProductDialog" />
@@ -193,6 +193,6 @@
             app:argType="string" />
         <argument
             android:name="mealType"
-            app:argType="com.example.hikeculator.domain.entities.MealType" />
+            app:argType="com.example.hikeculator.domain.enums.MealType" />
     </dialog>
 </navigation>

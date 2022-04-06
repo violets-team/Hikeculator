@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
-import android.widget.EditText
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
@@ -13,7 +11,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.hikeculator.R
 import com.example.hikeculator.databinding.FragmentAddOrEditProductBinding
 import com.example.hikeculator.domain.common.roundToTwoDecimalPlaces
-import com.example.hikeculator.domain.entities.MealType.*
+import com.example.hikeculator.domain.enums.MealType.*
 import com.example.hikeculator.domain.entities.NutritionalValue
 import com.example.hikeculator.presentation.common.collectWhenStarted
 import com.example.hikeculator.presentation.common.hideKeyBoardIfOpen
@@ -47,66 +45,70 @@ class AddOrEditProductDialog : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setListenerExpandFragmentIfKeyBoardIsOpen()
+        setOnKeyBoardOpeningListener()
+        collectErrors()
         getSelectedProduct()
-        setCancelTextViewListener()
+        setOnCancelClickListener()
+    }
+
+    private fun collectErrors() {
+        viewModel.errors.collectWhenStarted(lifecycleScope) { dismiss() }
     }
 
     private fun getSelectedProduct() {
         lifecycleScope.launch {
             viewModel.selectedProduct.collect { product ->
                 setProductTitle(productName = product.name)
-                setMealType()
-                setWeightChangeListener()
+                setMealTypeTitle()
+                setOnWeightChangeListener()
                 collectOnProductChanges()
-                setButtonDoneListener()
-                setSoftKeyBoardDoneListener()
+                setOnButtonDoneListener()
+                setKeyBoardDoneClickListener()
             }
         }
     }
 
-    private fun setCancelTextViewListener() {
+    private fun setOnCancelClickListener() {
         binding.textViewCancel.setOnClickListener {
             requireContext().hideKeyBoardIfOpen(binding.root)
             dismiss()
         }
     }
 
-    private fun setListenerExpandFragmentIfKeyBoardIsOpen() {
+    private fun setOnKeyBoardOpeningListener() {
         dialog?.setOnShowListener {
-            val dialog = it as BottomSheetDialog
-            val bottomSheet = dialog.findViewById<View>(R.id.design_bottom_sheet)
-            bottomSheet?.let { sheet ->
-                dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
-                sheet.parent.parent.requestLayout()
-            }
+            expendFragment()
+        }
+    }
+
+    private fun expendFragment() {
+        val dialog = dialog as? BottomSheetDialog
+        dialog?.findViewById<View>(R.id.design_bottom_sheet)?.let { sheet ->
+            dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
+            sheet.parent.parent.requestLayout()
         }
     }
 
     private fun addProductToTrip() {
         val textWeight = binding.editTextWeight.text.toString()
-        val weight = textWeight.toLongOrNull()
-        weight?.let {
+
+        textWeight.toLongOrNull()?.let { weight ->
             viewModel.addProductToTrip(
                 tripId = args.tripId,
                 dayId = args.dayId,
                 mealType = args.mealType,
-                weight = it
+                weight = weight
             )
         }
     }
 
     private fun collectOnProductChanges() {
-        lifecycleScope.launch {
-            viewModel.displayedProduct.collectWhenStarted(lifecycleScope) { product ->
-                product.apply {
-                    binding.setNutritionalValueContent(nutritional = nutritionalValue)
-                }
-            }
+        viewModel.displayedNutritionalValue.collectWhenStarted(lifecycleScope) { nutritionalValue ->
+            binding.setNutritionalValueContent(nutritionalValue = nutritionalValue)
         }
     }
 
-    private fun setWeightChangeListener() {
+    private fun setOnWeightChangeListener() {
         binding.editTextWeight.doAfterTextChanged { weight ->
             val textWeight = weight.toString()
             if (textWeight.isNotEmpty()) {
@@ -117,7 +119,7 @@ class AddOrEditProductDialog : BottomSheetDialogFragment() {
         }
     }
 
-    private fun setMealType() {
+    private fun setMealTypeTitle() {
         val mealType = when (args.mealType) {
             BREAKFAST -> getString(R.string.text_breakfast)
             LUNCH -> getString(R.string.text_lunch)
@@ -127,7 +129,7 @@ class AddOrEditProductDialog : BottomSheetDialogFragment() {
         binding.textViewDayMealType.text = mealType
     }
 
-    private fun setButtonDoneListener() {
+    private fun setOnButtonDoneListener() {
         binding.buttonDone.setOnClickListener {
             addProductToTrip()
             requireContext().hideKeyBoardIfOpen(binding.root)
@@ -135,7 +137,7 @@ class AddOrEditProductDialog : BottomSheetDialogFragment() {
         }
     }
 
-    private fun setSoftKeyBoardDoneListener() {
+    private fun setKeyBoardDoneClickListener() {
         binding.editTextWeight.onDone {
             addProductToTrip()
             requireContext().hideKeyBoardIfOpen(binding.root)
@@ -147,8 +149,8 @@ class AddOrEditProductDialog : BottomSheetDialogFragment() {
         binding.textViewProductTitle.text = productName
     }
 
-    private fun FragmentAddOrEditProductBinding.setNutritionalValueContent(nutritional: NutritionalValue) {
-        nutritional.apply {
+    private fun FragmentAddOrEditProductBinding.setNutritionalValueContent(nutritionalValue: NutritionalValue) {
+        nutritionalValue.apply {
             textViewCalories.text = calories.roundToTwoDecimalPlaces().toString()
             textViewProteins.text = proteins.roundToTwoDecimalPlaces().toString()
             textViewFats.text = fats.roundToTwoDecimalPlaces().toString()

@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.hikeculator.R
 import com.example.hikeculator.domain.common.NutritionalCalculator
 import com.example.hikeculator.domain.common.percentageOf
-import com.example.hikeculator.domain.entities.MealType
+import com.example.hikeculator.domain.enums.MealType
 import com.example.hikeculator.domain.entities.Product
 import com.example.hikeculator.domain.entities.Trip
 import com.example.hikeculator.domain.interactors.ProductInteractor
@@ -47,7 +47,7 @@ class ProductSearchViewModel(
         tripId = tripId,
         dayId = dayId,
         mealType = mealType
-    ).shareIn(viewModelScope, started = SharingStarted.Lazily, 1)
+    ).shareIn(scope = viewModelScope, started = SharingStarted.Lazily, replay = 1)
 
     private val trip = tripInteractor.fetchTrip(tripId = tripId).shareIn(
         scope = viewModelScope,
@@ -55,8 +55,8 @@ class ProductSearchViewModel(
         replay = 1
     )
 
-    private val _searchError = MutableSharedFlow<Int>()
-    val searchError = _searchError.asSharedFlow()
+    private val _errors = MutableSharedFlow<Int>(replay = 1)
+    val errors = _errors.asSharedFlow()
 
     init {
         viewModelScope.launch { collectDayMealAfterGettingTrip() }
@@ -64,7 +64,7 @@ class ProductSearchViewModel(
 
     fun search(searchExpression: String) {
         val exceptionHandler = CoroutineExceptionHandler { _, _ ->
-            viewModelScope.launch { _searchError.emit(R.string.text_error_search) }
+            viewModelScope.launch { _errors.tryEmit(R.string.text_error_search) }
         }
 
         viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
@@ -73,11 +73,14 @@ class ProductSearchViewModel(
     }
 
     fun saveSelectedProduct(product: Product) {
-        viewModelScope.launch(Dispatchers.IO) {
+        val exceptionHandler = CoroutineExceptionHandler { _, _ ->
+            viewModelScope.launch { _errors.tryEmit(R.string.text_error_saving_selected_product) }
+        }
+
+        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
             selectedProductRepository.saveProduct(product)
         }
     }
-
 
     private suspend fun collectDayMealAfterGettingTrip() {
         trip.collect { trip ->
@@ -90,9 +93,9 @@ class ProductSearchViewModel(
             trip = trip,
             mealType = mealType
         )
-        val proteinsNorm = NutritionalCalculator.getProteinsNorm(mealCaloriesNorm)
-        val fatsNorm = NutritionalCalculator.getFatNorm(mealCaloriesNorm)
-        val carbsNorm = NutritionalCalculator.getCarbNorm(mealCaloriesNorm)
+        val proteinsNorm = NutritionalCalculator.getProteinsNormInGrams(calories = mealCaloriesNorm)
+        val fatsNorm = NutritionalCalculator.getFatNormInGrams(calories = mealCaloriesNorm)
+        val carbsNorm = NutritionalCalculator.getCarbsNormInGrams(calories = mealCaloriesNorm)
 
         dayMeal.collect { dayMeal ->
             val statistic = ProductStatistics(

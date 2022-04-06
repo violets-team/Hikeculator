@@ -12,8 +12,8 @@ import kotlinx.coroutines.flow.first
 class SelectedProductRepositoryImpl(private val appContext: Context) : SelectedProductRepository {
 
     override suspend fun saveProduct(product: Product) {
-        appContext.productPreferenceStore.updateData { currentPreferences ->
-            currentPreferences.toBuilder().apply {
+        appContext.productPreferenceStore.updateData { productReference ->
+            productReference.toBuilder().apply {
                 id = product.id
                 name = product.name
                 nutritionalValue = NutritionalValuePreferences.newBuilder().apply {

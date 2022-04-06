@@ -44,8 +44,8 @@ fun Context.showToast(@StringRes messageId: Int) {
 }
 
 fun Context.hideKeyBoardIfOpen(view: View) {
-    val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-    imm?.hideSoftInputFromWindow(view.windowToken, 0)
+    val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+    inputMethodManager?.hideSoftInputFromWindow(view.windowToken, 0)
 }
 
 fun EditText.onDone(callback: () -> Unit) {
@@ -57,6 +57,7 @@ fun EditText.onDone(callback: () -> Unit) {
         false
     }
 }
+
 fun RecyclerView.getAnimated(@AnimRes layoutAnimationId: Int) {
     val layoutAnimationController = AnimationUtils.loadLayoutAnimation(context, layoutAnimationId)
 
