@@ -124,7 +124,6 @@ fun FirestoreNutritionValue.mapToNutritionalValue(): NutritionalValue = Nutritio
 fun ProductSearchResponse.mapToProductList(): List<Product> =
     productHolders.map { productHolder -> productHolder.mapToProduct() }
 
-
 fun ApiProductHolder.mapToProduct() = Product(
     id = product.id,
     name = product.name,
