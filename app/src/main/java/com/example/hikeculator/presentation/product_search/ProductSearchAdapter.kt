@@ -1,5 +1,7 @@
 package com.example.hikeculator.presentation.product_search
 
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
@@ -15,6 +17,10 @@ import com.example.hikeculator.domain.entities.Product
 class ProductSearchAdapter(
     private val onItemClicked: (Product) -> Unit
 ) : ListAdapter<Product, ProductSearchAdapter.FoodSearchViewHolder>(SearchItemDiffCallback()) {
+
+    companion object {
+        const val DURATION_BETWEEN_SAME_ITEM_CLICK = 500L
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodSearchViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -46,7 +52,16 @@ class ProductSearchAdapter(
         }
 
         private fun setItemClickListener() {
-            binding.root.setOnClickListener { onItemClicked(getItem(absoluteAdapterPosition)) }
+            binding.root.setOnClickListener { view ->
+                view.isClickable = false
+
+                onItemClicked(getItem(absoluteAdapterPosition))
+
+                Handler(Looper.getMainLooper()).postDelayed(
+                    { view.isClickable = true },
+                    DURATION_BETWEEN_SAME_ITEM_CLICK
+                )
+            }
         }
 
         private fun TextView.setViewContent(value: Double, @StringRes idRes: Int) {
