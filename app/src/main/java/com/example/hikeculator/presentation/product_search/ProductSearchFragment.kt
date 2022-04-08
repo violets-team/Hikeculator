@@ -3,7 +3,7 @@ package com.example.hikeculator.presentation.product_search
 import android.os.Bundle
 import android.view.View
 import android.view.View.*
-import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -40,14 +40,30 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
         onItemClicked = ::showAddOrEditProductDialog
     )
 
+    private val autoCompleteAdapter: AutoCompleteAdapter by lazy {
+        AutoCompleteAdapter(requireContext(), android.R.layout.simple_list_item_1)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initializeSearchAutoCompleteAdapter()
+        setOnAutoCompleteItemClickListener()
         initializeSearchRecyclerView()
         collectData()
-        setEditTextListeners()
+        setOnEditTextListeners()
     }
 
+    private fun initializeSearchAutoCompleteAdapter() {
+        binding.editTextSearch.setAdapter(autoCompleteAdapter)
+    }
+
+    private fun setOnAutoCompleteItemClickListener() {
+        binding.editTextSearch.setOnItemClickListener { _, _, position, _ ->
+            searchProducts(searchExpression = autoCompleteAdapter.getSuggestion(position))
+            requireContext().hideKeyBoardIfOpen(binding.root)
+        }
+    }
 
     private fun initializeSearchRecyclerView() {
         binding.recyclerViewListOfProducts.apply {
@@ -59,23 +75,20 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
     private fun collectData() {
         collectErrors()
         collectProductStatistics()
+        collectAutoCompleteResult()
         collectSearchResult()
     }
 
-    private fun collectProductStatistics() {
-       viewModel.productStatistics.collectWhenStarted(lifecycleScope) { statistics ->
-           binding.apply {
-               progressIndicatorCaloriesInfo.progress = statistics.percentageOfCalories
-               progressIndicatorProteinsInfo.progress = statistics.percentageOfProteins
-               progressIndicatorFatsInfo.progress = statistics.percentageOfFats
-               progressIndicatorCarbsInfo.progress = statistics.percentageOfCarbs
+    private fun setOnEditTextListeners() {
+        binding.editTextSearch.doAfterTextChanged { text ->
+            viewModel.autoComplete(text.toString())
+        }
 
-               textViewCaloriesInfo.setTextPercentage(statistics.percentageOfCalories)
-               textViewProteinsInfo.setTextPercentage(statistics.percentageOfProteins)
-               textViewFatsInfo.setTextPercentage(statistics.percentageOfFats)
-               textViewCarbsInfo.setTextPercentage(statistics.percentageOfCarbs)
-           }
-       }
+        binding.editTextSearch.onDone {
+            searchProducts(binding.editTextSearch.text.toString())
+            requireContext().hideKeyBoardIfOpen(binding.root)
+            binding.editTextSearch.dismissDropDown()
+        }
     }
 
     private fun collectErrors() {
@@ -84,21 +97,37 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
         }
     }
 
+    private fun collectProductStatistics() {
+        viewModel.productStatistics.collectWhenStarted(lifecycleScope) { statistics ->
+            binding.apply {
+                progressIndicatorCaloriesInfo.progress = statistics.percentageOfCalories
+                progressIndicatorProteinsInfo.progress = statistics.percentageOfProteins
+                progressIndicatorFatsInfo.progress = statistics.percentageOfFats
+                progressIndicatorCarbsInfo.progress = statistics.percentageOfCarbs
+
+                textViewCaloriesInfo.setTextPercentage(statistics.percentageOfCalories)
+                textViewProteinsInfo.setTextPercentage(statistics.percentageOfProteins)
+                textViewFatsInfo.setTextPercentage(statistics.percentageOfFats)
+                textViewCarbsInfo.setTextPercentage(statistics.percentageOfCarbs)
+            }
+        }
+    }
+
+    private fun collectAutoCompleteResult() {
+        viewModel.autoCompleteList.collectWhenStarted(lifecycleScope) { hints ->
+            if (binding.editTextSearch.text.isEmpty()) {
+                binding.editTextSearch.dismissDropDown()
+                return@collectWhenStarted
+            }
+            autoCompleteAdapter.setSuggestions(hints)
+            autoCompleteAdapter.filter.filter(binding.editTextSearch.text)
+        }
+    }
+
     private fun collectSearchResult() {
         viewModel.productSearchResult.collectWhenStarted(lifecycleScope) { products ->
             searchedProductsAdapter.submitList(products)
             binding.progressBarSearch.visibility = GONE
-        }
-    }
-
-    private fun setEditTextListeners() {
-        binding.editTextSearch.addTextChangedListener { text ->
-            searchProducts(text.toString())
-        }
-
-        binding.editTextSearch.onDone {
-            searchProducts(binding.editTextSearch.text.toString())
-            requireContext().hideKeyBoardIfOpen(binding.root)
         }
     }
 

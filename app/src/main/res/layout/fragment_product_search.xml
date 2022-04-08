@@ -137,7 +137,7 @@
         app:layout_constraintTop_toTopOf="@id/progress_indicator_carbs_info"
         tools:text="0%"/>
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/edit_text_search"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -154,6 +154,7 @@
         android:imeOptions="actionDone"
         android:inputType="text"
         android:padding="12dp"
+        android:completionThreshold="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_view_calories_title" />
