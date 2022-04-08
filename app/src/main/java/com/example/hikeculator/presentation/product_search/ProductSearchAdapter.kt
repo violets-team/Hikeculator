@@ -53,13 +53,14 @@ class ProductSearchAdapter(
 
         private fun setItemClickListener() {
             binding.root.setOnClickListener { view ->
-                view.isClickable  = false
+                view.isClickable = false
 
                 onItemClicked(getItem(absoluteAdapterPosition))
 
-                Handler(Looper.getMainLooper()).postDelayed({
-                    view.isClickable = true
-                }, DURATION_BETWEEN_SAME_ITEM_CLICK)
+                Handler(Looper.getMainLooper()).postDelayed(
+                    { view.isClickable = true },
+                    DURATION_BETWEEN_SAME_ITEM_CLICK
+                )
             }
         }
 

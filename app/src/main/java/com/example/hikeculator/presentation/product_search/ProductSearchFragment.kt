@@ -117,10 +117,10 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
         viewModel.autoCompleteList.collectWhenStarted(lifecycleScope) { hints ->
             if (binding.editTextSearch.text.isEmpty()) {
                 binding.editTextSearch.dismissDropDown()
-                return@collectWhenStarted
+            } else {
+                autoCompleteAdapter.setSuggestions(hints)
+                autoCompleteAdapter.filter.filter(binding.editTextSearch.text)
             }
-            autoCompleteAdapter.setSuggestions(hints)
-            autoCompleteAdapter.filter.filter(binding.editTextSearch.text)
         }
     }
 

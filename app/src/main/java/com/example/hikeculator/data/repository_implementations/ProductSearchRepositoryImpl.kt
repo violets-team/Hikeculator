@@ -22,8 +22,7 @@ class ProductSearchRepositoryImpl : ProductSearchRepository {
     override suspend fun fetchHints(searchExpression: String): List<String> {
         return when {
             searchExpression.isEmptyWithoutSpaces() -> listOf()
-            else -> ProductSearchAutoCompleteService
-                .apiService
+            else -> ProductSearchAutoCompleteService.apiService
                 .fetchHints(searchExpression = searchExpression)
         }
     }
