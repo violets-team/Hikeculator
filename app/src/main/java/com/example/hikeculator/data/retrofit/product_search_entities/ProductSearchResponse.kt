@@ -1,8 +1,8 @@
-package com.example.hikeculator.data.retrofit.entities
+package com.example.hikeculator.data.retrofit.product_search_entities
 
 import com.google.gson.annotations.SerializedName
 
-data class FoodSearchResponse(
+data class ProductSearchResponse(
     @SerializedName("hints")
     val productHolders: List<ApiProductHolder>
 )

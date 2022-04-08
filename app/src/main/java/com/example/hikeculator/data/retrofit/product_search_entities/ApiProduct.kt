@@ -1,4 +1,4 @@
-package com.example.hikeculator.data.retrofit.entities
+package com.example.hikeculator.data.retrofit.product_search_entities
 
 import com.google.gson.annotations.SerializedName
 

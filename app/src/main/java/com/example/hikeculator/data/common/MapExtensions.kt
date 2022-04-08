@@ -4,9 +4,9 @@ import com.example.hikeculator.NutritionalValuePreferences
 import com.example.hikeculator.ProductPreferences
 import com.example.hikeculator.data.fiebase.entities.*
 import com.example.hikeculator.data.retrofit.WEIGHT_UNIT
-import com.example.hikeculator.data.retrofit.entities.ApiNutritionalValue
-import com.example.hikeculator.data.retrofit.entities.ApiProductHolder
-import com.example.hikeculator.data.retrofit.entities.FoodSearchResponse
+import com.example.hikeculator.data.retrofit.product_search_entities.ApiNutritionalValue
+import com.example.hikeculator.data.retrofit.product_search_entities.ApiProductHolder
+import com.example.hikeculator.data.retrofit.product_search_entities.ProductSearchResponse
 import com.example.hikeculator.domain.common.divideByOneHundred
 import com.example.hikeculator.domain.entities.*
 
@@ -121,9 +121,8 @@ fun FirestoreNutritionValue.mapToNutritionalValue(): NutritionalValue = Nutritio
     carbs = carbohydrates
 )
 
-fun FoodSearchResponse.mapToProductList(): List<Product> =
+fun ProductSearchResponse.mapToProductList(): List<Product> =
     productHolders.map { productHolder -> productHolder.mapToProduct() }
-
 
 fun ApiProductHolder.mapToProduct() = Product(
     id = product.id,
