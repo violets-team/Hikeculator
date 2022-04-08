@@ -31,9 +31,16 @@ class ProductSearchViewModel(
     private val _productSearchResult = MutableSharedFlow<List<Product>>(
         replay = 0,
         extraBufferCapacity = 1,
-        BufferOverflow.DROP_OLDEST
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
     val productSearchResult = _productSearchResult.asSharedFlow()
+
+    private val _autoCompleteList = MutableSharedFlow<List<String>>(
+        replay = 1,
+        extraBufferCapacity = 0,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
+    val autoCompleteList = _autoCompleteList.asSharedFlow()
 
     private val _productStatistics = MutableSharedFlow<ProductStatistics>(
         replay = 1,
@@ -41,7 +48,6 @@ class ProductSearchViewModel(
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
     val productStatistics = _productStatistics.asSharedFlow()
-
 
     private val dayMeal = productInteractor.fetchDayMeal(
         tripId = tripId,
@@ -60,6 +66,16 @@ class ProductSearchViewModel(
 
     init {
         viewModelScope.launch { collectDayMealAfterGettingTrip() }
+    }
+
+    fun autoComplete(searchExpression: String) {
+        val exceptionHandler = CoroutineExceptionHandler { _, _ ->
+            viewModelScope.launch { _errors.tryEmit(R.string.text_error_search) }
+        }
+
+        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+            _autoCompleteList.tryEmit(searchInteractor.fetchHints(searchExpression = searchExpression))
+        }
     }
 
     fun search(searchExpression: String) {
