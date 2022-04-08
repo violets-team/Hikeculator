@@ -6,9 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object ProductSearchAutoCompleteService {
 
     val apiService: ProductSearchAutoCompleteApi by lazy {
-        buildRetrofit().create(
-            ProductSearchAutoCompleteApi::class.java
-        )
+        buildRetrofit().create(ProductSearchAutoCompleteApi::class.java)
     }
 
     private fun buildRetrofit(): Retrofit {

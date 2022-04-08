@@ -6,8 +6,10 @@ import android.widget.Filter
 import androidx.annotation.LayoutRes
 
 
-class AutoCompleteAdapter(context: Context, @LayoutRes layoutId: Int) :
-    ArrayAdapter<String>(context, layoutId) {
+class AutoCompleteAdapter(
+    context: Context,
+    @LayoutRes layoutId: Int
+) : ArrayAdapter<String>(context, layoutId) {
 
     private val suggestions: MutableList<String> = mutableListOf()
 
