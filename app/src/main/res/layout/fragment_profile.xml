@@ -1,240 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_grey"
+    android:layout_alignBottom="@id/button_save"
+    android:fillViewport="true"
+    android:layout_alignParentBottom="true"
     tools:context=".presentation.profile.ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_layout_theme"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:background="@drawable/gradient_green"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/header_background"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:background="@color/primary_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/image_profile_photo"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:background="@color/primary_color"
+            android:padding="8dp"
+            android:src="@drawable/ic_account"
+            app:layout_constraintBottom_toBottomOf="@id/header_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_background"
+            app:shapeAppearance="@style/circular_image"
+            app:strokeColor="@color/white"
+            app:strokeWidth="3dp"
+            tools:layout_editor_absoluteX="156dp"
+            tools:layout_editor_absoluteY="106dp" />
 
         <TextView
-            android:id="@+id/text_view_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/proximanovaregular"
-            android:text="@string/text_title_profile"
+            android:text="@string/text_profile"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_layout_main"
-        android:layout_width="370dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="54dp"
-        android:background="@drawable/circularbordersolid"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/constraint_layout_theme">
-
-        <TextView
-            android:id="@+id/text_view_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/text_email_profile"
-            app:layout_constraintEnd_toEndOf="@+id/image_view_profile"
-            app:layout_constraintStart_toStartOf="@+id/image_view_profile"
-            app:layout_constraintTop_toBottomOf="@+id/image_view_profile" />
 
         <ImageView
-            android:id="@+id/image_view_profile"
+            android:id="@+id/image_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="16dp"
+            android:src="@drawable/ic_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/ic_launcher" />
+            android:contentDescription="@string/description_button_back" />
 
         <TextView
-            android:id="@+id/text_view_calories_label"
+            android:id="@+id/text_view_calories_norm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/text_calories_label"
             android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_name" />
-
-        <TextView
-            android:id="@+id/text_view_calories"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/text_profile_calories"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/text_view_calories_label"
-            app:layout_constraintHorizontal_bias="0.46"
-            app:layout_constraintStart_toStartOf="@+id/text_view_calories_label"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_calories_label" />
-
-        <TextView
-            android:id="@+id/text_view_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/text_name_profile"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/image_view_profile"
-            app:layout_constraintStart_toStartOf="@+id/image_view_profile"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_email" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_layout_description"
-        android:layout_width="370dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/circularbordersolid"
-        app:layout_constraintEnd_toEndOf="@+id/constraint_layout_main"
-        app:layout_constraintStart_toStartOf="@+id/constraint_layout_main"
-        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_main">
-
-        <RadioButton
-            android:id="@+id/radio_button_man"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="@string/text_radio_man"
-            app:layout_constraintEnd_toStartOf="@+id/radio_button_woman"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/input_layout_weight"
-            app:layout_constraintTop_toBottomOf="@+id/input_layout_weight" />
-
-        <RadioButton
-            android:id="@+id/radio_button_woman"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginStart="137dp"
-            android:layout_marginEnd="20dp"
-            android:text="@string/text_radio_woman"
-            app:layout_constraintEnd_toEndOf="@+id/input_layout_weight"
-            app:layout_constraintStart_toEndOf="@+id/radio_button_man"
-            app:layout_constraintTop_toBottomOf="@+id/input_layout_weight" />
+            app:layout_constraintTop_toBottomOf="@id/image_profile_photo"
+            tools:text="2452 kcal" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_name"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+            android:id="@+id/text_input_layout_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:hint="@string/hint_profile_name"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/text_view_calories_norm">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/text_profile_name" />
+                android:layout_height="match_parent"
+                android:hint="@string/text_name"
+                android:inputType="textPersonName"
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_age"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+            android:id="@+id/text_input_layout_weight"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:hint="@string/hint_profile_age"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/input_layout_name">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_age"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/text_profile_age" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_height"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:hint="@string/hint_profile_height"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/input_layout_age">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_height"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/text_profile_height" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_weight"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:hint="@string/hint_profile_weight"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/input_layout_height">
+            app:layout_constraintTop_toBottomOf="@id/text_input_layout_name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_weight"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/text_profile_weight" />
+                android:layout_height="match_parent"
+                android:hint="@string/text_weight"
+                android:maxLength="4"
+                android:inputType="number"
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_layout_height"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_input_layout_weight">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_height"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/text_height"
+                android:maxLength="3"
+                android:inputType="number"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_layout_age"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_input_layout_height">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_age"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/text_age"
+                android:maxLength="3"
+                android:inputType="number"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/text_save"
+            app:cornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radio_group_gender"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <RadioGroup
+            android:id="@+id/radio_group_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/text_input_layout_age"
+            app:layout_constraintTop_toBottomOf="@id/text_input_layout_age">
+
+            <RadioButton
+                android:id="@+id/radio_button_man"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_sex_man" />
+
+            <RadioButton
+                android:id="@+id/radio_button_woman"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_sex_woman"
+                android:layout_marginStart="16dp"/>
+        </RadioGroup>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_save_profile"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/black"
-        android:padding="8dp"
-        android:text="@string/text_button_save"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:rippleColor="@color/white" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

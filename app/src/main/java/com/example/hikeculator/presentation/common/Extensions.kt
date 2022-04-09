@@ -9,10 +9,12 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.AnimRes
+import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hikeculator.R
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 
@@ -73,5 +75,9 @@ fun TextView.setTextPercentage(percentage: Int) {
     }
 
     text = context.getString(R.string.pfc_percentage, displayedPercentage)
+}
+
+fun View.showSnackBar(@StringRes messageId: Int) {
+    Snackbar.make(this, context.getString(messageId), Snackbar.LENGTH_SHORT).show()
 }
 

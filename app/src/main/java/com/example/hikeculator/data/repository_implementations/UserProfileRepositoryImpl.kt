@@ -1,5 +1,6 @@
 package com.example.hikeculator.data.repository_implementations
 
+import android.util.Log
 import com.example.hikeculator.data.common.getUserDocument
 import com.example.hikeculator.data.common.mapToFirestoreUser
 import com.example.hikeculator.data.common.mapToUser
