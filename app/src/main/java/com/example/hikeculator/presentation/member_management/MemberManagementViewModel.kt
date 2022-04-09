@@ -11,9 +11,9 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class MemberManagementViewModel(
-    private val tripId: String,
+    tripId: String,
     private val memberGroupInteractor: MemberGroupInteractor,
-    private val tripInteractor: TripInteractor
+    tripInteractor: TripInteractor
 ) : ViewModel() {
 
     private val trip = tripInteractor.fetchTrip(tripId = tripId).shareIn(
@@ -23,7 +23,7 @@ class MemberManagementViewModel(
     )
 
     private val _members = MutableSharedFlow<Set<User>>()
-    val members = _members
+    val members = _members.asSharedFlow()
 
     private val _problemMessage = MutableSharedFlow<Int>()
     val problemMessage = _problemMessage.asSharedFlow()
@@ -36,9 +36,9 @@ class MemberManagementViewModel(
         viewModelScope.launch(context = exceptionHandler) {
             trip.collect { trip ->
                 if (trip == null) {
-                    _problemMessage.tryEmit(R.string.problem_with_member_getting)
+                    _problemMessage.emit(R.string.problem_with_member_getting)
                 } else {
-                    members.emit(memberGroupInteractor.fetchTripMembers(tripId = trip.id))
+                    _members.emit(memberGroupInteractor.fetchTripMembers(tripId = trip.id))
                 }
             }
         }
