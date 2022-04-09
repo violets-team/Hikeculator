@@ -3,6 +3,9 @@ package com.example.hikeculator.data.repository_implementations
 import com.example.hikeculator.data.common.*
 import com.example.hikeculator.data.fiebase.entities.FirestoreTripDay
 import com.example.hikeculator.domain.entities.TripDay
+import com.example.hikeculator.domain.enums.TripDifficultyCategory
+import com.example.hikeculator.domain.enums.TripSeason
+import com.example.hikeculator.domain.enums.TripType
 import com.example.hikeculator.domain.repositories.TripDayRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
@@ -67,7 +70,6 @@ class TripDayRepositoryImpl(
             .set(firestoreTripDay)
             .await()
     }
-
 
     override suspend fun removeTripDayCollection(tripId: String) {
         firestore.getTripDayCollection(tripId = tripId)

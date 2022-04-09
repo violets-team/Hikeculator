@@ -4,7 +4,6 @@ import com.example.hikeculator.data.fiebase.*
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 
 fun FirebaseFirestore.getTripCollection(): CollectionReference {
     return collection(GENERAL_TRIP_COLLECTION_NAME)
@@ -30,7 +29,9 @@ fun FirebaseFirestore.getProvisionBagDocument(tripId: String): DocumentReference
         .document(TRIP_PROVISION_BAG_DOCUMENT_NAME)
 }
 
-fun FirebaseFirestore.getUserCollection(): CollectionReference = collection(USER_COLLECTION_NAME)
+fun FirebaseFirestore.getUserCollection(): CollectionReference {
+    return collection(USER_COLLECTION_NAME)
+}
 
 fun FirebaseFirestore.getUserDocument(userUid: String): DocumentReference {
     return collection(USER_COLLECTION_NAME)

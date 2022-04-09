@@ -32,11 +32,15 @@ class MemberDeletingDialogFragment : DialogFragment(R.layout.dialog_fragment_mem
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.textViewMemberDeletionTitle.text =
-            getString(R.string.member_deleting_question, args.memberName)
-
+        setDeletingQuestion()
         observeMemberDeletingState()
         setListeners()
+    }
+
+    private fun setDeletingQuestion() {
+        binding.textViewMemberDeletionTitle.text = getString(
+            R.string.member_deleting_question, args.memberName
+        )
     }
 
     private fun observeMemberDeletingState() {

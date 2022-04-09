@@ -4,7 +4,11 @@ import com.example.hikeculator.data.common.getTripDocument
 import com.example.hikeculator.data.common.mapToFirestoreTrip
 import com.example.hikeculator.data.common.mapToTrip
 import com.example.hikeculator.data.fiebase.entities.FirestoreTrip
+import com.example.hikeculator.domain.common.NutritionalCalculator
 import com.example.hikeculator.domain.entities.Trip
+import com.example.hikeculator.domain.enums.TripDifficultyCategory
+import com.example.hikeculator.domain.enums.TripSeason
+import com.example.hikeculator.domain.enums.TripType
 import com.example.hikeculator.domain.repositories.TripRepository
 import com.example.hikeculator.domain.repositories.UserProfileRepository
 import com.google.firebase.firestore.FirebaseFirestore
@@ -73,5 +77,13 @@ class TripRepositoryImpl(
         }
 
         awaitClose { listener?.remove() }
+    }
+
+    override suspend fun retrieveTrip(tripId: String): Trip? {
+        return firestore.getTripDocument(tripId = tripId)
+            .get()
+            .await()
+            ?.toObject<FirestoreTrip>()
+            ?.mapToTrip()
     }
 }
