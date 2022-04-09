@@ -13,11 +13,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.hikeculator.R
 import com.example.hikeculator.databinding.FragmentProductSearchBinding
 import com.example.hikeculator.domain.entities.Product
-import com.example.hikeculator.presentation.common.collectWhenStarted
-import com.example.hikeculator.presentation.common.hideKeyBoardIfOpen
-import com.example.hikeculator.presentation.common.onDone
-import com.example.hikeculator.presentation.common.setTextPercentage
-import com.google.android.material.snackbar.Snackbar
+import com.example.hikeculator.presentation.common.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -93,7 +89,7 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
 
     private fun collectErrors() {
         viewModel.errors.collectWhenStarted(lifecycleScope) { stringResId ->
-            showSnackBar(stringResId)
+            binding.root.showSnackBar(messageId = stringResId)
         }
     }
 
@@ -141,9 +137,6 @@ class ProductSearchFragment : Fragment(R.layout.fragment_product_search) {
         requireContext().hideKeyBoardIfOpen(binding.root)
         navigateToAddOrEditDialog()
     }
-
-    private fun showSnackBar(resId: Int) =
-        Snackbar.make(binding.root, getString(resId), Snackbar.LENGTH_SHORT).show()
 
     private fun navigateToAddOrEditDialog() {
         ProductSearchFragmentDirections.actionProductSearchFragmentToAddOrEditProductDialog(

@@ -5,6 +5,7 @@ import com.example.hikeculator.presentation.entrance.EntranceViewModel
 import com.example.hikeculator.presentation.general_trip_list.GeneralTripViewModel
 import com.example.hikeculator.presentation.product_dialogs.add_product.AddOrEditProductDialogViewModel
 import com.example.hikeculator.presentation.product_search.ProductSearchViewModel
+import com.example.hikeculator.presentation.profile.ProfileViewModel
 import com.example.hikeculator.presentation.provision_bag.ProvisionBagViewModel
 import com.example.hikeculator.presentation.trip_creating.ITripCreatingViewModel
 import com.example.hikeculator.presentation.trip_creating.TripCreatingViewModel
@@ -77,4 +78,6 @@ val presentationModule = module {
             tripInteractor = get()
         )
     }
+
+    viewModel { ProfileViewModel(userProfileInteractor = get()) }
 }
