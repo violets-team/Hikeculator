@@ -40,4 +40,8 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowSoftInputMode">adjustResize</item>
     </style>
+
+    <style name="circular_image">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

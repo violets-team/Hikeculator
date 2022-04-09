@@ -90,6 +90,7 @@
     <string name="text_error_search">Internet or search error</string>
     <string name="text_error_saving_selected_product">Can not open this product</string>
     <string name="text_error_saving_receiving_product">Can not find product</string>
+    <string name="text_error_saving_profile">Can not save profile</string>
     <string name="text_description_add_product">Add product button</string>
     <string name="message_failed_to_create_the_trip">Failed to create the trip</string>
     <string name="problem_with_day_creating">There is a problem with day creating</string>
@@ -105,7 +106,9 @@
     <string name="problem_with_trip_updating">There is a problem with trip updating</string>
     <string name="problem_with_trip_getting">There is a problem with trip getting</string>
     <string name="problem_with_trip_deleting">There is a problem with trip deleting</string>
+    <string name="text_data_saving">Data saving</string>
     <string name="format_kcal">%.2f kcal</string>
+    <string name="format_kcal_long">%d kcal</string>
     <string name="format_fat">Fat %.2f</string>
     <string name="format_carbs">Carbs %.2f</string>
     <string name="format_protein">Protein %.2f</string>
@@ -124,4 +127,13 @@
     <string name="text_provision_bag_product_weight">%1$d g</string>
     <string name="provision_bag_screen_title">The provision bag of</string>
     <string name="problem_with_product_updating">There is a problem with product updating</string>
+    <string name="text_profile">Profile</string>
+    <string name="description_button_back">Button back</string>
+    <string name="text_name">Name</string>
+    <string name="text_weight">Weight</string>
+    <string name="text_height">Height</string>
+    <string name="text_age">Age</string>
+    <string name="text_save">Save</string>
+    <string name="text_sex_man">Man</string>
+    <string name="text_sex_woman">Women</string>
 </resources>
