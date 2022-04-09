@@ -113,6 +113,17 @@
     <string name="format_fat">Fat %.2f</string>
     <string name="format_carbs">Carbs %.2f</string>
     <string name="format_protein">Protein %.2f</string>
+    <string name="problem_with_trip_collection_getting">There is a problem with tirip collection getting</string>
+    <string name="text_provision_bag_product_weight">%1$d g</string>
+    <string name="provision_bag_screen_title">The provision bag of</string>
+    <string name="problem_with_product_updating">There is a problem with product updating</string>
+    <string name="problem_with_member_getting">There is a problem with member getting</string>
+    <string name="member_deleting_question">Would you like to delete \"%1$s\" from the trip?"</string>
+    <string name="problem_with_deleting_member">There is a problem with deleting member</string>
+    <string name="member_management_member_quantity_title">Member quantity:</string>
+    <string name="content_description_add_trip_member_button">add_trip_member</string>
+    <string name="text_delete">delete</string>
+    <string name="text_deny">deny</string>
     <string name="text_carbs">Carbs</string>
     <string name="text_view_calories">Calories</string>
     <string name="text_proteins">Proteins</string>
@@ -124,10 +135,6 @@
     <string name="text_lunch">Lunch</string>
     <string name="text_dinner">Dinner</string>
     <string name="text_snack">Snack</string>
-
-    <string name="text_provision_bag_product_weight">%1$d g</string>
-    <string name="provision_bag_screen_title">The provision bag of</string>
-    <string name="problem_with_product_updating">There is a problem with product updating</string>
     <string name="text_profile">Profile</string>
     <string name="description_button_back">Button back</string>
     <string name="text_name">Name</string>

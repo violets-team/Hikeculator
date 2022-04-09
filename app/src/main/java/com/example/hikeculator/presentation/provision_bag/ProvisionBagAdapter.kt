@@ -27,15 +27,6 @@ class ProvisionBagAdapter(
         const val HIGH_ELEVATION: Float = 30F
     }
 
-    private var rootRecyclerView: RecyclerView? = null
-    private var recyclerWasNotAnimated = true
-
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        super.onAttachedToRecyclerView(recyclerView)
-
-        rootRecyclerView = recyclerView
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductItemHolder {
         val inflater = LayoutInflater.from(parent.context)
         return ProductItemHolder(
@@ -45,17 +36,6 @@ class ProvisionBagAdapter(
 
     override fun onBindViewHolder(holder: ProductItemHolder, position: Int) {
         holder.bind(product = getItem(holder.absoluteAdapterPosition))
-    }
-
-    override fun submitList(list: List<ProvisionBagProduct>?) {
-        super.submitList(list)
-
-        if (recyclerWasNotAnimated) {
-            rootRecyclerView?.apply {
-                getAnimated(layoutAnimationId = R.anim.recycler_view_provision_bag_layout_animation)
-                recyclerWasNotAnimated = false
-            }
-        }
     }
 
     inner class ProductItemHolder(

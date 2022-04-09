@@ -3,6 +3,9 @@ package com.example.hikeculator.di
 import com.example.hikeculator.domain.enums.MealType
 import com.example.hikeculator.presentation.entrance.EntranceViewModel
 import com.example.hikeculator.presentation.general_trip_list.GeneralTripViewModel
+import com.example.hikeculator.presentation.member_management.MemberManagementViewModel
+import com.example.hikeculator.presentation.member_management.member_adding.MemberManagementAddingViewModel
+import com.example.hikeculator.presentation.member_management.member_deleting.MemberDeletingViewModel
 import com.example.hikeculator.presentation.product_dialogs.add_product.AddOrEditProductDialogViewModel
 import com.example.hikeculator.presentation.product_search.ProductSearchViewModel
 import com.example.hikeculator.presentation.profile.ProfileViewModel
@@ -76,6 +79,24 @@ val presentationModule = module {
             tripId = tripId,
             provisionBagInteractor = get(),
             tripInteractor = get()
+        )
+    }
+
+    viewModel { (tripId: String) ->
+        MemberManagementViewModel(
+            tripId = tripId,
+            memberGroupInteractor = get(),
+            tripInteractor = get()
+        )
+    }
+
+    viewModel { MemberDeletingViewModel(workManager = get()) }
+
+    viewModel { (tripId: String) ->
+        MemberManagementAddingViewModel(
+            tripId = tripId,
+            memberGroupInteractor = get(),
+            workManager = get()
         )
     }
 

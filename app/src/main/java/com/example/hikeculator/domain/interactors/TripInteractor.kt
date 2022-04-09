@@ -23,4 +23,8 @@ class TripInteractor(private val tripRepository: TripRepository) {
     fun fetchTrip(tripId: String): Flow<Trip?> {
         return tripRepository.fetchTrip(tripId = tripId)
     }
+
+    suspend fun retrieveTrip(tripId: String): Trip? = withContext(Dispatchers.IO) {
+        tripRepository.retrieveTrip(tripId = tripId)
+    }
 }

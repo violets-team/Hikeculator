@@ -50,6 +50,16 @@ object NutritionalCalculator {
                 dayQuantity
     }
 
+    fun recalculateTripCalorieNorm(trip: Trip, vararg members: User): Double {
+        return calculateTripCalorieNorm(
+            type = trip.type,
+            difficultyCategory = trip.difficultyCategory,
+            season = trip.season,
+            dayQuantity = getDayCount(startDate = trip.startDate, endDate = trip.endDate),
+            members = members
+        )
+    }
+
     fun getProteinsNorm(calories: Double): Double {
         return calories * PROTEINS_NORM_PERCENTAGE
     }
@@ -63,7 +73,7 @@ object NutritionalCalculator {
     }
 
     fun getMealCaloriesNorm(trip: Trip, mealType: MealType): Double {
-        val daysNumber = getDaysNumber(
+        val daysNumber = getDayCount(
             startDate = trip.startDate,
             endDate = trip.endDate
         )
@@ -85,7 +95,7 @@ object NutritionalCalculator {
         return getCarbNorm(calories = calories) / CALORIES_PER_GRAM_OF_CARBS
     }
 
-    private fun getDaysNumber(startDate: Long, endDate: Long): Long {
-        return TimeUnit.MILLISECONDS.toDays(endDate - startDate).inc()
+    private fun getDayCount(startDate: Long, endDate: Long): Int {
+        return TimeUnit.MILLISECONDS.toDays(endDate - startDate).inc().toInt()
     }
 }

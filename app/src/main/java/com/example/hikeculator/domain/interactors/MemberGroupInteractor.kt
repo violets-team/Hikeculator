@@ -3,20 +3,29 @@ package com.example.hikeculator.domain.interactors
 import com.example.hikeculator.domain.entities.User
 import com.example.hikeculator.domain.repositories.MemberGroupRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
 class MemberGroupInteractor(private val memberGroupRepository: MemberGroupRepository) {
 
-    fun addTripMember(user: User) = memberGroupRepository.addTripMember(user)
+    suspend fun addTripMember(tripId: String, userUid: String) {
+        withContext(Dispatchers.IO) {
+            memberGroupRepository.addTripMember(userUid = userUid, tripId = tripId)
+        }
+    }
 
-    fun removeTripMember(user: User) = memberGroupRepository.removeTripMember(user)
+    suspend fun removeTripMember(tripId: String, userUid: String) {
+        withContext(Dispatchers.IO) {
+            memberGroupRepository.removeTripMember(tripId = tripId, userUid = userUid)
+        }
+    }
 
     suspend fun fetchTripMember(userUid: String): User? = withContext(Dispatchers.IO) {
         memberGroupRepository.fetchTripMember(userUid = userUid)
     }
 
-    fun fetchTripMembers(): Flow<Set<User>> = memberGroupRepository.fetchTripMembers()
+    suspend fun fetchTripMembers(tripId: String): Set<User> = withContext(Dispatchers.IO) {
+        memberGroupRepository.fetchTripMembers(tripId = tripId)
+    }
 
     suspend fun searchTripMembers(email: String): Set<User> = withContext(Dispatchers.IO) {
         memberGroupRepository.searchTripMembers(email = email)

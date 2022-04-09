@@ -57,25 +57,24 @@ class ProvisionBagRepositoryImpl(
             }
     }
 
-    override fun fetchObservableProvisionBag(tripId: String): Flow<ProvisionBag> =
-        callbackFlow {
-            val listener = try {
-                firestore.getProvisionBagDocument(tripId = tripId)
-                    .addSnapshotListener { documentSnapshot: DocumentSnapshot?, error ->
-                        if (error != null) {
-                            close(cause = error)
-                        } else {
-                            documentSnapshot?.toObject<FirestoreProvisionBag>()
-                                ?.mapToProvisionBag()
-                                ?.also { provisionBag -> trySend(element = provisionBag) }
-                        }
+    override fun fetchObservableProvisionBag(tripId: String): Flow<ProvisionBag> = callbackFlow {
+        val listener = try {
+            firestore.getProvisionBagDocument(tripId = tripId)
+                .addSnapshotListener { documentSnapshot: DocumentSnapshot?, error ->
+                    if (error != null) {
+                        close(cause = error)
+                    } else {
+                        documentSnapshot?.toObject<FirestoreProvisionBag>()
+                            ?.mapToProvisionBag()
+                            ?.also { provisionBag -> trySend(element = provisionBag) }
                     }
-            } catch (e: Exception) {
-                null
-            }
-
-            awaitClose { listener?.remove() }
+                }
+        } catch (e: Exception) {
+            null
         }
+
+        awaitClose { listener?.remove() }
+    }
 
     override suspend fun createProvisionBag(
         tripId: String,
