@@ -2,9 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.member_management.MemberManagementFragment">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_search_member_dialog"
+    android:minWidth="300dp"
+    android:minHeight="400dp"
+    tools:context=".presentation.member_management.member_adding.MemberManagementAddingDialogFragment">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/content_start"
@@ -34,51 +37,43 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_end="16dp" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/text_view_member_quantity_title"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_member_searching"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingStart="8dp"
-        android:text="@string/member_management_member_quantity_title"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="@id/text_view_member_quantity_value"
+        android:layout_marginTop="24dp"
+        android:hint="@string/trip_member_searching_input_hint"
+        app:layout_constraintEnd_toEndOf="@id/content_end"
         app:layout_constraintStart_toStartOf="@id/content_start"
-        app:layout_constraintTop_toTopOf="@id/text_view_member_quantity_value"
-        tools:ignore="RtlSymmetry" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconDrawable="@drawable/ic_search">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/text_view_member_quantity_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:textSize="18sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintStart_toEndOf="@id/text_view_member_quantity_title"
-        app:layout_constraintTop_toTopOf="@id/content_top"
-        tools:text="10" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_member_searching"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_members"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:paddingBottom="100dp"
-        app:layout_constraintBottom_toBottomOf="@id/content_bottom"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@id/button_add_member"
         app:layout_constraintEnd_toEndOf="@id/content_end"
         app:layout_constraintStart_toStartOf="@id/content_start"
-        app:layout_constraintTop_toBottomOf="@id/text_view_member_quantity_value"
-        tools:listitem="@layout/item_member" />
+        app:layout_constraintTop_toBottomOf="@id/input_layout_member_searching" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/action_button_add_member"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_add_member"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:src="@drawable/ic_add"
-        app:backgroundTint="@color/action_button_add_member_color"
+        android:text="Add"
         app:layout_constraintBottom_toBottomOf="@id/content_bottom"
         app:layout_constraintEnd_toEndOf="@id/content_end"
-        app:tint="@color/white"
-        android:contentDescription="@string/content_description_add_trip_member_button" />
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

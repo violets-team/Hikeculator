@@ -39,9 +39,24 @@ class UserProfileRepositoryImpl(
         awaitClose { listener?.remove() }
     }
 
+    override suspend fun addTripIdToUserProfile(userUid: String, tripId: String) {
+        fetchUser(userUid = userUid)?.let { user ->
+            user.copy(
+                tripIds = listOf(* user.tripIds.toTypedArray(), tripId).toSet()
+            ).also { updatedUser -> setUserToFirebase(user = updatedUser) }
+        }
+    }
+
+    override suspend fun removeTripIdFromUserProfile(userUid: String, tripId: String) {
+        fetchUser(userUid = userUid)?.let { user ->
+            user.copy(
+                tripIds = user.tripIds.toMutableList().apply { remove(tripId) }.toSet()
+            ).also { updatedUser -> setUserToFirebase(user = updatedUser) }
+        }
+    }
+
     override suspend fun fetchUser(userUid: String): User? {
-        return firestore.getUserDocument(userUid)
-            .get()
+        return firestore.getUserDocument(userUid).get()
             .await()
             ?.toObject<FirestoreUser>()
             ?.mapToUser()
@@ -82,22 +97,6 @@ class UserProfileRepositoryImpl(
         )
 
         setUserToFirebase(user = updatedUser)
-    }
-
-    override suspend fun addTripIdToUserProfile(userUid: String, tripId: String) {
-        fetchUser(userUid = userUid)?.let { user ->
-            user.copy(
-                tripIds = listOf(* user.tripIds.toTypedArray(), tripId).toSet()
-            ).also { updatedUser -> setUserToFirebase(user = updatedUser) }
-        }
-    }
-
-    override suspend fun removeTripIdFromUserProfile(userUid: String, tripId: String) {
-        fetchUser(userUid = userUid)?.let { user ->
-            user.copy(
-                tripIds = user.tripIds.toMutableList().apply { remove(tripId) }.toSet()
-            ).also { updatedUser -> setUserToFirebase(user = updatedUser) }
-        }
     }
 
     private suspend fun setUserToFirebase(user: User) {

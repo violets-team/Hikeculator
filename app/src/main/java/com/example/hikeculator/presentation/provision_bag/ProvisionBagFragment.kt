@@ -10,6 +10,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.hikeculator.R
 import com.example.hikeculator.databinding.FragmentProvisionBagBinding
 import com.example.hikeculator.domain.entities.ProvisionBagProduct
+import com.example.hikeculator.presentation.common.RecyclerViewAnimator
 import com.example.hikeculator.presentation.common.collectWhenStarted
 import com.example.hikeculator.presentation.common.showToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -24,6 +25,9 @@ class ProvisionBagFragment : Fragment(R.layout.fragment_provision_bag) {
     private val viewModel by viewModel<ProvisionBagViewModel> { parametersOf(args.tripId) }
 
     private val provisionBagAdapter = ProvisionBagAdapter(onItemClick = ::updateProduct)
+    private val recyclerViewAnimator by lazy {
+        RecyclerViewAnimator(recyclerView = binding.recyclerViewProvisionBag)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,6 +50,9 @@ class ProvisionBagFragment : Fragment(R.layout.fragment_provision_bag) {
 
         viewModel.products.collectWhenStarted(lifecycleScope) { products ->
             provisionBagAdapter.submitList(products.toList())
+            recyclerViewAnimator.animateOnlyOnce(
+                layoutAnimationId = R.anim.recycler_view_provision_bag_layout_animation
+            )
         }
 
         viewModel.tripName.collectWhenStarted(lifecycleScope) { tripName ->

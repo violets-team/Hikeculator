@@ -1,5 +1,6 @@
 package com.example.hikeculator.di
 
+import androidx.work.WorkManager
 import com.example.hikeculator.data.fiebase.FirebaseAuthentication
 import com.example.hikeculator.data.repository_implementations.*
 import com.example.hikeculator.domain.repositories.*
@@ -17,6 +18,8 @@ val dataModule = module {
 
     single { Firebase.firestore }
 
+    single { WorkManager.getInstance(androidApplication()) }
+
     single { FirebaseAuthentication(firebase = get(), firebaseAuth = get()) }
 
     single<UserUidRepository> { UserUidRepositoryImpl() }
@@ -25,7 +28,9 @@ val dataModule = module {
 
     single<TripRepository> { TripRepositoryImpl(firestore = get(), userProfileRepository = get()) }
 
-    single<MemberGroupRepository> { MemberGroupRepositoryImpl(firestore = get()) }
+    single<MemberGroupRepository> {
+        MemberGroupRepositoryImpl(firestore = get(), userProfileRepository = get())
+    }
 
     single<TripDayRepository> { TripDayRepositoryImpl(firestore = get()) }
 
