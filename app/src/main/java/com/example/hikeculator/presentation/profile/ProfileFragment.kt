@@ -1,6 +1,7 @@
 package com.example.hikeculator.presentation.profile
 
 import android.os.Bundle
+import android.text.Editable
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -35,7 +36,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     }
 
     private fun collectUserProfile() {
-        viewModel.user.collectWhenStarted(lifecycleScope) { user ->
+        viewModel.user.collectWhenStarted(lifecycleScope) { user: User? ->
             user?.let { binding.setUserContent(it) }
         }
     }
@@ -64,7 +65,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
                 requireContext().showToast(R.string.text_data_saving)
             } else {
-                binding.root.showSnackBar(R.string.text_error_saving_profile)
+                binding.root.showSnackBar(R.string.text_error_incorrect_fields)
             }
         }
     }
@@ -76,10 +77,10 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     }
 
     private fun chekAreFieldsCorrect(): Boolean {
-        val weightIsNotEmpty = !binding.editTextWeight.text.toString().isEmptyWithoutSpaces()
-        val heightIsNotEmpty = !binding.editTextHeight.text.toString().isEmptyWithoutSpaces()
-        val ageIsNotEmpty = !binding.editTextAge.text.toString().isEmptyWithoutSpaces()
-        val nameIsNotEmpty = !binding.editTextName.text.toString().isEmptyWithoutSpaces()
+        val weightIsNotEmpty = binding.editTextWeight.text.isNotEmptyWithoutSpaces()
+        val heightIsNotEmpty = binding.editTextHeight.text.isNotEmptyWithoutSpaces()
+        val ageIsNotEmpty = binding.editTextAge.text.isNotEmptyWithoutSpaces()
+        val nameIsNotEmpty = binding.editTextName.text.isNotEmptyWithoutSpaces()
 
         return weightIsNotEmpty && heightIsNotEmpty && ageIsNotEmpty && nameIsNotEmpty
     }
@@ -89,10 +90,14 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         editTextWeight.setText(user.weight.toString())
         editTextHeight.setText(user.height.toString())
         editTextAge.setText(user.age.toString())
+
         textViewCaloriesNorm.text = getString(R.string.format_kcal_long, user.calorieNorm)
+
         when (user.gender) {
             MAN -> radioButtonMan.isChecked = true
             WOMAN -> radioButtonWoman.isChecked = true
         }
     }
+
+    private fun Editable?.isNotEmptyWithoutSpaces(): Boolean = !this.toString().isEmptyWithoutSpaces()
 }

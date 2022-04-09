@@ -15,10 +15,10 @@ import kotlinx.coroutines.launch
 
 class ProfileViewModel(val userProfileInteractor: UserProfileInteractor) : ViewModel() {
 
-    val user: SharedFlow<User?> = userProfileInteractor.fetchObservableUserProfile().shareIn(
+    val user: StateFlow<User?> = userProfileInteractor.fetchObservableUserProfile().stateIn(
         scope = viewModelScope,
-        started = SharingStarted.Lazily,
-        replay = 1
+        started = SharingStarted.Eagerly,
+        initialValue = null
     )
 
     private val _errors = MutableSharedFlow<Int>(
@@ -41,7 +41,9 @@ class ProfileViewModel(val userProfileInteractor: UserProfileInteractor) : ViewM
                 gender = gender
             )
 
-            getUserOrNull()?.copy(
+            val currentUser: User? = user.value
+
+            currentUser?.copy(
                 name = name,
                 weight = weight,
                 height = height,
@@ -49,14 +51,6 @@ class ProfileViewModel(val userProfileInteractor: UserProfileInteractor) : ViewM
                 gender = gender,
                 calorieNorm = caloriesNorm
             )?.let { userProfileInteractor.updateUserProfile(user = it) }
-        }
-    }
-
-    private fun getUserOrNull(): User? {
-        return if (user.replayCache.isNotEmpty()) {
-            user.replayCache.first()
-        } else {
-            null
         }
     }
 }
