@@ -50,6 +50,7 @@ class MemberGroupRepositoryImpl(
                         .await()
                 }
         }
+
         userProfileRepository.removeTripIdFromUserProfile(userUid = userUid, tripId = tripId)
     }
 

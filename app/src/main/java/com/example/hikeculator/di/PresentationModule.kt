@@ -1,11 +1,14 @@
 package com.example.hikeculator.di
 
+import com.example.hikeculator.domain.enums.MealType
 import com.example.hikeculator.presentation.entrance.EntranceViewModel
 import com.example.hikeculator.presentation.general_trip_list.GeneralTripViewModel
-import com.example.hikeculator.presentation.member_management.member_deleting.MemberDeletingViewModel
 import com.example.hikeculator.presentation.member_management.MemberManagementViewModel
 import com.example.hikeculator.presentation.member_management.member_adding.MemberManagementAddingViewModel
+import com.example.hikeculator.presentation.member_management.member_deleting.MemberDeletingViewModel
+import com.example.hikeculator.presentation.product_dialogs.add_product.AddOrEditProductDialogViewModel
 import com.example.hikeculator.presentation.product_search.ProductSearchViewModel
+import com.example.hikeculator.presentation.profile.ProfileViewModel
 import com.example.hikeculator.presentation.provision_bag.ProvisionBagViewModel
 import com.example.hikeculator.presentation.trip_creating.ITripCreatingViewModel
 import com.example.hikeculator.presentation.trip_creating.TripCreatingViewModel
@@ -52,6 +55,25 @@ val presentationModule = module {
         )
     }
 
+    viewModel { (tripId: String, dayId: String, mealType: MealType) ->
+        ProductSearchViewModel(
+            tripInteractor = get(),
+            searchInteractor = get(),
+            selectedProductRepository = get(),
+            productInteractor = get(),
+            tripId = tripId,
+            dayId = dayId,
+            mealType = mealType
+        )
+    }
+
+    viewModel {
+        AddOrEditProductDialogViewModel(
+            selectedProductRepository = get(),
+            productInteractor = get()
+        )
+    }
+
     viewModel { (tripId: String) ->
         ProvisionBagViewModel(
             tripId = tripId,
@@ -59,8 +81,6 @@ val presentationModule = module {
             tripInteractor = get()
         )
     }
-
-    viewModel { ProductSearchViewModel(searchInteractor = get()) }
 
     viewModel { (tripId: String) ->
         MemberManagementViewModel(
@@ -79,4 +99,6 @@ val presentationModule = module {
             workManager = get()
         )
     }
+
+    viewModel { ProfileViewModel(userProfileInteractor = get()) }
 }

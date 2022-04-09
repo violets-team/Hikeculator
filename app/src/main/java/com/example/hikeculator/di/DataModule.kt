@@ -37,4 +37,8 @@ val dataModule = module {
     single<ProvisionBagRepository> { ProvisionBagRepositoryImpl(firestore = get()) }
 
     single<ProductSearchRepository> { ProductSearchRepositoryImpl() }
+
+    single<SelectedProductRepository> { SelectedProductRepositoryImpl(appContext = androidApplication()) }
+
+    single<ProductRepository> { ProductRepositoryImpl(firestore = get())}
 }

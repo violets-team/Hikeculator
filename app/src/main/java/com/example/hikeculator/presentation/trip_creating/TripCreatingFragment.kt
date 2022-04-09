@@ -18,15 +18,10 @@ import com.example.hikeculator.domain.enums.TripDifficultyCategory.*
 import com.example.hikeculator.domain.enums.TripSeason
 import com.example.hikeculator.domain.enums.TripSeason.*
 import com.example.hikeculator.domain.enums.TripType
-import com.example.hikeculator.domain.interactors.TripDayInteractor
-import com.example.hikeculator.domain.interactors.TripInteractor
-import com.example.hikeculator.domain.repositories.TripDayRepository
 import com.example.hikeculator.presentation.common.TripDateFormat
 import com.example.hikeculator.presentation.common.collectWhenStarted
 import com.example.hikeculator.presentation.common.toTrimmed
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.core.parameter.parametersOf
 
 class TripCreatingFragment : Fragment(R.layout.fragment_trip_creating) {
 
