@@ -23,4 +23,8 @@ class UserProfileInteractor(
     suspend fun isUserCreated(userUid: String): Boolean {
         return userProfileRepository.isUserCreated(userUid = userUid)
     }
+
+    suspend fun updateUserProfile(user: User) {
+        withContext(Dispatchers.IO) { userProfileRepository.updateUserProfile(user = user) }
+    }
 }
