@@ -4,17 +4,17 @@ data class DayMeal(
     val products: List<Product>,
 ) {
     val totalCalories: Double
-        get() = products.map { product -> product.nutritionalValue.calories }.sum()
+        get() = products.sumOf { product -> product.nutritionalValue.calories * product.weight }
 
     val totalWeight: Long
-        get() = products.map { product -> product.weight }.sum()
+        get() = products.sumOf { product -> product.weight }
 
     val totalProteins: Double
-        get() = products.map { product -> product.nutritionalValue.proteins }.sum()
+        get() = products.sumOf { product -> product.nutritionalValue.proteins * product.weight }
 
     val totalFats: Double
-        get() = products.map { product -> product.nutritionalValue.fats }.sum()
+        get() = products.sumOf { product -> product.nutritionalValue.fats * product.weight }
 
     val totalCarbs: Double
-        get() = products.map { product -> product.nutritionalValue.carbs }.sum()
+        get() = products.sumOf { product -> product.nutritionalValue.carbs * product.weight }
 }
