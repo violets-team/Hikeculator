@@ -1,6 +1,7 @@
 package com.example.hikeculator.presentation.trip_details
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -110,17 +111,17 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
 
         displayProteinInfo(
             proteinNorm = getProteinsNorm(calories = tripCalories),
-            provisionProteins = tripDays.getProvisionProteinAmount()
+            provisionProteins = tripDays.getProvisionProteinAmountPerGram()
         )
 
         displayFatInfo(
             fatNorm = getFatNorm(calories = tripCalories),
-            provisionFats = tripDays.getProvisionFatAmount()
+            provisionFats = tripDays.getProvisionFatAmountPerGram()
         )
 
         displayCarbInfo(
             carbNorm = getCarbNorm(calories = tripCalories),
-            provisionCarbs = tripDays.getProvisionCarbsAmount()
+            provisionCarbs = tripDays.getProvisionCarbsAmountPerGram()
         )
 
         displayProvisionWeight(weight = tripDays.getProvisionWeight())

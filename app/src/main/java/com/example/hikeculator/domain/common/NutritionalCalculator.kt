@@ -20,9 +20,9 @@ object NutritionalCalculator {
     private const val PROTEINS_NORM_PERCENTAGE = 0.3
     private const val FAT_NORM_PERCENTAGE = 0.3
     private const val CARBS_NORM_PERCENTAGE = 0.4
-    private const val CALORIES_PER_GRAM_OF_CARBS = 4
-    private const val CALORIES_PER_GRAM_OF_PROTEINS = 4
-    private const val CALORIES_PER_GRAM_OF_FAT = 9
+    const val CALORIES_PER_GRAM_OF_CARBS = 4
+    const val CALORIES_PER_GRAM_OF_PROTEINS = 4
+    const val CALORIES_PER_GRAM_OF_FAT = 9
 
     fun calculateCalorieNorm(weight: Double, height: Int, age: Int, gender: Gender): Long {
         val genderFactor = if (gender == Gender.MAN) MAN_GENDER_FACTOR else WOMAN_GENDER_FACTOR
