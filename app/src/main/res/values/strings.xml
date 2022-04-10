@@ -35,7 +35,7 @@
     <string name="text_create_hike_name">Домбай</string>
     <string name="text_title_hike">Trip name</string>
     <string name="text_weight_trip_label">Provision weight:</string>
-    <string name="text_trip_provision_weight">%d kg</string>
+    <string name="text_trip_provision_weight">%d g</string>
     <string name="text_item_day">Day %1$d</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
