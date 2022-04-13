@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:text="@string/text_cancel"
-        android:textColor="@android:color/holo_red_light"
+        android:textColor="?attr/colorError"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

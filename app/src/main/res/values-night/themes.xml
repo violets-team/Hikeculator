@@ -1,16 +1,24 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.Hikeculator" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">#4CAF50</item>
-        <item name="colorSecondaryVariant">#03A9F4</item>
-        <item name="colorOnSecondary">#FFC107</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+<resources>
+
+    <style name="Base.V24.Night.Theme.Hikeculator" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/green_200</item>
+        <item name="colorPrimaryVariant">@color/green_400</item>
+        <item name="colorSecondary">@color/marsh_200</item>
+        <item name="background">@color/dark</item>
+        <item name="colorSurface">@color/dark</item>
+        <item name="colorOnPrimary">@color/dark</item>
+        <item name="colorOnSecondary">@color/dark</item>
+        <item name="android:textColor">@color/gray_700</item>
+        <item name="itemColor">@color/light_grey</item>
+        <item name="android:colorPrimaryDark">@color/black</item>-
+        <item name="colorPrimaryExtraLight">@color/green_100</item>
+        <item name="lightItemColor">@color/light_grey</item>
+        <item name="cardBackgroundColor">@color/dark_gray</item>
+
+        <item name="negativeEffect">@android:color/holo_red_light</item>
+
+        <item name="radioButtonStyle">@style/Widget.Hikeculatro.RadioButton </item>
     </style>
+
+    <style name="Base.Theme.Hikeculator" parent="Base.V24.Night.Theme.Hikeculator"/>
 </resources>

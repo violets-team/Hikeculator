@@ -2,4 +2,11 @@
 <resources>
     <dimen name="progress_bar_pfc_radius">50sp</dimen>
     <dimen name="provision_bag_product_item_checkbox_padding">16dp</dimen>
+
+    <!-- ProfileScreen -->
+    <dimen name="profile_header_height">160dp</dimen>
+    <dimen name="button_save_elevation">4dp</dimen>
+
+    <!-- Common -->
+
 </resources>

@@ -18,18 +18,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:backgroundTint="@color/rv_background"
+        android:backgroundTint="?attr/colorPrimary"
         app:fabAlignmentMode="center"
         app:hideOnScroll="true"
+        app:layout_anchor="@+id/recycler_view_trips"
+        app:layout_anchorGravity="bottom|center"
         app:menu="@menu/app_bar_menu"
-        app:navigationContentDescription="Navigation icon" />
+        app:navigationContentDescription="@string/description_navigation_icon" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/action_button_create_trip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/light_grey"
+        android:backgroundTint="?attr/colorPrimary"
         app:layout_anchor="@id/bottom_app_bar"
-        app:srcCompat="@drawable/ic_add" />
+        app:srcCompat="@drawable/ic_add"
+        app:tint="?attr/background"
+        android:contentDescription="@string/description_button_add_trip" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

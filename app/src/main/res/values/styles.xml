@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Default button -->
+    <style name="Widget.Hikeculator.Button" parent="Widget.Material3.Button">
+        <item name="android:textColor">?attr/textColorOnPrimary</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Default text -->
+    <style name="Widget.Hikeculator.TextView" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
+    <!-- Headline 5 -->
+    <style name="TextAppearance.Hikeculator.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:textSize">34sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/textColorOnPrimary</item>
+    </style>
+
+    <!-- Headline 6 -->
+    <style name="TextAppearance.Hikeculator.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Headline 6 Dark -->
+    <style name="TextAppearance.Hikeculator.Headline6.Dark" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <!-- Subtitle 1 -->
+    <style name="TextAppearance.Hikeculator.SubTitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <!-- RadioButton -->
+    <style name="Widget.Hikeculatro.RadioButton" parent="Widget.Material3.CompoundButton.RadioButton">
+        <item name="android:buttonTint">@color/green_600</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="edit_text_view_registration">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="text_view_trip_creating_component">
         <item name="android:layout_marginTop">16dp</item>
         <item name="android:paddingTop">8dp</item>
@@ -24,11 +74,11 @@
         <item name="trackThickness">5dp</item>
     </style>
 
-    <style name="text_view_pfc_info">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textStyle">bold|italic</item>
-    </style>
+        <style name="text_view_pfc_info">
+            <item name="android:layout_width">wrap_content</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:textStyle">bold|italic</item>
+        </style>
 
     <style name="text_view_pfc_title">
         <item name="android:layout_width">wrap_content</item>
@@ -44,4 +94,50 @@
     <style name="circular_image">
         <item name="cornerSize">50%</item>
     </style>
+
+
+    <style name="food_adding_text_view_nutrient">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/dark_blue</item>
+
+    </style>
+
+    <style name="food_adding_label_carbs">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/blueMacro</item>
+    </style>
+
+    <style name="food_adding_text_view_nutrient_precent">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
+    <style name="food_adding_label_proteins">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/greenMacro</item>
+    </style>
+
+    <style name="food_adding_label_fats">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/orangeMacro</item>
+    </style>
+
+    <style name="text_view_overview_food_name">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="text_view_overview_food_label">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
+    <style name="CardViewUsual">
+        <item name="android:layout_marginStart">2dp</item>
+        <item name="android:layout_marginEnd">2dp</item>
+        <item name="cardBackgroundColor">@color/statusBar</item>
+        <item name="cardPreventCornerOverlap">false</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardCornerRadius">8dp</item>
+    </style>
+
 </resources>

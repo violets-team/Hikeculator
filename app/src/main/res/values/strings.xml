@@ -144,4 +144,7 @@
     <string name="text_save">Save</string>
     <string name="text_sex_man">Man</string>
     <string name="text_sex_woman">Women</string>
+    <string name="description_navigation_icon">Navigation icon</string>
+    <string name="description_button_add_trip">Button add trip</string>
+    <string name="text_button_delete_user">text_button_delete_user</string>
 </resources>
