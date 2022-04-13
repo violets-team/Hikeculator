@@ -8,33 +8,33 @@
 
     <TextView
         android:id="@+id/text_view_food_name"
-        style="@style/text_view_overview_food_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:textSize="16sp"
         android:text="Banana"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_view_food_weight"
-        style="@style/text_view_overview_food_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="100 g"
+        android:textColor="?attr/textColorLight"
         app:layout_constraintStart_toEndOf="@+id/text_view_food_name"
         app:layout_constraintTop_toTopOf="@+id/text_view_food_name" />
 
     <TextView
         android:id="@+id/text_view_food_calories"
-        style="@style/text_view_overview_food_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="120 kcal"
+        android:textColor="?attr/textColorLight"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/text_view_food_name"
         app:layout_constraintTop_toBottomOf="@+id/text_view_food_name" />
