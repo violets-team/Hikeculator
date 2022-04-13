@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hikeculator.R
 import com.example.hikeculator.databinding.ItemProvisionBagProductBinding
 import com.example.hikeculator.domain.entities.ProvisionBagProduct
-import com.example.hikeculator.presentation.common.getAnimated
 
 class ProvisionBagAdapter(
     private val onItemClick: (updatedProduct: ProvisionBagProduct) -> Unit

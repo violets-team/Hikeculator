@@ -38,7 +38,14 @@ val dataModule = module {
 
     single<ProductSearchRepository> { ProductSearchRepositoryImpl() }
 
-    single<SelectedProductRepository> { SelectedProductRepositoryImpl(appContext = androidApplication()) }
+    single<SelectedProductRepository> {
+        SelectedProductRepositoryImpl(appContext = androidApplication())
+    }
 
-    single<ProductRepository> { ProductRepositoryImpl(firestore = get())}
+    single<DayMealRepository> { DayMealRepositoryImpl(firestore = get()) }
+
+    single<ProductRepository> {
+        ProductRepositoryImpl(firestore = get(), dayMealRepository = get())
+    }
+
 }

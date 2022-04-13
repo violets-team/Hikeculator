@@ -2,6 +2,7 @@ package com.example.hikeculator.presentation.member_management
 
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -40,9 +41,7 @@ class MemberManagementFragment : Fragment(R.layout.fragment_member_managment) {
         viewModel.members.collectWhenStarted(lifecycleScope) { users ->
             memberAdapter.submitList(users.toList())
 
-            recyclerViewAnimator.animateOnlyOnce(
-                layoutAnimationId = R.anim.recycler_view_member_managment_layout_animation
-            )
+            recyclerViewAnimator.animateOnlyOnce()
 
             binding.textViewMemberQuantityValue.text = users.size.toString()
         }
@@ -59,6 +58,11 @@ class MemberManagementFragment : Fragment(R.layout.fragment_member_managment) {
         binding.recyclerViewMembers.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = memberAdapter
+
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(
+                context,
+                R.anim.recycler_view_member_managment_layout_animation
+            )
         }
     }
 

@@ -23,15 +23,15 @@ fun List<TripDay>.getProvisionWeight(): Long {
     return retrieveMeals().sumOf { dayMeal -> dayMeal.totalWeight }
 }
 
-fun List<TripDay>.getProvisionProteinAmountPerGram(): Double {
+fun List<TripDay>.getProvisionProteinAmountPerCalories(): Double {
     return retrieveMeals().sumOf { dayMeal -> dayMeal.totalProteins } * CALORIES_PER_GRAM_OF_PROTEINS
 }
 
-fun List<TripDay>.getProvisionFatAmountPerGram(): Double {
+fun List<TripDay>.getProvisionFatAmountPerCalories(): Double {
     return retrieveMeals().sumOf { dayMeal -> dayMeal.totalFats } * CALORIES_PER_GRAM_OF_FAT
 }
 
-fun List<TripDay>.getProvisionCarbsAmountPerGram(): Double {
+fun List<TripDay>.getProvisionCarbsAmountPerCalories(): Double {
     return retrieveMeals().sumOf { dayMeal -> dayMeal.totalCarbs } * CALORIES_PER_GRAM_OF_CARBS
 }
 
