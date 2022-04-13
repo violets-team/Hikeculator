@@ -2,6 +2,7 @@ package com.example.hikeculator.presentation.provision_bag
 
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
@@ -40,6 +41,11 @@ class ProvisionBagFragment : Fragment(R.layout.fragment_provision_bag) {
         binding.recyclerViewProvisionBag.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = provisionBagAdapter
+
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(
+                context,
+                R.anim.recycler_view_provision_bag_layout_animation
+            )
         }
     }
 
@@ -50,9 +56,7 @@ class ProvisionBagFragment : Fragment(R.layout.fragment_provision_bag) {
 
         viewModel.products.collectWhenStarted(lifecycleScope) { products ->
             provisionBagAdapter.submitList(products.toList())
-            recyclerViewAnimator.animateOnlyOnce(
-                layoutAnimationId = R.anim.recycler_view_provision_bag_layout_animation
-            )
+            recyclerViewAnimator.animateOnlyOnce()
         }
 
         viewModel.tripName.collectWhenStarted(lifecycleScope) { tripName ->

@@ -46,6 +46,7 @@
     </style>
     <style name="text_view_overview_food_label">
         <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">italic</item>
         <item name="android:textColor">@color/grey</item>
     </style>
 

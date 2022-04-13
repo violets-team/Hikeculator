@@ -15,8 +15,7 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 
 class TripDayRepositoryImpl(
-    private val firestore: FirebaseFirestore,
-//    private val userUidRepository: UserUidRepositiory,
+    private val firestore: FirebaseFirestore
 ) : TripDayRepository {
 
     override fun fetchTripDay(tripId: String, tripDayId: String): Flow<TripDay?> = callbackFlow {
@@ -25,7 +24,7 @@ class TripDayRepositoryImpl(
                 .document(tripDayId)
                 .addSnapshotListener { document, error ->
                     if (error != null) {
-                        close(cause = error)
+                        return@addSnapshotListener
                     } else {
                         document?.toObject<FirestoreTripDay>()
                             ?.mapToTripDay()
@@ -46,7 +45,7 @@ class TripDayRepositoryImpl(
                 .orderBy(TripDay::date.name)
                 .addSnapshotListener { querySnapshot, error ->
                     if (error != null) {
-                        close(cause = error)
+                        return@addSnapshotListener
                     } else {
                         querySnapshot?.documents
                             ?.mapNotNull { document -> document?.toObject<FirestoreTripDay>() }
