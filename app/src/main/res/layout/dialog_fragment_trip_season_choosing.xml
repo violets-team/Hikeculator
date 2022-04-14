@@ -33,6 +33,7 @@
         android:orientation="vertical"
         android:paddingStart="30dp"
         android:paddingEnd="30dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="@+id/text_view_title"
         app:layout_constraintStart_toStartOf="@+id/text_view_title"
         app:layout_constraintTop_toBottomOf="@+id/text_view_title">
@@ -47,8 +48,8 @@
         <RadioButton
             android:id="@+id/radio_button_summer"
             android:layout_width="wrap_content"
+            style=""
             android:layout_height="wrap_content"
-
             android:text="@string/season_dialog_summer" />
 
         <RadioButton

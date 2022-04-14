@@ -1,54 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- Default button -->
-    <style name="Widget.Hikeculator.Button" parent="Widget.Material3.Button">
-        <item name="android:textColor">?attr/textColorOnPrimary</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <!-- Default text -->
     <style name="Widget.Hikeculator.TextView" parent="TextAppearance.AppCompat">
         <item name="android:textSize">14sp</item>
     </style>
 
-
-    <!-- Headline 5 -->
-    <style name="TextAppearance.Hikeculator.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
-        <item name="android:textSize">34sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorOnPrimary</item>
-    </style>
-
-    <!-- Headline 6 -->
     <style name="TextAppearance.Hikeculator.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="android:textStyle">bold</item>
     </style>
 
-    <!-- Headline 6 Dark -->
     <style name="TextAppearance.Hikeculator.Headline6.Dark" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="android:textStyle">bold</item>
     </style>
 
-
-    <!-- Subtitle 1 -->
     <style name="TextAppearance.Hikeculator.SubTitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="android:textSize">12sp</item>
         <item name="android:textStyle">italic</item>
     </style>
 
-    <!-- RadioButton -->
-    <style name="Widget.Hikeculatro.RadioButton" parent="Widget.Material3.CompoundButton.RadioButton">
-        <item name="android:buttonTint">@color/green_600</item>
-        <item name="android:textSize">14sp</item>
+    <style name="Widget.Hikeculator.RadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:buttonTint">@color/gray_700</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="edit_text_view_registration">
+    <style name="Widget.Hikeculator.TextInputLayout.Registration" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:elevation">2dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+    </style>
+
+    <style name="Widget.Hikeculator.EditText.Registration" parent="ThemeOverlay.Material3.TextInputEditText.FilledBox.Dense">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:maxLines">1</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Button light theme -->
+    <style name="Widget.Hikeculator.Button" parent="Widget.Material3.Button">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:backgroundTint">?attr/colorPrimary</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <!-- Button dark theme -->
+    <style name="Widget.Night.Hikeculator.Button" parent="Widget.Hikeculator.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">?attr/colorPrimary</item>
     </style>
 
     <style name="text_view_trip_creating_component">
