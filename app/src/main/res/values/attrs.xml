@@ -15,14 +15,16 @@
         <attr name="mainButtonImage" format="reference" />
     </declare-styleable>
 
-    <attr name="textColorPrimary" format="color" />
-    <attr name="textColorOnPrimary" format="color" />
-    <attr name="textColorLight" format="color" />
 
+    <attr name="lightItemColor" format="color"/>
     <attr name="itemColor" format="color"/>
-
     <attr name="colorPrimaryExtraLight" format="color" />
     <attr name="negativeEffect" format="color" />
-    <attr name="lightItemColor" format="color"/>
     <attr name="registrationCardBackground" format="color"/>
+    <attr name="dialogBackground" format="color"/>
+    <attr name="editTExtBackgroundSecondary" format="color"/>
+    <attr name="itemColorSecondary" format="color"/>
+
+    <attr name="checkedState" format="color"/>
+    <attr name="unCheckedState" format="color"/>
 </resources>

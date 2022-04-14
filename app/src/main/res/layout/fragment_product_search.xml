@@ -17,7 +17,7 @@
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progress_indicator_proteins_info"
-        style="@style/progress_bar_pfc_info"
+            style="@style/progress_bar_pfc_info"
         android:layout_marginTop="16dp"
         app:indicatorColor="@android:color/holo_orange_light"
         app:layout_constraintEnd_toEndOf="@id/progress_indicator_fats_info"
@@ -127,7 +127,6 @@
         android:layout_marginEnd="16dp"
         android:autofillHints="name"
         android:background="@drawable/background_searched_food"
-        android:backgroundTint="@color/white"
         android:drawableStart="@drawable/ic_search_loop"
         android:drawablePadding="8dp"
         android:elevation="8dp"
@@ -158,7 +157,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/light_grey"
+        android:background="@color/grey_800_alpha"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_view_title_search_result" />

@@ -35,12 +35,13 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_end="16dp" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
         android:id="@+id/text_view_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="32sp"
+        android:textColor="@color/white"
         android:layout_marginTop="24dp"
         android:text="@string/text_title_trip_creating"
         app:layout_constraintTop_toTopOf="@id/content_top"
@@ -62,16 +63,11 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_layout_name"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:hint="@string/hint_create_hike_name_hint"
-        app:boxStrokeWidth="15sp"
-        app:boxBackgroundMode="outline"
-
-        app:boxStrokeColor="@color/teal_200"
-
         app:layout_constraintTop_toTopOf="@id/frame_layout"
         app:layout_constraintEnd_toEndOf="@id/content_end"
         app:layout_constraintStart_toStartOf="@id/content_start">

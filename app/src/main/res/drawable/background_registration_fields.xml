@@ -4,5 +4,5 @@
 
     <corners android:radius="24dp"/>
 
-    <solid android:color="?attr/cardBackgroundColor"/>
+    <solid android:color="?attr/dialogBackground"/>
 </shape>
