@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/background_registration_fields"
+    android:background="@drawable/background_dialog"
     android:minWidth="300dp"
     android:minHeight="300dp"
     android:paddingTop="24dp"

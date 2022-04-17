@@ -1,5 +1,4 @@
 <resources>
-
     <style name="Base.V24.Night.Theme.Hikeculator" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/green_500</item>
         <item name="colorPrimaryVariant">@color/green_400</item>
@@ -13,17 +12,13 @@
         <item name="materialButtonStyle">@style/Widget.Night.Hikeculator.Button</item>
         <item name="radioButtonStyle">@style/Widget.Hikeculator.RadioButton</item>
 
-        <item name="cardBackgroundColor">@color/grey_600</item>
-        <item name="editTextBackgroundSecondary">@color/grey_800_alpha</item>
-        <item name="fabNavigation">@style/Widget.Night.Hikeculator.TripDetailButtonView</item>
-        <item name="dialogBackground">@color/grey_800</item>
         <item name="colorPrimaryExtraLight">@color/green_100</item>
         <item name="colorPrimaryHelper">@color/green_500</item>
+        <item name="colorDialogBackground">@color/grey_800</item>
+        <item name="colorEditTextBackgroundSecondary">@color/grey_800_alpha</item>
+        <item name="styleFabNavigation">@style/Widget.Night.Hikeculator.TripDetailButtonView</item>
+        <item name="colorNegativeAction">@android:color/holo_red_light</item>
         <item name="itemColor">@color/grey_800_alpha</item>
-        <item name="itemColorSecondary">@color/grey_800_alpha</item>
-        <item name="lightItemColor">@color/grey_100</item>
-        <item name="negativeEffect">@android:color/holo_red_light</item>
-
         <item name="checkedState">@color/grey_800_alpha</item>
         <item name="unCheckedState">@color/grey_800</item>
     </style>

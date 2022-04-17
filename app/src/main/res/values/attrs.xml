@@ -19,12 +19,12 @@
     <attr name="lightItemColor" format="color"/>
     <attr name="itemColor" format="color"/>
     <attr name="colorPrimaryExtraLight" format="color" />
-    <attr name="negativeEffect" format="color" />
+    <attr name="colorNegativeAction" format="color" />
     <attr name="registrationCardBackground" format="color"/>
-    <attr name="dialogBackground" format="color"/>
-    <attr name="editTextBackgroundSecondary" format="color"/>
+    <attr name="colorDialogBackground" format="color"/>
+    <attr name="colorEditTextBackgroundSecondary" format="color"/>
     <attr name="itemColorSecondary" format="color"/>
-    <attr name="fabNavigation" format="reference"/>
+    <attr name="styleFabNavigation" format="reference"/>
     <attr name="checkedState" format="color"/>
     <attr name="unCheckedState" format="color"/>
     <attr name="colorPrimaryHelper" format="color"/>
