@@ -1,6 +1,5 @@
 package com.example.hikeculator.data.repository_implementations
 
-import android.util.Log
 import com.example.hikeculator.data.common.getTripDayDocument
 import com.example.hikeculator.data.common.mapToFirestoreProduct
 import com.example.hikeculator.data.fiebase.entities.FirestoreTripDay
@@ -25,7 +24,8 @@ class ProductRepositoryImpl(
     ) {
         firestore.getTripDayDocument(tripId = tripId, tripDayId = dayId)
             .let { documentReference ->
-                documentReference.get().await()
+                documentReference.get()
+                    .await()
                     ?.toObject<FirestoreTripDay>()
                     ?.let { firestoreTripDay ->
 

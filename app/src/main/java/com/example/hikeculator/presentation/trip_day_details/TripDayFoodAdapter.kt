@@ -1,14 +1,12 @@
 package com.example.hikeculator.presentation.trip_day_details
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.StringRes
+import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hikeculator.R
 import com.example.hikeculator.databinding.ItemDayMealFoodBinding
-import com.example.hikeculator.domain.common.update
 import com.example.hikeculator.domain.entities.Product
 import com.example.hikeculator.domain.enums.MealType
 
@@ -41,11 +39,10 @@ class TripDayFoodAdapter(
                     R.string.format_kcal_long,
                     food.getCalorieAmount().toInt()
                 )
-                textViewFoodFats.text =
-                    root.context.getString(R.string.value_gram_double, food.getFatAmount())
 
-                textViewFoodCarbs.text =
-                    root.context.getString(R.string.value_gram_double, food.getCarbsAmount())
+                textViewFoodProteins.setPfcValue(value = food.getProteinAmount())
+                textViewFoodFats.setPfcValue(value = food.getFatAmount())
+                textViewFoodCarbs.setPfcValue(value = food.getCarbsAmount())
 
                 buttonDeleteItem.setOnClickListener {
                     onClickDeleteItem(getItem(absoluteAdapterPosition), mealType)
@@ -53,8 +50,8 @@ class TripDayFoodAdapter(
             }
         }
 
-        private fun <T> getText(@StringRes stringId: Int, vararg values: T): String {
-            return binding.root.context.getString(stringId, values)
+        private fun TextView.setPfcValue(value: Double) {
+            text = binding.root.context.getString(R.string.value_gram_double, value)
         }
     }
 }
