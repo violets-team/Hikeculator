@@ -20,7 +20,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/text_item_day" />
+        tools:text="@string/text_day_ordinal" />
 
     <TextView
         android:id="@+id/text_view_trip_date"

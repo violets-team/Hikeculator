@@ -44,4 +44,43 @@
     <style name="circular_image">
         <item name="cornerSize">50%</item>
     </style>
+
+    <style name="trip_day_detail_meal_header">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:background">@drawable/background_trip_day_meal_header</item>
+        <item name="android:gravity">start|center</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:paddingStart">24dp</item>
+    </style>
+
+    <style name="trip_day_detail_meal_recycler_view">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/background_trip_day_meal_recycler_view</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+
+    <style name="trip_day_detail_meal_add_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:elevation">4dp</item>
+        <item name="srcCompat">@drawable/ic_add</item>
+    </style>
+
+    <style name="trip_day_detail_pfc_pointer">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">4dp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
 </resources>

@@ -1,8 +1,8 @@
 package com.example.hikeculator.presentation.trip_details
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -49,12 +49,13 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
 
     private fun initializeTripDayRecyclerView() {
         binding.recyclerViewTripDays.apply {
-            layoutManager = LinearLayoutManager(
-                requireContext(),
-                LinearLayoutManager.VERTICAL,
-                false
-            )
+            layoutManager = LinearLayoutManager(context)
             adapter = tripDetailDayAdapter
+
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(
+                context,
+                R.anim.recycler_view_trip_details_layout_animation
+            )
         }
     }
 
@@ -62,7 +63,7 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
         viewModel.data.collectWhenStarted(lifecycleScope) { data: Pair<Trip?, List<TripDay>> ->
             data.first?.let { trip ->
                 tripDetailDayAdapter.submitList(data.second)
-                recyclerViewAnimator.animateOnlyOnce(R.anim.recycler_view_trip_details_layout_animation)
+                recyclerViewAnimator.animateOnlyOnce()
                 binding.setViewContent(trip = trip, tripDays = data.second)
             }
         }
@@ -111,17 +112,17 @@ class TripDetailFragment : Fragment(R.layout.fragment_trip_details) {
 
         displayProteinInfo(
             proteinNorm = getProteinsNorm(calories = tripCalories),
-            provisionProteins = tripDays.getProvisionProteinAmountPerGram()
+            provisionProteins = tripDays.getProvisionProteinAmountPerCalories()
         )
 
         displayFatInfo(
             fatNorm = getFatNorm(calories = tripCalories),
-            provisionFats = tripDays.getProvisionFatAmountPerGram()
+            provisionFats = tripDays.getProvisionFatAmountPerCalories()
         )
 
         displayCarbInfo(
             carbNorm = getCarbNorm(calories = tripCalories),
-            provisionCarbs = tripDays.getProvisionCarbsAmountPerGram()
+            provisionCarbs = tripDays.getProvisionCarbsAmountPerCalories()
         )
 
         displayProvisionWeight(weight = tripDays.getProvisionWeight())
