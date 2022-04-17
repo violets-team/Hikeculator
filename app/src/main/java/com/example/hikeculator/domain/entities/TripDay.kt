@@ -7,4 +7,33 @@ data class TripDay(
     val lunch: DayMeal,
     val dinner: DayMeal,
     val snack: DayMeal,
-)
+) {
+
+    fun getTotalCalories(): Double {
+        return breakfast.totalCalories +
+                lunch.totalCalories +
+                dinner.totalCalories +
+                snack.totalCalories
+    }
+
+    fun getProvisionProteinAmountPerGram(): Double {
+        return breakfast.totalProteins +
+                lunch.totalProteins +
+                dinner.totalProteins +
+                snack.totalProteins
+    }
+
+    fun getProvisionFatAmountPerGram(): Double {
+        return breakfast.totalFats +
+                lunch.totalFats +
+                dinner.totalFats +
+                snack.totalFats
+    }
+
+    fun getProvisionCarbsAmountPerGram(): Double {
+        return breakfast.totalCarbs +
+                lunch.totalCarbs +
+                dinner.totalCarbs +
+                snack.totalCarbs
+    }
+}

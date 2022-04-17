@@ -1,11 +1,9 @@
 package com.example.hikeculator.domain.interactors
 
-import com.example.hikeculator.domain.entities.DayMeal
-import com.example.hikeculator.domain.enums.MealType
 import com.example.hikeculator.domain.entities.Product
+import com.example.hikeculator.domain.enums.MealType
 import com.example.hikeculator.domain.repositories.ProductRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
 
@@ -25,12 +23,17 @@ class ProductInteractor(private val productRepository: ProductRepository) {
         )
     }
 
-    fun fetchDayMeal(tripId: String, dayId: String, mealType: MealType): Flow<DayMeal> {
-        return productRepository.fetchDayMeal(
+    suspend fun deleteProduct(
+        product: Product,
+        tripId: String,
+        dayId: String,
+        mealType: MealType
+    ) {
+        productRepository.removeProduct(
+            product = product,
             tripId = tripId,
             dayId = dayId,
             mealType = mealType
         )
     }
-
 }
