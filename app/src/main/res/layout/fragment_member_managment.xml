@@ -76,7 +76,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:src="@drawable/ic_add"
-        app:backgroundTint="@color/action_button_add_member_color"
+        app:backgroundTint="?attr/colorPrimaryVariant"
         app:layout_constraintBottom_toBottomOf="@id/content_bottom"
         app:layout_constraintEnd_toEndOf="@id/content_end"
         app:tint="@color/white"

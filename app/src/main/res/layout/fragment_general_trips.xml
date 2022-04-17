@@ -33,7 +33,7 @@
         android:backgroundTint="?attr/colorPrimary"
         app:layout_anchor="@id/bottom_app_bar"
         app:srcCompat="@drawable/ic_add"
-        app:tint="?attr/background"
+        app:tint="@color/white"
         android:contentDescription="@string/description_button_add_trip" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

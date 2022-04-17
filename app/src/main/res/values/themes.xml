@@ -8,15 +8,18 @@
         <item name="background">@color/white</item>
         <item name="colorSurface">@color/white</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorOnSecondary">@color/dark</item>
         <item name="android:textColor">@color/gray_700</item>
         <item name="android:colorPrimaryDark">@color/green_400</item>
-        <item name="colorPrimaryExtraLight">@color/green_100</item>
         <item name="cardBackgroundColor">@color/white</item>
-        <item name="dialogBackground">@color/white</item>
         <item name="materialButtonStyle">@style/Widget.Hikeculator.Button</item>
-        <item name="editTExtBackgroundSecondary">@color/white</item>
+        <item name="radioButtonStyle">@style/Widget.Hikeculator.RadioButton</item>
 
+        <item name="colorPrimaryExtraLight">@color/green_100</item>
+        <item name="dialogBackground">@color/white</item>
+        <item name="colorPrimaryHelper">@color/green_200</item>
+        <item name="editTextBackgroundSecondary">@color/white</item>
+        <item name="fabNavigation">@style/Widget.Hikeculator.TripDetailButtonView</item>
         <item name="negativeEffect">@android:color/holo_red_light</item>
 
         <item name="checkedState">@color/green_200</item>
@@ -26,16 +29,6 @@
         <item name="itemColorSecondary">@color/white</item>
         <item name="lightItemColor">@color/white</item>
 
-        <item name="radioButtonStyle">@style/Widget.Hikeculator.RadioButton</item>
-<!--        <item name="textColorPrimary">@color/gray_700</item>-->
-<!--        <item name="textColorOnPrimary">@color/white</item>-->
-<!--        <item name="textColorLight">@color/gray_500</item>-->
-
-
-<!--        <item name="materialButtonStyle">@style/Widget.Hikeculator.Button</item>-->
-<!--        <item name="textAppearanceHeadline4">@style/TextAppearance.Hikeculator.Headline4</item>-->
-<!--        <item name="textAppearanceHeadline6">@style/TextAppearance.Hikeculator.Headline6</item>-->
-<!--        <item name="textAppearanceSubtitle1">@style/TextAppearance.Hikeculator.SubTitle1</item>-->
     </style>
 
     <style name="Base.Theme.Hikeculator" parent="Base.V24.Theme.Hikeculator" />

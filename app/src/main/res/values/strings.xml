@@ -147,4 +147,5 @@
     <string name="description_navigation_icon">Navigation icon</string>
     <string name="description_button_add_trip">Button add trip</string>
     <string name="text_button_delete_user">text_button_delete_user</string>
+    <string name="text_add">Add</string>
 </resources>

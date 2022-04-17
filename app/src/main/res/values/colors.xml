@@ -39,16 +39,16 @@
     <color name="action_button_add_member_color">#7BA54B</color>
 
 
-
     <color name="green_600">#4CAF50</color>
-    <color name="green_400">#66BB6A</color>
+    <color name="green_500">#7A876A</color>
+    <color name="green_400">#99B37A</color>
     <color name="green_200">#C3D8AA</color>
     <color name="green_100">#C8E6C9</color>
 
+    <color name="pale_yellow">#CDC581</color>
+    <color name="pale_blue">#8ECAD3</color>
 
     <color name="marsh_200">#C5E1A5</color>
-
-
 
     <color name="dark">#121212</color>
     <color name="grey_800_alpha">#5555</color>

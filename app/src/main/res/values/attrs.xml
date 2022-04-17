@@ -22,9 +22,10 @@
     <attr name="negativeEffect" format="color" />
     <attr name="registrationCardBackground" format="color"/>
     <attr name="dialogBackground" format="color"/>
-    <attr name="editTExtBackgroundSecondary" format="color"/>
+    <attr name="editTextBackgroundSecondary" format="color"/>
     <attr name="itemColorSecondary" format="color"/>
-
+    <attr name="fabNavigation" format="reference"/>
     <attr name="checkedState" format="color"/>
     <attr name="unCheckedState" format="color"/>
+    <attr name="colorPrimaryHelper" format="color"/>
 </resources>
