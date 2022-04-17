@@ -1,31 +1,31 @@
 <resources>
 
     <style name="Base.V24.Night.Theme.Hikeculator" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">#7A876A</item>
+        <item name="colorPrimary">@color/green_500</item>
         <item name="colorPrimaryVariant">@color/green_400</item>
         <item name="colorSecondary">@color/marsh_200</item>
         <item name="background">@color/dark</item>
         <item name="colorSurface">@color/dark</item>
-        <item name="colorOnPrimary">@color/dark</item>
-        <item name="colorOnSecondary">@color/grey_800</item>
+        <item name="colorOnSecondary">@color/white</item>
         <item name="android:textColor">@color/grey_500</item>
+        <item name="colorOnPrimary">@color/white</item>
         <item name="android:colorPrimaryDark">@color/black</item>-
-        <item name="colorPrimaryExtraLight">@color/green_100</item>
-        <item name="cardBackgroundColor">@color/grey_600</item>
-        <item name="dialogBackground">@color/grey_800</item>
         <item name="materialButtonStyle">@style/Widget.Night.Hikeculator.Button</item>
-        <item name="editTExtBackgroundSecondary">@color/grey_800_alpha</item>
+        <item name="radioButtonStyle">@style/Widget.Hikeculator.RadioButton</item>
 
-        <item name="checkedState">@color/grey_800_alpha</item>
-        <item name="unCheckedState">@color/grey_800</item>
-
+        <item name="cardBackgroundColor">@color/grey_600</item>
+        <item name="editTextBackgroundSecondary">@color/grey_800_alpha</item>
+        <item name="fabNavigation">@style/Widget.Night.Hikeculator.TripDetailButtonView</item>
+        <item name="dialogBackground">@color/grey_800</item>
+        <item name="colorPrimaryExtraLight">@color/green_100</item>
+        <item name="colorPrimaryHelper">@color/green_500</item>
         <item name="itemColor">@color/grey_800_alpha</item>
         <item name="itemColorSecondary">@color/grey_800_alpha</item>
         <item name="lightItemColor">@color/grey_100</item>
-
         <item name="negativeEffect">@android:color/holo_red_light</item>
 
-        <item name="radioButtonStyle">@style/Widget.Hikeculator.RadioButton</item>
+        <item name="checkedState">@color/grey_800_alpha</item>
+        <item name="unCheckedState">@color/grey_800</item>
     </style>
 
     <style name="Base.Theme.Hikeculator" parent="Base.V24.Night.Theme.Hikeculator" />

@@ -12,7 +12,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.*
 
-class AddOrEditProductDialogViewModel(
+class AddProductDialogViewModel(
     private val selectedProductRepository: SelectedProductRepository,
     private val productInteractor: ProductInteractor
 ) : ViewModel() {

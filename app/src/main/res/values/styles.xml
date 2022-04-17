@@ -4,19 +4,6 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="TextAppearance.Hikeculator.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="TextAppearance.Hikeculator.Headline6.Dark" parent="TextAppearance.MaterialComponents.Headline6">
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="TextAppearance.Hikeculator.SubTitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
-        <item name="android:textSize">12sp</item>
-        <item name="android:textStyle">italic</item>
-    </style>
-
     <style name="Widget.Hikeculator.RadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
         <item name="android:buttonTint">@color/gray_700</item>
         <item name="android:textSize">16sp</item>
@@ -39,18 +26,37 @@
     </style>
 
     <!-- Button light theme -->
-    <style name="Widget.Hikeculator.Button" parent="Widget.Material3.Button">
+    <style name="Widget.Hikeculator.Button" parent="Widget.MaterialComponents.Button">
         <item name="android:textColor">@color/black</item>
-        <item name="android:backgroundTint">?attr/colorPrimary</item>
+        <item name="backgroundTint">?attr/colorPrimaryHelper</item>
         <item name="cornerRadius">24dp</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textAllCaps">true</item>
     </style>
 
-    <!-- Button dark theme -->
-    <style name="Widget.Night.Hikeculator.Button" parent="Widget.Hikeculator.Button">
+    <!-- Button night theme -->
+    <style name="Widget.Night.Hikeculator.Button" parent="Widget.MaterialComponents.Button">
         <item name="android:textColor">@color/white</item>
-        <item name="android:backgroundTint">?attr/colorPrimary</item>
+        <item name="android:backgroundTint">?attr/colorPrimaryHelper</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+
+    <!-- FabNavigation light theme -->
+    <style name="Widget.Hikeculator.TripDetailButtonView" parent="">
+        <item name="mainButtonBackground">?attr/colorPrimary</item>
+        <item name="memberButtonBackground">#CDC581</item>
+        <item name="provisionBagButtonBackground">#8ECAD3</item>
+    </style>
+
+
+    <!-- FabNavigation night theme -->
+    <style name="Widget.Night.Hikeculator.TripDetailButtonView" parent="">
+        <item name="mainButtonBackground">?attr/colorPrimary</item>
+        <item name="memberButtonBackground">#9C9664</item>
+        <item name="provisionBagButtonBackground">#8ECAD3</item>
     </style>
 
     <style name="text_view_trip_creating_component">
@@ -141,5 +147,4 @@
         <item name="cardUseCompatPadding">true</item>
         <item name="cardCornerRadius">8dp</item>
     </style>
-
 </resources>
