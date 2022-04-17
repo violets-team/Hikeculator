@@ -151,4 +151,6 @@
     <string name="fat_pointer">f</string>
     <string name="carb_pointer">c</string>
     <string name="content_description_delete_food_from_day_meal">delete food from day meal</string>
+    <string name="problem_with_deleting_product">There is problem with deleting product</string>
+    <string name="problem_with_getting_trip_day">There is a problem with getting trip day</string>
 </resources>

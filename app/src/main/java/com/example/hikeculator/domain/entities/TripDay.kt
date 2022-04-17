@@ -20,20 +20,20 @@ data class TripDay(
         return breakfast.totalProteins +
                 lunch.totalProteins +
                 dinner.totalProteins +
-                lunch.totalProteins
+                snack.totalProteins
     }
 
     fun getProvisionFatAmountPerGram(): Double {
-        return breakfast.totalProteins +
-                lunch.totalProteins +
-                dinner.totalProteins +
-                lunch.totalProteins
+        return breakfast.totalFats +
+                lunch.totalFats +
+                dinner.totalFats +
+                snack.totalFats
     }
 
     fun getProvisionCarbsAmountPerGram(): Double {
-        return breakfast.totalProteins +
-                lunch.totalProteins +
-                dinner.totalProteins +
-                lunch.totalProteins
+        return breakfast.totalCarbs +
+                lunch.totalCarbs +
+                dinner.totalCarbs +
+                snack.totalCarbs
     }
 }

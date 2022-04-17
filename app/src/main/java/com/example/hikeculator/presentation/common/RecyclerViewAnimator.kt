@@ -7,7 +7,7 @@ class RecyclerViewAnimator(
 ) {
 
     var wasNotAnimated = true
-    private set
+        private set
 
     fun animateOnlyOnce() {
         if (wasNotAnimated) {

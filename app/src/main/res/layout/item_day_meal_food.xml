@@ -43,7 +43,7 @@
         text_view_food_fats,
         text_view_food_carbs"
         app:flow_horizontalBias="0"
-        app:flow_horizontalGap="24dp"
+        app:flow_horizontalGap="23dp"
         app:flow_horizontalStyle="packed"
         app:flow_wrapMode="chain"
         app:layout_constrainedWidth="true"
@@ -59,12 +59,6 @@
         android:layout_height="wrap_content"
         android:textStyle="italic|bold"
         tools:text="@string/format_kcal_long" />
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/proteins"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="text_view_protein_pointer, text_view_food_proteins" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_view_protein_pointer"
