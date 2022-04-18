@@ -27,7 +27,7 @@
 
     <!-- Button light theme -->
     <style name="Widget.Hikeculator.Button" parent="Widget.MaterialComponents.Button">
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/grey_800</item>
         <item name="backgroundTint">?attr/colorPrimaryHelper</item>
         <item name="cornerRadius">24dp</item>
         <item name="android:textSize">16sp</item>

@@ -17,9 +17,9 @@
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progress_indicator_proteins_info"
-            style="@style/progress_bar_pfc_info"
+        style="@style/progress_bar_pfc_info"
         android:layout_marginTop="16dp"
-        app:indicatorColor="@android:color/holo_orange_light"
+        app:indicatorColor="?attr/colorProtein"
         app:layout_constraintEnd_toEndOf="@id/progress_indicator_fats_info"
         app:layout_constraintStart_toEndOf="@id/progress_indicator_calories_info"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,7 +28,7 @@
         android:id="@+id/progress_indicator_fats_info"
         style="@style/progress_bar_pfc_info"
         android:layout_marginTop="16dp"
-        app:indicatorColor="@android:color/holo_blue_light"
+        app:indicatorColor="?attr/colorFat"
         app:layout_constraintEnd_toStartOf="@id/progress_indicator_carbs_info"
         app:layout_constraintStart_toEndOf="@id/progress_indicator_proteins_info"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +37,7 @@
         android:id="@+id/progress_indicator_carbs_info"
         style="@style/progress_bar_pfc_info"
         android:layout_marginTop="16dp"
-        app:indicatorColor="@android:color/holo_red_light"
+        app:indicatorColor="?attr/colorCarbs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/progress_indicator_fats_info"
         app:layout_constraintTop_toTopOf="parent" />
