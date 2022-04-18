@@ -65,7 +65,7 @@ class TripRepositoryImpl(
             firestore.getTripDocument(tripId = tripId)
                 .addSnapshotListener { document, error ->
                     if (error != null) {
-                        close(cause = null)
+                        return@addSnapshotListener
                     } else {
                         document?.toObject<FirestoreTrip>()
                             ?.mapToTrip()

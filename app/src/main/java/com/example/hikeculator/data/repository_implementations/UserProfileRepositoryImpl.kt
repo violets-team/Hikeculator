@@ -24,7 +24,7 @@ class UserProfileRepositoryImpl(
             firestore.getUserDocument(userUid = userUid)
                 .addSnapshotListener { documentSnapshot, error ->
                     if (error != null) {
-                        close(cause = error)
+                        return@addSnapshotListener
                     } else {
                         documentSnapshot?.toObject<FirestoreUser>()
                             ?.mapToUser()

@@ -36,7 +36,7 @@
     <string name="text_title_hike">Trip name</string>
     <string name="text_weight_trip_label">Provision weight:</string>
     <string name="text_trip_provision_weight">%d g</string>
-    <string name="text_item_day">Day %1$d</string>
+    <string name="text_day_ordinal">Day %1$d</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="all_fields_have_to_be_filled">All fields have to be filled</string>
@@ -144,6 +144,15 @@
     <string name="text_save">Save</string>
     <string name="text_sex_man">Man</string>
     <string name="text_sex_woman">Women</string>
+    <string name="value_gram">%1$d g</string>
+    <string name="value_gram_double">%1$.2f g</string>
+    <string name="text_trip_day_note">of the trip \"%1$s\"</string>
+    <string name="protein_pointer">p</string>
+    <string name="fat_pointer">f</string>
+    <string name="carb_pointer">c</string>
+    <string name="content_description_delete_food_from_day_meal">delete food from day meal</string>
+    <string name="problem_with_deleting_product">There is problem with deleting product</string>
+    <string name="problem_with_getting_trip_day">There is a problem with getting trip day</string>
     <string name="description_navigation_icon">Navigation icon</string>
     <string name="description_button_add_trip">Button add trip</string>
     <string name="text_button_delete_user">text_button_delete_user</string>

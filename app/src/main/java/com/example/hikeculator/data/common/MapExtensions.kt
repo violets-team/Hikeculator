@@ -100,6 +100,7 @@ fun Product.mapToFirestoreProduct(): FirestoreProduct = FirestoreProduct(
 )
 
 fun FirestoreProduct.mapToProduct(): Product = Product(
+    id = id,
     name = name,
     weight = weight,
     nutritionalValue = nutritionalValue.mapToNutritionalValue()

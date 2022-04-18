@@ -62,7 +62,7 @@ class ProvisionBagRepositoryImpl(
             firestore.getProvisionBagDocument(tripId = tripId)
                 .addSnapshotListener { documentSnapshot: DocumentSnapshot?, error ->
                     if (error != null) {
-                        close(cause = error)
+                        return@addSnapshotListener
                     } else {
                         documentSnapshot?.toObject<FirestoreProvisionBag>()
                             ?.mapToProvisionBag()

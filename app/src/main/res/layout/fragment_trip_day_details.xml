@@ -1,425 +1,304 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
     tools:context=".presentation.trip_day_details.TripDayDetailFragment">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/text_view_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="День 1"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/content_start"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/content_end"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/content_top"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/content_bottom"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="16dp" />
 
         <TextView
             android:id="@+id/text_view_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="28.02.2022"
-            android:textColor="@color/grey"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/text_view_title"
-            app:layout_constraintStart_toStartOf="@+id/text_view_title"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_title" />
+            tools:text="28.02.2022"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/content_top" />
 
         <TextView
-            android:id="@+id/text_view_calories"
+            android:id="@+id/text_view_day_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5800 Ккал"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/circular_indicator_nutrition"
-            app:layout_constraintEnd_toEndOf="@+id/circular_indicator_nutrition"
-            app:layout_constraintStart_toStartOf="@+id/circular_indicator_nutrition"
-            app:layout_constraintTop_toTopOf="@+id/circular_indicator_nutrition" />
+            android:layout_marginTop="8dp"
+            tools:text="Day 1"
+            android:textStyle="bold|italic"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view_date" />
+
+        <TextView
+            android:id="@+id/text_view_trip_day_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constrainedWidth="true"
+            tools:text="@string/text_trip_day_note"
+            android:textStyle="bold|italic"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/content_end"
+            app:layout_constraintStart_toStartOf="@id/content_start"
+            app:layout_constraintTop_toBottomOf="@id/text_view_day_title" />
+
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/circular_indicator_nutrition"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="8dp"
-            android:progress="60"
-            app:indicatorColor="@color/purple_500"
-            app:indicatorInset="0dp"
-            app:indicatorSize="120dp"
+            android:id="@+id/progress_indicator_calorie_info"
+            android:layout_width="121dp"
+            android:layout_height="118dp"
+            android:layout_marginTop="16dp"
+            app:indicatorColor="#E289C83B"
+            app:indicatorSize="150dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_date"
-            app:trackColor="@color/teal_200"
+            app:layout_constraintTop_toBottomOf="@id/text_view_trip_day_note"
+            app:trackColor="#5CC89E90"
             app:trackCornerRadius="10dp"
             app:trackThickness="12dp" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_view_nutrition"
-            style="@style/Widget.MaterialComponents.CardView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="5dp"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintTop_toBottomOf="@+id/circular_indicator_nutrition"
-            app:strokeWidth="1dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="5dp"
-                android:weightSum="3">
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/text_view_carbs_label"
-                        style="@style/food_adding_label_carbs"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Углеводы"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/text_view_current_carbs"
-                        style="@style/food_adding_text_view_nutrient"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/text_view_carbs_label"
-                        tools:text="10 g" />
-
-                </LinearLayout>
-
-                <!--PROTEINS-->
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/text_view_protein_label"
-                        style="@style/food_adding_label_proteins"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Белки"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/text_view_trip_day_details_current_proteins"
-                        style="@style/food_adding_text_view_nutrient"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/text_view_protein_label"
-                        tools:text="12 g" />
-
-                </LinearLayout>
-
-                <!--FATS-->
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:textAlignment="center">
-
-                    <TextView
-                        android:id="@+id/text_view_fat_label"
-                        style="@style/food_adding_label_fats"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Жиры"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/text_view_fat_day"
-                        style="@style/food_adding_text_view_nutrient"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/text_view_fat_label"
-                        tools:text="32 g" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <LinearLayout
-            android:id="@+id/linear_layout_breakfast"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:background="@color/color_header_breakfast"
-            android:orientation="horizontal"
-            android:padding="8dp"
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progress_indicator_carb_info"
+            style="@style/progress_bar_pfc_info"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/progress_indicator_fat_info"
+            app:layout_constraintTop_toTopOf="@id/progress_indicator_fat_info" />
+
+        <TextView
+            android:id="@+id/text_view_carb_info"
+            style="@style/text_view_pfc_info"
+            app:layout_constraintBottom_toBottomOf="@id/progress_indicator_carb_info"
+            app:layout_constraintEnd_toEndOf="@id/progress_indicator_carb_info"
+            app:layout_constraintStart_toStartOf="@id/progress_indicator_carb_info"
+            app:layout_constraintTop_toTopOf="@id/progress_indicator_carb_info"
+            tools:text="0%" />
+
+        <TextView
+            android:id="@+id/text_view_carb_title"
+            style="@style/text_view_pfc_title"
+            android:text="@string/carbs"
+            app:layout_constraintEnd_toEndOf="@id/progress_indicator_carb_info"
+            app:layout_constraintStart_toStartOf="@id/progress_indicator_carb_info"
+            app:layout_constraintTop_toBottomOf="@id/progress_indicator_carb_info" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progress_indicator_fat_info"
+            style="@style/progress_bar_pfc_info"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toStartOf="@id/progress_indicator_carb_info"
+            app:layout_constraintStart_toEndOf="@id/progress_indicator_protein_info"
+            app:layout_constraintTop_toBottomOf="@id/progress_indicator_calorie_info" />
+
+        <TextView
+            android:id="@+id/text_view_fat_info"
+            style="@style/text_view_pfc_info"
+            app:layout_constraintBottom_toBottomOf="@id/progress_indicator_fat_info"
+            app:layout_constraintEnd_toEndOf="@id/progress_indicator_fat_info"
+            app:layout_constraintStart_toStartOf="@id/progress_indicator_fat_info"
+            app:layout_constraintTop_toTopOf="@id/progress_indicator_fat_info"
+            tools:text="100%" />
+
+        <TextView
+            android:id="@+id/text_view_fat_title"
+            style="@style/text_view_pfc_title"
+            android:text="@string/fats"
+            app:layout_constraintEnd_toEndOf="@id/progress_indicator_fat_info"
+            app:layout_constraintStart_toStartOf="@id/progress_indicator_fat_info"
+            app:layout_constraintTop_toBottomOf="@id/progress_indicator_fat_info" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progress_indicator_protein_info"
+            style="@style/progress_bar_pfc_info"
+            app:layout_constraintEnd_toStartOf="@id/progress_indicator_fat_info"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_view_nutrition">
+            app:layout_constraintTop_toTopOf="@id/progress_indicator_fat_info" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="2dp"
-                android:weightSum="3">
+        <TextView
+            android:id="@+id/text_view_protein_info"
+            style="@style/text_view_pfc_info"
+            app:layout_constraintBottom_toBottomOf="@id/progress_indicator_protein_info"
+            app:layout_constraintEnd_toEndOf="@id/progress_indicator_protein_info"
+            app:layout_constraintStart_toStartOf="@id/progress_indicator_protein_info"
+            app:layout_constraintTop_toTopOf="@id/progress_indicator_protein_info"
+            tools:text="0%" />
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/capriola"
-                    android:text="Завтрак"
-                    android:textColor="@color/black"
-                    android:textSize="14dp" />
+        <TextView
+            android:id="@+id/text_view_protein_title"
+            style="@style/text_view_pfc_title"
+            android:text="@string/proteins"
+            app:layout_constraintEnd_toEndOf="@id/progress_indicator_protein_info"
+            app:layout_constraintStart_toStartOf="@id/progress_indicator_protein_info"
+            app:layout_constraintTop_toBottomOf="@id/progress_indicator_protein_info" />
 
-                <LinearLayout
-                    android:id="@+id/button_add_product_to_breakfast"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:background="@color/color_header_breakfast">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_provision_calorie_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/grained_calorie_percents"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@id/text_view_trip_calories"
+            app:layout_constraintEnd_toEndOf="@id/text_view_trip_calories"
+            app:layout_constraintStart_toStartOf="@id/text_view_trip_calories" />
 
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:src="@drawable/ic_add_1" />
+        <TextView
+            android:id="@+id/text_view_trip_calories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/progress_indicator_calorie_info"
+            app:layout_constraintEnd_toEndOf="@+id/progress_indicator_calorie_info"
+            app:layout_constraintStart_toStartOf="@+id/progress_indicator_calorie_info"
+            app:layout_constraintTop_toTopOf="@+id/progress_indicator_calorie_info"
+            tools:text="5800" />
 
-                </LinearLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/kcal"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="@id/text_view_trip_calories"
+            app:layout_constraintStart_toStartOf="@id/text_view_trip_calories"
+            app:layout_constraintTop_toBottomOf="@id/text_view_trip_calories" />
 
-            </LinearLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_breakfast"
+            style="@style/trip_day_detail_meal_header"
+            android:text="@string/text_breakfast"
+            app:layout_constraintEnd_toEndOf="@id/content_end"
+            app:layout_constraintStart_toStartOf="@id/content_start"
+            app:layout_constraintTop_toBottomOf="@id/text_view_fat_title"/>
 
-        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/button_add_product_to_breakfast"
+            style="@style/trip_day_detail_meal_add_button"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_breakfast"
+            app:layout_constraintEnd_toEndOf="@id/text_view_breakfast"
+            app:layout_constraintTop_toTopOf="@id/text_view_breakfast" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_breakfast_overview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:padding="8dp"
-            app:layout_constraintEnd_toEndOf="@+id/linear_layout_breakfast"
-            app:layout_constraintStart_toStartOf="@+id/linear_layout_breakfast"
-            app:layout_constraintTop_toBottomOf="@id/linear_layout_breakfast"
+            style="@style/trip_day_detail_meal_recycler_view"
+            app:layout_constraintEnd_toEndOf="@id/text_view_breakfast"
+            app:layout_constraintStart_toStartOf="@id/text_view_breakfast"
+            app:layout_constraintTop_toBottomOf="@id/text_view_breakfast"
             tools:itemCount="1"
-            tools:listitem="@layout/item_day_meal" />
+            tools:listitem="@layout/item_day_meal_food" />
 
-        <LinearLayout
-            android:id="@+id/linear_layout_lunch"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:background="@color/color_header_lunch"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recycler_view_breakfast_overview">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_lunch"
+            style="@style/trip_day_detail_meal_header"
+            android:text="@string/text_lunch"
+            app:layout_constraintEnd_toEndOf="@id/content_end"
+            app:layout_constraintStart_toStartOf="@id/content_start"
+            app:layout_constraintTop_toBottomOf="@id/recycler_view_breakfast_overview" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="2dp"
-                android:weightSum="3">
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/capriola"
-                    android:text="Обед"
-                    android:textColor="@color/black"
-                    android:textSize="14dp" />
-
-                <LinearLayout
-                    android:id="@+id/button_add_product_to_lunch"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:background="@color/color_header_lunch">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:src="@drawable/ic_add_1" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/button_add_product_to_lunch"
+            style="@style/trip_day_detail_meal_add_button"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_lunch"
+            app:layout_constraintEnd_toEndOf="@id/text_view_lunch"
+            app:layout_constraintTop_toTopOf="@id/text_view_lunch" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_lunch_overview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:padding="8dp"
+            style="@style/trip_day_detail_meal_recycler_view"
+            app:layout_constraintEnd_toEndOf="@+id/text_view_lunch"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/text_view_lunch"
+            app:layout_constraintTop_toBottomOf="@id/text_view_lunch"
             tools:itemCount="1"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="@+id/linear_layout_lunch"
-            app:layout_constraintStart_toStartOf="@+id/linear_layout_lunch"
-            app:layout_constraintTop_toBottomOf="@id/linear_layout_lunch" />
+            tools:listitem="@layout/item_day_meal_food" />
 
-        <LinearLayout
-            android:id="@+id/linear_layout_dinner"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:background="@color/color_header_dinner"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recycler_view_lunch_overview">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_dinner"
+            style="@style/trip_day_detail_meal_header"
+            android:text="@string/text_dinner"
+            app:layout_constraintEnd_toEndOf="@id/content_end"
+            app:layout_constraintStart_toStartOf="@id/content_start"
+            app:layout_constraintTop_toBottomOf="@id/recycler_view_lunch_overview" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="2dp"
-                android:weightSum="3">
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/capriola"
-                    android:text="Ужин"
-                    android:textColor="@color/black"
-                    android:textSize="14dp" />
-
-                <LinearLayout
-                    android:id="@+id/button_add_product_to_dinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:background="@color/color_header_dinner">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:src="@drawable/ic_add_1" />
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/button_add_product_to_dinner"
+            style="@style/trip_day_detail_meal_add_button"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_dinner"
+            app:layout_constraintEnd_toEndOf="@id/text_view_dinner"
+            app:layout_constraintTop_toTopOf="@id/text_view_dinner" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_overview_dinner"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:padding="8dp"
+            android:id="@+id/recycler_view_dinner_overview"
+            style="@style/trip_day_detail_meal_recycler_view"
+            app:layout_constraintEnd_toEndOf="@+id/text_view_dinner"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/text_view_dinner"
+            app:layout_constraintTop_toBottomOf="@id/text_view_dinner"
             tools:itemCount="1"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="@+id/linear_layout_dinner"
-            app:layout_constraintStart_toStartOf="@+id/linear_layout_dinner"
-            app:layout_constraintTop_toBottomOf="@id/linear_layout_dinner" />
+            tools:listitem="@layout/item_day_meal_food" />
 
-        <LinearLayout
-            android:id="@+id/linear_layout_snack"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:background="@color/color_header_snack"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recycler_view_overview_dinner">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_snack"
+            style="@style/trip_day_detail_meal_header"
+            android:text="@string/text_snack"
+            app:layout_constraintBottom_toTopOf="@id/recycler_view_snack_overview"
+            app:layout_constraintEnd_toEndOf="@id/content_end"
+            app:layout_constraintStart_toStartOf="@id/content_start"
+            app:layout_constraintTop_toBottomOf="@id/recycler_view_dinner_overview"
+            app:layout_constraintVertical_bias="1"
+            app:layout_goneMarginBottom="24dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="2dp"
-                android:weightSum="3">
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/capriola"
-                    android:text="Перекус"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-
-                <LinearLayout
-                    android:id="@+id/button_add_product_to_snack"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:background="@color/color_header_snack">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:src="@drawable/ic_add_1" />
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/button_add_product_to_snack"
+            style="@style/trip_day_detail_meal_add_button"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_snack"
+            app:layout_constraintEnd_toEndOf="@id/text_view_snack"
+            app:layout_constraintTop_toTopOf="@id/text_view_snack" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_overview_snack"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:padding="8dp"
+            android:id="@+id/recycler_view_snack_overview"
+            style="@style/trip_day_detail_meal_recycler_view"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/text_view_snack"
+            app:layout_constraintStart_toStartOf="@+id/text_view_snack"
+            app:layout_constraintTop_toBottomOf="@id/text_view_snack"
+            app:layout_constraintVertical_bias="0.0"
             tools:itemCount="1"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="@+id/linear_layout_breakfast"
-            app:layout_constraintStart_toStartOf="@+id/linear_layout_breakfast"
-            app:layout_constraintTop_toBottomOf="@id/linear_layout_snack" />
+            tools:listitem="@layout/item_day_meal_food" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

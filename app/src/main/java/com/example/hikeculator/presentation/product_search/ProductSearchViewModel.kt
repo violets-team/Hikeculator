@@ -8,6 +8,7 @@ import com.example.hikeculator.domain.common.percentageOf
 import com.example.hikeculator.domain.enums.MealType
 import com.example.hikeculator.domain.entities.Product
 import com.example.hikeculator.domain.entities.Trip
+import com.example.hikeculator.domain.interactors.DayMealInteractor
 import com.example.hikeculator.domain.interactors.ProductInteractor
 import com.example.hikeculator.domain.interactors.ProductSearchInteractor
 import com.example.hikeculator.domain.interactors.TripInteractor
@@ -22,8 +23,8 @@ class ProductSearchViewModel(
     private val searchInteractor: ProductSearchInteractor,
     private val selectedProductRepository: SelectedProductRepository,
     private val mealType: MealType,
+    dayMealInteractor: DayMealInteractor,
     tripInteractor: TripInteractor,
-    productInteractor: ProductInteractor,
     tripId: String,
     dayId: String
 ) : ViewModel() {
@@ -49,7 +50,7 @@ class ProductSearchViewModel(
     )
     val productStatistics = _productStatistics.asSharedFlow()
 
-    private val dayMeal = productInteractor.fetchDayMeal(
+    private val dayMeal = dayMealInteractor.fetchDayMeal(
         tripId = tripId,
         dayId = dayId,
         mealType = mealType

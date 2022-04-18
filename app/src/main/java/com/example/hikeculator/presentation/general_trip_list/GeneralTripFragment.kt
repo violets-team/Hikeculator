@@ -2,6 +2,7 @@ package com.example.hikeculator.presentation.general_trip_list
 
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -51,12 +52,13 @@ class GeneralTripFragment : Fragment(R.layout.fragment_general_trips) {
 
     private fun initializeTripRecyclerView() {
         binding.recyclerViewTrips.apply {
-            layoutManager = LinearLayoutManager(
-                requireContext(),
-                RecyclerView.VERTICAL,
-                false
-            )
+            layoutManager = LinearLayoutManager(context)
             adapter = tripAdapter
+
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(
+                context,
+                R.anim.recycler_view_general_trip_list_layout_animation
+            )
         }
     }
 
