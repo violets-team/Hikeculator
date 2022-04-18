@@ -7,7 +7,7 @@
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="8dp"
     android:background="@drawable/background_trip_item"
-    android:elevation="16dp"
+    android:elevation="4dp"
     android:paddingHorizontal="8dp"
     android:paddingVertical="4dp">
 

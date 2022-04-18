@@ -5,8 +5,8 @@
         <item name="colorSecondary">@color/marsh_200</item>
         <item name="background">@color/white</item>
         <item name="colorSurface">@color/white</item>
+        <item name="colorOnSecondary">@color/grey_800</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorOnSecondary">@color/dark</item>
         <item name="android:textColor">@color/gray_700</item>
         <item name="android:colorPrimaryDark">@color/green_400</item>
         <item name="materialButtonStyle">@style/Widget.Hikeculator.Button</item>
@@ -21,6 +21,12 @@
         <item name="itemColor">@color/green_200</item>
         <item name="checkedState">@color/green_200</item>
         <item name="unCheckedState">@color/grey_100</item>
+        <item name="colorIcon">@color/gray_700</item>
+        <item name="colorItemSecondary">@color/white</item>
+
+        <item name="colorProtein">@android:color/holo_orange_light</item>
+        <item name="colorFat">@android:color/holo_blue_light</item>
+        <item name="colorCarbs">@android:color/holo_red_light</item>
     </style>
 
     <style name="Base.Theme.Hikeculator" parent="Base.V24.Theme.Hikeculator" />
