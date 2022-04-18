@@ -27,4 +27,8 @@ class TripInteractor(private val tripRepository: TripRepository) {
     suspend fun retrieveTrip(tripId: String): Trip? = withContext(Dispatchers.IO) {
         tripRepository.retrieveTrip(tripId = tripId)
     }
+
+    fun fetchObservableTrips(vararg tripIds: String): Flow<Set<Trip>> {
+        return tripRepository.fetchObservableTrips(tripIds = tripIds)
+    }
 }

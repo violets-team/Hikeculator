@@ -83,7 +83,9 @@ class MemberManagementAddingViewModel(
             ExistingWorkPolicy.KEEP,
             MemberAddingWorker.makeRequest(
                 tripId = tripId,
-                userUids = _chosenMembers.value.map { it.uid }.toTypedArray()
+                userUids = _chosenMembers.value.filter { !existedMembers.contains(it) }
+                    .map { it.uid }
+                    .toTypedArray()
             )
         )
 

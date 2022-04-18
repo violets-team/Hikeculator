@@ -24,14 +24,16 @@ class MemberGroupRepositoryImpl(
         private const val UNICODE_RANGE = "\uf8ff"
     }
 
-    override suspend fun addTripMember(tripId: String, userUid: String) {
-        userProfileRepository.addTripIdToUserProfile(userUid = userUid, tripId = tripId)
+    override suspend fun addTripMember(tripId: String, vararg userUids: String) {
+        userUids.onEach { userUid ->
+            userProfileRepository.addTripIdToUserProfile(userUid = userUid, tripId = tripId)
+        }
 
         firestore.getTripDocument(tripId = tripId).let { documentReference ->
             documentReference.get()
                 .await()
                 ?.toObject<FirestoreTrip>()
-                ?.run { memberUids.toMutableList().apply { add(userUid) }.toList() }
+                ?.run { memberUids.toMutableSet().apply { addAll(userUids) }.toList() }
                 ?.let { updatedUserUdis ->
                     documentReference.update(FirestoreTrip::memberUids.name, updatedUserUdis)
                         .await()
