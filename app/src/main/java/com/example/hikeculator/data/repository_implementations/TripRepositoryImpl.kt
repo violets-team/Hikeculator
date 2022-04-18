@@ -1,19 +1,18 @@
 package com.example.hikeculator.data.repository_implementations
 
+import android.system.Os.remove
+import android.util.Log
+import com.example.hikeculator.data.common.getTripCollection
 import com.example.hikeculator.data.common.getTripDocument
 import com.example.hikeculator.data.common.mapToFirestoreTrip
 import com.example.hikeculator.data.common.mapToTrip
 import com.example.hikeculator.data.fiebase.entities.FirestoreTrip
-import com.example.hikeculator.domain.common.NutritionalCalculator
 import com.example.hikeculator.domain.entities.Trip
-import com.example.hikeculator.domain.enums.TripDifficultyCategory
-import com.example.hikeculator.domain.enums.TripSeason
-import com.example.hikeculator.domain.enums.TripType
 import com.example.hikeculator.domain.repositories.TripRepository
 import com.example.hikeculator.domain.repositories.UserProfileRepository
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.ktx.toObject
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -85,5 +84,41 @@ class TripRepositoryImpl(
             .await()
             ?.toObject<FirestoreTrip>()
             ?.mapToTrip()
+    }
+
+    override fun fetchObservableTrips(vararg tripIds: String): Flow<Set<Trip>> = callbackFlow {
+        val listeners = try {
+            val listeners = mutableListOf<ListenerRegistration>()
+
+            for (step in 0..tripIds.size / 10) {
+                Log.i("app_log", "fetchObservableTrips: $step")
+                val tripIdGroup = tripIds.drop(10 * step).take(10)
+
+                if (tripIdGroup.isNotEmpty()) {
+                    firestore.getTripCollection()
+                        .whereIn(FirestoreTrip::id.name, tripIdGroup)
+                        .addSnapshotListener { querySnapshot, error ->
+
+                            if (error != null) {
+                                return@addSnapshotListener
+                            } else {
+                                querySnapshot?.documents?.mapNotNull { documentSnapshot ->
+                                    documentSnapshot.toObject<FirestoreTrip>()?.mapToTrip()
+                                }?.also { trips -> trySend(element = trips.toSet()) }
+                            }
+                        }.also {
+                                listenerRegistration -> listeners.add(listenerRegistration)
+                            Log.i("app_log", "**** add listeners size: ")
+                        }
+                }
+            }
+            Log.i("app_log", "**** add listeners size: ${listeners.size}")
+            listeners.toList()
+
+        } catch (e: Exception) {
+            null
+        }
+
+        awaitClose { listeners?.onEach { it.remove() }}
     }
 }
