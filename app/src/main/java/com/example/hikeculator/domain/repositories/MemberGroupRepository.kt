@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface MemberGroupRepository {
 
-    suspend fun addTripMember(tripId: String, userUid: String)
+    suspend fun addTripMember(tripId: String, vararg userUids: String)
 
     suspend fun removeTripMember(tripId: String, userUid: String)
 

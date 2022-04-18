@@ -7,9 +7,9 @@ import kotlinx.coroutines.withContext
 
 class MemberGroupInteractor(private val memberGroupRepository: MemberGroupRepository) {
 
-    suspend fun addTripMember(tripId: String, userUid: String) {
+    suspend fun addTripMember(tripId: String, vararg userUids: String) {
         withContext(Dispatchers.IO) {
-            memberGroupRepository.addTripMember(userUid = userUid, tripId = tripId)
+            memberGroupRepository.addTripMember(tripId = tripId, userUids = userUids)
         }
     }
 
