@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:background="@drawable/auth_input_style"
+    android:elevation="4dp"
+    android:padding="8dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_food_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Banana" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_food_weight"
+        style="@style/text_view_overview_food_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/value_gram"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/text_view_food_name"
+        app:layout_constraintEnd_toStartOf="@+id/button_delete_item"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/text_view_food_name" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:constraint_referenced_ids="text_view_food_calories,
+        text_view_food_proteins,
+        text_view_food_fats,
+        text_view_food_carbs"
+        app:flow_horizontalBias="0"
+        app:flow_horizontalGap="23dp"
+        app:flow_horizontalStyle="packed"
+        app:flow_wrapMode="chain"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toStartOf="@id/button_delete_item"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_food_name" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_food_calories"
+        style="@style/text_view_overview_food_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="italic|bold"
+        tools:text="@string/format_kcal_long" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_protein_pointer"
+        style="@style/trip_day_detail_pfc_pointer"
+        android:text="@string/protein_pointer"
+        app:layout_constraintBaseline_toBaselineOf="@id/text_view_food_proteins"
+        app:layout_constraintEnd_toStartOf="@id/text_view_food_proteins" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_food_proteins"
+        style="@style/text_view_overview_food_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:textColor="@color/greenMacro"
+        tools:text="@string/value_gram_double" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_fat_pointer"
+        style="@style/trip_day_detail_pfc_pointer"
+        android:text="@string/fat_pointer"
+        app:layout_constraintBaseline_toBaselineOf="@id/text_view_food_fats"
+        app:layout_constraintEnd_toStartOf="@id/text_view_food_fats" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_food_fats"
+        style="@style/text_view_overview_food_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:textColor="@color/orangeMacro"
+        tools:text="@string/value_gram_double" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_carb_pointer"
+        style="@style/trip_day_detail_pfc_pointer"
+        android:text="@string/carb_pointer"
+        app:layout_constraintBaseline_toBaselineOf="@id/text_view_food_carbs"
+        app:layout_constraintEnd_toStartOf="@id/text_view_food_carbs" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_food_carbs"
+        style="@style/text_view_overview_food_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:textColor="@color/blueMacro"
+        tools:text="@string/value_gram_double" />
+
+    <ImageButton
+        android:id="@+id/button_delete_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="@null"
+        android:contentDescription="@string/content_description_delete_food_from_day_meal"
+        android:src="@drawable/ic_cancel"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view_food_fats"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_view_food_weight"
+        app:tint="@color/primary_color" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

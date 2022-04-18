@@ -20,4 +20,6 @@ val domainModule = module {
     factory { ProductSearchInteractor(productSearchRepository = get()) }
 
     factory { ProductInteractor(productRepository = get()) }
+
+    factory { DayMealInteractor(dayMealRepository = get()) }
 }
