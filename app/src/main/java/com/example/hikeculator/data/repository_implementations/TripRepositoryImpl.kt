@@ -1,11 +1,10 @@
 package com.example.hikeculator.data.repository_implementations
 
-import android.system.Os.remove
-import android.util.Log
 import com.example.hikeculator.data.common.getTripCollection
 import com.example.hikeculator.data.common.getTripDocument
 import com.example.hikeculator.data.common.mapToFirestoreTrip
 import com.example.hikeculator.data.common.mapToTrip
+import com.example.hikeculator.data.fiebase.ARRAY_OPERATOR_MAX_SIZE
 import com.example.hikeculator.data.fiebase.entities.FirestoreTrip
 import com.example.hikeculator.domain.entities.Trip
 import com.example.hikeculator.domain.repositories.TripRepository
@@ -90,9 +89,9 @@ class TripRepositoryImpl(
         val listeners = try {
             val listeners = mutableListOf<ListenerRegistration>()
 
-            for (step in 0..tripIds.size / 10) {
-                Log.i("app_log", "fetchObservableTrips: $step")
-                val tripIdGroup = tripIds.drop(10 * step).take(10)
+            for (step in 0..tripIds.size / ARRAY_OPERATOR_MAX_SIZE) {
+                val tripIdGroup = tripIds.drop(ARRAY_OPERATOR_MAX_SIZE * step)
+                    .take(ARRAY_OPERATOR_MAX_SIZE)
 
                 if (tripIdGroup.isNotEmpty()) {
                     firestore.getTripCollection()
@@ -106,19 +105,17 @@ class TripRepositoryImpl(
                                     documentSnapshot.toObject<FirestoreTrip>()?.mapToTrip()
                                 }?.also { trips -> trySend(element = trips.toSet()) }
                             }
-                        }.also {
-                                listenerRegistration -> listeners.add(listenerRegistration)
-                            Log.i("app_log", "**** add listeners size: ")
+                        }.also { listenerRegistration ->
+                            listeners.add(listenerRegistration)
                         }
                 }
             }
-            Log.i("app_log", "**** add listeners size: ${listeners.size}")
             listeners.toList()
 
         } catch (e: Exception) {
             null
         }
 
-        awaitClose { listeners?.onEach { it.remove() }}
+        awaitClose { listeners?.onEach { it.remove() } }
     }
 }

@@ -1,7 +1,6 @@
 package com.example.hikeculator.presentation.member_management.member_adding
 
 import android.content.Context
-import android.util.Log
 import androidx.work.*
 import com.example.hikeculator.domain.common.NutritionalCalculator
 import com.example.hikeculator.domain.entities.User
