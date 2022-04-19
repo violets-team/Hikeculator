@@ -6,7 +6,7 @@ import com.example.hikeculator.presentation.general_trip_list.GeneralTripViewMod
 import com.example.hikeculator.presentation.member_management.MemberManagementViewModel
 import com.example.hikeculator.presentation.member_management.member_adding.MemberManagementAddingViewModel
 import com.example.hikeculator.presentation.member_management.member_deleting.MemberDeletingViewModel
-import com.example.hikeculator.presentation.product_dialogs.add_product.AddOrEditProductDialogViewModel
+import com.example.hikeculator.presentation.product_dialogs.add_product.AddProductDialogViewModel
 import com.example.hikeculator.presentation.product_search.ProductSearchViewModel
 import com.example.hikeculator.presentation.profile.ProfileViewModel
 import com.example.hikeculator.presentation.provision_bag.ProvisionBagViewModel
@@ -69,7 +69,7 @@ val presentationModule = module {
     }
 
     viewModel {
-        AddOrEditProductDialogViewModel(
+        AddProductDialogViewModel(
             selectedProductRepository = get(),
             productInteractor = get()
         )

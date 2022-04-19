@@ -15,4 +15,23 @@
         <attr name="mainButtonImage" format="reference" />
     </declare-styleable>
 
+    <attr name="itemColorLight" format="color" />
+    <attr name="itemColor" format="color" />
+    <attr name="itemColorSecondary" format="color"/>
+    <attr name="colorPrimaryExtraLight" format="color" />
+    <attr name="colorNegativeAction" format="color" />
+    <attr name="registrationCardBackground" format="color" />
+    <attr name="colorDialogBackground" format="color" />
+    <attr name="colorEditTextBackgroundSecondary" format="color" />
+    <attr name="styleFabNavigation" format="reference" />
+    <attr name="colorCheckedState" format="color" />
+    <attr name="colorUnCheckedState" format="color" />
+    <attr name="colorPrimaryHelper" format="color" />
+    <attr name="colorIcon" format="color" />
+    <attr name="colorProtein" format="color"/>
+    <attr name="colorFat" format="color"/>
+    <attr name="colorCarbs" format="color"/>
+    <attr name="colorTrack" format="color"/>
+    <attr name="colorTrackSecondary" format="color"/>
+    <attr name="colorIndicator" format="color"/>
 </resources>

@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.hikeculator.R
-import com.example.hikeculator.databinding.FragmentAddOrEditProductBinding
+import com.example.hikeculator.databinding.FragmentAddProductBinding
 import com.example.hikeculator.domain.common.roundToTwoDecimalPlaces
 import com.example.hikeculator.domain.enums.MealType.*
 import com.example.hikeculator.domain.entities.NutritionalValue
@@ -23,13 +23,13 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AddOrEditProductDialog : BottomSheetDialogFragment() {
+class AddProductDialog : BottomSheetDialogFragment() {
 
-    private val binding by viewBinding(FragmentAddOrEditProductBinding::bind)
+    private val binding by viewBinding(FragmentAddProductBinding::bind)
 
-    private val args by navArgs<AddOrEditProductDialogArgs>()
+    private val args by navArgs<AddProductDialogArgs>()
 
-    private val viewModel by viewModel<AddOrEditProductDialogViewModel>()
+    private val viewModel by viewModel<AddProductDialogViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +40,7 @@ class AddOrEditProductDialog : BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_add_or_edit_product, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_add_product, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -149,7 +149,7 @@ class AddOrEditProductDialog : BottomSheetDialogFragment() {
         binding.textViewProductTitle.text = productName
     }
 
-    private fun FragmentAddOrEditProductBinding.setNutritionalValueContent(nutritionalValue: NutritionalValue) {
+    private fun FragmentAddProductBinding.setNutritionalValueContent(nutritionalValue: NutritionalValue) {
         nutritionalValue.apply {
             textViewCalories.text = calories.roundToTwoDecimalPlaces().toString()
             textViewProteins.text = proteins.roundToTwoDecimalPlaces().toString()

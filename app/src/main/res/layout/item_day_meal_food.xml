@@ -17,9 +17,13 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textStyle="bold"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toStartOf="@id/text_view_food_weight"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Banana" />
+        tools:text="Badd" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_view_food_weight"
@@ -29,9 +33,9 @@
         android:layout_marginStart="16dp"
         android:text="@string/value_gram"
         android:textSize="16sp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintBaseline_toBaselineOf="@id/text_view_food_name"
         app:layout_constraintEnd_toStartOf="@+id/button_delete_item"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/text_view_food_name" />
 
     <androidx.constraintlayout.helper.widget.Flow
@@ -73,7 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        android:textColor="@color/greenMacro"
+        android:textColor="?attr/colorProtein"
         tools:text="@string/value_gram_double" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -89,7 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        android:textColor="@color/orangeMacro"
+        android:textColor="?attr/colorFat"
         tools:text="@string/value_gram_double" />
 
 
@@ -107,7 +111,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        android:textColor="@color/blueMacro"
+        android:textColor="?attr/colorCarbs"
         tools:text="@string/value_gram_double" />
 
     <ImageButton
@@ -121,6 +125,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/text_view_food_fats"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/text_view_food_weight"
-        app:tint="@color/primary_color" />
+        app:tint="?attr/colorPrimary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
