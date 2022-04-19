@@ -70,6 +70,7 @@ class EntranceFragment : Fragment(R.layout.fragment_entrance) {
         return AuthUI.getInstance()
             .createSignInIntentBuilder()
             .setAvailableProviders(getAuthenticationProviders())
+            .setTheme(R.style.Theme_Hikeculator)
             .build()
     }
 
