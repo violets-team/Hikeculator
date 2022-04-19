@@ -5,9 +5,8 @@
 
     <item
         android:id="@+id/app_bar_item_profile"
-        android:icon="@drawable/ic_account"
+        android:icon="@drawable/ic_appbar_account"
         app:showAsAction="always"
-        android:iconTint="@color/white"
         android:title="@string/text_app_bar_item_profile" />
 
 </menu>

@@ -189,7 +189,7 @@
             app:argType="com.example.hikeculator.domain.enums.MealType" />
         <action
             android:id="@+id/action_productSearchFragment_to_addOrEditProductDialog"
-            app:destination="@id/addOrEditProductDialog" />
+            app:destination="@id/addProductDialog" />
     </fragment>
     <dialog
         android:id="@+id/memberDeletingDialogFragment"
@@ -216,8 +216,8 @@
             app:argType="string" />
     </dialog>
     <dialog
-        android:id="@+id/addOrEditProductDialog"
-        android:name="com.example.hikeculator.presentation.product_dialogs.add_product.AddOrEditProductDialog"
+        android:id="@+id/addProductDialog"
+        android:name="com.example.hikeculator.presentation.product_dialogs.add_product.AddProductDialog"
         android:label="AddOrEditProductDialog" >
         <argument
             android:name="tripId"

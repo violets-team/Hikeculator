@@ -1,62 +1,38 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.Hikeculator" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primary_color</item>
-        <item name="colorPrimaryVariant">@color/primary_color</item>
+<resources>
+    <style name="Base.V24.Theme.Hikeculator" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/green_200</item>
+        <item name="colorPrimaryVariant">@color/green_400</item>
+        <item name="colorSecondary">@color/marsh_200</item>
+        <item name="background">@color/white</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSecondary">@color/grey_800</item>
         <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/black</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <item name="android:textColor">@color/grey_700</item>
+        <item name="android:colorPrimaryDark">@color/green_400</item>
+        <item name="materialButtonStyle">@style/Widget.Hikeculator.Button</item>
+        <item name="radioButtonStyle">@style/Widget.Hikeculator.RadioButton</item>
+
+        <item name="colorPrimaryExtraLight">@color/green_100</item>
+        <item name="colorPrimaryHelper">@color/green_200</item>
+        <item name="colorDialogBackground">@color/white</item>
+        <item name="colorEditTextBackgroundSecondary">@color/white</item>
+        <item name="styleFabNavigation">@style/Widget.Hikeculator.TripDetailButtonView</item>
+        <item name="colorNegativeAction">@android:color/holo_red_light</item>
+        <item name="itemColor">@color/green_200</item>
+        <item name="colorCheckedState">@color/green_200</item>
+        <item name="colorUnCheckedState">@color/grey_100</item>
+        <item name="colorIcon">@color/grey_700</item>
+        <item name="itemColorSecondary">@color/white</item>
+        <item name="colorTrack">@color/brown</item>
+        <item name="colorTrackSecondary">@color/dark_blue_darker</item>
+        <item name="colorIndicator">?attr/colorPrimary</item>
+
+        <item name="colorProtein">@android:color/holo_orange_light</item>
+        <item name="colorFat">@android:color/holo_blue_light</item>
+        <item name="colorCarbs">@android:color/holo_red_light</item>
     </style>
 
-    <style name="food_adding_text_view_nutrient">
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/dark_blue</item>
+    <style name="Base.Theme.Hikeculator" parent="Base.V24.Theme.Hikeculator" />
 
-    </style>
-
-    <style name="food_adding_label_carbs">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/blueMacro</item>
-    </style>
-
-    <style name="food_adding_text_view_nutrient_precent">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/grey</item>
-    </style>
-
-    <style name="food_adding_label_proteins">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/greenMacro</item>
-    </style>
-
-    <style name="food_adding_label_fats">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/orangeMacro</item>
-    </style>
-
-    <style name="text_view_overview_food_name">
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">16sp</item>
-    </style>
-    <style name="text_view_overview_food_label">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textStyle">italic</item>
-        <item name="android:textColor">@color/grey</item>
-    </style>
-
-    <style name="CardViewUsual">
-        <item name="android:layout_marginStart">2dp</item>
-        <item name="android:layout_marginEnd">2dp</item>
-        <item name="cardBackgroundColor">@color/statusBar</item>
-        <item name="cardPreventCornerOverlap">false</item>
-        <item name="cardUseCompatPadding">true</item>
-        <item name="cardCornerRadius">8dp</item>
-    </style>
-
+    <style name="Theme.Hikeculator" parent="Base.Theme.Hikeculator" />
 </resources>

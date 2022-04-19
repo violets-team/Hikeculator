@@ -38,7 +38,7 @@
         android:id="@+id/text_view_trip_name_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="@id/content_end"
         app:layout_constraintStart_toStartOf="@id/content_start"
@@ -50,18 +50,20 @@
         android:layout_width="121dp"
         android:layout_height="118dp"
         android:layout_marginTop="16dp"
-        app:indicatorColor="#E289C83B"
+        tools:progress="34"
+        app:indicatorColor="?attr/colorIndicator"
         app:indicatorSize="150dp"
         app:layout_constraintEnd_toEndOf="@id/content_end"
         app:layout_constraintStart_toStartOf="@id/content_start"
         app:layout_constraintTop_toBottomOf="@+id/text_view_trip_name_title"
-        app:trackColor="#5CC89E90"
+        app:trackColor="?attr/colorTrack"
         app:trackCornerRadius="10dp"
         app:trackThickness="12dp" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progress_indicator_carb_info"
         style="@style/progress_bar_pfc_info"
+        tools:progress="34"
         app:layout_constraintEnd_toEndOf="@id/content_end"
         app:layout_constraintStart_toEndOf="@id/progress_indicator_fat_info"
         app:layout_constraintTop_toTopOf="@id/progress_indicator_fat_info" />
@@ -89,7 +91,8 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toStartOf="@id/progress_indicator_carb_info"
         app:layout_constraintStart_toEndOf="@id/progress_indicator_protein_info"
-        app:layout_constraintTop_toBottomOf="@id/progress_indicator_calorie_info" />
+        app:layout_constraintTop_toBottomOf="@id/progress_indicator_calorie_info"
+        tools:progress="34" />
 
     <TextView
         android:id="@+id/text_view_fat_info"
@@ -98,6 +101,7 @@
         app:layout_constraintEnd_toEndOf="@id/progress_indicator_fat_info"
         app:layout_constraintStart_toStartOf="@id/progress_indicator_fat_info"
         app:layout_constraintTop_toTopOf="@id/progress_indicator_fat_info"
+        tools:progress="34"
         tools:text="100%" />
 
     <TextView
@@ -113,7 +117,8 @@
         style="@style/progress_bar_pfc_info"
         app:layout_constraintEnd_toStartOf="@id/progress_indicator_fat_info"
         app:layout_constraintStart_toStartOf="@id/content_start"
-        app:layout_constraintTop_toTopOf="@id/progress_indicator_fat_info" />
+        app:layout_constraintTop_toTopOf="@id/progress_indicator_fat_info"
+        tools:progress="34" />
 
     <TextView
         android:id="@+id/text_view_protein_info"
@@ -208,23 +213,19 @@
 
     <com.example.hikeculator.presentation.trip_details.TripDetailButtonView
         android:id="@+id/trip_detail_buttons"
-        style="?attr/"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="18dp"
-        app:mainButtonBackground="@color/main_button_background"
-        app:provisionBagButtonBackground="@color/provision_bag_button_background"
-        app:memberButtonBackground="@color/member_button_background"
-        app:mainButtonImage="@drawable/ic_fingerprint_24"
-        app:provisionBagButtonImage="@drawable/ic_bag"
-        app:memberButtonImage="@drawable/ic_people"
-        app:mainButtonTint="@color/trip_detail_button_tint"
-        app:provisionBagButtonTint="@color/trip_detail_button_tint"
-        app:memberButtonTint="@color/trip_detail_button_tint"
-        app:layout_constraintEnd_toEndOf="@id/content_end"
+        style="?attr/styleFabNavigation"
         app:layout_constraintBottom_toBottomOf="@id/content_bottom"
-        />
+        app:layout_constraintEnd_toEndOf="@id/content_end"
+        app:mainButtonImage="@drawable/ic_fingerprint_24"
+        app:mainButtonTint="@color/trip_detail_button_tint"
+        app:memberButtonImage="@drawable/ic_people"
+        app:memberButtonTint="@color/trip_detail_button_tint"
+        app:provisionBagButtonImage="@drawable/ic_bag"
+        app:provisionBagButtonTint="@color/trip_detail_button_tint" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

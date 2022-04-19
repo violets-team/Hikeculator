@@ -7,11 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="light_grey">#E4E4E4</color>
     <color name="rv_background">#747F88</color>
     <color name="color_item_rv">#9C9898</color>
     <color name="color_fab">#0039CB</color>
     <color name="dark_blue">#207398</color>
+    <color name="red_light">#FC7272</color>
+    <color name="brown">#5CC89E90</color>
+    <color name="dark_blue_darker">#5269D4E1</color>
 
     <color name="blueMacro">#00349E</color>
     <color name="greenMacro">#218000</color>
@@ -38,4 +40,29 @@
 
     <color name="light_green">#0FC376</color>
     <color name="action_button_add_member_color">#7BA54B</color>
+
+    <color name="green_600">#4CAF50</color>
+    <color name="green_500">#7A876A</color>
+    <color name="green_400">#99B37A</color>
+    <color name="green_200">#C3D8AA</color>
+    <color name="green_100">#C8E6C9</color>
+
+    <color name="pale_yellow">#CDC581</color>
+    <color name="dark_pale_yellow">#9C9664</color>
+
+    <color name="pale_blue">#8ECAD3</color>
+    <color name="dark_pale_blue">#6B989F</color>
+
+    <color name="pale_red">#CEDD8A70</color>
+
+    <color name="marsh_200">#C5E1A5</color>
+
+    <color name="dark">#121212</color>
+    <color name="grey_900">#191919</color>
+    <color name="grey_800_alpha">#5555</color>
+    <color name="grey_800">#302E2E</color>
+    <color name="grey_700">#616161</color>
+    <color name="grey_600">#757575</color>
+    <color name="grey_500">#9E9E9E</color>
+    <color name="grey_100">#E4E4E4</color>
 </resources>

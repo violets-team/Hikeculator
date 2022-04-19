@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="?attr/colorDialogBackground"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -11,7 +12,7 @@
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:text="@string/text_cancel"
-        android:textColor="@android:color/holo_red_light"
+        android:textColor="?attr/colorNegativeAction"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,7 +30,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +41,7 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
-        android:background="@color/light_grey"
+        android:background="@color/grey_800_alpha"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_view_product_title" />
@@ -53,7 +53,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="@string/text_view_calories"
-        android:textColor="@color/black"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintEnd_toStartOf="@id/text_view_proteins_title"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/text_proteins"
-        android:textColor="@android:color/holo_orange_light"
+        android:textColor="?attr/colorProtein"
         app:layout_constraintEnd_toStartOf="@id/text_view_fats_title"
         app:layout_constraintStart_toEndOf="@id/text_view_calories_title"
         app:layout_constraintTop_toBottomOf="@id/hr_line" />
@@ -76,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/text_fats"
-        android:textColor="@android:color/holo_blue_light"
+        android:textColor="?attr/colorFat"
         app:layout_constraintEnd_toStartOf="@id/text_view_carbs_title"
         app:layout_constraintStart_toEndOf="@id/text_view_proteins_title"
         app:layout_constraintTop_toBottomOf="@id/hr_line" />
@@ -88,7 +87,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="@string/text_carbs"
-        android:textColor="@android:color/holo_red_light"
+        android:textColor="?attr/colorCarbs"
         app:layout_constraintStart_toEndOf="@id/text_view_fats_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/hr_line" />
@@ -101,7 +100,7 @@
         android:text="@string/text_zero"
         app:layout_constraintTop_toBottomOf="@id/text_view_calories_title"
         app:layout_constraintStart_toStartOf="@id/text_view_calories_title"
-        app:layout_constraintEnd_toEndOf="@id/text_view_calories_title"/>
+        app:layout_constraintEnd_toEndOf="@id/text_view_calories_title" />
 
     <TextView
         android:id="@+id/text_view_proteins"
@@ -111,7 +110,7 @@
         android:text="@string/text_zero"
         app:layout_constraintTop_toBottomOf="@id/text_view_proteins_title"
         app:layout_constraintStart_toStartOf="@id/text_view_proteins_title"
-        app:layout_constraintEnd_toEndOf="@id/text_view_proteins_title"/>
+        app:layout_constraintEnd_toEndOf="@id/text_view_proteins_title" />
 
     <TextView
         android:id="@+id/text_view_fats"
@@ -121,7 +120,7 @@
         android:text="@string/text_zero"
         app:layout_constraintTop_toBottomOf="@id/text_view_fats_title"
         app:layout_constraintStart_toStartOf="@id/text_view_fats_title"
-        app:layout_constraintEnd_toEndOf="@id/text_view_fats_title"/>
+        app:layout_constraintEnd_toEndOf="@id/text_view_fats_title" />
 
     <TextView
         android:id="@+id/text_view_carbs"
@@ -131,7 +130,7 @@
         android:text="@string/text_zero"
         app:layout_constraintTop_toBottomOf="@id/text_view_carbs_title"
         app:layout_constraintStart_toStartOf="@id/text_view_carbs_title"
-        app:layout_constraintEnd_toEndOf="@id/text_view_carbs_title"/>
+        app:layout_constraintEnd_toEndOf="@id/text_view_carbs_title" />
 
     <EditText
         android:id="@+id/edit_text_weight"
@@ -140,30 +139,30 @@
         android:layout_marginHorizontal="16dp"
         android:background="@drawable/background_edit_text_weight"
         android:gravity="end"
+        android:hint="@string/text_zero"
+        android:textColorHint="@color/grey_500"
+        android:textColor="?attr/colorOnSecondary"
         android:imeOptions="actionDone"
+        android:importantForAutofill="no"
         android:inputType="number"
+        android:maxLength="5"
         android:paddingHorizontal="16dp"
         android:paddingVertical="8dp"
-        android:maxLength="5"
-        android:hint="@string/text_zero"
         app:layout_constraintBottom_toBottomOf="@id/button_done"
         app:layout_constraintEnd_toStartOf="@id/button_done"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/button_done"
-        app:layout_constraintVertical_bias="0.0"
-        android:importantForAutofill="no" />
+        app:layout_constraintVertical_bias="0.0" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_done"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="16dp"
         android:layout_marginEnd="16dp"
         android:text="@string/text_done"
-        android:backgroundTint="@color/primary_color"
-        app:cornerRadius="24dp"
+        app:backgroundTint="?attr/colorPrimaryHelper"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_view_calories" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
