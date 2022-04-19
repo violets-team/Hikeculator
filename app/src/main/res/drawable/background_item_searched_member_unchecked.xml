@@ -3,6 +3,6 @@
 
     <corners android:radius="8dp" />
 
-    <solid android:color="?attr/unCheckedState" />
+    <solid android:color="?attr/colorUnCheckedState" />
 
 </shape>
