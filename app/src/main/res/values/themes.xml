@@ -7,7 +7,7 @@
         <item name="colorSurface">@color/white</item>
         <item name="colorOnSecondary">@color/grey_800</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="android:textColor">@color/gray_700</item>
+        <item name="android:textColor">@color/grey_700</item>
         <item name="android:colorPrimaryDark">@color/green_400</item>
         <item name="materialButtonStyle">@style/Widget.Hikeculator.Button</item>
         <item name="radioButtonStyle">@style/Widget.Hikeculator.RadioButton</item>
@@ -19,10 +19,13 @@
         <item name="styleFabNavigation">@style/Widget.Hikeculator.TripDetailButtonView</item>
         <item name="colorNegativeAction">@android:color/holo_red_light</item>
         <item name="itemColor">@color/green_200</item>
-        <item name="checkedState">@color/green_200</item>
-        <item name="unCheckedState">@color/grey_100</item>
-        <item name="colorIcon">@color/gray_700</item>
-        <item name="colorItemSecondary">@color/white</item>
+        <item name="colorCheckedState">@color/green_200</item>
+        <item name="colorUnCheckedState">@color/grey_100</item>
+        <item name="colorIcon">@color/grey_700</item>
+        <item name="itemColorSecondary">@color/white</item>
+        <item name="colorTrack">@color/brown</item>
+        <item name="colorTrackSecondary">@color/dark_blue_darker</item>
+        <item name="colorIndicator">?attr/colorPrimary</item>
 
         <item name="colorProtein">@android:color/holo_orange_light</item>
         <item name="colorFat">@android:color/holo_blue_light</item>

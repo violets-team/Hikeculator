@@ -4,5 +4,4 @@
     <solid android:color="?attr/colorDialogBackground" />
 
     <corners android:radius="16dp" />
-
 </shape>

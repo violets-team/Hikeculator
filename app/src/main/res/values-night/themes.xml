@@ -19,10 +19,13 @@
         <item name="styleFabNavigation">@style/Widget.Night.Hikeculator.TripDetailButtonView</item>
         <item name="colorNegativeAction">@android:color/holo_red_light</item>
         <item name="itemColor">@color/grey_800_alpha</item>
-        <item name="checkedState">@color/grey_800_alpha</item>
-        <item name="unCheckedState">@color/grey_800</item>
+        <item name="colorCheckedState">@color/grey_800_alpha</item>
+        <item name="colorUnCheckedState">@color/grey_800</item>
         <item name="colorIcon">@color/grey_500</item>
-        <item name="colorItemSecondary">@color/grey_800_alpha</item>
+        <item name="itemColorSecondary">@color/grey_800_alpha</item>
+        <item name="colorTrack">@color/brown</item>
+        <item name="colorTrackSecondary">@color/dark_blue_darker</item>
+        <item name="colorIndicator">?attr/colorPrimary</item>
 
         <item name="colorProtein">@android:color/holo_orange_light</item>
         <item name="colorFat">@android:color/holo_blue_light</item>

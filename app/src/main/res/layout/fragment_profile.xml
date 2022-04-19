@@ -156,7 +156,6 @@
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <Button
             android:id="@+id/button_save"
             android:layout_width="0dp"

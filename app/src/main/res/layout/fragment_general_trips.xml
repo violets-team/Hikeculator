@@ -35,5 +35,4 @@
         app:srcCompat="@drawable/ic_add"
         app:tint="@color/white"
         android:contentDescription="@string/description_button_add_trip" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

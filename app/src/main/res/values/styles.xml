@@ -5,7 +5,7 @@
     </style>
 
     <style name="Widget.Hikeculator.RadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
-        <item name="android:buttonTint">@color/gray_700</item>
+        <item name="android:buttonTint">@color/grey_700</item>
         <item name="android:textSize">16sp</item>
     </style>
 
@@ -27,7 +27,7 @@
 
     <!-- Button light theme -->
     <style name="Widget.Hikeculator.Button" parent="Widget.MaterialComponents.Button">
-        <item name="android:textColor">@color/grey_800</item>
+        <item name="android:textColor">@color/grey_700</item>
         <item name="backgroundTint">?attr/colorPrimaryHelper</item>
         <item name="cornerRadius">24dp</item>
         <item name="android:textSize">16sp</item>
@@ -47,16 +47,15 @@
     <!-- FabNavigation light theme -->
     <style name="Widget.Hikeculator.TripDetailButtonView" parent="">
         <item name="mainButtonBackground">?attr/colorPrimary</item>
-        <item name="memberButtonBackground">#CDC581</item>
-        <item name="provisionBagButtonBackground">#8ECAD3</item>
+        <item name="memberButtonBackground">@color/pale_yellow</item>
+        <item name="provisionBagButtonBackground">@color/pale_blue</item>
     </style>
-
 
     <!-- FabNavigation night theme -->
     <style name="Widget.Night.Hikeculator.TripDetailButtonView" parent="">
         <item name="mainButtonBackground">?attr/colorPrimary</item>
-        <item name="memberButtonBackground">#9C9664</item>
-        <item name="provisionBagButtonBackground">#8ECAD3</item>
+        <item name="memberButtonBackground">@color/dark_pale_yellow</item>
+        <item name="provisionBagButtonBackground">@color/dark_pale_blue</item>
     </style>
 
     <style name="text_view_trip_creating_component">
@@ -74,8 +73,8 @@
     <style name="progress_bar_pfc_info">
         <item name="android:layout_width">@dimen/progress_bar_pfc_radius</item>
         <item name="android:layout_height">@dimen/progress_bar_pfc_radius</item>
-        <item name="indicatorColor">#CEDD8A70</item>
-        <item name="trackColor">#5269D4E1</item>
+        <item name="indicatorColor">@color/pale_red</item>
+        <item name="trackColor">?attr/colorTrackSecondary</item>
         <item name="trackCornerRadius">10dp</item>
         <item name="indicatorSize">@dimen/progress_bar_pfc_radius</item>
         <item name="indicatorInset">00dp</item>

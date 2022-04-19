@@ -165,5 +165,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_view_calories" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
