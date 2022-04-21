@@ -4,18 +4,18 @@
 An application for meal planning and calculating nutritional value of products for trips.
 
 ### Technology stack
-* The code is writen with _**Kotlin**_
+* The code is written with _**Kotlin**_
 * _**Clean Architecture**_ + _**MVVM**_
 * Access to storage via _**Firestore**_ and _**DataStore**_
 * For asynchronous operations used _**Coroutines**_ and _**Coroutine flows**_
 * For Ui navigation used _**Navigation component**_
-* For newtworking used _**Retrofit**_
-* For dipendence injection used _**Koin**_
-* Single Activity patern
-* _**Theme**_: black and white
+* For networking used _**Retrofit**_
+* For dependency injection used _**Koin**_
+* Single Activity pattern
+* _**Theme**_: dark and light
 
 ### Features
-* Сreation of collective trips
+* Creating of collective trips
 * Tracking the status of trips in real time
 * Search products via Api
 * Adding and removing trip members
@@ -24,3 +24,5 @@ An application for meal planning and calculating nutritional value of products f
 
 ### Compatibility
 From API level 24 to 31
+
+![App preview](preview/app_preview.gif)
