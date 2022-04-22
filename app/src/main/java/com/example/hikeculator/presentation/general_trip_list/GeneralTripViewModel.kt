@@ -45,10 +45,16 @@ class GeneralTripViewModel(
         }
 
         viewModelScope.launch(exceptionHandler) {
-            launch { tripDayInteractor.removeTripDayCollection(tripId = trip.id) }
-            launch { provisionBagInteractor.removeProvisionBag(tripId = trip.id) }
-            launch { tripInteractor.removeTrip(trip = trip) }
+            tripDayInteractor.removeTripDayCollection(tripId = trip.id)
+            provisionBagInteractor.removeProvisionBag(tripId = trip.id)
+            tripInteractor.removeTrip(trip = trip)
         }
+    }
+
+    suspend fun some(trip: Trip) {
+        tripDayInteractor.removeTripDayCollection(tripId = trip.id)
+        provisionBagInteractor.removeProvisionBag(tripId = trip.id)
+        tripInteractor.removeTrip(trip = trip)
     }
 
     private fun observeData() {
@@ -60,7 +66,6 @@ class GeneralTripViewModel(
             user.collect { user: User? ->
                 user ?: return@collect
 
-                _trips.value = emptySet()
                 tripCollectingJob?.cancel()
                 tripCollectingJob = launch { observeTrips(user = user) }
             }
@@ -71,7 +76,7 @@ class GeneralTripViewModel(
         fetchObservableTrips(
             tripIds = user.tripIds.toTypedArray()
         ).collect { fetchedTrips ->
-            val updatedTrips = _trips.value.toMutableList()
+            val updatedTrips = fetchedTrips.toMutableList()
 
             fetchedTrips.onEach { trip ->
                 if (isTripUpdated(trip = trip)) {
