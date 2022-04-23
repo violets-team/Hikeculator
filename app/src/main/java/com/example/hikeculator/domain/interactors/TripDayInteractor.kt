@@ -23,6 +23,6 @@ class TripDayInteractor(private val tripDayRepository: TripDayRepository) {
     }
 
     suspend fun removeTripDayCollection(tripId: String) {
-        withContext(Dispatchers.Main) { tripDayRepository.removeTripDayCollection(tripId = tripId) }
+        withContext(Dispatchers.IO) { tripDayRepository.removeTripDayCollection(tripId = tripId) }
     }
 }

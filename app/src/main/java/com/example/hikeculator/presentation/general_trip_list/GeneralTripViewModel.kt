@@ -26,7 +26,7 @@ class GeneralTripViewModel(
     private val _trips = MutableStateFlow<Set<Trip>>(value = emptySet())
     val trips = _trips.asStateFlow()
 
-    private val _problemMessage = MutableSharedFlow<Int>()
+    private val _problemMessage = MutableSharedFlow<Int>(extraBufferCapacity = 1)
     val problemMessage = _problemMessage.asSharedFlow()
 
     private val user = userProfileInteractor.fetchObservableUserProfile().shareIn(
@@ -44,17 +44,11 @@ class GeneralTripViewModel(
             _problemMessage.tryEmit(R.string.problem_with_trip_deleting)
         }
 
-        viewModelScope.launch(exceptionHandler) {
-            tripDayInteractor.removeTripDayCollection(tripId = trip.id)
-            provisionBagInteractor.removeProvisionBag(tripId = trip.id)
-            tripInteractor.removeTrip(trip = trip)
+        viewModelScope.launch(context = exceptionHandler) {
+            launch { tripDayInteractor.removeTripDayCollection(tripId = trip.id) }
+            launch { provisionBagInteractor.removeProvisionBag(tripId = trip.id) }
+            launch { tripInteractor.removeTrip(trip = trip) }
         }
-    }
-
-    suspend fun some(trip: Trip) {
-        tripDayInteractor.removeTripDayCollection(tripId = trip.id)
-        provisionBagInteractor.removeProvisionBag(tripId = trip.id)
-        tripInteractor.removeTrip(trip = trip)
     }
 
     private fun observeData() {

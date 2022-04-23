@@ -32,6 +32,6 @@ class ProvisionBagInteractor(private val provisionBagRepository: ProvisionBagRep
     }
 
     suspend fun removeProvisionBag(tripId: String) {
-        withContext(Dispatchers.Main) { provisionBagRepository.removeProvisionBag(tripId = tripId) }
+        withContext(Dispatchers.IO) { provisionBagRepository.removeProvisionBag(tripId = tripId) }
     }
 }
