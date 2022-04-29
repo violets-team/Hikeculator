@@ -11,6 +11,7 @@ An application for meal planning and calculating nutritional value of products f
 * For Ui navigation used _**Navigation component**_
 * For networking used _**Retrofit**_
 * For dependency injection used _**Koin**_
+* For testing used _**Mockk**_
 * Single Activity pattern
 * _**Theme**_: dark and light
 
