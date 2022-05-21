@@ -15,7 +15,7 @@ class TripDetailViewModel(
     private val tripId: String,
 ) : ViewModel() {
 
-    private val _problemMessage = MutableSharedFlow<Int>(replay = 1, extraBufferCapacity = 1)
+    private val _problemMessage = MutableSharedFlow<Int>(replay = 1)
     val problemMessage: SharedFlow<Int> = _problemMessage.asSharedFlow()
 
     val data: SharedFlow<Pair<Trip?, List<TripDay>>> = getTripData().shareIn(
@@ -34,7 +34,7 @@ class TripDetailViewModel(
 
     private fun getTripDays(): Flow<List<TripDay>> {
         return tripDayInteractor.fetchTripDays(tripId = tripId).catch {
-            _problemMessage.tryEmit(R.string.problem_with_trip_getting)
+            _problemMessage.emit(R.string.problem_with_trip_getting)
         }
     }
 
