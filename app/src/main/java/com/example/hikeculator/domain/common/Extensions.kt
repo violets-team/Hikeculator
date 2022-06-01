@@ -1,9 +1,10 @@
 package com.example.hikeculator.domain.common
 
+import com.example.hikeculator.domain.common.NutritionalCalculator.CALORIES_PER_GRAM_OF_CARBS
+import com.example.hikeculator.domain.common.NutritionalCalculator.CALORIES_PER_GRAM_OF_FAT
+import com.example.hikeculator.domain.common.NutritionalCalculator.CALORIES_PER_GRAM_OF_PROTEINS
 import com.example.hikeculator.domain.entities.DayMeal
 import com.example.hikeculator.domain.entities.TripDay
-import java.math.RoundingMode
-import java.text.DecimalFormat
 import kotlin.math.roundToInt
 
 private const val ONE_HUNDRED_PERCENT = 100
@@ -15,33 +16,23 @@ fun <T> MutableList<T>.update(newData: List<T>) {
 }
 
 fun List<TripDay>.getProvisionCalories(): Double {
-    return retrieveMeals()
-        .map { dayMeal -> dayMeal.totalCalories }
-        .sum()
+    return retrieveMeals().sumOf { dayMeal -> dayMeal.totalCalories }
 }
 
 fun List<TripDay>.getProvisionWeight(): Long {
-    return retrieveMeals()
-        .map { dayMeal -> dayMeal.totalWeight }
-        .sum()
+    return retrieveMeals().sumOf { dayMeal -> dayMeal.totalWeight }
 }
 
-fun List<TripDay>.getProvisionProteinAmount(): Double {
-    return retrieveMeals()
-        .map { dayMeal -> dayMeal.totalProteins }
-        .sum()
+fun List<TripDay>.getProvisionProteinAmountPerCalories(): Double {
+    return retrieveMeals().sumOf { dayMeal -> dayMeal.totalProteins } * CALORIES_PER_GRAM_OF_PROTEINS
 }
 
-fun List<TripDay>.getProvisionFatAmount(): Double {
-    return retrieveMeals()
-        .map { dayMeal -> dayMeal.totalFats }
-        .sum()
+fun List<TripDay>.getProvisionFatAmountPerCalories(): Double {
+    return retrieveMeals().sumOf { dayMeal -> dayMeal.totalFats } * CALORIES_PER_GRAM_OF_FAT
 }
 
-fun List<TripDay>.getProvisionCarbsAmount(): Double {
-    return retrieveMeals()
-        .map { dayMeal -> dayMeal.totalCarbs }
-        .sum()
+fun List<TripDay>.getProvisionCarbsAmountPerCalories(): Double {
+    return retrieveMeals().sumOf { dayMeal -> dayMeal.totalCarbs } * CALORIES_PER_GRAM_OF_CARBS
 }
 
 fun List<TripDay>.retrieveMeals(): List<DayMeal> {
@@ -55,7 +46,7 @@ infix fun Double.percentageOf(totalValue: Double): Int {
 }
 
 fun Double.roundToTwoDecimalPlaces(): Double {
-   return (this * VALUE_ONE_HUNDRED).roundToInt().toDouble() / VALUE_ONE_HUNDRED
+    return (this * VALUE_ONE_HUNDRED).roundToInt().toDouble() / VALUE_ONE_HUNDRED
 }
 
 fun Double.divideByOneHundred(): Double = div(VALUE_ONE_HUNDRED)

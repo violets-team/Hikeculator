@@ -3,6 +3,7 @@ package com.example.hikeculator.data.repository_implementations
 import com.example.hikeculator.data.common.getTripDocument
 import com.example.hikeculator.data.common.getUserCollection
 import com.example.hikeculator.data.common.mapToUser
+import com.example.hikeculator.data.fiebase.ARRAY_OPERATOR_MAX_SIZE
 import com.example.hikeculator.data.fiebase.USER_COLLECTION_NAME
 import com.example.hikeculator.data.fiebase.entities.FirestoreTrip
 import com.example.hikeculator.data.fiebase.entities.FirestoreUser
@@ -24,14 +25,16 @@ class MemberGroupRepositoryImpl(
         private const val UNICODE_RANGE = "\uf8ff"
     }
 
-    override suspend fun addTripMember(tripId: String, userUid: String) {
-        userProfileRepository.addTripIdToUserProfile(userUid = userUid, tripId = tripId)
+    override suspend fun addTripMember(tripId: String, vararg userUids: String) {
+        userUids.onEach { userUid ->
+            userProfileRepository.addTripIdToUserProfile(userUid = userUid, tripId = tripId)
+        }
 
         firestore.getTripDocument(tripId = tripId).let { documentReference ->
             documentReference.get()
                 .await()
                 ?.toObject<FirestoreTrip>()
-                ?.run { memberUids.toMutableList().apply { add(userUid) }.toList() }
+                ?.run { memberUids.toMutableSet().apply { addAll(userUids) }.toList() }
                 ?.let { updatedUserUdis ->
                     documentReference.update(FirestoreTrip::memberUids.name, updatedUserUdis)
                         .await()
@@ -66,8 +69,9 @@ class MemberGroupRepositoryImpl(
                     val memberUids = firestoreTrip.memberUids
                     val members = mutableListOf<FirestoreUser>()
 
-                    for (step in 0..firestoreTrip.memberUids.size / 10) {
-                        val memberUidGroup = memberUids.drop(10 * step).take(10)
+                    for (step in 0..firestoreTrip.memberUids.size / ARRAY_OPERATOR_MAX_SIZE) {
+                        val memberUidGroup = memberUids.drop(ARRAY_OPERATOR_MAX_SIZE * step)
+                            .take(ARRAY_OPERATOR_MAX_SIZE)
 
                         if (memberUidGroup.isNotEmpty()) {
                             firestore.getUserCollection()

@@ -59,13 +59,6 @@ fun EditText.onDone(callback: () -> Unit) {
     }
 }
 
-fun RecyclerView.getAnimated(@AnimRes layoutAnimationId: Int) {
-    val layoutAnimationController = AnimationUtils.loadLayoutAnimation(context, layoutAnimationId)
-
-    layoutAnimation = layoutAnimationController
-}
-
-
 fun TextView.setTextPercentage(percentage: Int) {
     val displayedPercentage = if (percentage < GREATEST_PERCENTAGE_VALUE) {
         percentage

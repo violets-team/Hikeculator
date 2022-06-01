@@ -6,10 +6,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hikeculator.R
 import com.example.hikeculator.databinding.ItemDayBinding
-import com.example.hikeculator.domain.entities.Trip
 import com.example.hikeculator.domain.entities.TripDay
 import com.example.hikeculator.presentation.common.TripDateFormat
-import com.example.hikeculator.presentation.common.getAnimated
 
 class TripDetailDayAdapter(
     private val onItemClick: (dayId: String) -> Unit,
@@ -38,7 +36,7 @@ class TripDetailDayAdapter(
             with(binding) {
                 val day = getItem(absoluteAdapterPosition)
                 val dayOrdinal = absoluteAdapterPosition + DAY_ORDINAL_CORRECTION_FACTOR
-                val dayNumberText = root.context.getString(R.string.text_item_day, dayOrdinal)
+                val dayNumberText = root.context.getString(R.string.text_day_ordinal, dayOrdinal)
                 val date = TripDateFormat.toFormattedDate(day.date)
 
                 textViewTripDayNumber.text = dayNumberText

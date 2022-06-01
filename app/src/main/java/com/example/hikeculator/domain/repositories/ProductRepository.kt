@@ -9,5 +9,5 @@ interface ProductRepository {
 
     suspend fun insertProduct(product: Product,tripId: String, dayId: String, mealType: MealType)
 
-    fun fetchDayMeal(tripId: String, dayId: String, mealType: MealType): Flow<DayMeal>
+    suspend fun removeProduct(product: Product,tripId: String, dayId: String, mealType: MealType)
 }

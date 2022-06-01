@@ -1,16 +1,22 @@
 package com.example.hikeculator.presentation.common
 
-import androidx.annotation.AnimRes
 import androidx.recyclerview.widget.RecyclerView
 
-class RecyclerViewAnimator(private val recyclerView: RecyclerView) {
+class RecyclerViewAnimator(
+    private val recyclerView: RecyclerView,
+) {
 
-    private var wasNotAnimated = true
+    var wasNotAnimated = true
+        private set
 
-    fun animateOnlyOnce(@AnimRes layoutAnimationId: Int) {
+    fun animateOnlyOnce() {
         if (wasNotAnimated) {
-            recyclerView.getAnimated(layoutAnimationId = layoutAnimationId)
+            recyclerView.scheduleLayoutAnimation()
             wasNotAnimated = false
         }
+    }
+
+    fun reset() {
+        wasNotAnimated = true
     }
 }
