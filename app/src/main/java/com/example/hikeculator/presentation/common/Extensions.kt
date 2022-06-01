@@ -2,14 +2,13 @@ package com.example.hikeculator.presentation.common
 
 import android.content.Context
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.view.animation.AnimationUtils
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.AnimRes
-import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.recyclerview.widget.RecyclerView
@@ -80,4 +79,3 @@ fun TextView.setTextPercentage(percentage: Int) {
 fun View.showSnackBar(@StringRes messageId: Int) {
     Snackbar.make(this, context.getString(messageId), Snackbar.LENGTH_SHORT).show()
 }
-
