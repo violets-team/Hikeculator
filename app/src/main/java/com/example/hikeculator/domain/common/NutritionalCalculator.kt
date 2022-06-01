@@ -2,6 +2,7 @@ package com.example.hikeculator.domain.common
 
 import com.example.hikeculator.domain.enums.MealType
 import com.example.hikeculator.domain.entities.Trip
+import com.example.hikeculator.domain.entities.TripDay
 import com.example.hikeculator.domain.entities.User
 import com.example.hikeculator.domain.enums.Gender
 import com.example.hikeculator.domain.enums.TripDifficultyCategory
@@ -14,15 +15,15 @@ object NutritionalCalculator {
     private const val WEIGHT_FACTOR = 10
     private const val HEIGHT_FACTOR = 6.25
     private const val AGE_FACTOR = 5
-    private const val MAN_GENDER_FACTOR = -161
-    private const val WOMAN_GENDER_FACTOR = 5
+    private const val MAN_GENDER_FACTOR = 5
+    private const val WOMAN_GENDER_FACTOR = -161
     private const val PHYSICAL_LOAD_FACTOR = 1.55
     private const val PROTEINS_NORM_PERCENTAGE = 0.3
     private const val FAT_NORM_PERCENTAGE = 0.3
     private const val CARBS_NORM_PERCENTAGE = 0.4
-    private const val CALORIES_PER_GRAM_OF_CARBS = 4
-    private const val CALORIES_PER_GRAM_OF_PROTEINS = 4
-    private const val CALORIES_PER_GRAM_OF_FAT = 9
+    const val CALORIES_PER_GRAM_OF_CARBS = 4
+    const val CALORIES_PER_GRAM_OF_PROTEINS = 4
+    const val CALORIES_PER_GRAM_OF_FAT = 9
 
     fun calculateCalorieNorm(weight: Double, height: Int, age: Int, gender: Gender): Long {
         val genderFactor = if (gender == Gender.MAN) MAN_GENDER_FACTOR else WOMAN_GENDER_FACTOR
@@ -72,13 +73,27 @@ object NutritionalCalculator {
         return calories * CARBS_NORM_PERCENTAGE
     }
 
-    fun getMealCaloriesNorm(trip: Trip, mealType: MealType): Double {
-        val daysNumber = getDayCount(
-            startDate = trip.startDate,
-            endDate = trip.endDate
-        )
+    fun getDayCaloriesNorm(trip: Trip): Double {
+        val daysCount = getDayCount(startDate = trip.startDate, endDate = trip.endDate)
 
-        val caloriesDayNorm = trip.totalCalories / daysNumber
+        return trip.totalCalories / daysCount
+    }
+
+    fun getDayProteinAmountPerCalories(tripDay: TripDay): Double {
+        return tripDay.getProvisionProteinAmountPerGram() * CALORIES_PER_GRAM_OF_PROTEINS
+    }
+
+    fun getDayFatAmountPerCalories(tripDay: TripDay): Double {
+        return tripDay.getProvisionFatAmountPerGram() * CALORIES_PER_GRAM_OF_FAT
+    }
+
+    fun getDayCarbAmountPerCalories(tripDay: TripDay): Double {
+        return tripDay.getProvisionCarbsAmountPerGram() * CALORIES_PER_GRAM_OF_CARBS
+    }
+
+    fun getMealCaloriesNorm(trip: Trip, mealType: MealType): Double {
+        val daysCount = getDayCount(startDate = trip.startDate, endDate = trip.endDate)
+        val caloriesDayNorm = trip.totalCalories / daysCount
 
         return caloriesDayNorm * mealType.mealPercentage
     }

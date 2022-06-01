@@ -17,4 +17,6 @@ interface TripRepository {
     fun fetchTrip(tripId: String): Flow<Trip?>
 
     suspend fun retrieveTrip(tripId: String): Trip?
+
+    fun fetchObservableTrips(vararg tripIds: String): Flow<Set<Trip>>
 }

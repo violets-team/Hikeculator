@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_color"
+    android:background="?attr/colorPrimary"
     tools:context=".presentation.trip_creating.TripCreatingFragment">
 
     <androidx.constraintlayout.widget.Guideline
@@ -35,42 +35,42 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_end="16dp" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
         android:id="@+id/text_view_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        android:textColor="?attr/colorOnPrimary"
         android:layout_marginTop="24dp"
         android:text="@string/text_title_trip_creating"
-        android:textSize="20sp"
-        android:textStyle="bold|italic"
         app:layout_constraintTop_toTopOf="@id/content_top"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <FrameLayout
+    <View
         android:id="@+id/frame_layout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="64dp"
         android:background="@drawable/circularbordersolid"
-        app:layout_constraintTop_toBottomOf="@id/text_view_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_title"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_layout_name"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:hint="@string/hint_create_hike_name_hint"
         app:layout_constraintTop_toTopOf="@id/frame_layout"
         app:layout_constraintEnd_toEndOf="@id/content_end"
-        app:layout_constraintStart_toStartOf="@id/content_start"
-        >
+        app:layout_constraintStart_toStartOf="@id/content_start">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text_name"
@@ -87,6 +87,7 @@
         style="@style/text_view_trip_creating_component"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/background_trip_creating_component"
         tools:text="Season"
         app:layout_constraintEnd_toEndOf="@id/content_end"
         app:layout_constraintStart_toStartOf="@id/content_start"
@@ -98,6 +99,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         tools:text="Trip type"
+        android:background="@drawable/background_trip_creating_component"
         app:layout_constraintEnd_toEndOf="@id/content_end"
         app:layout_constraintStart_toStartOf="@id/content_start"
         app:layout_constraintTop_toBottomOf="@id/text_view_season" />
@@ -108,6 +110,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         tools:text="Difficulty category"
+        android:background="@drawable/background_trip_creating_component"
         app:layout_constraintEnd_toEndOf="@id/content_end"
         app:layout_constraintStart_toStartOf="@id/content_start"
         app:layout_constraintTop_toBottomOf="@id/text_view_type" />
@@ -119,15 +122,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         tools:text="Date"
+        android:background="@drawable/background_trip_creating_component"
         app:layout_constraintEnd_toEndOf="@id/content_end"
         app:layout_constraintStart_toStartOf="@id/content_start"
         app:layout_constraintTop_toBottomOf="@id/text_view_difficulty_category" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/button_create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/text_button_create"
+        android:paddingHorizontal="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/content_end"
         app:layout_constraintStart_toStartOf="@id/content_start"

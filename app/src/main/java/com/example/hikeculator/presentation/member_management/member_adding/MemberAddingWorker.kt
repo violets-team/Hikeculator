@@ -37,12 +37,10 @@ class MemberAddingWorker(
 
     override suspend fun doWork(): Result {
         val tripId = workerParameters.inputData.getString(TRIP_ID_KEY)
-        val usersUids = workerParameters.inputData.getStringArray(USER_UID_KEY)?.toList()
+        val userUids = workerParameters.inputData.getStringArray(USER_UID_KEY)?.toList()
 
-        return if (tripId != null && usersUids != null) {
-            usersUids.onEach { userUid ->
-                memberGroupInteractor.addTripMember(tripId = tripId, userUid = userUid)
-            }
+        return if (tripId != null && userUids != null) {
+            memberGroupInteractor.addTripMember(tripId = tripId, userUids = userUids.toTypedArray())
 
             val members = memberGroupInteractor.fetchTripMembers(tripId)
 

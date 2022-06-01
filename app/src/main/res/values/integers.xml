@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common -->
+    <integer name="edit_text_age_max_length">3</integer>
+    <integer name="edit_text_weight_max_height">3</integer>
+    <integer name="edit_text_weight_max_length">4</integer>
+</resources>

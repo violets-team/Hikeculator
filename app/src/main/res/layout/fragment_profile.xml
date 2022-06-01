@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_alignBottom="@id/button_save"
-    android:fillViewport="true"
     android:layout_alignParentBottom="true"
+    android:fillViewport="true"
     tools:context=".presentation.profile.ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,12 +14,12 @@
         android:layout_height="wrap_content">
 
         <View
-            android:id="@+id/header_background"
+            android:id="@+id/profile_header"
             android:layout_width="0dp"
-            android:layout_height="160dp"
-            android:background="@color/primary_color"
+            android:layout_height="@dimen/profile_header_height"
+            android:background="?attr/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,20 +27,19 @@
             android:id="@+id/image_profile_photo"
             android:layout_width="130dp"
             android:layout_height="130dp"
-            android:background="@color/primary_color"
+            android:background="?attr/background"
             android:padding="8dp"
             android:src="@drawable/ic_account"
-            app:layout_constraintBottom_toBottomOf="@id/header_background"
+            app:layout_constraintBottom_toBottomOf="@id/profile_header"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header_background"
+            app:layout_constraintTop_toBottomOf="@id/profile_header"
             app:shapeAppearance="@style/circular_image"
-            app:strokeColor="@color/white"
-            app:strokeWidth="3dp"
-            tools:layout_editor_absoluteX="156dp"
-            tools:layout_editor_absoluteY="106dp" />
+            app:strokeColor="?attr/background"
+            app:strokeWidth="3dp" />
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -49,6 +48,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,18 +56,16 @@
             android:id="@+id/image_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/description_button_back"
             android:padding="16dp"
             android:src="@drawable/ic_back"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/description_button_back" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/text_view_calories_norm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/image_profile_photo"
@@ -90,7 +88,8 @@
                 android:layout_height="match_parent"
                 android:hint="@string/text_name"
                 android:inputType="textPersonName"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -109,8 +108,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/text_weight"
-                android:maxLength="4"
                 android:inputType="number"
+                android:maxLength="@integer/edit_text_weight_max_length"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -131,8 +130,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/text_height"
-                android:maxLength="3"
                 android:inputType="number"
+                android:maxLength="@integer/edit_text_weight_max_height"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -152,11 +151,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/text_age"
-                android:maxLength="3"
                 android:inputType="number"
+                android:maxLength="@integer/edit_text_age_max_length"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <Button
             android:id="@+id/button_save"
@@ -164,8 +162,9 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
             android:layout_marginBottom="16dp"
+            android:elevation="@dimen/button_save_elevation"
+            android:stateListAnimator="@null"
             android:text="@string/text_save"
-            app:cornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -178,21 +177,22 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="@+id/text_input_layout_age"
+            app:layout_constraintStart_toStartOf="@id/text_input_layout_age"
             app:layout_constraintTop_toBottomOf="@id/text_input_layout_age">
 
             <RadioButton
                 android:id="@+id/radio_button_man"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:text="@string/text_sex_man" />
 
             <RadioButton
                 android:id="@+id/radio_button_woman"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/text_sex_woman"
-                android:layout_marginStart="16dp"/>
+                android:layout_marginStart="16dp"
+                android:text="@string/text_sex_woman" />
         </RadioGroup>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

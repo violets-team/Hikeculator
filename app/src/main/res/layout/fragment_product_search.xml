@@ -5,25 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/group_product_statics"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:constraint_referenced_ids="
-        progress_indicator_calories_info,
-        progress_indicator_carbs_info,
-        progress_indicator_proteins_info,
-        progress_indicator_fats_info,
-        text_view_calories_title,
-        text_view_proteins_title,
-        text_view_fats_title,
-        text_view_carbs_title,
-        text_view_calories_info,
-        text_view_proteins_info,
-        text_view_fats_info,
-        text_view_carbs_info" />
-
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progress_indicator_calories_info"
         style="@style/progress_bar_pfc_info"
@@ -38,7 +19,7 @@
         android:id="@+id/progress_indicator_proteins_info"
         style="@style/progress_bar_pfc_info"
         android:layout_marginTop="16dp"
-        app:indicatorColor="@android:color/holo_orange_light"
+        app:indicatorColor="?attr/colorProtein"
         app:layout_constraintEnd_toEndOf="@id/progress_indicator_fats_info"
         app:layout_constraintStart_toEndOf="@id/progress_indicator_calories_info"
         app:layout_constraintTop_toTopOf="parent" />
@@ -47,7 +28,7 @@
         android:id="@+id/progress_indicator_fats_info"
         style="@style/progress_bar_pfc_info"
         android:layout_marginTop="16dp"
-        app:indicatorColor="@android:color/holo_blue_light"
+        app:indicatorColor="?attr/colorFat"
         app:layout_constraintEnd_toStartOf="@id/progress_indicator_carbs_info"
         app:layout_constraintStart_toEndOf="@id/progress_indicator_proteins_info"
         app:layout_constraintTop_toTopOf="parent" />
@@ -56,7 +37,7 @@
         android:id="@+id/progress_indicator_carbs_info"
         style="@style/progress_bar_pfc_info"
         android:layout_marginTop="16dp"
-        app:indicatorColor="@android:color/holo_red_light"
+        app:indicatorColor="?attr/colorCarbs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/progress_indicator_fats_info"
         app:layout_constraintTop_toTopOf="parent" />
@@ -145,8 +126,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:autofillHints="name"
-        android:background="@drawable/background_searched_food"
-        android:backgroundTint="@color/white"
+        android:background="@drawable/background_product_search"
         android:drawableStart="@drawable/ic_search_loop"
         android:drawablePadding="8dp"
         android:elevation="8dp"
@@ -165,7 +145,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/text_search_result"
-        android:textColor="@color/primary_color"
+        android:textColor="?attr/colorPrimary"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@id/edit_text_search"
         app:layout_constraintTop_toBottomOf="@id/edit_text_search" />
@@ -177,11 +157,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/light_grey"
+        android:background="?attr/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_view_title_search_result" />
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_list_of_products"
@@ -190,8 +169,10 @@
         android:layout_marginTop="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/hr_line"
+        app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/item_searched_product" />
 
     <ProgressBar
@@ -200,12 +181,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
-        android:indeterminateTint="@color/light_green"
+        android:indeterminateTint="?attr/colorPrimary"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/recycler_view_list_of_products"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/recycler_view_list_of_products" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

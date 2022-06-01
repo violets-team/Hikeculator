@@ -1,5 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="Widget.Hikeculator.TextView" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Widget.Hikeculator.RadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:buttonTint">@color/grey_700</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Widget.Hikeculator.TextInputLayout.Registration" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:elevation">2dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+    </style>
+
+    <style name="Widget.Hikeculator.EditText.Registration" parent="ThemeOverlay.Material3.TextInputEditText.FilledBox.Dense">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Button light theme -->
+    <style name="Widget.Hikeculator.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/grey_700</item>
+        <item name="backgroundTint">?attr/colorPrimaryHelper</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <!-- Button night theme -->
+    <style name="Widget.Night.Hikeculator.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">?attr/colorPrimaryHelper</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+
+    <!-- FabNavigation light theme -->
+    <style name="Widget.Hikeculator.TripDetailButtonView" parent="">
+        <item name="mainButtonBackground">?attr/colorPrimary</item>
+        <item name="memberButtonBackground">@color/pale_yellow</item>
+        <item name="provisionBagButtonBackground">@color/pale_blue</item>
+    </style>
+
+    <!-- FabNavigation night theme -->
+    <style name="Widget.Night.Hikeculator.TripDetailButtonView" parent="">
+        <item name="mainButtonBackground">?attr/colorPrimary</item>
+        <item name="memberButtonBackground">@color/dark_pale_yellow</item>
+        <item name="provisionBagButtonBackground">@color/dark_pale_blue</item>
+    </style>
 
     <style name="text_view_trip_creating_component">
         <item name="android:layout_marginTop">16dp</item>
@@ -16,8 +73,8 @@
     <style name="progress_bar_pfc_info">
         <item name="android:layout_width">@dimen/progress_bar_pfc_radius</item>
         <item name="android:layout_height">@dimen/progress_bar_pfc_radius</item>
-        <item name="indicatorColor">#CEDD8A70</item>
-        <item name="trackColor">#5269D4E1</item>
+        <item name="indicatorColor">@color/pale_red</item>
+        <item name="trackColor">?attr/colorTrackSecondary</item>
         <item name="trackCornerRadius">10dp</item>
         <item name="indicatorSize">@dimen/progress_bar_pfc_radius</item>
         <item name="indicatorInset">00dp</item>
@@ -43,5 +100,80 @@
 
     <style name="circular_image">
         <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="trip_day_detail_meal_header">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:background">@drawable/background_trip_day_meal_header</item>
+        <item name="android:gravity">start|center</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:paddingStart">24dp</item>
+    </style>
+
+    <style name="trip_day_detail_meal_recycler_view">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/background_trip_day_meal_recycler_view</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+
+    <style name="trip_day_detail_meal_add_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:elevation">4dp</item>
+        <item name="srcCompat">@drawable/ic_add</item>
+    </style>
+
+    <style name="trip_day_detail_pfc_pointer">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">4dp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+
+    <style name="food_adding_text_view_nutrient">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/dark_blue</item>
+
+    </style>
+
+    <style name="food_adding_label_carbs">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/blueMacro</item>
+    </style>
+
+    <style name="food_adding_text_view_nutrient_precent">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
+    <style name="food_adding_label_proteins">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/greenMacro</item>
+    </style>
+
+    <style name="food_adding_label_fats">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/orangeMacro</item>
+    </style>
+
+    <style name="text_view_overview_food_name">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="text_view_overview_food_label">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/grey</item>
     </style>
 </resources>

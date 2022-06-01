@@ -12,3 +12,5 @@ const val USER_COLLECTION_NAME = "users"
 const val TRIP_DAY_COLLECTION_NAME= "trip_day_collection"
 const val TRIP_PROVISION_BAG_COLLECTION_NAME = "provision_bag_collection"
 const val TRIP_PROVISION_BAG_DOCUMENT_NAME = "provision_bag_document"
+
+const val ARRAY_OPERATOR_MAX_SIZE = 10
