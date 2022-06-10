@@ -16,15 +16,24 @@ class MemberDeletingWorker(
 
     companion object {
 
-        const val TRIP_ID_KEY = "tripId"
-        const val USER_UID_KEY = "userUid"
-        const val UNIQUE_NAME = "member_deleting"
+        private const val TRIP_ID_KEY = "tripId"
+        private const val USER_UID_KEY = "userUid"
+        private const val UNIQUE_NAME = "member_deleting"
 
-        fun makeRequest(memberUid: String, tripId: String): OneTimeWorkRequest {
+        fun WorkManager.enqueueMemberDeletingWork(memberUid: String, tripId: String) {
+            enqueueUniqueWork(
+                UNIQUE_NAME,
+                ExistingWorkPolicy.KEEP,
+                makeRequest(memberUid = memberUid, tripId = tripId)
+            )
+        }
+
+        private fun makeRequest(memberUid: String, tripId: String): OneTimeWorkRequest {
             val workData = workDataOf(
                 USER_UID_KEY to memberUid,
                 TRIP_ID_KEY to tripId
             )
+
             return OneTimeWorkRequestBuilder<MemberDeletingWorker>()
                 .setInputData(workData)
                 .build()
